@@ -14,6 +14,7 @@
 
 class SVGComponent : public Component {
 	SVG* svg;
+	Rectangle bounds;
 public:
 	SVGComponent(const char* filename) { svg = new SVG; load(filename);}
 	virtual ~SVGComponent() {delete svg;}
@@ -21,8 +22,21 @@ public:
 
 	void load(const char* filename) {svg->load(filename);}
 
-	virtual void render(const Cairo::RefPtr<Cairo::Context>& cr) {
-		svg->render(cr->cobj());
+
+	virtual Rectangle get_bounds() {
+		if(!bounds) compute_bounds();
+		return bounds + Vector2D(x,y);
+	}
+
+	virtual void render(Graphics& g) {
+		g.drawSVG(*svg);
+	}
+
+
+protected:
+	void compute_bounds() {
+		DBG(bounds);
+		bounds = svg->get_bounds();
 	}
 };
 

@@ -6,64 +6,87 @@
  */
 
 
-#include <librsvg/rsvg.h>
+#include "../../lib/nanosvg.h"
 
 #include "svg.h"
 #include "../util/utils.h"
 
 
 
-
-struct _rsvgdata_t {
-	RsvgHandle *handle;
-};
-
-static bool _init();
-static bool inited = _init();
-bool _init() {
-	(void) inited;
-	rsvg_set_default_dpi (72.0);
-	return true;
-}
-
 void SVG::load(const char* filename) {
-	GError *error = NULL;
-	rsvg->handle = rsvg_handle_new_from_file (filename, &error);
-	if (error != NULL) FAIL (error->message);
+	image = nsvgParseFromFile(filename, "px", 96);
 }
 
 void SVG::init() {
-	rsvg = new _rsvgdata_t;
+	image = 0;
 }
 
-
-void SVG::get_dim(double* w, double* h) {
-	RsvgDimensionData dim;
-	rsvg_handle_get_dimensions (rsvg->handle, &dim);
-	*w = dim.width;
-	*h = dim.height;
+SVG::~SVG() {
+	nsvgDelete(image);
 }
 
 double SVG::get_width() {
-	RsvgDimensionData dim;
-	rsvg_handle_get_dimensions (rsvg->handle, &dim);
-	return dim.width;
+	return image->width;
 }
 
 double SVG::get_height() {
-	RsvgDimensionData dim;
-	rsvg_handle_get_dimensions (rsvg->handle, &dim);
-	return dim.height;
+	return image->height;
 }
 
-void SVG::render(cairo_t* cr) {
-    rsvg_handle_render_cairo (rsvg->handle, cr);
+void SVG::render(Graphics& g) {
+	NSVGshape* shape;
+	NSVGpath* path;
+	int i;
+	g.set_color(RGB_BLACK);
+	for (shape = image->shapes; shape != NULL; shape = shape->next) {
+		for (path = shape->paths; path != NULL; path = path->next) {
+	        for (i = 0; i < path->npts-1; i += 3) {
+	            float* p = &path->pts[i*2];
+	        	if(!i) g.cr->move_to(p[0],p[1]);
+	        	g.cr->curve_to(p[2],p[3],p[4],p[5],p[6],p[7]);
+	        }
+	        if(path->closed) g.cr->close_path();
+	    }
+		RGB fill(shape->fill.color);
+		RGB stroke(shape->stroke.color);
+		g.cr->set_line_width(shape->strokeWidth);
+		g.fill_and_stroke(
+				shape->fill.type == NSVG_PAINT_COLOR ? &fill : 0,
+	    		shape->stroke.type == NSVG_PAINT_COLOR ? &stroke : 0
+	    );
+	}
 }
 
 void SVG::save(const char* filename) {
 	if(file_has_ext(filename, ".png")) {
 		GraphicsImage cr(get_width(),get_height());
-	    render(((Cairo::Context&)cr).cobj());
+	    render(cr);
 	    cr.save(filename);
 	}
+}
+
+Rectangle SVG::get_bounds() {
+	Rectangle r;
+	Graphics g;
+	NSVGshape* shape;
+	NSVGpath* path;
+	int i;
+	g.set_color(RGB_BLACK);
+	for (shape = image->shapes; shape != NULL; shape = shape->next) {
+		for (path = shape->paths; path != NULL; path = path->next) {
+	        for (i = 0; i < path->npts-1; i += 3) {
+	            float* p = &path->pts[i*2];
+	        	if(!i) g.cr->move_to(p[0],p[1]);
+	        	g.cr->curve_to(p[2],p[3],p[4],p[5],p[6],p[7]);
+	        }
+	        if(path->closed) g.cr->close_path();
+	    }
+		RGB fill(shape->fill.color);
+		RGB stroke(shape->stroke.color);
+		g.cr->set_line_width(shape->strokeWidth);
+		Rectangle rr = g.fill_and_stroke_extents(shape->fill.type == NSVG_PAINT_COLOR ,shape->stroke.type == NSVG_PAINT_COLOR);
+		DBG(rr << " is ok ? " << (bool)rr);
+		r.add(rr);
+	}
+	return r;
 }

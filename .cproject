@@ -33,6 +33,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/gdkmm-3.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/sigc++-2.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/gtk-3.0"/>
+									<listOptionValue builtIn="false" value="/usr/include/giomm-2.4"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.2041360168" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -50,6 +51,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/gdkmm-3.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/sigc++-2.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/gtk-3.0"/>
+									<listOptionValue builtIn="false" value="/usr/include/giomm-2.4"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.other.other.623553058" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" useByScannerDiscovery="false" value="-c -fmessage-length=0 `pkg-config --cflags glibmm-2.4 librsvg-2.0 gtkmm-3.0` -std=c++11" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.402659106" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -78,6 +80,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/gdkmm-3.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/sigc++-2.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/gtk-3.0"/>
+									<listOptionValue builtIn="false" value="/usr/include/giomm-2.4"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1253131124" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -123,6 +126,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/gdkmm-3.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/sigc++-2.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/gtk-3.0"/>
+									<listOptionValue builtIn="false" value="/usr/include/giomm-2.4"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1878036804" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -140,6 +144,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/gdkmm-3.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/sigc++-2.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/gtk-3.0"/>
+									<listOptionValue builtIn="false" value="/usr/include/giomm-2.4"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1280703525" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -163,6 +168,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/gdkmm-3.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/sigc++-2.0"/>
 									<listOptionValue builtIn="false" value="/usr/include/gtk-3.0"/>
+									<listOptionValue builtIn="false" value="/usr/include/giomm-2.4"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.186903751" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>

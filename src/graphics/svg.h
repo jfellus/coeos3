@@ -11,24 +11,24 @@
 #include "GraphicsImage.h"
 #include <cairomm/cairomm.h>
 
-struct _rsvgdata_t;
+struct NSVGimage;
 
 class SVG {
 public:
-	struct _rsvgdata_t*  rsvg;
+	struct NSVGimage* image;
 
 	SVG() {init();}
 	SVG(const char* filename) {init(); load(filename);}
-
+	virtual ~SVG();
 
 	void init();
 	void load(const char* filename);
 
-	void get_dim(double* w, double* h);
+	Rectangle get_bounds();
 	double get_width();
 	double get_height();
 
-	void render(cairo_t* cr);
+	void render(Graphics& g);
 
 	void save(const char* filename);
 };
