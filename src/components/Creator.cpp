@@ -9,8 +9,8 @@
 #include "../widget/ZoomableDrawingArea.h"
 #include "SVGComponent.h"
 
-Creator::Creator() {
-	comp = new SVGComponent("test.svg");
+Creator::Creator() : Component(false) {
+	comp = 0;
 }
 
 void Creator::start(ZoomableDrawingArea* canvas) {
@@ -22,17 +22,9 @@ void Creator::end() {
 }
 
 void Creator::create(double x, double y) {
-	canvas->add(comp);
-	comp->set_pos(x,y);
-	comp->set_selectable();
-
 	end();
 }
 
-void Creator::render(Graphics& g) {
-	g.set_color(RGB_RED);
-	g.drawPoint(x,y);
-}
 
 void Creator::on_mouse_move(GdkEventMotion* e) {
 	x = canvas->mouse_to_doc_x(e->x);
@@ -47,3 +39,5 @@ void Creator::on_click(GdkEventButton* e) {
 void Creator::on_unclick(GdkEventButton* e) {
 	create(canvas->mouse_to_doc_x(e->x), canvas->mouse_to_doc_y(e->y));
 }
+
+

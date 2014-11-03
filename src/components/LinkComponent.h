@@ -10,18 +10,29 @@
 
 #include "Component.h"
 #include "../util/geom.h"
+#include <vector>
+#include "BezierHandle.h"
 
 class LinkComponent : public Component {
 public:
 	Component *src, *dst;
 	Bezier* b;
+
+	BezierHandle *bezierHandle1 = 0, *bezierHandle2 = 0;
+
+private:
+	int imoving = -1;
+
 public:
 	LinkComponent(Component* src, Component* dst) {
 		selectionLayer = -1;
 		connect(src, dst);
-		b = new Bezier(0,0,0,1,0,1,1,1);
+		b = new Bezier(0,0,0.2,0.2,0.8,0.8,1,1);
 	}
-	virtual ~LinkComponent() {}
+	virtual ~LinkComponent() {
+		if(bezierHandle1) delete bezierHandle1;
+		if(bezierHandle2) delete bezierHandle2;
+	}
 
 	void connect(Component* src, Component* dst) {
 		this->src = src;
@@ -43,6 +54,22 @@ public:
 	virtual void render(Graphics& g);
 	virtual bool hasPoint(double x, double y);
 
+	virtual void select(bool single);
+	virtual void unselect();
+
+	virtual void click(double x, double y);
+	virtual void translate(double dx, double dy);
+
+
+	void render_line(Graphics& g, double tickness = 1);
+	double render_arrow(Graphics& g, double size = 1);
+protected:
+	void create_bezier_handles() {
+		bezierHandle1 = new BezierHandle(this,0);
+		bezierHandle2 = new BezierHandle(this,1);
+	}
+
+	virtual void dump(std::ostream& os) { os << "LinkComponent(" << src << " -> " << dst << ")";}
 };
 
 #endif /* LINKCOMPONENT_H_ */

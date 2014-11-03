@@ -31,9 +31,9 @@ public:
 	Vector2D() {this->x = this->y = 0;}
 	Vector2D(double x, double y) { this->x = x; this->y = y;}
 
-	Vector2D operator*(double s)  {return Vector2D(x*s,y*s);}
+	Vector2D operator*(double s)  const {return Vector2D(x*s,y*s);}
 	const Vector2D& operator*=(double s)  {x*=s;y*=s; return *this;}
-	Vector2D operator/(double s)  {return Vector2D(x/s,y/s);}
+	Vector2D operator/(double s)  const {return Vector2D(x/s,y/s);}
 	const Vector2D& operator/=(double s)  {x/=s;y/=s; return *this;}
 	Vector2D operator+(const Vector2D& v) const {return Vector2D(x+v.x,y+v.y);}
 	const Vector2D& operator+=(const Vector2D& v) {x+=v.x;y+=v.y; return *this;}
@@ -42,15 +42,19 @@ public:
 
 	bool operator==(const Vector2D& v) {return x==v.x && y==v.y;}
 
-	double dist_sq(const Vector2D& v) {return (v.x-x)*(v.x-x) + (v.y-y)*(v.y-y);}
-	double dist(const Vector2D& v) {return sqrt(dist_sq(v));}
+	double dist_sq(const Vector2D& v) const {return (v.x-x)*(v.x-x) + (v.y-y)*(v.y-y);}
+	double dist(const Vector2D& v) const {return sqrt(dist_sq(v));}
 	double dot(const Vector2D& v) const {return x*v.x + y*v.y; }
+
+	Vector2D normal() const {return Vector2D(-y,x);}
 
 	double norm_sq() const {return this->dot(*this);}
 	double norm() const {return sqrt(norm_sq());}
 	const Vector2D& normalize() {return *this/=norm();}
-};
 
+	static Vector2D rand(double norm) { return Vector2D(::rand()-RAND_MAX/2,::rand()-RAND_MAX/2).normalize()*norm; }
+};
+std::ostream& operator<<(std::ostream& os, const Vector2D& r);
 
 class Rectangle {
 public:
@@ -74,12 +78,12 @@ public:
 		return x>=this->x && x<=this->x+w && y>=this->y && y<=this->y+h;
 	}
 
+	Rectangle& at_origin() {x = 0; y = 0; return *this;}
+
 	void add(const Rectangle& r) {
-		DBG("------" << (bool)r);
 		if(!r) return;
 		if(empty) {
 			x = r.x; y = r.y; w = r.w; h=r.h;
-			DBG("ok " << *this);
 			empty = false;
 			return;
 		}
@@ -98,7 +102,7 @@ public:
 		if(py > y+h) {h = py - y;}
 	}
 
-	const Rectangle& augment(double amount) {
+	Rectangle& augment(double amount) {
 		if(empty) return *this;
 		x-=amount; y-=amount; w+=amount*2; h+=amount*2;
 		return *this;
@@ -131,10 +135,35 @@ public:
 
 	Rectangle operator+(const Vector2D& v) {return Rectangle(x+v.x,y+v.y,w, h);	}
 
+	static const int INSIDE = 0; // 0000
+	static const int LEFT = 1;   // 0001
+	static const int RIGHT = 2;  // 0010
+	static const int BOTTOM = 4; // 0100
+	static const int TOP = 8;    // 1000
+	int _cohen_computeOutCode(double x, double y) const {
+		int code = INSIDE;          // initialised as being inside of clip window
+		if (x < this->x) code |= LEFT;
+		else if (x > this->x+this->w) code |= RIGHT;
+		if (y < this->y) code |= BOTTOM;
+		else if (y > this->y+this->h) code |= TOP;
+		return code;
+	}
 };
 std::ostream& operator<<(std::ostream& os, const Rectangle& r);
 
 
+class Circle2D {
+public:
+	Vector2D center;
+	double radius;
+public:
+	Circle2D(const Vector2D& center, double radius) {this->center = center; this->radius = radius;}
+	Circle2D(const Rectangle& inner) {
+		center.x = inner.x + inner.w/2;
+		center.y = inner.y + inner.h/2;
+		radius = MAX(inner.w,inner.h)/2;
+	}
+};
 
 class Line2D {
 public:
@@ -148,6 +177,8 @@ public:
 	Vector2D normal() {
 		return Vector2D(a.y-b.y, b.x-a.x).normalize();
 	}
+
+	double length() {return (b-a).norm();}
 
 	double distance(const Vector2D& p) {
 		Vector2D v = p - a;
@@ -164,6 +195,14 @@ public:
 		return d <= 1 && d >= 0;
 	}
 
+	void canonicalize() {
+		if(a.x < b.x) {
+			Vector2D p = b;
+			b = a;
+			a = p;
+		}
+	}
+
 	double location(Vector2D p) {
 		p -= a;
 		Vector2D s = b - a;
@@ -177,8 +216,97 @@ public:
 		s *= d;
 		return a+s;
 	}
-};
 
+
+	static const int INSIDE = 0; // 0000
+	static const int LEFT = 1;   // 0001
+	static const int RIGHT = 2;  // 0010
+	static const int BOTTOM = 4; // 0100
+	static const int TOP = 8;    // 1000
+	bool intersect_cohen(const Rectangle& r, Vector2D& intersection) {
+		// compute outcodes for P0, P1, and whatever point lies outside the clip rectangle
+		int outcode0 = r._cohen_computeOutCode(a.x, a.y);
+		int outcode1 = r._cohen_computeOutCode(b.x, b.y);
+
+		if (!(outcode0 | outcode1)) { // Bitwise OR is 0. Trivially accept and get out of loop
+			return false;
+		} else if (outcode0 & outcode1) { // Bitwise AND is not 0. Trivially reject and get out of loop
+			return false;
+		} else {
+			// failed both tests, so calculate the line segment to clip
+			// from an outside point to an intersection with clip edge
+			double x, y;
+
+			// At least one endpoint is outside the clip rectangle; pick it.
+			int outcodeOut = outcode0 ? outcode0 : outcode1;
+
+			// Now find the intersection point;
+			// use formulas y = a.y + slope * (x - a.x), x = a.x + (1 / slope) * (y - a.y)
+			if (outcodeOut & TOP) {           // point is above the clip rectangle
+				x = a.x + (b.x - a.x) * ((r.y+r.h) - a.y) / (b.y - a.y);
+				y = (r.y+r.h);
+			} else if (outcodeOut & BOTTOM) { // point is below the clip rectangle
+				x = a.x + (b.x - a.x) * (r.y - a.y) / (b.y - a.y);
+				y = r.y;
+			} else if (outcodeOut & RIGHT) {  // point is to the right of clip rectangle
+				y = a.y + (b.y - a.y) * ((r.x+r.w) - a.x) / (b.x - a.x);
+				x = (r.x+r.w);
+			} else if (outcodeOut & LEFT) {   // point is to the left of clip rectangle
+				y = a.y + (b.y - a.y) * (r.x - a.x) / (b.x - a.x);
+				x = r.x;
+			}
+
+			intersection.x = x;
+			intersection.y = y;
+			return true;
+		}
+	}
+
+	bool intersect(const Rectangle& r, Vector2D& intersection);
+	double norm() {return (a-b).norm();}
+
+	bool intersect(const Circle2D& c, Vector2D& intersection) {
+		double LAB = norm();
+		double Dx = (b.x-a.x)/LAB;
+		double Dy = (b.y-a.y)/LAB;
+		// Now the line equation is x = Dx*t + Ax, y = Dy*t + Ay with 0 <= t <= 1.
+		// compute the value t of the closest point to the circle center (Cx, Cy)
+		double t = Dx*(c.center.x-a.x) + Dy*(c.center.y-a.y);
+
+		// This is the projection of C on the line from A to B.
+
+		// compute the coordinates of the point E on line and closest to C
+		intersection.x = t*Dx+a.x;
+		intersection.y = t*Dy+a.y;
+
+		// compute the euclidean distance from E to C
+		double LEC = (intersection-c.center).norm_sq();
+		double r2 = c.radius*c.radius;
+
+		// test if the line intersects the circle
+		if( LEC < r2 ) {
+			// compute distance from t to circle intersection point
+			double dt = sqrt( r2 - LEC);
+
+			// compute first intersection point
+			if(t-dt >= 0 && t-dt <= 1) {
+				intersection.x = (t-dt)*Dx + a.x;
+				intersection.y = (t-dt)*Dy + a.y;
+				return true;
+			}
+
+			// compute second intersection point
+			if(t+dt >= 0 && t+dt <= 1) {
+				intersection.x = (t+dt)*Dx + a.x;
+				intersection.y = (t+dt)*Dy + a.y;
+				return true;
+			}
+		}
+		return LEC == r2;
+	}
+
+};
+std::ostream& operator<<(std::ostream& os, const Line2D& r);
 
 class Bezier {
 public:
@@ -197,13 +325,23 @@ public:
 	Vector2D start_ctrl() {return Vector2D(x2,y2);}
 	Vector2D end_ctrl() {return Vector2D(x3,y3);}
 
+	Vector2D middle() { return pointOnPath(0.5); }
+
 	Vector2D pt(int i) {
 		if(i==0) return start();
 		if(i==1) return start_ctrl();
 		if(i==2) return end_ctrl();
 		if(i==3) return end();
-		DBG("Wrong number" << i); *((int*)0)=0;
+		throw("Wrong number");
 	}
+
+	double length();
+
+	bool intersect(const Rectangle& r, Vector2D& intersection);
+	bool intersect(const Circle2D& c, Vector2D& intersection);
+	double intersect_location(const Rectangle& r) {	Vector2D p1; return (intersect(r,p1)) ? location(p1) : -1; }
+	double intersect_location(const Circle2D& r) {	Vector2D p1; return (intersect(r,p1)) ? location(p1) : -1; }
+
 
 	Rectangle get_bounds(); // Rough upper bound
 	Rectangle get_precise_bounds(); // Uses cairo (...expensive)
@@ -402,17 +540,24 @@ public:
 	 * calculates a point on the curve, for a Bezier of order 2.
 	 * @param location a decimal indicating the distance along the curve the point should be located at.  this is the distance along the curve as it travels, taking the way it bends into account.  should be a number from 0 to 1, inclusive.
 	 */
-	Vector2D pointOnPath(double t) {
-		double t2 = t*t;
-		double t3 = t2*t;
-		double mt = 1-t;
-		double mt2 = mt*mt;
-		double mt3 = mt2*mt;
-		return Vector2D(
-				x1*mt3 + x2*3*mt2*t + x3*3*mt*t2 + x4*t3,
-				y1*mt3 + y2*3*mt2*t + y3*3*mt*t2 + y4*t3
-		);
-	}
+	Vector2D pointOnPath(double t);
+
+	/**
+		 * calculates a point on the curve, for a Bezier of order 2.
+		 * @param location a decimal indicating the distance along the curve the point should be located at.  this is the distance along the curve as it travels, taking the way it bends into account.  should be a number from 0 to 1, inclusive.
+		 */
+		Vector2D get(double t) {
+			double t2 = t*t;
+			double t3 = t2*t;
+			double mt = 1-t;
+			double mt2 = mt*mt;
+			double mt3 = mt2*mt;
+			return Vector2D(
+					x1*mt3 + x2*3*mt2*t + x3*3*mt*t2 + x4*t3,
+					y1*mt3 + y2*3*mt2*t + y3*3*mt*t2 + y4*t3
+			);
+		}
+
 
 	bool isPoint() {
 		return start() == start_ctrl();
@@ -447,23 +592,6 @@ public:
 		return cur;
 	}
 
-	double length() {
-		if (isPoint()) return 0;
-
-		Vector2D prev = start();
-		double tally = 0, curLoc = 0;
-		int direction = 1;
-		Vector2D cur;
-
-		while (curLoc < 1) {
-			curLoc += (0.005 * direction);
-			cur = pointOnPath(curLoc);
-			tally += cur.dist(prev);
-			prev = cur;
-		}
-		return tally;
-	}
-
 	/** finds the point that is 'distance' along the path from 'location' */
 	Vector2D pointAlongPathFrom(double location, double distance) {
 		return pointAlongPath(location, distance);
@@ -477,23 +605,17 @@ public:
 	}
 
 	/** returns the gradient of the curve at the given location, which is a decimal between 0 and 1 inclusive. */
-	double gradientAtPoint(double location) {
-		Vector2D p1 = pointOnPath(location), p2 = pointOnPath_o2(location);
+	Vector2D gradient(double location) {
+		Vector2D p1 = get(location), p2 = pointOnPath_o2(location);
 		double dy = p2.y - p1.y, dx = p2.x - p1.x;
-		return dy == 0 ? NAN : atan(dy / dx);
+		return Vector2D(dx, dy).normalize();
 	}
 
-	/**
-		returns the gradient of the curve at the point which is 'distance' from the given location.
-		if this point is greater than location 1, the gradient at location 1 is returned.
-		if this point is less than location 0, the gradient at location 0 is returned.
-	 */
-	double gradientAtPointAlongPathFrom(double location, double distance) {
-		double l = locationAlongPathFrom(location, distance);
-		if (l > 1) l = 1;
-		if (l < 0) l = 0;
-		return gradientAtPoint(l);
-	}
+	Vector2D gradientAtPoint(double d) { return gradient(location(d)); }
+
+	double location(double d);
+	double location(const Vector2D& p);
+
 
 	/**
 	 * calculates a line that is 'length' pixels long, perpendicular to, and centered on, the path at 'distance' pixels from the given location.
@@ -501,12 +623,9 @@ public:
 	 */
 	Line2D normalToPathAt(double location, double length, double distance = 0) {
 		double l = location;
-		Vector2D p = distance ? pointAlongPath(location, distance, &l) : pointOnPath(location);
-		double m = gradientAtPoint(l);
-		double _theta2 = !isnan(m) ? atan(-1 / m) : NAN;
-		double x = isnan(_theta2) ? length : length * cos(_theta2);
-		double y = isnan(_theta2) ? 0 : length * sin(_theta2);
-		return Line2D(p.x, p.y, p.x + x, p.y + y);
+		Vector2D p = distance ? pointAlongPath(location, distance, &l) : get(location);
+		Vector2D g = gradient(l); g*=length;
+		return Line2D(p.x, p.y, p.x + g.x, p.y + g.y);
 	}
 };
 

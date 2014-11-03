@@ -1,0 +1,76 @@
+.tag_1 {
+	glow:10 #00ddff 0.3;
+	recursive:1;
+	pretty:1;
+}
+
+.tag_2 {
+	glow:10 red 0.3;
+	recursive:1;
+	pretty:0;
+}
+
+.tag_3 {
+	glow:10 green 0.3;
+	recursive:1;
+	pretty:0;
+}
+
+module.algo {
+	font:Sans Serif;
+	font-size:150;
+	text-align:bottom;
+}
+
+module.neural {
+	font:Ubuntu;
+	font-size:150;
+	text-align:middle;
+}
+
+link.algo {
+	color:0.0,0.9,0.9;
+}
+
+link.one_to_all {
+	color:0.0,0.0,0.5;
+	slashes:2;
+}
+
+link.one_to_one {
+	color:red;
+	slashes:1;
+}
+
+link.neuromod {
+	color:black;
+	dashed:2;
+}
+
+group.pretty {
+	color: 0.5,0.5,1;
+	fill-color: 0.5,0.5,1;
+	handle-fill-color: 0.5,0.5,1;
+	text-color: white;
+	font: "Serif";
+	font-size: 300;
+	dashed:0;
+//	border-radius:10;
+	alpha:0.18;
+}
+
+group {
+	color: 0.5,0.5,0.5;
+	border-radius: 10;	
+	dashed: 1;
+	fill-color: 1.0,1.0,1.0;
+	text-color: 0.5,0.5,0.5;
+	alpha:0.2;
+}
+
+group.highlighted {
+	fill-color: #5500ff;
+	alpha:0.1;
+	text-color: #5500ff;
+	font-size:460;
+}

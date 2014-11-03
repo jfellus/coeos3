@@ -8,6 +8,7 @@
 #include "LinkCreator.h"
 #include "LinkComponent.h"
 #include "../widget/ZoomableDrawingArea.h"
+#include "../module/Document.h"
 
 
 LinkCreator::LinkCreator() {
@@ -16,18 +17,16 @@ LinkCreator::LinkCreator() {
 void LinkCreator::create(double x, double y) {
 	if(!src) {
 		Component* c = canvas->get_selectable_component_at(x,y);
-		if(!c) return;
-		src = c;
+		Module* m = (Module*) c->get_user_data("Module");
+		if(m) src = m;
 		repaint();
 	} else {
 		Component* c = canvas->get_selectable_component_at(x,y);
 		if(!c) return;
-		dst = c;
-
-		linkcomp = new LinkComponent(src, dst);
-		canvas->add(linkcomp);
-		linkcomp->set_selectable();
-
+		Module* m = (Module*) c->get_user_data("Module");
+		if(!m) return;
+		dst = m;
+		link = new Link(src, dst);
 		end();
 	}
 }
@@ -37,8 +36,9 @@ void LinkCreator::render(Graphics& g) {
 	g.drawPoint(x,y);
 
 	if(src) {
-		g.drawLine(src->center(), Vector2D(x,y));
-		g.drawRect(src->get_bounds());
+		g.drawLine(src->component->center(), Vector2D(x,y));
+		g.set_color(RGB(0.5,0.5,1));
+		g.drawRect(src->component->get_bounds());
 	}
 }
 

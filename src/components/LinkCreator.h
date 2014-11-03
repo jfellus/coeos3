@@ -10,13 +10,15 @@
 
 
 #include "Creator.h"
+#include "../module/Link.h"
+#include "../module/Document.h"
 
 class LinkComponent;
 
 class LinkCreator : public Creator {
 protected:
-	Component* src = 0, *dst = 0;
-	LinkComponent* linkcomp = 0;
+	Module *src=0, *dst=0;
+	Link* link = 0;
 public:
 	LinkCreator();
 	virtual ~LinkCreator() {}

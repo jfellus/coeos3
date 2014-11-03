@@ -1,0 +1,109 @@
+<html>
+<head>
+<script type="text/javascript" src="lib/jquery-1.11.1.min.js"></script>  
+<script type="text/javascript" src="lib/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="utils/utils.js"></script>
+<script type="text/javascript" src="utils/string.js"></script>
+<script type="text/javascript" src="utils/dropdown.js"></script>
+<script type="text/javascript" src="utils/fields.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="style/main.css">
+
+<style>
+	div.properties { padding-top: 15px;}
+	.undefined { background:#eee0e0; color:#555555;}
+	
+	.error { color:red; font-weight:bold; }
+</style>
+
+
+<script type="text/javascript">
+
+$(function() {
+	$("#properties_table").dataTable( {
+        "scrollY":        "" + (window.innerHeight - 25)+ "px",
+        "scrollCollapse": false,
+        "paging":         false
+    } );
+});
+
+function editable_div(field, value) {
+	var cls = "field field_"+field + (value=="???" ? " undefined" : "");
+	var html = $("<div />").text(value).html().replaceAll("\n", "<br>");
+	return "<div contentEditable='true' style='display: inline-block;min-width:100%;' class='"+cls+"'>" + html +"</div>";
+}
+
+function on_change(e) {
+	if(typeof(__request)!="function") return;
+	var field = $(e).attr("class").between("field_"," ");
+	if($(e).text()=="???") $(e).addClass("undefined"); else $(e).removeClass("undefined");
+	request_set_property(field, post_encode($(e).html()));
+}
+
+function load_properties(props) {
+	 $(".nbselected").html("1 group selected");
+	 var t = $('#properties_table').DataTable();
+	 t.clear();
+	 var a = [];
+	 var p = $.parseJSON(props);
+	 for(i in p) if(!i.startsWith("__")) t.row.add([i, editable_div(i, p[i])]);
+	 t.draw();
+	 $(".field").on('change propertychange', function(){ on_change(this); });
+	 for(i in p) {
+		 if(i.startsWith("__format__")) {
+			 var what = i.substr("__format__".length);
+			$(".field_" + what).addClass(p[i]);
+		 } else if(i=="__NBSELECTED__") {
+			 $(".nbselected").html(p[i] + " groups selected");
+		 }
+	 }
+	 make_fields($(".field"));
+	 t.draw();
+}
+
+function update() {
+	if(typeof(__request)!="function") return;
+	$(':focus').triggerHandler("change");
+	
+	 $(".nbselected").html("nothing selected");
+	var props = __request("properties");
+	if(props.indexOf("MULTIPLE_SELECTION:")!=-1) {
+		var nb = parseInt(props.substr(props.indexOf("MULTIPLE_SELECTION:")+"MULTIPLE_SELECTION:".length));
+		$(".empty").show();
+		$("#empty_content").html(nb + " groups selected");
+		$(".properties").hide();
+	}
+	else if(props!="") {
+		$(".empty").hide();
+		$(".properties").show();
+		load_properties(/*props.replace(new RegExp("\n", 'g'), "<br>")*/ props);
+	} else {
+		$(".empty").show();
+		$("#empty_content").html("nothing selected");
+		$(".properties").hide();
+	}
+}
+
+</script>
+</head>
+
+
+
+<body>
+<div class="full properties">
+<span class="nbselected"></span>
+<table id="properties_table" class="properties compact hover row-border">
+        <thead>
+            <tr>
+                <th>Property</th>
+				<th>Value</th>
+            </tr>
+        </thead> 
+</table>
+</div>
+<div class="full empty"><table><tr><td id="empty_content">
+Nothing selected
+</td></tr></table></div>
+</body>
+</html>

@@ -11,12 +11,12 @@
 
 GraphicsImage::GraphicsImage(int w, int h) {
 	surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, w, h);
-    cr = new Cairo::Context(cairo_create (surface));
+    cr = cairo_create (surface);
 }
 
 GraphicsImage::~GraphicsImage() {
     cairo_surface_destroy (surface);
-    delete cr;
+    cairo_destroy(cr);
 }
 
 void GraphicsImage::save(const char* filename) {

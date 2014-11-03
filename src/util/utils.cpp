@@ -11,6 +11,10 @@
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 
+DebugStream* DEBUG_STREAM = new DebugStreamStd();
+DebugStream* ERROR_STREAM = new DebugStreamStd();
+
+
 static bool utils_init();
 static bool inited = utils_init();
 bool utils_init() {
@@ -18,4 +22,8 @@ bool utils_init() {
 	g_type_init();
 	return true;
 }
+
+
+
+
 

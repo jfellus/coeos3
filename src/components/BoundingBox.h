@@ -14,10 +14,10 @@ protected:
 	Rectangle bounds;
 	Component* component = 0;
 public:
-	BoundingBox() {selection = 0;}
-	BoundingBox(std::vector<Component*>* sel) {set_bounds(sel);}
-	BoundingBox(Component* c) {set_bounds(c);}
-	BoundingBox(const Rectangle& r) {set_bounds(r);}
+	BoundingBox() : Component(false) {selection = 0;}
+	BoundingBox(std::vector<Component*>* sel) : Component(false) {set_bounds(sel);}
+	BoundingBox(Component* c) : Component(false) {set_bounds(c);}
+	BoundingBox(const Rectangle& r) : Component(false) {set_bounds(r);}
 	virtual ~BoundingBox() {}
 
 
@@ -57,12 +57,17 @@ public:
 	virtual void render(Graphics& g) {
 		Rectangle r = get_bounds();
 		if(r.is_empty()) return;
+		g.set_color(RGB(0.5,0.5,1));
 		g.drawRect(r);
 		g.drawHandle(r.x,r.y);
 		g.drawHandle(r.x+r.w,r.y);
 		g.drawHandle(r.x,r.y+r.h);
 		g.drawHandle(r.x+r.w,r.y+r.h);
 	}
+
+	virtual void dump(std::ostream& os) { os << "BoundingBox(" << component << ")";}
 };
+
+
 
 #endif /* BOUNDING_BOX_H_ */

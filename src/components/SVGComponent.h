@@ -32,12 +32,17 @@ public:
 		g.drawSVG(*svg);
 	}
 
+	virtual void select(bool single) {
+		Component::select(single);
+	}
 
 protected:
 	void compute_bounds() {
-		DBG(bounds);
 		bounds = svg->get_bounds();
 	}
+
+	virtual void dump(std::ostream& os) { os << "SVGComponent(" << svg->filename << ")";}
 };
+
 
 #endif /* SVGCOMPONENT_H_ */

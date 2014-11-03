@@ -9,11 +9,12 @@
 #define SVG_H_
 
 #include "GraphicsImage.h"
-#include <cairomm/cairomm.h>
 
 struct NSVGimage;
 
 class SVG {
+public:
+	std::string filename;
 public:
 	struct NSVGimage* image;
 

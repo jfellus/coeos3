@@ -1,0 +1,109 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../lib/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="../lib/default.min.css">
+<link rel="stylesheet" type="text/css" href="../style/main.css">
+<script type="text/javascript" src="../lib/jquery-1.11.1.min.js"></script>  
+<script type="text/javascript" src="../lib/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../lib/highlight.pack.js"></script>
+<script type="text/javascript" src="../utils/utils.js"></script>
+<script type="text/javascript" src="../utils/string.js"></script>
+<script type="text/javascript" src="../utils/dropdown.js"></script>
+<script type="text/javascript" src="../utils/fields.js"></script>
+<script type="text/javascript" src="../main.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/javascript">
+
+
+function update() {
+	var props = __request("doc");
+	var o = $.parseJSON(props);
+	$(".name").html(o.name);
+	$(".author").html(o.author);
+	$(".type").html(o.type);
+	if(o.type=="Fonction_Algo") {
+		$(".name").addClass("algo");
+	} else $(".name").removeClass("algo");
+}
+
+$(function() {update();});
+
+</script>
+
+<style>
+
+
+div.splitcontentleft { width:100%; padding:0px; margin:0; margin-bottom:15px; padding-bottom: 15px; background:none; border-bottom:1px dashed #555555;}
+div.box { position:relative; margin-left:10px; margin-right:10px; width:auto;}
+div.box > pre { position:relative; margin-left:-10px; margin-right:-10px; width:auto;}
+h3 { margin-top: 15px; }
+p { background:none;}
+pre, pre > code { background:white !important;}
+
+.name.algo {
+	color:red;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="splitcontentleft">
+    <div class="members box">
+    <h3><span class="name">Group name</span></h3>
+    <p>
+    Type : <span class="type"></span>
+    </p>
+    <p>
+    Author : <a href="/users/5" class="user active author">Arnaud Blanchard</a>
+    </p>
+    <p>
+    Comments : zeroijojizer eroji orij zeroierj oeri jzoirj zroijze roij zeroij rorij roijz rozrij roijrz oizerj roorzeijrze oizerj ozerij zoijzer orijoz rji pozifjpz fjzoij oji ovjioe ji
+    </p>
+  </div>
+</div>
+
+<div class="splitcontentleft">
+    <div class="members box">
+    <h3>Statistics</h3>
+    <p>
+    <img src="stat.png">
+    </p>
+  </div>
+</div>
+
+<div class="splitcontentleft">
+    <div class="members box">
+    <h3>Source Code</h3>
+    <p>
+   <pre><code class="c++">
+static IModuleComponentStyle* MODULE_COMPONENT_STYLE_NEURAL = new IModuleComponentStyle("Serif", 200, MODULECOMPONENTSTYLE_BOTTOM);
+static IModuleComponentStyle* MODULE_COMPONENT_STYLE_ALGO = new IModuleComponentStyle("Sans Serif", 150, MODULECOMPONENTSTYLE_BOTTOM);
+
+static ILinkComponentStyle * LINK_COMPONENT_STYLE_ALGO = new ILinkComponentStyle(RGB(0.0,0.9,0.9));
+static ILinkComponentStyle * LINK_COMPONENT_STYLE_NEURAL = new ILinkComponentStyle(RGB_RED);
+
+void LinkPromLink::realize() {
+	ModulePromGroup* s = project-&gt;get(link-&gt;src);
+	if(!s) { ERROR("Unknown module : " &lt;&lt; link-&gt;src); return;}
+	ModulePromGroup* d = project-&gt;get(link-&gt;dst);
+	if(!d) { ERROR("Unknown module : " &lt;&lt; link-&gt;dst); return;}
+	connect(s,d);
+	dynamic_cast&lt;LinkLinkComponent*&gt;(component)-&gt;style = link-&gt;is_type_algo() ? LINK_COMPONENT_STYLE_ALGO : LINK_COMPONENT_STYLE_NEURAL;
+}
+
+void ModulePromGroup::realize() {
+	create_component(group-&gt;type==14 ? "group_algo.svg" : "group_neural.svg");
+	component-&gt;set_pos(group-&gt;posx*10, group-&gt;posy*10);
+	dynamic_cast&lt;ModuleComponent*&gt;(component)-&gt;style = group-&gt;is_type_algo() ? MODULE_COMPONENT_STYLE_ALGO : MODULE_COMPONENT_STYLE_NEURAL;
+}
+   </code></pre>
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="650.58209"
+   height="461.19226"
+   id="svg2">
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(751.5625,-220.78125)"
+     id="layer1">
+    <rect
+       width="631.42859"
+       height="440"
+       rx="50.507626"
+       ry="50.507626"
+       x="-732.409"
+       y="241.9735"
+       id="rect2993"
+       style="fill:#cccccc;stroke:none" />
+    <rect
+       width="631.42859"
+       height="440"
+       rx="50.507626"
+       ry="50.507626"
+       x="-748.57141"
+       y="223.79076"
+       id="rect2985"
+       style="fill:#ffffff;stroke:#000000;stroke-width:6;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+    <text
+       x="-438.22742"
+       y="408.61536"
+       id="text2987"
+       xml:space="preserve"
+       style="font-size:82.57191467px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+         x="-438.22742"
+         y="408.61536"
+         id="tspan2989">NEURAL</tspan><tspan
+         x="-438.22742"
+         y="511.83026"
+         id="tspan2991">GROUP</tspan></text>
+  </g>
+</svg>
