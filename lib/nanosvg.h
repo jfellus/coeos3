@@ -29,6 +29,8 @@
 #ifndef NANOSVG_H
 #define NANOSVG_H
 
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+
 #define NANOSVG_IMPLEMENTATION
 #include <stdio.h>
 
