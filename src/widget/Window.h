@@ -41,7 +41,7 @@ public:
 	void maximize() {	gtk_window_maximize(GTK_WINDOW(widget)); }
 	void set_title(const char* s) { gtk_window_set_title(GTK_WINDOW(widget), s);}
 	void add(GtkWidget* w) { gtk_container_add(GTK_CONTAINER(widget), w); }
-	void close() {gtk_window_close(GTK_WINDOW(widget)); }
+	void close();
 	void show_all() {gtk_widget_show_all(widget);}
 
 	void set_status(const std::string& text);

@@ -60,6 +60,8 @@ Window::~Window() {
 void Window::on_size_allocate(GdkRectangle* alloc) {
 }
 
+void Window::close() {gtk_window_close(GTK_WINDOW(widget)); }
+
 gboolean Window::on_key(GdkEventKey* e) {
 //	if(e->keyval==GDK_KEY_Left || e->keyval==GDK_KEY_Right || e->keyval==GDK_KEY_Up || e->keyval==GDK_KEY_Down) {
 //		gtk_window_get_focus(GTK_WINDOW(widget))
