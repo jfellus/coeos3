@@ -10,6 +10,8 @@
 #include <gtk/gtk.h>
 #include "../workbench/Workbench.h"
 
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 static InfoForm* _cur = 0;
 
 class DebugStreamInfoForm : public DebugStream {

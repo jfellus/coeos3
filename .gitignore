@@ -1,3 +1,8 @@
 Debug/*
 /Debug
+<<<<<<< HEAD
 .*
+=======
+bin/*
+coeos++
+>>>>>>> 7722ff7be4b61ef4ef570a0c02bb985a3c2123c2
