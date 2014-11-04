@@ -22,8 +22,8 @@ OBJS := $(addprefix bin/,$(SRC:.cpp=.o))
 
 $(EXECUTABLE): $(OBJS)
 
-CXXFLAGS := -g -Wall -MMD `pkg-config --cflags $(REQUIRED_PACKAGES)`
-LDFLAGS := `pkg-config --libs $(REQUIRED_PACKAGES)` $(REQUIRED_LIBS)
+CXXFLAGS := -g -rdynamic -Wall -MMD `pkg-config --cflags $(REQUIRED_PACKAGES)`
+LDFLAGS := -rdynamic `pkg-config --libs $(REQUIRED_PACKAGES)` $(REQUIRED_LIBS)
 DEPENDS = $(OBJS:.o=.d)    
 
 $(EXECUTABLE) : $(OBJS)          
