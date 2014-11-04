@@ -3,7 +3,7 @@
 
 REQUIRED_PACKAGES:= cairo gtk+-3.0 webkitgtk-3.0 libmicrohttpd
 REQUIRED_LIBS:= -lpthread
-APT_GET_DEPENDENCIES:= libmicrohttpd-dev libgtk-3-dev libwebkitgtk-dev
+APT_GET_DEPENDENCIES:= libmicrohttpd-dev libmicrohttpd10 libgtk-3-dev libwebkitgtk-dev
 
 SRC_DIR:=./src
 
