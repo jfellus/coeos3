@@ -6,6 +6,7 @@
  */
 
 #include "GroupComponent.h"
+#include "../widget/ZoomableDrawingArea.h"
 
 
 void GroupOpenComponent::render(Graphics& g) {
@@ -48,6 +49,11 @@ void GroupOpenComponent::render(Graphics& g) {
 	if(!group->text.empty()) {
 		if(style->bTextColor) {	g.set_color(style->text_color); }
 		g.set_font(style->font_size, style->font);
+		Rectangle rr = g.text_extents(group->text);
+		float f = rr.w/r.w;
+		if(f>0.7) {
+			g.set_font(style->font_size / f *0.7, style->font);
+		}
 		g.text(group->text, rhandle);
 	}
 

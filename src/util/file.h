@@ -15,8 +15,11 @@
 
 bool file_has_ext(const char* filename, const char* ext);
 inline bool file_has_ext(const std::string& filename, const char* ext) {  return file_has_ext(filename.c_str(), ext); }
+std::string file_basename(const std::string& file);
 
 bool file_exists(const std::string& filename);
+bool file_is_directory(const std::string& filename);
+std::string file_absolute_path(const std::string& path);
 
 void fcomeBackToLine(std::istream& f, int linesBefore);
 std::string fgetlines(std::istream& f, int nblines);

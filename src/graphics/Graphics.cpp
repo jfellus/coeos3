@@ -243,8 +243,10 @@ void Graphics::drawArrowEnd(const Vector2D& p, const Vector2D& towards, double s
 	cairo_fill(cr);
 }
 
-void Graphics::set_font(uint size, const std::string& font ) {
-	cairo_select_font_face(cr, font.c_str(), CAIRO_FONT_SLANT_ITALIC, CAIRO_FONT_WEIGHT_NORMAL);
+void Graphics::set_font(uint size, const std::string& font, int style) {
+	cairo_select_font_face(cr, font.c_str(),
+			style & 0x001 ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL,
+			style & 0x010 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 	cairo_set_font_size(cr, size);
 }
 

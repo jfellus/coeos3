@@ -48,7 +48,7 @@ public:
 	}
 
 	virtual void on_module_selected(Module* m, bool bSelected) {
-		if(!canvas->isSelecting) properties->update(&selected_modules);
+		if(!canvas->isSelecting) properties->update(&selected_modules, &selected_links);
 
 		if(bSelected) selected_modules.push_back(m);
 		else vector_remove(selected_modules, m);
@@ -58,7 +58,7 @@ public:
 
 	virtual void update() {
 		STATUS(selected_modules.size() << " modules selected\t\t" << selected_links.size() << " links selected");
-		properties->update(&selected_modules);
+		properties->update(&selected_modules, &selected_links);
 		docBrowser->update(selected_modules);
 		if(infoform) infoform->update();
 		canvas->grab_focus();
@@ -66,6 +66,8 @@ public:
 	}
 
 	virtual void on_link_selected(Link* m, bool bSelected) {
+		if(!canvas->isSelecting) properties->update(&selected_modules, &selected_links);
+
 		if(bSelected) selected_links.push_back(m);
 		else vector_remove(selected_links, m);
 		if(!canvas->isSelecting) update();
@@ -117,7 +119,7 @@ public:
 
 	void run();
 
-	virtual void on_property_change(Module* m, const std::string& name, const std::string& val) {
+	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
 		canvas->repaint();
 	}
 

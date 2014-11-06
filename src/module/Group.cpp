@@ -30,7 +30,7 @@
 
 
 Group::Group() {
-	create_component("group_group.svg");
+	create_component("group_closed");
 	component->hide();
 
 	text = "new_group";
@@ -40,6 +40,9 @@ Group::Group() {
 	component_open->layer = -0.5;
 
 	set_property("timescale", "no"); // TODO : MOVE TO promethe-specific stuff
+	set_property("name", text);
+
+	add_properties_listener(this);
 }
 
 Group::~Group() {

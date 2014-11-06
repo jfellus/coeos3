@@ -39,9 +39,9 @@ public:
 		return NULL;
 	}
 
-	ModulePromGroup* get_group_by_name(const std::string& s) {
+	ModulePromGroup* get_group_by_no_name(const std::string& s) {
 		for(uint i=0; i<groups.size(); i++) {
-			if(groups[i]->group->name==s) return groups[i];
+			if(groups[i]->group->no_name==s) return groups[i];
 		}
 		return NULL;
 	}

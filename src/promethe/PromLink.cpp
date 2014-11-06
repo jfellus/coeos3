@@ -55,13 +55,13 @@ void PromLink::read(std::istream& f) {
 
 
 	if(_src=="-1" || _dst=="-1") return;
-	src = script->get_group_by_name(_src); if(!src) throw Exception_GroupNotFound(_src);
-	dst = script->get_group_by_name(_dst); if(!dst) throw Exception_GroupNotFound(_dst);
+	src = script->get_group_by_no_name(_src); if(!src) throw Exception_GroupNotFound(_src);
+	dst = script->get_group_by_no_name(_dst); if(!dst) throw Exception_GroupNotFound(_dst);
 }
 
 void PromLink::write(std::ostream& f) {
 	f_write_comments(f, comments);
-	f << "liaison entre "<< src->name << "   et  "<< dst->name << " , type = "<< type << " , nbre = "<< nb
+	f << "liaison entre "<< src->no_name << "   et  "<< dst->no_name << " , type = "<< type << " , nbre = "<< nb
 			<< " , norme = " << norm << "\n";
 	f << "                         temps de memorisation entree= " << mem_time_in << " \n";
 	f << "                         temps de memorisation sortie= " << mem_time_out <<" \n";

@@ -13,11 +13,11 @@
 #include "Property.h"
 
 
-class Link : public ISelectable, ISelectionListener {
+class Link : public ISelectable, ISelectionListener, public IPropertiesElement {
 public:
 	LinkComponent* component;
-	Properties properties;
 	Module *src, *dst;
+	std::string text;
 
 public:
 	Link() {component = NULL;src=dst=NULL;}
@@ -25,6 +25,7 @@ public:
 	virtual ~Link();
 
 	void connect(Module* src, Module* dst);
+
 
 	virtual void select() {
 		if(src->has_selected_ancestor() || dst->has_selected_ancestor()) {unselect(); return;}
@@ -66,6 +67,7 @@ public:
 	RGB color = RGB_BLACK;
 	uint font_size = 200;
 	std::string font = "Serif";
+	int font_style = 0;
 	int slashes = 0;
 	int dashed = 0;
 	bool bPretty = false;
@@ -89,7 +91,7 @@ public:
 
 	virtual void default_style() {
 		color  = RGB_BLACK;
-		font_size = 200;
+		font_size = 200; font_style = 0;
 		font = "Serif";
 		slashes = dashed = 0;
 		glows.clear();
@@ -103,6 +105,10 @@ public:
 			CSSStyle::Item* e = s->items[i];
 			if(e->property=="font") font = e->value;
 			else if(e->property=="font-size") fromString(e->value, font_size);
+			else if(e->property=="font-style" && e->value=="italic") font_style |= 0x001;
+			else if(e->property=="font-weight" && e->value=="bold") font_style |= 0x010;
+			else if(e->property=="font-style" && e->value!="italic") font_style &= !(0x001);
+			else if(e->property=="font-weight" && e->value!="bold") font_style &= !(0x010);
 			else if(e->property=="color") color = e->value;
 			else if(e->property=="slashes") fromString(e->value, slashes);
 			else if(e->property=="dashed") fromString(e->value, dashed);
@@ -122,8 +128,9 @@ class LinkLinkComponent : public LinkComponent {
 public:
 	Link* link;
 	int dashed = 0;
+	std::string& text;
 public:
-	LinkLinkComponent(Link* l, Component* src, Component* dst);
+	LinkLinkComponent(Link* l, Component* src, Component* dst, std::string& text);
 	virtual ~LinkLinkComponent() {}
 public:
 	virtual void render(Graphics& g);

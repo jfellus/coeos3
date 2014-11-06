@@ -10,12 +10,14 @@
 
 #include "../util/utils.h"
 #include "tools.h"
+#include "../module/Property.h"
 
 
 class PromScript;
 
 class PromGroup {
 public:
+	std::string no_name;
 	std::string name;
 	uint type;
 	std::string nb_neurons;
@@ -27,6 +29,8 @@ public:
 	uint type2;
 
 	std::string group;
+	std::string custom_function = "";
+	Properties annotations;
 
 	int reverse, debug;
 	int time_scale;
@@ -53,7 +57,7 @@ public:
 
 
 	std::string get_text() {
-		return is_type_algo() ? group : get_type_as_string();
+		return custom_function.empty() ?  (is_type_algo() ? group : get_type_as_string()) : custom_function;
 	}
 
 	bool is_type_algo() { return type==14; }
@@ -68,9 +72,12 @@ public:
 	void write(std::ostream& f);
 
 	virtual void dump(std::ostream& os) {
-		os << "PromGroup(" << name << ", " << group << "," << type << ")";
+		os << "PromGroup(" << no_name << ", " << group << "," << type << ")";
 	}
 	friend std::ostream& operator<<(std::ostream& os, PromGroup* a);
+
+protected:
+	void parse_comments_annotations();
 };
 
 std::ostream& operator<<(std::ostream& os, PromGroup* a);

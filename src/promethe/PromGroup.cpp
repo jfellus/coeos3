@@ -19,10 +19,26 @@ PromGroup::~PromGroup() {
 	// TODO Auto-generated destructor stub
 }
 
+void PromGroup::parse_comments_annotations() {
+	int key_i=-1, v_i=-1, v_j=-1;
+	std::string key,value;
+	for(uint i=0; i<comments.size(); i++) {
+		if(key_i==-1 && v_i==-1 && comments[i]=='@') {key_i = i+1;}
+		else if(key_i != -1 && comments[i]=='=') {v_i=i+1;}
+		else if(v_i!=-1 && (isspace(comments[i]) || i==comments.size()-1 || comments[i]=='\n')) {
+			v_j=i;
+			key = str_trim(comments.substr(key_i, v_i-key_i-1));
+			value = str_trim(comments.substr(v_i,v_j));
+			if(key=="function") { this->custom_function=value; }
+			annotations.add(key,value);
+		}
+	}
+}
 
 void PromGroup::read(std::istream& f) {
 	comments = f_read_comments(f);
-	f_try_read(f, "groupe = %s , ", name);
+	parse_comments_annotations();
+	f_try_read(f, "groupe = %s , ", no_name);
 	f_try_read(f, "type = %u , ", type);
 	f_try_read(f, "nbre neurones = %s , ", nb_neurons);
 	f_try_read(f, "seuil = %s\n", threshold);
@@ -71,7 +87,7 @@ void PromGroup::read(std::istream& f) {
 
 void PromGroup::write(std::ostream& f) {
 	f_write_comments(f, comments);
-		f << "groupe = " << name << " , type = "<< type << " , nbre neurones = "
+		f << "groupe = " << no_name << " , type = "<< type << " , nbre neurones = "
 						<< nb_neurons << " , seuil = "<< threshold << "\n";
 		f << "taillex = "<< width << " , tailley = " << height << "\n";
 		f << "learning rate = " << learning_rate << " \n";

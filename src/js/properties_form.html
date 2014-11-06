@@ -54,7 +54,9 @@ function load_properties(props) {
 		 if(i.startsWith("__format__")) {
 			 var what = i.substr("__format__".length);
 			$(".field_" + what).addClass(p[i]);
-		 } else if(i=="__NBSELECTED__") {
+		 } else if(i=="NBSELECTED_LINKS") {
+			 $(".nbselected").html(p[i] + " links selected");
+		 } else if(i=="NBSELECTED_MODULES") {
 			 $(".nbselected").html(p[i] + " groups selected");
 		 }
 	 }
@@ -68,10 +70,10 @@ function update() {
 	
 	 $(".nbselected").html("nothing selected");
 	var props = __request("properties");
-	if(props.indexOf("MULTIPLE_SELECTION:")!=-1) {
-		var nb = parseInt(props.substr(props.indexOf("MULTIPLE_SELECTION:")+"MULTIPLE_SELECTION:".length));
+	if(props.indexOf("NBSELECTED_LINKS")!=-1 && props.indexOf("NBSELECTED_MODULES")!=-1) {
+		var p = $.parseJSON(props);
 		$(".empty").show();
-		$("#empty_content").html(nb + " groups selected");
+		$("#empty_content").html(p["NBSELECTED_MODULES"] + " groups selected<br><br>" + p["NBSELECTED_LINKS"] + " links selected");
 		$(".properties").hide();
 	}
 	else if(props!="") {

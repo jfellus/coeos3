@@ -19,7 +19,7 @@
 class GroupOpenComponentStyle : public IStyle {
 public:
 	std::string font = "Serif";
-	uint font_size = 300;
+	uint font_size = 400;
 
 	RGB color = RGB(0.7,0.7,0.7);
 	RGB fill_color; bool bFillColor = false;
@@ -36,7 +36,7 @@ public:
 	virtual ~GroupOpenComponentStyle(){}
 
 	virtual void default_style() {
-		font = "Serif"; font_size = 300;
+		font = "Serif"; font_size = 400;
 		color = RGB(0.7,0.7,0.7);
 		bFillColor = bFillHandleColor = bTextColor = bSelectedColor = false;
 		dashed = 1;
@@ -151,7 +151,12 @@ public:
 		Graphics g;
 		g.set_font(style->font_size, style->font);
 		Rectangle e = g.text_extents(group->text);
-		bounds.x += bounds.w - e.w - 400;
+		float f = e.w/bounds.w;
+		if(f>0.7) {
+			g.set_font(style->font_size / f *0.7, style->font);
+			e = g.text_extents(group->text);
+		}
+		bounds.x += bounds.w - e.w - 250;
 		bounds.y -= e.h + 250;
 		bounds.w  = e.w + 400;
 		bounds.h = e.h + 250;

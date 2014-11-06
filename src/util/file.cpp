@@ -17,6 +17,12 @@ bool file_has_ext(const char* filename, const char* ext) {
 	return str_ends_with(str_to_lower(filename),ext);
 }
 
+std::string file_basename(const std::string& file) {
+	size_t i = file.rfind('/');
+	if(i==std::string::npos) return file;
+	return file.substr(i+1);
+}
+
 void fcomeBackToLine(std::istream& f, int linesBefore) {
 	while(linesBefore<0) {
 		f.seekg(-2, std::ios_base::cur);
@@ -31,6 +37,19 @@ bool file_exists(const std::string& filename) {
 	  return (stat (filename.c_str(), &buffer) == 0);
 }
 
+bool file_is_directory(const std::string& filename) {
+	struct stat   buffer;
+	if(stat (filename.c_str(), &buffer) != 0) return false;
+    return (S_ISDIR (buffer.st_mode));
+}
+
+std::string file_absolute_path(const std::string& path) {
+	char* s = realpath(path.c_str(), NULL);
+	if(!s) return "";
+	std::string ss = s;
+	free(s);
+	return ss;
+}
 
 std::string fgetlines(std::istream& f, int nblines) {
 	std::string s;

@@ -60,12 +60,7 @@ bool Module::is_ancestor(Module* m) {
 	return m->is_descendant(this);
 }
 
-void Module::set_property(const std::string& name, const std::string& value) {
-	properties.set_from_string(name, value);
-	for(uint i=0; i<propertiesListeners.size(); i++) {
-		propertiesListeners[i]->on_property_change(this, name, value);
-	}
-}
+
 
 std::ostream& operator<<(std::ostream& os, Module* a) {
 	if(!a) os << "(null)";
@@ -129,7 +124,7 @@ void ModuleComponent::render(Graphics& g) {
 	SVGComponent::render(g);
 
 	g.set_color(style->text_color);
-	g.set_font(style->font_size, style->font);
+	g.set_font(style->font_size, style->font, style->font_style);
 	Rectangle r = get_bounds().at_origin();
 	if(style->flags & MODULECOMPONENTSTYLE_BOTTOM) { r.y += r.h; r.h = g.text_extents(text).h/2; r.y += 150;}
 	g.text(text, r);

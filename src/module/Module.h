@@ -19,15 +19,13 @@
 class Group;
 class IPropertiesListener;
 
-class Module : public ISelectable, public ISelectionListener {
+class Module : public ISelectable, public ISelectionListener, public IPropertiesElement {
 public:
 	Component* component;
-	Properties properties;
 	Group* parent = NULL;
 
 	std::string text;
 
-	std::vector<IPropertiesListener*> propertiesListeners;
 
 	bool visible = false;
 public:
@@ -38,10 +36,6 @@ public:
 	bool is_ancestor(Module* m);
 
 	virtual Rectangle get_bounds() { return component->get_bounds(); }
-
-	virtual void set_property(const std::string& name, const std::string& value);
-
-	void add_properties_listener(IPropertiesListener* l) { propertiesListeners.push_back(l);}
 
 
 	virtual void toggle_class(const std::string& cls) {	component->toggle_class(cls);	}
@@ -111,6 +105,7 @@ public:
 	std::string font = "Serif";
 	uint font_size = 200;
 	uint flags = 0;
+	int font_style = 0;
 	RGB text_color = RGB_BLACK;
 	bool bPretty = false;
 
@@ -136,6 +131,7 @@ public:
 		glows.clear();
 		text_color = RGB_BLACK;
 		bPretty = false;
+		font_style = 0;
 	}
 
 	virtual const char* name() {return "module";}
@@ -145,8 +141,13 @@ public:
 			CSSStyle::Item* e = s->items[i];
 			if(e->property=="font") font = e->value;
 			else if(e->property=="font-size") fromString(e->value, font_size);
+			else if(e->property=="font-style" && e->value=="italic") font_style |= 0x001;
+			else if(e->property=="font-weight" && e->value=="bold") font_style |= 0x010;
+			else if(e->property=="font-style" && e->value!="italic") font_style &= !(0x001);
+			else if(e->property=="font-weight" && e->value!="bold") font_style &= !(0x010);
 			else if(e->property=="text-align" && e->value=="bottom") flags |= MODULECOMPONENTSTYLE_BOTTOM;
 			else if(e->property=="text-align" && e->value=="middle") flags &= !MODULECOMPONENTSTYLE_BOTTOM;
+			else if(e->property=="text-color") text_color = e->value;
 			else if(e->property=="glow") glows.push_back(Glow(e->value));
 			else if(e->property=="pretty") fromString(e->value, bPretty);
 		}
@@ -169,17 +170,6 @@ public:
 	virtual void render(Graphics& g);
 };
 
-
-/////////////////////////
-// PROPERTIES LISTENER //
-/////////////////////////
-
-class IPropertiesListener {
-public:
-	IPropertiesListener() {}
-	virtual ~IPropertiesListener() {}
-	virtual void on_property_change(Module* m, const std::string& name, const std::string& val) = 0;
-};
 
 
 #endif /* MODULE_H_ */

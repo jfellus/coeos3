@@ -23,7 +23,7 @@ Link::~Link() {
 
 void Link::connect(Module* src, Module* dst) {
 	if(!src || !dst) { ERROR("Connection error"); return; }
-	component = new LinkLinkComponent(this, src->component, dst->component);
+	component = new LinkLinkComponent(this, src->component, dst->component, text);
 	this->src = src;
 	this->dst = dst;
 	component->set_selectable();
@@ -41,7 +41,7 @@ void Link::connect(Module* src, Module* dst) {
 //////////////////////////
 
 
-LinkLinkComponent::LinkLinkComponent(Link* l, Component* src, Component* dst) : LinkComponent(src, dst), link(l) {
+LinkLinkComponent::LinkLinkComponent(Link* l, Component* src, Component* dst, std::string& text) : LinkComponent(src, dst), link(l), text(text) {
 		style = new LinkComponentStyle();
 		style->update(css_class);
 }
@@ -86,16 +86,27 @@ void LinkLinkComponent::render(Graphics& g) {
 	}
 
 	g.set_color(style->color);
-	g.set_font(style->font_size, style->font);
+	g.set_font(style->font_size, style->font, style->font_style);
 	if(style->dashed > 0) g.dash(style->dashed);
 	render_line(g, link->bSelected ? 3 : 1);
 	double t1 = render_arrow(g, link->bSelected ? 3.5 : 1.5);
 
+
+	Bezier b = bezier_absolute();
+	double t2 = -1;
+
 	if(style->slashes) {
-		Bezier b = bezier_absolute();
-		double t2 = b.intersect_location(src->get_bounds());
+		if(t2==-1) t2 = b.intersect_location(src->get_bounds());
 		if(t2==-1) t2 = 0;
 		g.draw_slashes(style->slashes,  b.get((t1+t2)/2), b.get((t1+t2)/2 - 0.01));
+	}
+
+	if(!link->text.empty()) {
+		if(t2==-1) t2 = b.intersect_location(src->get_bounds());
+		if(t2==-1) t2 = 0;
+		Vector2D p = b.get((t1+t2)/2);
+		Rectangle r(p.x, p.y+60, 0,0);
+		g.text(link->text, r);
 	}
 }
 

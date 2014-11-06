@@ -10,17 +10,26 @@
 
 #include "Component.h"
 #include "../graphics/svg.h"
+#include "style/SVGDefinitions.h"
 
 
 class SVGComponent : public Component {
 	SVG* svg;
 	Rectangle bounds;
 public:
-	SVGComponent(const char* filename) { svg = new SVG; load(filename);}
+	SVGComponent(const char* filename) {
+		svg = new SVG;
+		if(file_has_ext(filename, ".svg")) load(filename);
+		else {
+			std::string f = SVGDefinitions::get(filename);
+			if(f.empty()) {throw "";}
+			else load(f.c_str());
+		}
+	}
 	virtual ~SVGComponent() {delete svg;}
 
 
-	void load(const char* filename) {svg->load(filename);}
+	void load(const char* filename) {try {svg->load(filename);} catch(...) { ERROR("Couldn't load SVG file : " << filename); throw ""; }}
 
 
 	virtual Rectangle get_bounds() {

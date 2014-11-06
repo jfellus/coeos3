@@ -96,7 +96,7 @@ public:
 		this->project = project;
 		this->group = group;
 		properties.add("comments", group->comments, "multiline");
-		properties.add("name", group->name);
+		properties.add("no_name", group->no_name);
 		properties.add("alpha", group->alpha);
 		properties.add("debug", group->debug);
 		properties.add("nb neurons", group->nb_neurons);
@@ -119,7 +119,7 @@ public:
 
 	virtual ~ModulePromGroup();
 
-	virtual void on_property_change(Module* m, const std::string& name, const std::string& val) {
+	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
 		if(name=="group") { text = val; }
 	}
 
@@ -135,7 +135,7 @@ private:
 std::ostream& operator<<(std::ostream& os, ModulePromGroup* a);
 
 
-class LinkPromLink : public Link {
+class LinkPromLink : public Link, IPropertiesListener {
 public:
 	PromLink* link;
 	PromProject* project;
@@ -145,15 +145,19 @@ public:
 		this->link = link;
 		properties.add("comments", link->comments);
 		properties.add("computation_mode", link->computation_mode);
-		properties.add("dst", link->dst->name);
+		properties.add("dst", link->dst->no_name);
 		properties.add("mem_time_in", link->mem_time_in);
 		properties.add("mem_time_out", link->mem_time_out);
 		properties.add("name", link->name);
 		properties.add("nb", link->nb);
 		properties.add("norm", link->norm);
 		properties.add("secondary", link->secondary);
-		properties.add("src", link->src->name);
+		properties.add("src", link->src->no_name);
 		properties.add("type", link->type);
+
+		add_properties_listener(this);
+
+		text = link->name;
 		realize();
 	}
 
@@ -161,6 +165,10 @@ public:
 
 	virtual void dump(std::ostream& os) {
 		os << "LPL(" << link << ")";
+	}
+
+	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
+		if(name=="name") { text = val; }
 	}
 
 private:

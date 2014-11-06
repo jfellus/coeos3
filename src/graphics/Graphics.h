@@ -104,11 +104,12 @@ public:
 	void line_to(double x, double y) {cairo_line_to(cr, x,y);}
 	void curve_to(double x1, double y1, double x2, double y2, double x3, double y3) {cairo_curve_to(cr, x1, y1, x2, y2, x3, y3);}
 	void close_path() {cairo_close_path(cr);}
+	inline void clear_path() {cairo_new_path(cr);}
 
 	void drawArrowEnd(const Vector2D& p, const Vector2D& towards, double size = 1);
 	cairo_path_t* get_piecewise_linear() {return cairo_copy_path_flat(cr);}
 
-	void set_font(uint size = 600, const std::string& font = "Serif");
+	void set_font(uint size = 600, const std::string& font = "Serif", int style = 0);
 	void text(const std::string& s, const Rectangle& bounds = Rectangle());
 	Rectangle text_extents(const std::string &s);
 };

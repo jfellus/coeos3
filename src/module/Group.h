@@ -13,7 +13,7 @@
 
 class GroupOpenComponent;
 
-class Group : public Module {
+class Group : public Module, public IPropertiesListener {
 public:
 	std::vector<Module*> children;
 	GroupOpenComponent* component_open = NULL;
@@ -68,6 +68,10 @@ public:
 	virtual void on_selection_event(ISelectable* s);
 
 	virtual void on_dbl_click(ISelectable* s, GdkEventButton* e);
+
+	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
+		if(name=="name") { text = val; }
+	}
 
 	virtual void dump(std::ostream& os) { os << "Group " << (void*)this << " (" << children.size() << ")"; }
 	virtual void create_component(const char* component_spec);

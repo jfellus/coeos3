@@ -1,9 +1,27 @@
+#################################
+# NOTES FOR UBUNTU 12.04 USERS :
+# --------------------------------
+# EVENTUALLY YOU'LL HAVE TO TYPE : sudo apt-add-repository ppa:teward/libmicrohttpd-quantal
+# INSTALL GCC 4.8 and G++ 4.8 by typing : 
+#	sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+#	sudo apt-get update
+#	sudo apt-get install gcc-4.8 g++-4.8
+####################################
 
+
+###### INSTALLATION GUIDE ######
+# make external_libs
+# make
+# ./coeos++
+################################
+
+
+APT_GET_DEPENDENCIES:= libmicrohttpd-dev libmicrohttpd10 libgtk-3-dev libwebkitgtk-dev
 
 
 REQUIRED_PACKAGES:= cairo gtk+-3.0 webkitgtk-3.0 libmicrohttpd
 REQUIRED_LIBS:= -lpthread
-APT_GET_DEPENDENCIES:= libmicrohttpd-dev libmicrohttpd10 libgtk-3-dev libwebkitgtk-dev
+
 
 SRC_DIR:=./src
 

@@ -58,6 +58,7 @@ public:
 		VECTOR_ASSERT_UNICITY(links, l);
 		links.push_back(l);
 		l->add_selection_listener(this);
+		l->add_properties_listener(this);
 		return l;
 	}
 
@@ -114,8 +115,8 @@ public:
 	}
 
 	void group_selection() {
-		// No group of 1 or 0 element
-		if(selected_modules.size()<=1) return;
+		// No group 0 element
+		if(selected_modules.size()<1) return;
 
 		Group* g = new Group();
 
@@ -141,8 +142,8 @@ public:
 			}
 		}
 
-		// If finally we only added 0 or 1 element, group is cancelled
-		if(g->children.size()<=1) {delete g; return;}
+		// If finally we only added 0 element, group is cancelled
+		if(g->children.size()<1) {delete g; return;}
 
 		if(parent) parent->add(g);
 		g->close();
@@ -202,7 +203,7 @@ public:
 		for(uint i=0; i<selected_links.size(); i++) selected_links[i]->remove_class(cls);
 	}
 
-	virtual void on_property_change(Module* m, const std::string& name, const std::string& val) {
+	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
 		for(uint i=0; i<propertiesListeners.size(); i++) propertiesListeners[i]->on_property_change(m, name, val);
 	}
 

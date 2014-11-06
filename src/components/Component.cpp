@@ -59,6 +59,7 @@ void Component::draw(Graphics& g) {
 	if(!visible) return;
 
 	g.save();
+	g.clear_path();
 	transform(g);
 	if(canvas && canvas->selectionRenderingMode==SELECTION_Colored && is_selected())
 		g.map_color(RGB_BLACK, RGB_RED);

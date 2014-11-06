@@ -43,8 +43,8 @@ public:
 	virtual ~PromScript() {
 	}
 
-	PromGroup* get_group_by_name(const std::string& name) {
-		for(uint i=0; i<groups.size(); i++) if(groups[i]->name == name) return groups[i];
+	PromGroup* get_group_by_no_name(const std::string& no_name) {
+		for(uint i=0; i<groups.size(); i++) if(groups[i]->no_name == no_name) return groups[i];
 		return NULL;
 	}
 

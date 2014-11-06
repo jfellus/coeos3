@@ -16,6 +16,7 @@
 void SVG::load(const char* filename) {
 	this->filename = filename;
 	image = nsvgParseFromFile(filename, "px", 96);
+	if(!image) throw "";
 }
 
 void SVG::init() {

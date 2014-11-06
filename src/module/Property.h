@@ -134,4 +134,32 @@ std::ostream& operator<<(std::ostream& os, Properties* a);
 
 
 
+
+class IPropertiesListener;
+class IPropertiesElement {
+public:
+	Properties properties;
+	std::vector<IPropertiesListener*> propertiesListeners;
+public:
+	IPropertiesElement() {}
+	virtual ~IPropertiesElement() {}
+
+	void add_properties_listener(IPropertiesListener* l) { propertiesListeners.push_back(l);}
+	void set_property(const std::string& name, const std::string& value);
+};
+
+
+
+/////////////////////////
+// PROPERTIES LISTENER //
+/////////////////////////
+
+class IPropertiesListener {
+public:
+	IPropertiesListener() {}
+	virtual ~IPropertiesListener() {}
+	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) = 0;
+};
+
+
 #endif /* PROPERTY_H_ */

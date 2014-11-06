@@ -12,12 +12,14 @@
 #include "../module/Property.h"
 #include "../module/Module.h"
 #include "../promethe/promethe_modules.h"
+#include "../util/utils.h"
 
 class PropertiesForm : public Browser {
 public:
 	Properties* properties = 0;
 	Properties* multiproperties = 0;
-	std::vector<Module*>* selection = 0;
+	std::vector<Module*>* selected_modules = 0;
+	std::vector<Link*>* selected_links = 0;
 public:
 	PropertiesForm(Properties* properties = NULL) : Browser("properties") {
 		this->properties = properties;
@@ -27,31 +29,66 @@ public:
 
 	}
 
-	void update(std::vector<Module*>* selection) {
-		this->selection = selection;
+	void update(std::vector<Module*>* selected_modules, std::vector<Link*>* selected_links) {
+		this->selected_modules = selected_modules;
+		this->selected_links = selected_links;
 		if(multiproperties) {delete multiproperties; multiproperties = 0;}
-		if(selection->empty()) {
+
+		if(selected_modules->empty() && selected_links->empty()) {
 			properties = multiproperties = 0;
 			update();
-		} else if(selection->size()==1) {
+		} else if(selected_modules->size()==1 && selected_links->empty()) {
 			multiproperties = 0;
-			properties = &(selection->at(0))->properties;
+			properties = &(selected_modules->at(0))->properties;
+		} else if(selected_modules->empty() && selected_links->size()==1) {
+			multiproperties = 0;
+			properties = &(selected_links->at(0))->properties;
+		} else if(selected_modules->empty()){
+			properties = 0;
+			multiproperties = create_multiproperties(selected_links);
+		} else if(selected_links->empty()){
+			properties = 0;
+			multiproperties = create_multiproperties(selected_modules);
 		} else {
 			properties = 0;
-			multiproperties = create_multiproperties(selection);
+			Properties* p = new Properties();
+			int nmodules = selected_modules->size();
+			int nlinks =  selected_links->size();
+			p->add("NBSELECTED_MODULES", nmodules);
+			p->add("NBSELECTED_LINKS", nlinks);
+			multiproperties = p;
 		}
 		update();
 	}
 
+	Properties* create_multiproperties(std::vector<Link*>* selection) {
+			Properties* p = new Properties();
+			int nbSelected = 0;
+			p->add("NBSELECTED_LINKS", nbSelected);
+			for(uint i=0; i<selection->size(); i++) {
+				LinkPromLink* g = dynamic_cast<LinkPromLink*>(selection->at(i));
+				if(!g) continue;
+				nbSelected++;
+				p->set("NBSELECTED_LINKS", nbSelected);
+				for(uint i=0; i<g->properties.size(); i++) {
+					Property* pp = g->properties[i];
+					Property* mypp = p->get(pp->name);
+					if(mypp==NULL) p->add(pp->copy());
+					else if(mypp->get_value_as_string() != pp->get_value_as_string()) mypp->set_undefined();
+				}
+			}
+			return p;
+		}
+
 	Properties* create_multiproperties(std::vector<Module*>* selection) {
 		Properties* p = new Properties();
 		int nbSelected = 0;
-		p->add("__NBSELECTED__", nbSelected);
+		p->add("NBSELECTED_MODULES", nbSelected);
 		for(uint i=0; i<selection->size(); i++) {
 			ModulePromGroup* g = dynamic_cast<ModulePromGroup*>(selection->at(i));
 			if(!g) continue;
 			nbSelected++;
-			p->set("NBSELECTED", nbSelected);
+			p->set("NBSELECTED_MODULES", nbSelected);
 			for(uint i=0; i<g->properties.size(); i++) {
 				Property* pp = g->properties[i];
 				Property* mypp = p->get(pp->name);
@@ -66,9 +103,16 @@ public:
 	virtual std::string answer(const std::string& request, const std::string& data) {
 		if(str_starts_with(request, "set/")) {
 			std::string field = str_between(request, "set/", "=");
-			for(uint i=0; i<selection->size(); i++) {
-				Module* m = selection->at(i);
-				m->set_property(field, data);
+			if(selected_links->empty()) {
+				for(uint i=0; i<selected_modules->size(); i++) {
+					Module* m = selected_modules->at(i);
+					m->set_property(field, data);
+				}
+			} else {
+				for(uint i=0; i<selected_links->size(); i++) {
+					Link* m = selected_links->at(i);
+					m->set_property(field, data);
+				}
 			}
 			return "ok";
 		} else {

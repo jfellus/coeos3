@@ -28,9 +28,24 @@ void LinkPromLink::realize() {
 }
 
 void ModulePromGroup::realize() {
-	create_component(group->type==14 ? "group_algo.svg" : "group_neural.svg");
+	if(group->type==14) {
+		if(!group->custom_function.empty()) {
+			try { create_component(group->custom_function.c_str()); }
+			catch(...) {
+				try { create_component(group->group.c_str()); }
+				catch(...) { create_component("module_algo"); }
+			}
+		} else {
+			try { create_component(group->group.c_str()); }
+			catch(...) { create_component("module_algo"); }
+		}
+	} else {
+		try { create_component(group->get_type_as_string().c_str()); }
+		catch(...) { create_component("module_neural"); }
+	}
 	component->set_pos(group->posx*10, group->posy*10);
 	component->add_class(group->is_type_algo() ? "algo" : "neural");
+	if(!group->custom_function.empty()) component->add_class("custom_cpp");
 }
 
 ModulePromGroup::~ModulePromGroup() { delete group; project->remove(this); }
