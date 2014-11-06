@@ -23,6 +23,14 @@ std::string file_basename(const std::string& file) {
 	return file.substr(i+1);
 }
 
+std::string file_dirname(const std::string& file) {
+	size_t i = file.rfind('/');
+	if(i==std::string::npos) return ".";
+	else return file.substr(0,i);
+}
+
+
+
 void fcomeBackToLine(std::istream& f, int linesBefore) {
 	while(linesBefore<0) {
 		f.seekg(-2, std::ios_base::cur);

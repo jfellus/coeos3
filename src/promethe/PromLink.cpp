@@ -9,7 +9,8 @@
 #include "PromScript.h"
 #include "promethe_modules.h"
 
-PromLink::PromLink() {
+PromLink::PromLink(PromProject* project) {
+	this->project = project;
 	src = dst =  NULL;
 	mem_time_in = mem_time_out = norm = "";
 	nb = "";
@@ -19,6 +20,12 @@ PromLink::PromLink() {
 	script = NULL;
 	dv_x = dv_y = "";
 	proba = "1";
+}
+
+PromLink::PromLink(PromScript* script, std::istream& f) {
+	this->script = script;
+	this->project = script->project;
+	read(f);
 }
 
 PromLink::~PromLink() {

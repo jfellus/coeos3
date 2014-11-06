@@ -84,3 +84,8 @@ group.highlighted {
 	text-color: #5500ff;
 	font-size:460;
 }
+
+group:closed {
+	font-size:700;
+	text-color: black;
+}

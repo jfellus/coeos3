@@ -6,12 +6,18 @@
  */
 
 #include "PromProject.h"
+#include "promethe_modules.h"
 
 
 void PromProject::create_timescales_groups(PromScript* script) {
-	int cur_timescale = script->get_highest_timescale();
+	int max_timescale = script->get_highest_timescale();
+	int cur_timescale = max_timescale;
 	uint done_groups = 0;
+	GroupPromScript* gps = new GroupPromScript(script);
+	gps->set_property("name", script->name);
 	Group* curgroup = new Group(), *last_group = 0;
+	gps->add(curgroup);
+	curgroup->open(); gps->open();
 	curgroup->set_property("timescale", "yes");
 
 	while(done_groups < script->groups.size()) {
@@ -24,7 +30,7 @@ void PromProject::create_timescales_groups(PromScript* script) {
 				done_groups++;
 			}
 		}
-		if(curgroup) curgroup->text = TOSTRING("time_scale " << cur_timescale);
+		if(curgroup) curgroup->set_property("name", TOSTRING("time_scale " << cur_timescale));
 		if(last_group && curgroup) {last_group->add(curgroup); curgroup->open(); last_group->open();}
 		last_group = curgroup;
 
@@ -34,11 +40,28 @@ void PromProject::create_timescales_groups(PromScript* script) {
 		curgroup->set_property("timescale", "yes");
 		cur_timescale--;
 	}
+
+}
+
+void PromProject::layout_scripts() {
+	Rectangle r;
+	for(uint i = 0; i<Document::cur()->modules.size(); i++) {
+		GroupPromScript* gps = dynamic_cast<GroupPromScript*>(Document::cur()->modules[i]);
+		if(!gps) continue;
+		if(!r) r = gps->get_bounds();
+		else {
+			Rectangle r2 = gps->get_bounds();
+			r.x += r.w + 300;
+			r.w = r2.w;
+			gps->translate(r.x, r.y);
+		}
+	}
 }
 
 
+
 void PromProject::save_to_single_script(const std::string& filename) {
-	PromScript* single_script = loaded_scripts.empty() ? new PromScript() : loaded_scripts[0];
+	PromScript* single_script = net->nodes.empty() ? new PromScript() : net->nodes[0]->script;
 	int max_timescale = 0;
 
 	// Assign time scales add attach to single script
@@ -67,4 +90,33 @@ int PromProject::infer_timescale(Group* g) {
 		p = p->parent;
 	}
 	return ts;
+}
+
+void PromProject::save_script(PromScript* script) {
+	int max_timescale = 0;
+
+	// Assign time scales add attach to single script
+	for(uint i=0; i<groups.size(); i++) {
+		PromGroup* g = groups[i]->group;
+		if(g->script!=script) continue;
+		g->time_scale = infer_timescale(groups[i]->parent);
+		if(g->time_scale > max_timescale) max_timescale = g->time_scale;
+	}
+
+	// Reverse time scales indices
+	for(uint i=0; i<groups.size(); i++) {
+		if(groups[i]->group->script!=script) continue;
+		groups[i]->group->time_scale = max_timescale - groups[i]->group->time_scale;
+	}
+
+	script->save(script->filename.empty() ? script->name + ".symb" : script->filename);
+}
+
+void PromProject::save_net(const std::string& filename) {
+	if(!net) return;
+
+	for(uint i=0; i<net->nodes.size(); i++) {
+		save_script(net->nodes[i]->script);
+	}
+	net->save(filename);
 }

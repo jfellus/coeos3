@@ -9,10 +9,17 @@
 #include "PromScript.h"
 #include "promethe_modules.h"
 
-PromGroup::PromGroup() {
+PromGroup::PromGroup(PromProject* project) {
+	this->project = project;
 	script = NULL; time_scale = 0; posx = posy = p_posx = p_posy = 0;
 	type = type2 = 0;
 	reverse = debug = 0;
+}
+
+PromGroup::PromGroup(PromScript* script, std::istream& f) {
+	this->script = script;
+	this->project = script->project;
+	read(f);
 }
 
 PromGroup::~PromGroup() {

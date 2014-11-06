@@ -10,9 +10,12 @@
 
 #include "PromGroup.h"
 
+class PromScript;
+class PromProject;
 
 class PromLink {
 public:
+	PromProject* project = NULL;
 	PromGroup *src = NULL, *dst = NULL;
 
 	std::string name;
@@ -34,8 +37,8 @@ public:
 
 	std::string comments;
 public:
-	PromLink();
-	PromLink(PromScript* script, std::istream& f) {this->script = script; read(f);}
+	PromLink(PromProject* project);
+	PromLink(PromScript* script, std::istream& f);
 
 	virtual ~PromLink();
 

@@ -23,23 +23,23 @@ public:
 };
 
 class PromProject;
+class PromNode;
 
 class PromScript {
 public:
 	std::vector<PromGroup*> groups;
 	std::vector<PromLink*> links;
 
-	std::string name, login, host_name;
-	std::string fscript, fres, fdraw, fconfig;
-
+	std::string name;
 	std::string comments_groups, comments_links;
 	std::string filename;
 
 	PromProject* project = 0;
+	PromNode* node = 0;
 
 public:
 	PromScript() {}
-	PromScript(const std::string& filename) {open(filename);}
+	PromScript(const std::string& filename) {load(filename);}
 	virtual ~PromScript() {
 	}
 
@@ -75,14 +75,7 @@ public:
 		return max;
 	}
 
-	void open(const std::string& filename) {
-		this->filename = filename;
-		setlocale(LC_NUMERIC, "C");
-		std::ifstream f(filename);
-		if(!f) DBG("File doesn't exist : " << filename);
-		if(!read(f)) DBG("Failed loading " << filename);
-		f.close();
-	}
+	void load(const std::string& filename);
 
 	void save(const std::string& filename) {
 		std::ofstream f(filename);

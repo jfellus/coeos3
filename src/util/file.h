@@ -15,7 +15,19 @@
 
 bool file_has_ext(const char* filename, const char* ext);
 inline bool file_has_ext(const std::string& filename, const char* ext) {  return file_has_ext(filename.c_str(), ext); }
+
+inline std::string file_change_ext(const std::string& filename, const char* newext) {
+	uint i = filename.rfind('.');
+	if(i==std::string::npos) return filename + newext;
+	return filename.substr(0, i) + newext;
+}
+
+inline bool file_is_absolute(const std::string& file) {
+	return file[0]=='/';
+}
+
 std::string file_basename(const std::string& file);
+std::string file_dirname(const std::string& file);
 
 bool file_exists(const std::string& filename);
 bool file_is_directory(const std::string& filename);

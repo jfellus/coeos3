@@ -14,9 +14,11 @@
 
 
 class PromScript;
+class PromProject;
 
 class PromGroup {
 public:
+	PromProject* project = NULL;
 	std::string no_name;
 	std::string name;
 	uint type;
@@ -50,8 +52,8 @@ public:
 
 	std::string comments;
 public:
-	PromGroup();
-	PromGroup(PromScript* script, std::istream& f) {this->script = script; read(f);}
+	PromGroup(PromProject* project);
+	PromGroup(PromScript* script, std::istream& f);
 
 	virtual ~PromGroup();
 

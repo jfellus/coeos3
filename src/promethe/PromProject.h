@@ -12,22 +12,24 @@
 #include "PromWorkbench.h"
 #include "../components/ModuleCreator.h"
 #include "../components/LinkCreator.h"
+#include "PromNet.h"
 
 class PromProject {
 public:
 	std::vector<ModulePromGroup*> groups;
 	std::vector<LinkPromLink*> links;
-	std::vector<PromScript*> loaded_scripts;
+	PromNet* net = NULL;
 
 public:
 	PromProject() {}
 	~PromProject() {
 		while(links.size()>0) delete links[0];
 		while(groups.size()>0) delete groups[0];
+		if(net) delete net;
 	}
 
-	void add(ModulePromGroup* g) {g->project = this; groups.push_back(g);}
-	void add(LinkPromLink* l) {l->project = this; links.push_back(l);}
+	void add(ModulePromGroup* g) {groups.push_back(g);}
+	void add(LinkPromLink* l) {links.push_back(l);}
 
 	void remove(ModulePromGroup* g) {vector_remove(groups, g);}
 	void remove(LinkPromLink* l) {vector_remove(links, l);}
@@ -47,19 +49,37 @@ public:
 	}
 
 	void add(PromScript* script) {
+		if(!net) {	net = new PromNet(); net->project = this; }
 		script->project = this;
-		loaded_scripts.push_back(script);
-		for(uint i=0; i<script->groups.size(); i++) add(new ModulePromGroup(this, script->groups[i]));
-		for(uint i=0; i<script->links.size(); i++) add(new LinkPromLink(this, script->links[i]));
+		for(uint i=0; i<script->groups.size(); i++) {
+			script->groups[i]->project = this;
+			add(new ModulePromGroup(script->groups[i]));
+		}
+		for(uint i=0; i<script->links.size(); i++) {
+			script->links[i]->project = this;
+			add(new LinkPromLink(script->links[i]));
+		}
 		create_timescales_groups(script);
 	}
 
 	void create_timescales_groups(PromScript* script);
-
-
+	void layout_scripts();
 	void save_to_single_script(const std::string& filename);
-
 	int infer_timescale(Group* g);
+
+
+	void load_net(PromNet* net) {
+		if(this->net) delete this->net;
+		this->net = net;
+		net->project = this;
+		try {
+			net->realize();
+			for(uint i=0; i<net->nodes.size(); i++) add(net->nodes[i]->script);
+		} catch(...) {ERROR("Can't open network " << net); throw "";}
+	}
+
+	void save_net(const std::string& filename);
+	void save_script(PromScript* script);
 };
 
 class PromGroupCreator : public ModuleCreator {
@@ -70,13 +90,13 @@ public:
 	virtual ~PromGroupCreator() {}
 
 	virtual void create(double x, double y) {
-		PromGroup* promGroup = new PromGroup();
+		PromGroup* promGroup = new PromGroup(project);
 		promGroup->type = 14;
 		promGroup->group = "F_new_group";
 		promGroup->posx = (uint)x;
 		promGroup->posy = (uint)y;
 
-		ModulePromGroup* m = new ModulePromGroup(project, promGroup);
+		ModulePromGroup* m = new ModulePromGroup(promGroup);
 		project->add(m);
 
 		module = m;
@@ -114,12 +134,12 @@ public:
 			if(!dst) return;
 			this->dst = dst;
 
-			PromLink* promLink = new PromLink();
+			PromLink* promLink = new PromLink(project);
 			promLink->src = dynamic_cast<ModulePromGroup*>(src)->group;
 			promLink->dst = dst->group;
 			promLink->type = 5;
 
-			LinkPromLink* link = new LinkPromLink(project, promLink);
+			LinkPromLink* link = new LinkPromLink(promLink);
 			project->add(link);
 			this->link = link;
 

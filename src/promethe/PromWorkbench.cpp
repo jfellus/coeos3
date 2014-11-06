@@ -14,8 +14,19 @@ PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbe
 void PromWorkbench::open(const std::string& filename) {
 	if(project) close();
 	project = new PromProject();
-	PromScript* s = new PromScript(filename);
-	project->add(s);
+	if(file_has_ext(filename, ".script") || file_has_ext(filename, ".symb")) {
+		try {
+			PromScript* s = new PromScript(filename);
+			project->net->add(new PromNode(project->net, s));
+			project->add(s);
+		} catch(...) {}
+	} else if(file_has_ext(filename, ".net")) {
+		PromNet* net = new PromNet(filename);
+		project->load_net(net);
+		project->layout_scripts();
+	} else {
+		ERROR("Unknown file format " << filename);
+	}
 	document->update_links_layers();
 	canvas->update_layers();
 	canvas->zoom_all();
@@ -23,11 +34,12 @@ void PromWorkbench::open(const std::string& filename) {
 
 void PromWorkbench::save(const std::string& filename) {
 	if(!project) return;
-	if(file_has_ext(filename, ".script")) project->save_to_single_script(filename);
-	else {
-		// TODO : SAVE MULTISCRIPT
-		ERROR("Multiscript save not implemented yet !!");
-	}
+	if(file_has_ext(filename, ".script") || file_has_ext(filename, ".symb"))
+		project->save_to_single_script(filename);
+	else if(file_has_ext(filename, ".net"))
+		project->save_net(filename);
+	else
+		ERROR("Can't save - unknown extension : " << filename);
 }
 
 void PromWorkbench::new_document() {

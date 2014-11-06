@@ -4,7 +4,7 @@
 #include "promethe/PromProject.h"
 #include "layout/LayoutFlow.h"
 #include "components/style/CSSDefinitions.h"
-
+#include "promethe/PromNet.h"
 
 
 static void create_random_graph(int N = 100, int NL = 2) {
@@ -82,8 +82,7 @@ int main(int argc, char** argv) {
 	SVGDefinitions::add("style/svg");
 	SVGDefinitions::add("style/svg2");
 
-
-	w->open("/home/jfellus/Bureau/test_script/a.script");
+	w->open("/home/jfellus/Documents/These/prog/promethe_orig/applications/devel_applis/DM_PerAc_visuomotor_control_Tino/visualPlanning.net");
 	//create_engine(); // TEST NEWTON DYNAMICS
 
 	w->canvas->add_key_listener(new IKeyListener(GDK_KEY_l, GDK_CONTROL_MASK, on_key_layout));

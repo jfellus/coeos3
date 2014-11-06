@@ -11,7 +11,7 @@
 
 std::map<std::string, CSSStyle*> CSSDefinitions::defs;
 std::vector<CSSDefinitions::Type*> CSSDefinitions::element_types;
-
+size_t CSSDefinitions::curline = 0;
 
 std::ostream& operator<<(std::ostream& os, CSSStyle* a) {
 	if(!a) os << "null";
@@ -19,8 +19,25 @@ std::ostream& operator<<(std::ostream& os, CSSStyle* a) {
 	return os;
 }
 
+static bool _style_order_comp(CSSStyle* c1, CSSStyle* c2) {
+	return c1->line < c2->line;
+}
 
-void CSSDefinitions::apply_style(IStyle* s) {
+void CSSDefinitions::apply_styles(IStyle* s, const std::string& classes) {
+	std::vector<CSSStyle*> csss;
+	retrieve_styles(s, csss);
+
+	// Class styling
+	FOR_EACH_TOKEN(classes, ' ', cls) {
+		if(cls.empty()) continue;
+		retrieve_styles(s, cls, csss);
+	}
+
+	std::sort (csss.begin(), csss.end(), _style_order_comp);
+	for(uint i=0; i<csss.size(); i++) s->apply_style(csss[i]);
+}
+
+void CSSDefinitions::retrieve_styles(IStyle* s, std::vector<CSSStyle*>& styles_out) {
 	if(!s) return;
 	std::list<Type*> inherits;
 	Type* type = get_type(s->name());
@@ -31,11 +48,11 @@ void CSSDefinitions::apply_style(IStyle* s) {
 	}
 	while(!inherits.empty()) {
 		CSSStyle* css = get(inherits.front()->name); inherits.pop_front();
-		if(css) s->apply_style(css);
+		if(css) styles_out.push_back(css);
 	}
 }
 
-void CSSDefinitions::apply_style(IStyle* s, const std::string& cls) {
+void CSSDefinitions::retrieve_styles(IStyle* s, const std::string& cls, std::vector<CSSStyle*>& styles_out) {
 	if(!s) return;
 	std::list<Type*> inherits;
 	Type* type = get_type(s->name());
@@ -48,7 +65,7 @@ void CSSDefinitions::apply_style(IStyle* s, const std::string& cls) {
 		Type* type = inherits.front(); inherits.pop_front();
 		std::string ss = type->name[0]=='*' ? TOSTRING("." << cls) : TOSTRING(type->name << "." << cls);
 		CSSStyle* css = get(ss);
-		if(css) s->apply_style(css);
+		if(css) styles_out.push_back(css);
 	}
 }
 

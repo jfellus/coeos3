@@ -11,9 +11,9 @@
 
 
 void LinkPromLink::realize() {
-	ModulePromGroup* s = project->get(link->src);
+	ModulePromGroup* s = link->project->get(link->src);
 	if(!s) { ERROR("Unknown module : " << link->src); return;}
-	ModulePromGroup* d = project->get(link->dst);
+	ModulePromGroup* d = link->project->get(link->dst);
 	if(!d) { ERROR("Unknown module : " << link->dst); return;}
 	connect(s,d);
 	if(link->is_type_algo()) {
@@ -48,8 +48,8 @@ void ModulePromGroup::realize() {
 	if(!group->custom_function.empty()) component->add_class("custom_cpp");
 }
 
-ModulePromGroup::~ModulePromGroup() { delete group; project->remove(this); }
-LinkPromLink::~LinkPromLink() { delete link; project->remove(this); }
+ModulePromGroup::~ModulePromGroup() { group->project->remove(this); delete group; }
+LinkPromLink::~LinkPromLink() { link->project->remove(this); delete link; }
 
 
 std::ostream& operator<<(std::ostream& os, ModulePromGroup* a) {

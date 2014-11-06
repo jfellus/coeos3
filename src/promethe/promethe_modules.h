@@ -9,6 +9,7 @@
 #define PROMETHE_MODULES_H_
 
 #include "../module/Module.h"
+#include "../module/Group.h"
 #include "../module/Link.h"
 #include "PromGroup.h"
 #include "PromLink.h"
@@ -90,10 +91,8 @@ class PromProject;
 class ModulePromGroup : public Module, IPropertiesListener {
 public:
 	PromGroup* group;
-	PromProject* project;
 public:
-	ModulePromGroup(PromProject* project, PromGroup* group) {
-		this->project = project;
+	ModulePromGroup(PromGroup* group) {
 		this->group = group;
 		properties.add("comments", group->comments, "multiline");
 		properties.add("no_name", group->no_name);
@@ -138,10 +137,8 @@ std::ostream& operator<<(std::ostream& os, ModulePromGroup* a);
 class LinkPromLink : public Link, IPropertiesListener {
 public:
 	PromLink* link;
-	PromProject* project;
 public:
-	LinkPromLink(PromProject* project, PromLink* link) {
-		this->project = project;
+	LinkPromLink(PromLink* link) {
 		this->link = link;
 		properties.add("comments", link->comments);
 		properties.add("computation_mode", link->computation_mode);
@@ -179,5 +176,17 @@ private:
 std::ostream& operator<<(std::ostream& os, LinkPromLink* a);
 
 
+
+class GroupPromScript : public Group {
+public:
+	PromScript* script = NULL;
+	PromProject* project = NULL;
+	PromNode* node = NULL;
+public:
+	GroupPromScript(PromScript* script) : script(script) {
+		project = script->project;
+		node = script->node;
+	}
+};
 
 #endif /* PROMETHE_MODULES_H_ */

@@ -10,6 +10,7 @@
 
 #include "../../util/utils.h"
 #include <map>
+#include <list>
 
 
 class IStyle;
@@ -29,6 +30,7 @@ public:
 	std::string css_class;
 	bool bRecursive = false;
 	CSSStyle* parent = NULL;
+	size_t line = 0;
 
 	CSSStyle(const std::string css_class) : css_class(css_class) {}
 	virtual ~CSSStyle() {
@@ -92,8 +94,9 @@ public:
 	static bool read_defs(std::ifstream& f);
 	static bool read_css(std::ifstream& f);
 
-	static void apply_style(IStyle* s);
-	static void apply_style(IStyle* s, const std::string& cls);
+	static void apply_styles(IStyle* s, const std::string& classes);
+	static void retrieve_styles(IStyle* s, std::vector<CSSStyle*>& styles_out);
+	static void retrieve_styles(IStyle* s, const std::string& cls, std::vector<CSSStyle*>& styles_out);
 
 	static bool is_recursive(const std::string& css_class) {
 		CSSStyle* s = get(css_class);
@@ -121,7 +124,10 @@ public:
 	static void add(const std::string& css_class, CSSStyle* s) {
 		CSSStyle* ss = get(css_class);
 		if(ss) ss->add(s);
-		else defs[css_class] = s;
+		else {
+			defs[css_class] = s;
+			s->line = curline++;
+		}
 	}
 
 	static void dump(std::ostream& os) {
@@ -129,6 +135,9 @@ public:
 			os << (*i).first << "{\n" << (*i).second << "}\n\n";
 		}
 	}
+
+private:
+	static size_t curline;
 };
 
 #endif /* CSSDEFINITIONS_H_ */
