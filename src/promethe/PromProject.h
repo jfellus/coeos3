@@ -8,11 +8,14 @@
 #ifndef PROMPROJECT_H_
 #define PROMPROJECT_H_
 
-#include "promethe_modules.h"
-#include "PromWorkbench.h"
-#include "../components/ModuleCreator.h"
-#include "../components/LinkCreator.h"
-#include "PromNet.h"
+#include <components/ModuleCreator.h>
+#include <components/LinkCreator.h>
+#include "../workbench/PromWorkbench.h"
+#include "promnet/PromNet.h"
+#include "../modules/ModulePromGroup.h"
+#include "../modules/LinkPromLink.h"
+#include "../modules/GroupPromScript.h"
+
 
 class PromProject {
 public:
@@ -28,59 +31,37 @@ public:
 		if(net) delete net;
 	}
 
-	void add(ModulePromGroup* g) {groups.push_back(g);}
-	void add(LinkPromLink* l) {links.push_back(l);}
+	void load_net(PromNet* net);
+	void save_net(const std::string& filename);
+	void save_script(PromScript* script);
 
-	void remove(ModulePromGroup* g) {vector_remove(groups, g);}
-	void remove(LinkPromLink* l) {vector_remove(links, l);}
+	void add(PromScript* script);
+	inline void add(ModulePromGroup* g) {groups.push_back(g);}
+	inline void add(LinkPromLink* l) {links.push_back(l);}
+	inline void remove(ModulePromGroup* g) {vector_remove(groups, g);}
+	inline void remove(LinkPromLink* l) {vector_remove(links, l);}
 
-	ModulePromGroup* get(PromGroup* g) {
-		for(uint i=0; i<groups.size(); i++) {
-			if(groups[i]->group==g) return groups[i];
-		}
-		return NULL;
-	}
-
-	ModulePromGroup* get_group_by_no_name(const std::string& s) {
-		for(uint i=0; i<groups.size(); i++) {
-			if(groups[i]->group->no_name==s) return groups[i];
-		}
-		return NULL;
-	}
-
-	void add(PromScript* script) {
-		if(!net) {	net = new PromNet(); net->project = this; }
-		script->project = this;
-		for(uint i=0; i<script->groups.size(); i++) {
-			script->groups[i]->project = this;
-			add(new ModulePromGroup(script->groups[i]));
-		}
-		for(uint i=0; i<script->links.size(); i++) {
-			script->links[i]->project = this;
-			add(new LinkPromLink(script->links[i]));
-		}
-		create_timescales_groups(script);
-	}
+	ModulePromGroup* get(PromGroup* g);
+	ModulePromGroup* get_group_by_no_name(const std::string& s);
 
 	void create_timescales_groups(PromScript* script);
 	void layout_scripts();
 	void save_to_single_script(const std::string& filename);
 	int infer_timescale(Group* g);
-
-
-	void load_net(PromNet* net) {
-		if(this->net) delete this->net;
-		this->net = net;
-		net->project = this;
-		try {
-			net->realize();
-			for(uint i=0; i<net->nodes.size(); i++) add(net->nodes[i]->script);
-		} catch(...) {ERROR("Can't open network " << net); throw "";}
-	}
-
-	void save_net(const std::string& filename);
-	void save_script(PromScript* script);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class PromGroupCreator : public ModuleCreator {
 public:
@@ -117,6 +98,7 @@ public:
 	virtual void create(double x, double y) {
 		if(!src) {
 			Component* c = canvas->get_selectable_component_at(x,y);
+			if(!c) return;
 			Module* m = (Module*) c->get_user_data("Module");
 			if(!m) return;
 			ModulePromGroup* g = dynamic_cast<ModulePromGroup*>(m);

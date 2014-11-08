@@ -1,0 +1,81 @@
+<html>
+<head>
+<script type="text/javascript" src="lib/jquery-1.11.1.min.js"></script>  
+<script type="text/javascript" src="lib/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="utils/utils.js"></script>
+<script type="text/javascript" src="utils/string.js"></script>
+<script type="text/javascript" src="utils/dropdown.js"></script>
+<script type="text/javascript" src="utils/fields.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="style/main.css">
+
+<style>
+	div { padding-top: 15px;}
+	.undefined { background:#eee0e0; color:#555555;}
+	
+	.error { color:red; font-weight:bold; }
+	
+	div.scripts {
+		display:none;
+	}
+	div.script {
+		text-align:left;
+		padding:10px;
+		background:white;
+		border-bottom:1px dotted black;
+	}
+	div.script:hover {
+		background:#eeeeee;
+	}
+	div.script span {
+		display:inline-block;
+		width:50%; margin:0; padding:0; text-align:center;
+		text-overflow:ellipsis;
+		overflow:hidden;
+	}
+</style>
+
+
+<script type="text/javascript">
+
+$(function() {
+	update();
+});
+
+function update() {
+	if(typeof(__request)!="function") return;
+
+	var ans = __request("scripts");
+	if(ans=="") {
+		$(".scripts").empty();
+		$(".scripts").hide();
+		$(".empty").show();
+		return;
+	}
+	
+	var json = $.parseJSON(ans);
+	$(".scripts").empty();
+	$(".scripts").show();
+	$(".empty").hide();
+	
+	for(var i=0; i<json.length; i++) {
+		var e = $("<div class='script'></div>");
+		e.append("<h2>"+json[i]["name"]+"</h2>");
+		e.append("<span>"+json[i]["path_script"] + "</span>");
+		e.append("<span>"+json[i]["path_symb"] + "</span>");
+		$(".scripts").append(e);
+	}
+	
+}
+
+</script>
+</head>
+<body>
+<div class="full scripts">
+</div>
+<div class="full empty"><table><tr><td id="empty_content">
+No scripts
+</td></tr></table></div>
+</body>
+</html>

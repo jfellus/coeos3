@@ -20,8 +20,10 @@ APT_GET_DEPENDENCIES:= libmicrohttpd-dev libmicrohttpd10 libgtk-3-dev libwebkitg
 
 
 REQUIRED_PACKAGES:= cairo gtk+-3.0 webkitgtk-3.0 libmicrohttpd libxml++-2.6
-REQUIRED_LIBS:= -lpthread
+REQUIRED_LIBS:= -lpthread -lboiboites
 
+PATH_TO_LIBBOIBOITES:=../libboiboites
+INCLUDE_PATH_LIBBOIBOITES:=$(PATH_TO_LIBBOIBOITES)/src
 
 SRC_DIR:=./src
 
@@ -35,18 +37,18 @@ EXECUTABLE:=coeos++
 
 ########################## DON'T EDIT BELOW THIS LINE (unless you are a gnu make's expert ##############
 
-SRC := $(shell find $(SRC_DIR) -name '*.cpp')
+SRC := $(shell find $(SRC_DIR) -name '*.cpp') 
 OBJS := $(addprefix bin/,$(SRC:.cpp=.o))
 
 $(EXECUTABLE): $(OBJS)
 
-CXXFLAGS := -g -rdynamic -Wall -MMD `pkg-config --cflags $(REQUIRED_PACKAGES)`
-LDFLAGS := -rdynamic `pkg-config --libs $(REQUIRED_PACKAGES)` $(REQUIRED_LIBS)
+CXXFLAGS := -fPIC -g -rdynamic -Wall -MMD `pkg-config --cflags $(REQUIRED_PACKAGES)` -I$(INCLUDE_PATH_LIBBOIBOITES)
+LDFLAGS := -fPIC -rdynamic `pkg-config --libs $(REQUIRED_PACKAGES)` -L/home/$(USER)/bin_leto_prom/ $(REQUIRED_LIBS) -Wl,-rpath=/home/$(USER)/bin_leto_prom/ 
 DEPENDS = $(OBJS:.o=.d)    
 
 $(EXECUTABLE) : $(OBJS)          
 	@echo "Build executable $@"
-	@$(CXX) $(OBJS) -o $@ $(LDFLAGS)
+	@$(CXX) $(OBJS) -o $@ $(LDFLAGS) 
 	@echo "DONE" 
 
 bin/%.o: %.cpp

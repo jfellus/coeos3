@@ -6,7 +6,6 @@
  */
 
 #include "PromProject.h"
-#include "promethe_modules.h"
 
 
 void PromProject::create_timescales_groups(PromScript* script) {
@@ -14,8 +13,10 @@ void PromProject::create_timescales_groups(PromScript* script) {
 	int cur_timescale = max_timescale;
 	uint done_groups = 0;
 	GroupPromScript* gps = new GroupPromScript(script);
+	gps->realize();
 	gps->set_property("name", script->name);
 	Group* curgroup = new Group(), *last_group = 0;
+	curgroup->realize();
 	gps->add(curgroup);
 	curgroup->open(); gps->open();
 	curgroup->set_property("timescale", "yes");
@@ -31,12 +32,15 @@ void PromProject::create_timescales_groups(PromScript* script) {
 			}
 		}
 		if(curgroup) curgroup->set_property("name", TOSTRING("time_scale " << cur_timescale));
-		if(last_group && curgroup) {last_group->add(curgroup); curgroup->open(); last_group->open();}
+		if(last_group && curgroup) {
+			last_group->add(curgroup); curgroup->open(); last_group->open();
+		}
 		last_group = curgroup;
 
 		if(done_groups >= script->groups.size()) break;
 
 		curgroup = new Group();
+		curgroup->realize();
 		curgroup->set_property("timescale", "yes");
 		cur_timescale--;
 	}
@@ -45,16 +49,29 @@ void PromProject::create_timescales_groups(PromScript* script) {
 
 void PromProject::layout_scripts() {
 	Rectangle r;
+	double W=0,H=0;
 	for(uint i = 0; i<Document::cur()->modules.size(); i++) {
 		GroupPromScript* gps = dynamic_cast<GroupPromScript*>(Document::cur()->modules[i]);
 		if(!gps) continue;
-		if(!r) r = gps->get_bounds();
-		else {
-			Rectangle r2 = gps->get_bounds();
-			r.x += r.w + 300;
-			r.w = r2.w;
-			gps->translate(r.x, r.y);
-		}
+		W += gps->get_bounds().w;
+		H = MAX(r.h, gps->get_bounds().h);
+	}
+	float ratio = W/H + 1; W /= sqrt(ratio);
+	r.x = r.y = r.w = r.h = 0;
+	for(uint i = 0; i<Document::cur()->modules.size(); i++) {
+		GroupPromScript* gps = dynamic_cast<GroupPromScript*>(Document::cur()->modules[i]);
+		if(!gps) continue;
+		Rectangle r2 = gps->get_bounds();
+		gps->translate(r.x - r2.x, r.y - r2.y);
+		r.w = r2.w + 700;
+		r.h = MAX(r.h, r2.h);
+		r.x += r.w;
+		if(r.x > W) {r.x = 0; r.y += r.h + 700; r.h = 0;}
+	}
+	for(uint i = 0; i<Document::cur()->modules.size(); i++) {
+			GroupPromScript* gps = dynamic_cast<GroupPromScript*>(Document::cur()->modules[i]);
+			if(!gps) continue;
+			gps->close();
 	}
 }
 
@@ -120,3 +137,44 @@ void PromProject::save_net(const std::string& filename) {
 	}
 	net->save(filename);
 }
+
+
+ModulePromGroup* PromProject::get(PromGroup* g) {
+	for(uint i=0; i<groups.size(); i++) {
+		if(groups[i]->group==g) return groups[i];
+	}
+	return NULL;
+}
+
+ModulePromGroup* PromProject::get_group_by_no_name(const std::string& s) {
+	for(uint i=0; i<groups.size(); i++) {
+		if(groups[i]->group->no_name==s) return groups[i];
+	}
+	return NULL;
+}
+
+void PromProject::add(PromScript* script) {
+	STATUS("Loading " << script->filename << " (" << script->groups.size() << " groups, " << script->links.size() << " links)");
+	if(!net) {	net = new PromNet(); net->project = this; }
+	script->project = this;
+	for(uint i=0; i<script->groups.size(); i++) {
+		script->groups[i]->project = this;
+		add(new ModulePromGroup(script->groups[i]));
+	}
+	for(uint i=0; i<script->links.size(); i++) {
+		script->links[i]->project = this;
+		add(new LinkPromLink(script->links[i]));
+	}
+	create_timescales_groups(script);
+}
+
+void PromProject::load_net(PromNet* net) {
+	if(this->net) delete this->net;
+	this->net = net;
+	net->project = this;
+	try {
+		net->realize();
+		for(uint i=0; i<net->nodes.size(); i++) add(net->nodes[i]->script);
+	} catch(...) {ERROR("Can't open network " << net); throw "";}
+}
+
