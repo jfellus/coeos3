@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
 	SVGDefinitions::add("style/svg");
 	SVGDefinitions::add("style/svg2");
 
-	w->open("/home/jfellus/Bureau/DM_PerAc_visuomotor_control_Tino/visualPlanning.net");
+	w->open("examples/mlearning.script");
 	//create_engine(); // TEST NEWTON DYNAMICS
 
 	w->canvas->add_key_listener(new IKeyListener(GDK_KEY_l, GDK_CONTROL_MASK, on_key_layout));
