@@ -2,7 +2,7 @@
 #include "promethe/PromProject.h"
 #include <layout/LayoutFlow.h>
 #include <dynamics/ModuleBody.h>
-#include <components/style/CSSDefinitions.h>
+#include <style/CSSDefinitions.h>
 
 
 static void create_random_graph(int N = 100, int NL = 2) {

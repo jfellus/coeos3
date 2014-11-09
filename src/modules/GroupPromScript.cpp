@@ -7,7 +7,7 @@
 
 
 #include "GroupPromScript.h"
-#include <module/GroupComponent.h>
+#include <components/GroupComponent.h>
 
 
 void GroupPromScript::realize() {

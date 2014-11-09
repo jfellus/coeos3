@@ -8,8 +8,8 @@
 #ifndef PROMPROJECT_H_
 #define PROMPROJECT_H_
 
-#include <components/ModuleCreator.h>
-#include <components/LinkCreator.h>
+#include <creators/ModuleCreator.h>
+#include <creators/LinkCreator.h>
 #include "../workbench/PromWorkbench.h"
 #include "promnet/PromNet.h"
 #include "../modules/ModulePromGroup.h"

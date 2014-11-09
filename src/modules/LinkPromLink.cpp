@@ -8,6 +8,7 @@
 
 #include "LinkPromLink.h"
 #include "../promethe/PromProject.h"
+#include <components/LinkLinkComponent.h>
 
 
 

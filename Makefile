@@ -20,10 +20,12 @@ APT_GET_DEPENDENCIES:= libmicrohttpd-dev libmicrohttpd10 libgtk-3-dev libwebkitg
 
 
 REQUIRED_PACKAGES:= cairo gtk+-3.0 webkitgtk-3.0 libmicrohttpd libxml++-2.6
-REQUIRED_LIBS:= -lpthread -lboiboites
+REQUIRED_LIBS:= -lpthread -lboiboites -lgraphounet
 
 PATH_TO_LIBBOIBOITES:=../libboiboites
-INCLUDE_PATH_LIBBOIBOITES:=$(PATH_TO_LIBBOIBOITES)/src
+PATH_TO_LIBGRAPHOUNET:=../libgraphounet
+
+INCLUDE_PATHS:=$(PATH_TO_LIBBOIBOITES)/src $(PATH_TO_LIBGRAPHOUNET)/src
 
 SRC_DIR:=./src
 
@@ -42,7 +44,7 @@ OBJS := $(addprefix bin/,$(SRC:.cpp=.o))
 
 $(EXECUTABLE): $(OBJS)
 
-CXXFLAGS := -fPIC -g -rdynamic -Wall -MMD `pkg-config --cflags $(REQUIRED_PACKAGES)` -I$(INCLUDE_PATH_LIBBOIBOITES)
+CXXFLAGS := -fPIC -g -rdynamic -Wall -MMD `pkg-config --cflags $(REQUIRED_PACKAGES)` $(addprefix -I,$(INCLUDE_PATHS))
 LDFLAGS := -fPIC -rdynamic `pkg-config --libs $(REQUIRED_PACKAGES)` -L/home/$(USER)/bin_leto_prom/ $(REQUIRED_LIBS) -Wl,-rpath=/home/$(USER)/bin_leto_prom/ 
 DEPENDS = $(OBJS:.o=.d)    
 
