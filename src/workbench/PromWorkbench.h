@@ -31,11 +31,20 @@ public:
 	virtual void close();
 	virtual void open(const std::string& filename);
 	virtual void save(const std::string& filename);
+	virtual void import();
+	virtual void export_script();
 
+	virtual void import(const std::string& filename);
+	virtual void export_script(const std::string& filename);
+
+	virtual void create_script();
 	virtual void create_module();
 	virtual void create_link();
 
 	virtual void update(bool force = false);
+
+	virtual void on_selection_change();
+
 };
 
 #endif /* PROMWORKBENCH_H_ */

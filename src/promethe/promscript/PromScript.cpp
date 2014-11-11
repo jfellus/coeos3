@@ -10,6 +10,10 @@
 #include "../promnet/PromNet.h"
 
 
+PromScript::~PromScript() {
+	if(node) {delete node; node = 0;}
+}
+
 void PromScript::load(const std::string& filename) {
 	this->filename = filename;
 	setlocale(LC_NUMERIC, "C");

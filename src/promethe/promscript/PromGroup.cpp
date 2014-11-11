@@ -15,6 +15,13 @@ PromGroup::PromGroup(PromProject* project) {
 	reverse = debug = 0;
 }
 
+PromGroup::PromGroup(PromScript* script) {
+	type = 14; type2 = 0; time_scale = 0; posx = posy = p_posx = p_posy = 0;
+	reverse = debug = 0;
+	this->script = script;
+	this->project = script->project;
+}
+
 PromGroup::PromGroup(PromScript* script, std::istream& f) {
 	this->script = script;
 	this->project = script->project;

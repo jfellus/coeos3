@@ -14,6 +14,7 @@ void PromProject::create_timescales_groups(PromScript* script) {
 	uint done_groups = 0;
 	GroupPromScript* gps = new GroupPromScript(script);
 	gps->realize();
+	add(gps);
 	gps->set_property("name", script->name);
 	Group* curgroup = new Group(), *last_group = 0;
 	curgroup->realize();
@@ -139,6 +140,19 @@ void PromProject::save_net(const std::string& filename) {
 	net->save(filename);
 }
 
+GroupPromScript* PromProject::get(PromScript* s) {
+	for(uint i=0; i<scripts.size(); i++) {
+		if(scripts[i]->script==s) return scripts[i];
+	}
+	return NULL;
+}
+
+LinkPromLink* PromProject::get(PromLink* l) {
+	for(uint i=0; i<links.size(); i++) {
+		if(links[i]->link==l) return links[i];
+	}
+	return NULL;
+}
 
 ModulePromGroup* PromProject::get(PromGroup* g) {
 	for(uint i=0; i<groups.size(); i++) {

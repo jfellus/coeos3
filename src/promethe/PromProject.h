@@ -21,6 +21,7 @@ class PromProject {
 public:
 	std::vector<ModulePromGroup*> groups;
 	std::vector<LinkPromLink*> links;
+	std::vector<GroupPromScript*> scripts;
 	PromNet* net = NULL;
 
 public:
@@ -36,13 +37,23 @@ public:
 	void save_script(PromScript* script);
 
 	void add(PromScript* script);
+
+	inline void add(GroupPromScript* s) {scripts.push_back(s);}
 	inline void add(ModulePromGroup* g) {groups.push_back(g);}
 	inline void add(LinkPromLink* l) {links.push_back(l);}
 	inline void remove(ModulePromGroup* g) {vector_remove(groups, g);}
 	inline void remove(LinkPromLink* l) {vector_remove(links, l);}
+	inline void remove(GroupPromScript* s) {vector_remove(scripts, s);}
 
 	ModulePromGroup* get(PromGroup* g);
 	ModulePromGroup* get_group_by_no_name(const std::string& s);
+
+	LinkPromLink* get(PromLink* l);
+	GroupPromScript* get(PromScript* s);
+
+	uint get_scripts_count() { return scripts.size(); }
+	uint get_modules_count() { return groups.size(); }
+	uint get_links_count() { return links.size(); }
 
 	void create_timescales_groups(PromScript* script);
 	void layout_scripts();
@@ -125,6 +136,51 @@ public:
 
 			end();
 		}
+	}
+};
+
+class PromScriptCreator : public Creator {
+public:
+	PromProject* project;
+	bool bKeep = false;
+	ModulePromGroup* dummy_group = NULL;
+	GroupPromScript* script = NULL;
+public:
+	PromScriptCreator(PromProject* project) : project(project) {}
+
+	virtual void start(ZoomableDrawingArea* canvas) {
+		Creator::start(canvas);
+		PromScript* s = new PromScript();
+		s->name = "New script";
+
+		PromGroup* f_debut = new PromGroup(s);
+		f_debut->group = "f_debut";
+		s->add_group(f_debut);
+
+		if(!project->net) { PromNet* net = new PromNet(); project->load_net(net);}
+		project->net->add(new PromNode(project->net, s));
+		project->add(s);
+
+		script = project->get(s);
+		dummy_group = project->get(f_debut);
+	}
+
+	virtual void create(double x, double y) {
+		bKeep = true;
+		end();
+	}
+
+	virtual void end() {
+		if(!bKeep) delete script;
+		Creator::end();
+		Workbench::cur()->update();
+	}
+
+	virtual void render(Graphics& g) {}
+
+	virtual void on_mouse_move(GdkEventMotion* e) {
+		Creator::on_mouse_move(e);
+		dummy_group->component->center(Vector2D(x,y));
 	}
 };
 

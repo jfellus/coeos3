@@ -41,8 +41,7 @@ public:
 public:
 	PromScript() {}
 	PromScript(const std::string& filename) {load(filename);}
-	virtual ~PromScript() {
-	}
+	virtual ~PromScript();
 
 	PromGroup* get_group_by_no_name(const std::string& no_name) {
 		for(uint i=0; i<groups.size(); i++) if(groups[i]->no_name == no_name) return groups[i];

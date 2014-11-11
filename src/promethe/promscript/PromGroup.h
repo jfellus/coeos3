@@ -53,6 +53,7 @@ public:
 	std::string comments;
 public:
 	PromGroup(PromProject* project);
+	PromGroup(PromScript* script);
 	PromGroup(PromScript* script, std::istream& f);
 
 	virtual ~PromGroup();

@@ -8,12 +8,24 @@
 #include "PromWorkbench.h"
 #include "../promethe/PromProject.h"
 
+static void on_create_script() { PromWorkbench::cur()->create_script(); }
+static void on_import_script() { PromWorkbench::cur()->import(); }
+static void on_export_script() { PromWorkbench::cur()->export_script(); }
+
 PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbench::cur()); }
 
 
 PromWorkbench::PromWorkbench() {
 	win->add_tab(docBrowser = new DocBrowser(), "Doc");
 	win->add_tab(scriptsForm = new ScriptsForm(), "Scripts");
+
+	win->add_menu("_File>__", on_import_script, win->get_menu_pos("_File>_Save as")+1);
+	win->add_menu("_File>_Import script", on_import_script, win->get_menu_pos("_File>_Save as")+2);
+	win->add_menu("_File>_Export script", on_export_script, win->get_menu_pos("_File>_Save as")+3);
+
+	win->enable_menu("_File>_Export script", false);
+
+	win->add_menu("_Create>_Script", on_create_script, win->get_menu_pos("_Create>_Module"));
 }
 
 void PromWorkbench::open(const std::string& filename) {
@@ -52,6 +64,41 @@ void PromWorkbench::save(const std::string& filename) {
 	update();
 }
 
+void PromWorkbench::import() {
+	std::string filename = open_file_dialog(win->widget);
+	if(!filename.empty()) import(filename);
+}
+
+void PromWorkbench::export_script() {
+	std::string filename = save_file_dialog(win->widget);
+	if(!filename.empty()) export_script(filename);
+}
+
+void PromWorkbench::export_script(const std::string& filename) {
+	GroupPromScript* gps = dynamic_cast<GroupPromScript*>(get_single_selected_module());
+	if(!gps) return;
+	gps->script->save(filename);
+}
+
+
+void PromWorkbench::import(const std::string& filename) {
+	if(file_has_ext(filename, ".script") || file_has_ext(filename, ".symb")) {
+		try {
+			PromScript* s = new PromScript(filename);
+			s->name = file_change_ext(file_basename(filename), "");
+			if(!project->net) { PromNet* net = new PromNet(); project->load_net(net);}
+			project->net->add(new PromNode(project->net, s));
+			project->add(s);
+		} catch(...) {}
+	} else {
+		ERROR("Unknown file format " << filename);
+	}
+	document->update_links_layers();
+	canvas->update_layers();
+	canvas->zoom_all();
+	update();
+}
+
 void PromWorkbench::new_document() {
 	if(project) close();
 	project = new PromProject();
@@ -63,7 +110,12 @@ void PromWorkbench::close() {
 	if(!project) return;
 	delete project;
 	project = 0;
+	new_document();
 	update();
+}
+
+void PromWorkbench::create_script() {
+	canvas->start_creator(new PromScriptCreator(project));
 }
 
 void PromWorkbench::create_module() {
@@ -81,3 +133,11 @@ void PromWorkbench::update(bool force) {
 	scriptsForm->update();
 	docBrowser->update(get_selected_modules());
 }
+
+
+
+void PromWorkbench::on_selection_change() {
+	Workbench::on_selection_change();
+	win->enable_menu("_File>_Export script", dynamic_cast<GroupPromScript*>(get_single_selected_module())!=0 );
+}
+

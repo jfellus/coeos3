@@ -8,6 +8,7 @@
 
 #include "GroupPromScript.h"
 #include <components/GroupComponent.h>
+#include "../promethe/PromProject.h"
 
 
 void GroupPromScript::realize() {
@@ -19,4 +20,10 @@ void GroupPromScript::realize() {
 	component_open->add_class("script");
 	component_open->add_selection_listener(this);
 	component_open->layer = -0.5;
+}
+
+
+GroupPromScript::~GroupPromScript() {
+	project->remove(this);
+	delete script;
 }

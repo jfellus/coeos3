@@ -23,6 +23,8 @@ public:
 		node = script->node;
 	}
 
+	virtual ~GroupPromScript();
+
 	virtual void realize();
 };
 

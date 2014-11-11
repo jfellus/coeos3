@@ -18,20 +18,20 @@ public:
 public:
 	ModulePromGroup(PromGroup* group) {
 		this->group = group;
-		properties.add("comments", group->comments, "multiline");
-		properties.add("no_name", group->no_name);
-		properties.add("alpha", group->alpha);
-		properties.add("debug", group->debug);
-		properties.add("nb neurons", group->nb_neurons);
-		properties.add("width", group->width);
-		properties.add("height", group->height);
-		properties.add("group", group->group, "group");
-		properties.add("learning rate", group->learning_rate);
-		properties.add("p_posx", group->p_posx);
-		properties.add("p_posy", group->p_posy);
-		properties.add("threshold", group->threshold);
-		properties.add("type2", group->type2);
-		properties.add("simulation speed", group->simulation_speed);
+		properties.add_ref("comments", group->comments, "multiline");
+		properties.add_ref("no_name", group->no_name);
+		properties.add_ref("alpha", group->alpha);
+		properties.add_ref("debug", group->debug);
+		properties.add_ref("nb neurons", group->nb_neurons);
+		properties.add_ref("width", group->width);
+		properties.add_ref("height", group->height);
+		properties.add_ref("group", group->group, "group");
+		properties.add_ref("learning rate", group->learning_rate);
+		properties.add_ref("p_posx", group->p_posx);
+		properties.add_ref("p_posy", group->p_posy);
+		properties.add_ref("threshold", group->threshold);
+		properties.add_ref("type2", group->type2);
+		properties.add_ref("simulation speed", group->simulation_speed);
 
 		text = group->get_text();
 
