@@ -35,7 +35,7 @@ public:
 	virtual void create_module();
 	virtual void create_link();
 
-	virtual void update();
+	virtual void update(bool force = false);
 };
 
 #endif /* PROMWORKBENCH_H_ */

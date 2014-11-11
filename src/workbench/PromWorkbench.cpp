@@ -75,8 +75,9 @@ void PromWorkbench::create_link() {
 }
 
 
-void PromWorkbench::update() {
-	Workbench::update();
+void PromWorkbench::update(bool force) {
+	Workbench::update(force);
+	if(bPreventUpdating && !force) return;
 	scriptsForm->update();
-	docBrowser->update(selected_modules);
+	docBrowser->update(get_selected_modules());
 }

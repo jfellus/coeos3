@@ -105,8 +105,6 @@ public:
 			if(!g) return;
 
 			src = g;
-
-			repaint();
 		} else {
 			Component* c = canvas->get_selectable_component_at(x,y);
 			if(!c) return;

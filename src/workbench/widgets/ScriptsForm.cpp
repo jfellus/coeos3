@@ -11,8 +11,9 @@
 
 
 std::string ScriptsForm::answer(const std::string& request, const std::string& data) {
+	bAnswering = true;
 	PromWorkbench* w = PromWorkbench::cur();
-	if(!w->project) return "";
+	if(!w->project) {bAnswering = false; return "";}
 	std::string ans = "[ ";
 	PromNet* net = w->project->net;
 	for(uint i=0; PromWorkbench::cur()->project && PromWorkbench::cur()->project->net && i<net->nodes.size(); i++) {
@@ -21,6 +22,7 @@ std::string ScriptsForm::answer(const std::string& request, const std::string& d
 		ans += n->properties.to_JSON();
 	}
 	ans += "]";
+	bAnswering = false;
 	if(PromWorkbench::cur()->project && PromWorkbench::cur()->project->net)
 	return ans;
 	else return "";

@@ -18,7 +18,7 @@ void PromProject::create_timescales_groups(PromScript* script) {
 	Group* curgroup = new Group(), *last_group = 0;
 	curgroup->realize();
 	gps->add(curgroup);
-	curgroup->open(); gps->open();
+	curgroup->open(); gps->open(); gps->unselect();
 	curgroup->set_property("timescale", "yes");
 
 	while(done_groups < script->groups.size()) {
@@ -34,6 +34,7 @@ void PromProject::create_timescales_groups(PromScript* script) {
 		if(curgroup) curgroup->set_property("name", TOSTRING("time_scale " << cur_timescale));
 		if(last_group && curgroup) {
 			last_group->add(curgroup); curgroup->open(); last_group->open();
+			last_group->unselect(); curgroup->unselect();
 		}
 		last_group = curgroup;
 

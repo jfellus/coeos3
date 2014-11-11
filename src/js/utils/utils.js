@@ -4,6 +4,7 @@
 //////////////
 
 function __request(what, data) {
+	if(!PORT) alert("WRONG PORT : ");
 	return $.ajax({
 	    url: "http://localhost:"+PORT+"/"+what,
 	    beforeSend: function( xhr ) { xhr.overrideMimeType( "text/plain;" ); }, 

@@ -56,9 +56,9 @@ function load_properties(props) {
 		 if(i.startsWith("__format__")) {
 			 var what = i.substr("__format__".length);
 			$(".field_" + what).addClass(p[i]);
-		 } else if(i=="NBSELECTED_LINKS") {
+		 } else if(i=="__NBSELECTED_LINKS__") {
 			 $(".nbselected").html(p[i] + " links selected");
-		 } else if(i=="NBSELECTED_MODULES") {
+		 } else if(i=="__NBSELECTED_MODULES__") {
 			 $(".nbselected").html(p[i] + " groups selected");
 		 }
 	 }
@@ -67,16 +67,25 @@ function load_properties(props) {
 }
 
 function update() {
-	if(typeof(__request)!="function") return;
+	if(typeof(__request)!="function" || !PORT) {alert("ouille");return;	}
 	if(!inited) init();
 	$(':focus').triggerHandler("change");
 	
 	 $(".nbselected").html("nothing selected");
 	var props = __request("properties");
-	if(props.indexOf("NBSELECTED_LINKS")!=-1 && props.indexOf("NBSELECTED_MODULES")!=-1) {
+	if(props.indexOf("__NBSELECTED_LINKS__")!=-1 && props.indexOf("__NBSELECTED_MODULES__")!=-1) {
 		var p = $.parseJSON(props);
 		$(".empty").show();
-		$("#empty_content").html(p["NBSELECTED_MODULES"] + " groups selected<br><br>" + p["NBSELECTED_LINKS"] + " links selected");
+		$("#empty_content").html(p["__NBSELECTED_MODULES__"] + " groups selected<br><br>" + p["__NBSELECTED_LINKS__"] + " links selected");
+		var a = $("<a class='btn' href='#'>Unselect modules</a>");
+		a.click(function() {__request("properties/unselect_modules"); update();});
+		$("#empty_content").append("<br><br>");''
+		$("#empty_content").append(a);
+		$("#empty_content").append("&nbsp;");
+		var a = $("<a class='btn' href='#'>Unselect links</a>");
+		a.click(function() {__request("properties/unselect_links"); update();});
+		$("#empty_content").append(a);
+		$("#empty_content").append("<br>");
 		$(".properties").hide();
 	}
 	else if(props!="") {

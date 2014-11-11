@@ -20,10 +20,10 @@ public:
 	DocBrowser();
 	virtual ~DocBrowser();
 
-	void update(const std::vector<Module*>& selection) {
+	void update(std::vector<Module*>* selection) {
 		nbSelected = 0;
-		for(uint i=0; i<selection.size(); i++) {
-			ModulePromGroup* mpg = dynamic_cast<ModulePromGroup*>(selection[i]);
+		for(uint i=0; i<selection->size(); i++) {
+			ModulePromGroup* mpg = dynamic_cast<ModulePromGroup*>((*selection)[i]);
 			if(mpg) {
 				selectedGroup = mpg->group;
 				nbSelected++;
