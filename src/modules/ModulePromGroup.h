@@ -50,6 +50,10 @@ public:
 		os << "MPG(" << group << ")";
 	}
 
+	virtual void detach(bool bSlave = false);
+	virtual void attach();
+
+
 private:
 	void realize();
 	friend std::ostream& operator<<(std::ostream& os, ModulePromGroup* a);

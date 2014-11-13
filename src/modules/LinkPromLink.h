@@ -19,7 +19,7 @@ public:
 public:
 	LinkPromLink(PromLink* link) {
 		this->link = link;
-		properties.add_ref("comments", link->comments);
+		properties.add_ref("comments", link->comments, "multiline");
 		properties.add_ref("computation_mode", link->computation_mode);
 		properties.add_ref("dst", link->dst->no_name);
 		properties.add_ref("mem_time_in", link->mem_time_in);
@@ -46,6 +46,11 @@ public:
 	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
 		if(name=="name") { text = val; }
 	}
+
+
+	virtual void detach(bool bSlave = false);
+	virtual void attach();
+
 
 private:
 	void realize();

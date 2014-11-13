@@ -27,3 +27,15 @@ GroupPromScript::~GroupPromScript() {
 	project->remove(this);
 	delete script;
 }
+
+void GroupPromScript::detach(bool bSlave) {
+	if(!bAttached) return;
+	Group::detach(bSlave);
+	if(project->net) project->net->remove(node);
+}
+
+void GroupPromScript::attach() {
+	if(bAttached) return;
+	Group::attach();
+	if(project->net) project->net->add(node);
+}

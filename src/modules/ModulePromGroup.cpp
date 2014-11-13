@@ -39,3 +39,15 @@ std::ostream& operator<<(std::ostream& os, ModulePromGroup* a) {
 	a->dump(os);
 	return os;
 }
+
+void ModulePromGroup::detach(bool bSlave) {
+	if(!bAttached) return;
+	Module::detach(bSlave);
+	if(group->script) group->script->remove_group(this->group);
+}
+
+void ModulePromGroup::attach() {
+	if(bAttached) return;
+	Module::attach();
+	if(group->script) group->script->add_group(this->group);
+}

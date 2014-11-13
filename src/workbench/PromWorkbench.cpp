@@ -7,6 +7,11 @@
 
 #include "PromWorkbench.h"
 #include "../promethe/PromProject.h"
+#include "../creators/PromGroupCreator.h"
+#include "../creators/PromLinkCreator.h"
+#include "../creators/PromScriptCreator.h"
+
+
 
 static void on_create_script() { PromWorkbench::cur()->create_script(); }
 static void on_import_script() { PromWorkbench::cur()->import(); }

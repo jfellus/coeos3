@@ -26,6 +26,11 @@ public:
 	virtual ~GroupPromScript();
 
 	virtual void realize();
+
+
+	virtual void detach(bool bSlave = false);
+	virtual void attach();
+
 };
 
 

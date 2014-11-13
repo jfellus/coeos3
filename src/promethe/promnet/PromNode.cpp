@@ -27,7 +27,7 @@ void PromNode::read(Element* node) {
 				Element* node = dynamic_cast<Element*>(*iter);
 				if(!node) continue;
 				TextNode* t = node->get_child_text();
-				this->set_property(std::string("path_")+node->get_name(),t ? t->get_content() : "");
+				properties.set_from_string(std::string("path_")+node->get_name(),t ? (std::string)t->get_content() : "");
 			}
 		} else {
 			TextNode* t = node->get_child_text();
@@ -61,24 +61,24 @@ void PromNode::write(Element* node) {
 void PromNode::init(PromScript* script) {
 	this->script = script;
 	script->node = this;
-	set_property("name", script->name);
-	set_property("computer", "127.0.0.1");
-	set_property("login", "");
-	set_property("cmd", "promethe");
-	set_property("deploy", script->name);
-	set_property("distant_directory", "");
-	set_property("keyboard", "");
-	set_property("synchronize_files", "");
-	set_property("options", "-S1 -D0 -W10");
-	set_property("path_script", file_change_ext(script->name, ".script"));
-	set_property("path_symb", file_change_ext(script->name, ".symb"));
-	set_property("path_draw", file_change_ext(script->name, ".draw"));
-	set_property("path_res", file_change_ext(script->name, ".res"));
-	set_property("path_config", file_change_ext(script->name, ".config"));
-	set_property("path_bus", "");
-	set_property("path_dev", file_change_ext(script->name, ".dev"));
-	set_property("path_gcd", file_change_ext(script->name, ".gcd"));
-	set_property("path_prt", "");
+	properties.set("name", script->name);
+	properties.set_from_string("computer", "127.0.0.1");
+	properties.set_from_string("login", "");
+	properties.set_from_string("cmd", "promethe");
+	properties.set("deploy", script->name);
+	properties.set_from_string("distant_directory", "");
+	properties.set_from_string("keyboard", "");
+	properties.set_from_string("synchronize_files", "");
+	properties.set_from_string("options", "-S1 -D0 -W10");
+	properties.set_from_string("path_script", file_change_ext(script->name, ".script"));
+	properties.set_from_string("path_symb", file_change_ext(script->name, ".symb"));
+	properties.set_from_string("path_draw", file_change_ext(script->name, ".draw"));
+	properties.set_from_string("path_res", file_change_ext(script->name, ".res"));
+	properties.set_from_string("path_config", file_change_ext(script->name, ".config"));
+	properties.set_from_string("path_bus", "");
+	properties.set_from_string("path_dev", file_change_ext(script->name, ".dev"));
+	properties.set_from_string("path_gcd", file_change_ext(script->name, ".gcd"));
+	properties.set_from_string("path_prt", "");
 }
 
 void PromNode::realize() {
