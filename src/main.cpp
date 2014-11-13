@@ -75,11 +75,6 @@ int main(int argc, char** argv) {
 	PromWorkbench* w = new PromWorkbench();
 
 
-	CSSDefinitions::add("style/basic.defs");
-	CSSDefinitions::add("style/test.css");
-	SVGDefinitions::add("style/svg");
-	SVGDefinitions::add("style/svg2");
-
 	w->open("examples/mlearning.script");
 	//create_engine(); // TEST NEWTON DYNAMICS
 

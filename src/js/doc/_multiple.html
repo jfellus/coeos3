@@ -14,6 +14,7 @@
 
 function update() {
 	var props = __request("doc");
+	if(!props) return;
 	if(props.indexOf("MULTIPLE_SELECTION:")!=-1) {
 		var nb = parseInt(props.substr(props.indexOf("MULTIPLE_SELECTION:")+"MULTIPLE_SELECTION:".length));
 		$(".empty").show();

@@ -11,6 +11,7 @@
 #include <workbench/Workbench.h>
 #include "widgets/ScriptsForm.h"
 #include "widgets/DocBrowser.h"
+#include "widgets/CreateForm.h"
 
 class PromProject;
 
@@ -20,6 +21,7 @@ public:
 
 	ScriptsForm* scriptsForm = 0;
 	DocBrowser* docBrowser = 0;
+	CreateForm* createForm = 0;
 
 
 public:

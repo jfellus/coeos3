@@ -360,7 +360,15 @@ debug = -4
 ech_temps = 2
 
 %Les commentaires doivent etre mis ici.
-% pb de nombre de neurone si on decommente. Utile que si on a encodage en population.
+% pb de no
+%
+%gdgh
+%df
+%
+%dfjh
+%dgh
+%d
+%mbre de neurone si on decommente. Utile que si on a encodage en population.
 groupe = 56 , type = 14 , nbre neurones = 1 , seuil = 0.000000
 taillex = 1 , tailley = 1
 learning rate = 1.000000 
@@ -3202,21 +3210,21 @@ ech_temps = 1
 
 nombre de liaisons = 388
 %Les commentaires doivent etre mis ici.
-liaison entre 128   et 1 , type = 4 , nbre = 1 , norme = 0.000000
+liaison entre 128   et  1 , type = 4 , nbre = 1 , norme = 0.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 37   et VRrecognition , type = 4 , nbre = 1 , norme = -1.000000
+liaison entre 37   et  VRrecognition , type = 4 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 5 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et 110 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  110 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3224,7 +3232,7 @@ liaison entre 87   et 110 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -fmasks/VR_vigi.mask-c1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 158   et 1 , type = 8 , nbre = 1 , norme = 1.000000
+liaison entre 158   et  1 , type = 8 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3232,7 +3240,7 @@ liaison entre 158   et 1 , type = 8 , nbre = 1 , norme = 1.000000
                          nom = learn_factor
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 98   et 13 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 98   et  13 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3240,29 +3248,21 @@ liaison entre 98   et 13 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = masks/VLlearning.mask
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 128   et 12 , type = 4 , nbre = 1 , norme = -1.000000
+liaison entre 128   et  12 , type = 4 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 72   et 12 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 72   et  12 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 14   et 12 , type = 8 , nbre = 1 , norme = 0.500000
-                         temps de memorisation entree= 0.000000 
-                         temps de memorisation sortie= 0.000000 
-                         mode de calcul        = 0 
-                         secondaire            = 0 
-                         nom = learn_factor
-                         proba = 1.000000 
-%Les commentaires doivent etre mis ici.
-liaison entre 13   et 15 , type = 8 , nbre = 1 , norme = 1.000000
+liaison entre 14   et  12 , type = 8 , nbre = 1 , norme = 0.500000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3270,14 +3270,22 @@ liaison entre 13   et 15 , type = 8 , nbre = 1 , norme = 1.000000
                          nom = learn_factor
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 49   et 15 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 13   et  15 , type = 8 , nbre = 1 , norme = 1.000000
+                         temps de memorisation entree= 0.000000 
+                         temps de memorisation sortie= 0.000000 
+                         mode de calcul        = 0 
+                         secondaire            = 0 
+                         nom = learn_factor
+                         proba = 1.000000 
+%Les commentaires doivent etre mis ici.
+liaison entre 49   et  15 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 84   et 22 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 84   et  22 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3285,7 +3293,7 @@ liaison entre 84   et 22 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -count0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 59   et 23 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 59   et  23 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3293,14 +3301,14 @@ liaison entre 59   et 23 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = .
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 243   et 24 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 243   et  24 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et 78 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  78 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3308,7 +3316,7 @@ liaison entre 87   et 78 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 46   et Output , type = 7 , nbre = 1 , norme = 1.000000
+liaison entre 46   et  Output , type = 7 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3317,7 +3325,7 @@ liaison entre 46   et Output , type = 7 , nbre = 1 , norme = 1.000000
                          dv_y = 0.000000 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre US   et 34 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre US   et  34 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3325,7 +3333,7 @@ liaison entre US   et 34 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -f./data/US-r-i2-d0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre Output   et 35 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre Output   et  35 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3335,7 +3343,7 @@ liaison entre Output   et 35 , type = 5 , nbre = 1 , norme = 0.100000
 %Les commentaires doivent etre mis ici.
 % sensorimotorToLearning
 %-fmasks/mlearnIn.SAVE-c2
-liaison entre 7   et 87 , type = 5 , nbre = 1 , norme = 1.000000
+liaison entre 7   et  87 , type = 5 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3343,21 +3351,21 @@ liaison entre 7   et 87 , type = 5 , nbre = 1 , norme = 1.000000
                          nom = sensorimotorToLearning-block
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 15   et 39 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 15   et  39 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 39   et 41 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 39   et  41 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 41   et DiscreteOutput , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 41   et  DiscreteOutput , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3365,7 +3373,7 @@ liaison entre 41   et DiscreteOutput , type = 5 , nbre = 1 , norme = 0.100000
                          nom = full_range
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre DiscreteOutput   et 43 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre DiscreteOutput   et  43 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3373,7 +3381,7 @@ liaison entre DiscreteOutput   et 43 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -f./data/DiscreteOutput-r
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 15   et 46 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 15   et  46 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3381,7 +3389,7 @@ liaison entre 15   et 46 , type = 3 , nbre = 1 , norme = 1.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 %-A0-B1-H
-liaison entre 77   et representation , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 77   et  representation , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3389,35 +3397,35 @@ liaison entre 77   et representation , type = 3 , nbre = 1 , norme = 1.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 %-A0-B1-H
-liaison entre 24   et 48 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 24   et  48 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 48   et 49 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 48   et  49 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 48   et 51 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 48   et  51 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 56   et 51 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 56   et  51 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre VROutput   et 52 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre VROutput   et  52 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3425,7 +3433,7 @@ liaison entre VROutput   et 52 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -f./data/VROutput-r
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 117   et 53 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 117   et  53 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3433,7 +3441,7 @@ liaison entre 117   et 53 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -n1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 54   et 57 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 54   et  57 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3441,7 +3449,7 @@ liaison entre 54   et 57 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = .
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 54   et 55 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 54   et  55 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3449,7 +3457,7 @@ liaison entre 54   et 55 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = .
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 57   et 56 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 57   et  56 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3457,7 +3465,7 @@ liaison entre 57   et 56 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 55   et 56 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 55   et  56 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3465,14 +3473,14 @@ liaison entre 55   et 56 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 56   et 46 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 56   et  46 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 51   et VROutput , type = 7 , nbre = 1 , norme = 1.000000
+liaison entre 51   et  VROutput , type = 7 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3481,14 +3489,14 @@ liaison entre 51   et VROutput , type = 7 , nbre = 1 , norme = 1.000000
                          dv_y = 0.000000 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 98   et 61 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 98   et  61 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 8   et VRrecognition , type = 5 , nbre = 1 , norme = 1.000000
+liaison entre 8   et  VRrecognition , type = 5 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3496,7 +3504,7 @@ liaison entre 8   et VRrecognition , type = 5 , nbre = 1 , norme = 1.000000
                          nom = learn_factor
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 8   et VRrecognition , type = 5 , nbre = 1 , norme = 0.999000
+liaison entre 8   et  VRrecognition , type = 5 , nbre = 1 , norme = 0.999000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3504,7 +3512,7 @@ liaison entre 8   et VRrecognition , type = 5 , nbre = 1 , norme = 0.999000
                          nom = vigilence
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 5   et 65 , type = 5 , nbre = 1 , norme = 1.000000
+liaison entre 5   et  65 , type = 5 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3512,28 +3520,28 @@ liaison entre 5   et 65 , type = 5 , nbre = 1 , norme = 1.000000
                          nom = -A0-B1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 94   et US , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 94   et  US , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 61   et 71 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 61   et  71 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 71   et 49 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 71   et  49 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 84   et 76 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 84   et  76 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3541,7 +3549,7 @@ liaison entre 84   et 76 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -f./data/VRrecognition-r-d0-s0-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 59   et 7 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 59   et  7 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3549,14 +3557,14 @@ liaison entre 59   et 7 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -t50000-w
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 15   et representationConf , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 15   et  representationConf , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre representationConf   et 88 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre representationConf   et  88 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3564,7 +3572,7 @@ liaison entre representationConf   et 88 , type = 5 , nbre = 1 , norme = 0.10000
                          nom = -r-f./data/representationConf
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre representation   et 89 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre representation   et  89 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3572,7 +3580,7 @@ liaison entre representation   et 89 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -f./data/representation-r
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 59   et 98 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 59   et  98 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3580,14 +3588,14 @@ liaison entre 59   et 98 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = masks/sleeping.mask
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 110   et 236 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 110   et  236 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 7   et 115 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 7   et  115 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3595,49 +3603,49 @@ liaison entre 7   et 115 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -n10000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre VROutput   et 92 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre VROutput   et  92 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre Output   et 92 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre Output   et  92 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre VROutput   et 97 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre VROutput   et  97 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre Output   et 97 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre Output   et  97 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 92   et 107 , type = 3 , nbre = 1 , norme = 0.083333
+liaison entre 92   et  107 , type = 3 , nbre = 1 , norme = 0.083333
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 97   et 107 , type = 3 , nbre = 1 , norme = 0.083333
+liaison entre 97   et  107 , type = 3 , nbre = 1 , norme = 0.083333
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre VLlearnError   et 101 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre VLlearnError   et  101 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3645,56 +3653,56 @@ liaison entre VLlearnError   et 101 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-f./data/VLlearnError-d0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 65   et 102 , type = 3 , nbre = 1 , norme = 10.000000
+liaison entre 65   et  102 , type = 3 , nbre = 1 , norme = 10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 107   et 102 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 107   et  102 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 102   et 105 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 102   et  105 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 102   et VLlearnError , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 102   et  VLlearnError , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 105   et 109 , type = 3 , nbre = 1 , norme = -10.000000
+liaison entre 105   et  109 , type = 3 , nbre = 1 , norme = -10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre VLlearnError   et 109 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre VLlearnError   et  109 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 109   et VLlearnError , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 109   et  VLlearnError , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 142   et 117 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 142   et  117 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3702,7 +3710,7 @@ liaison entre 142   et 117 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = learningToSensorimotor
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre epsi   et 54 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre epsi   et  54 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3710,7 +3718,7 @@ liaison entre epsi   et 54 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = .
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 59   et 118 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 59   et  118 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3718,28 +3726,28 @@ liaison entre 59   et 118 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = masks/mode.mask
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 15   et 77 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 15   et  77 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 48   et 77 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 48   et  77 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 11   et 236 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 11   et  236 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 12   et 1 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 12   et  1 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3747,7 +3755,7 @@ liaison entre 12   et 1 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = sync
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 78   et 80 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 78   et  80 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3755,7 +3763,7 @@ liaison entre 78   et 80 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 9   et 81 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 9   et  81 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3763,49 +3771,49 @@ liaison entre 9   et 81 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 2   et 4 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 2   et  4 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 6   et 2 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 6   et  2 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 4   et 2 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 4   et  2 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 80   et 85 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 80   et  85 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 8   et 6 , type = 3 , nbre = 1 , norme = -10.000000
+liaison entre 8   et  6 , type = 3 , nbre = 1 , norme = -10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 8   et 4 , type = 3 , nbre = 1 , norme = 10.000000
+liaison entre 8   et  4 , type = 3 , nbre = 1 , norme = 10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 84   et 81 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 84   et  81 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3813,7 +3821,7 @@ liaison entre 84   et 81 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 2   et 81 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 2   et  81 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3821,7 +3829,7 @@ liaison entre 2   et 81 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 81   et 82 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 81   et  82 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3829,7 +3837,7 @@ liaison entre 81   et 82 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = mlearningToVTrans
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 82   et 83 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 82   et  83 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3837,14 +3845,14 @@ liaison entre 82   et 83 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = vcogmapToMlearning
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 70   et 103 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 70   et  103 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et 36 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  36 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3852,7 +3860,7 @@ liaison entre 87   et 36 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y8
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 83   et 91 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 83   et  91 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3860,7 +3868,7 @@ liaison entre 83   et 91 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-tabs-fdata/EtatCommande-d0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 5   et 93 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 5   et  93 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3868,14 +3876,14 @@ liaison entre 5   et 93 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-d0-fdata/VR_inhib-s1-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre VRrecognition   et 84 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre VRrecognition   et  84 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 81   et 90 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 81   et  90 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3883,42 +3891,42 @@ liaison entre 81   et 90 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -f./data/debugVR-r-d0-s0-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 95   et US , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 95   et  US , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre US   et 94 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre US   et  94 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 63   et 95 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 63   et  95 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 114   et 95 , type = 3 , nbre = 1 , norme = -10.000000
+liaison entre 114   et  95 , type = 3 , nbre = 1 , norme = -10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 114   et 94 , type = 3 , nbre = 1 , norme = 10.000000
+liaison entre 114   et  94 , type = 3 , nbre = 1 , norme = 10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 8   et 96 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 8   et  96 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3926,28 +3934,28 @@ liaison entre 8   et 96 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-fdata/VRnoveltyDetect-d0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 8   et 10 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 8   et  10 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 8   et 75 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 8   et  75 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 50   et 11 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 50   et  11 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et enLearning , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  enLearning , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3955,14 +3963,14 @@ liaison entre 87   et enLearning , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y20
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre enLearning   et 236 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre enLearning   et  236 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et 113 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  113 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3970,28 +3978,28 @@ liaison entre 87   et 113 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -d0-r-fdata/mlearnIn
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 38   et 99 , type = 4 , nbre = 1 , norme = -1.000000
+liaison entre 38   et  99 , type = 4 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 5 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 106   et 114 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 106   et  114 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 108   et 114 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 108   et  114 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et 108 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  108 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -3999,7 +4007,7 @@ liaison entre 87   et 108 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -fmasks/PR_vigi.mask-c1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 114   et 99 , type = 5 , nbre = 1 , norme = 1.000000
+liaison entre 114   et  99 , type = 5 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4007,7 +4015,7 @@ liaison entre 114   et 99 , type = 5 , nbre = 1 , norme = 1.000000
                          nom = learn
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 114   et 99 , type = 5 , nbre = 1 , norme = 0.999000
+liaison entre 114   et  99 , type = 5 , nbre = 1 , norme = 0.999000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4017,7 +4025,7 @@ liaison entre 114   et 99 , type = 5 , nbre = 1 , norme = 0.999000
 %Les commentaires doivent etre mis ici.
 % val i : 0.001
 % val i : test motorAttract : 1.
-liaison entre 78   et 119 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 78   et  119 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4025,7 +4033,7 @@ liaison entre 78   et 119 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = masks/sigmaGlob_vis.mask
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre US   et 120 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre US   et  120 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4033,7 +4041,7 @@ liaison entre US   et 120 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = masks/sigmaGlob_prop.mask
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 125   et 121 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 125   et  121 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4041,63 +4049,63 @@ liaison entre 125   et 121 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -A0-B1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 23   et epsi , type = 3 , nbre = 1 , norme = 0.000001
+liaison entre 23   et  epsi , type = 3 , nbre = 1 , norme = 0.000001
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre epsi   et VRrecognition , type = 3 , nbre = 1 , norme = 0.001000
+liaison entre epsi   et  VRrecognition , type = 3 , nbre = 1 , norme = 0.001000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre epsi   et 99 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre epsi   et  99 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 114   et 126 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 114   et  126 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 58   et 106 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 58   et  106 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 114   et 123 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 114   et  123 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 114   et 124 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 114   et  124 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 123   et 124 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 123   et  124 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 124   et 122 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 124   et  122 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4105,7 +4113,7 @@ liaison entre 124   et 122 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 146   et 122 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 146   et  122 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4113,7 +4121,7 @@ liaison entre 146   et 122 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre US   et 122 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre US   et  122 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4121,14 +4129,14 @@ liaison entre US   et 122 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 99   et 125 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 99   et  125 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 7   et 61 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 7   et  61 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4136,21 +4144,21 @@ liaison entre 7   et 61 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = sync
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre enLearning   et 114 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre enLearning   et  114 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 31   et 127 , type = 4 , nbre = 1 , norme = 0.000000
+liaison entre 31   et  127 , type = 4 , nbre = 1 , norme = 0.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 6 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 126   et 127 , type = 5 , nbre = 1 , norme = 1.000000
+liaison entre 126   et  127 , type = 5 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4158,7 +4166,7 @@ liaison entre 126   et 127 , type = 5 , nbre = 1 , norme = 1.000000
                          nom = learn
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 126   et 127 , type = 5 , nbre = 1 , norme = 0.999000
+liaison entre 126   et  127 , type = 5 , nbre = 1 , norme = 0.999000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4166,7 +4174,7 @@ liaison entre 126   et 127 , type = 5 , nbre = 1 , norme = 0.999000
                          nom = vigilence
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 44   et 128 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 44   et  128 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4174,7 +4182,7 @@ liaison entre 44   et 128 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -A0-B1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 128   et 129 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 128   et  129 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4182,7 +4190,7 @@ liaison entre 128   et 129 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-tabs-d0-fdata/MA_norma-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 122   et 132 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 122   et  132 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4190,7 +4198,7 @@ liaison entre 122   et 132 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-d0-fdata/debugPR-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 121   et 133 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 121   et  133 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4198,7 +4206,7 @@ liaison entre 121   et 133 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-d0-fdata/PR_norma-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 65   et 134 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 65   et  134 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4206,7 +4214,7 @@ liaison entre 65   et 134 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-d0-fdata/VR_norma-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 125   et 135 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 125   et  135 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4214,7 +4222,7 @@ liaison entre 125   et 135 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -d0-r-fdata/PR_inhib-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 38   et 136 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 38   et  136 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4222,7 +4230,7 @@ liaison entre 38   et 136 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = from-r-c-f./data/weights/PR-nohead
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 99   et 136 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 99   et  136 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4230,7 +4238,7 @@ liaison entre 99   et 136 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = to
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 123   et 136 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 123   et  136 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4238,7 +4246,7 @@ liaison entre 123   et 136 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = condition
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 37   et 137 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 37   et  137 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4246,7 +4254,7 @@ liaison entre 37   et 137 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = from-r-c-f./data/weights/VR-nohead
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre VRrecognition   et 137 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre VRrecognition   et  137 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4254,7 +4262,7 @@ liaison entre VRrecognition   et 137 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = to
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 10   et 137 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 10   et  137 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4262,7 +4270,7 @@ liaison entre 10   et 137 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = condition
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 128   et 138 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 128   et  138 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4270,7 +4278,7 @@ liaison entre 128   et 138 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = from-r-c-f./data/weights/MA-nohead
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 1   et 138 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 1   et  138 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4278,7 +4286,7 @@ liaison entre 1   et 138 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = to
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 164   et 138 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 164   et  138 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4286,7 +4294,7 @@ liaison entre 164   et 138 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = condition
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 122   et 139 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 122   et  139 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4294,7 +4302,7 @@ liaison entre 122   et 139 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = mlearningToPTrans
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 139   et 140 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 139   et  140 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4302,84 +4310,84 @@ liaison entre 139   et 140 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = pcogmapToMlearning
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 141   et 125 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 141   et  125 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 140   et 141 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 140   et  141 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 47   et 144 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 47   et  144 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 144   et 145 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 144   et  145 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 145   et 5 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 145   et  5 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 209   et 146 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 209   et  146 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 146   et 147 , type = 3 , nbre = 1 , norme = 0.500000
+liaison entre 146   et  147 , type = 3 , nbre = 1 , norme = 0.500000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 147   et 125 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 147   et  125 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 126   et 147 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 126   et  147 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 126   et 145 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 126   et  145 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 21   et 127 , type = 4 , nbre = 1 , norme = 0.000000
+liaison entre 21   et  127 , type = 4 , nbre = 1 , norme = 0.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 6 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 53   et 7 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 53   et  7 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4387,7 +4395,7 @@ liaison entre 53   et 7 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -w
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre representation   et 142 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre representation   et  142 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4395,7 +4403,7 @@ liaison entre representation   et 142 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre feedback   et 142 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre feedback   et  142 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4403,35 +4411,35 @@ liaison entre feedback   et 142 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 5   et 148 , type = 3 , nbre = 1 , norme = 0.020000
+liaison entre 5   et  148 , type = 3 , nbre = 1 , norme = 0.020000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 148   et 149 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 148   et  149 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 70   et 150 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 70   et  150 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 150   et 149 , type = 3 , nbre = 1 , norme = 10.000000
+liaison entre 150   et  149 , type = 3 , nbre = 1 , norme = 10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 149   et 151 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 149   et  151 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4439,21 +4447,21 @@ liaison entre 149   et 151 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-d0-fdata/vFeedback-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 149   et feedback , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 149   et  feedback , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 125   et 152 , type = 3 , nbre = 1 , norme = 0.010000
+liaison entre 125   et  152 , type = 3 , nbre = 1 , norme = 0.010000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 153   et 154 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 153   et  154 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4461,35 +4469,35 @@ liaison entre 153   et 154 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -d0-r-fdata/pFeedback-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 140   et 155 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 140   et  155 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 152   et 153 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 152   et  153 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 155   et 153 , type = 3 , nbre = 1 , norme = 10.000000
+liaison entre 155   et  153 , type = 3 , nbre = 1 , norme = 10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 153   et feedback , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 153   et  feedback , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre feedback   et 156 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre feedback   et  156 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4497,7 +4505,7 @@ liaison entre feedback   et 156 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -d0-r-fdata/AllFeedback-tabs-g
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 174   et 19 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 174   et  19 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4505,70 +4513,70 @@ liaison entre 174   et 19 , type = 3 , nbre = 1 , norme = 1.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 % ici : le learning rate
-liaison entre 164   et 158 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 164   et  158 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 5   et 161 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 5   et  161 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 144   et 162 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 144   et  162 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 161   et 162 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 161   et  162 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 166   et detect_adapt , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 166   et  detect_adapt , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 162   et 166 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 162   et  166 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 166   et 165 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 166   et  165 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 165   et detect_adapt , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 165   et  detect_adapt , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 126   et 164 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 126   et  164 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et 172 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  172 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4576,14 +4584,14 @@ liaison entre 87   et 172 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y22
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 185   et 114 , type = 3 , nbre = 1 , norme = 10.000000
+liaison entre 185   et  114 , type = 3 , nbre = 1 , norme = 10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et 180 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  180 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4591,28 +4599,28 @@ liaison entre 87   et 180 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -nGradLearn-i1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 146   et 168 , type = 3 , nbre = 1 , norme = 0.500000
+liaison entre 146   et  168 , type = 3 , nbre = 1 , norme = 0.500000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 128   et 170 , type = 4 , nbre = 1 , norme = 0.000000
+liaison entre 128   et  170 , type = 4 , nbre = 1 , norme = 0.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre US   et 170 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre US   et  170 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 124   et 170 , type = 8 , nbre = 1 , norme = 1.000000
+liaison entre 124   et  170 , type = 8 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4620,21 +4628,21 @@ liaison entre 124   et 170 , type = 8 , nbre = 1 , norme = 1.000000
                          nom = learn_factor
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 170   et grad_to_desired_pos , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 170   et  grad_to_desired_pos , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre US   et grad_to_desired_pos , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre US   et  grad_to_desired_pos , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre grad_to_desired_pos   et 142 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre grad_to_desired_pos   et  142 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4642,49 +4650,49 @@ liaison entre grad_to_desired_pos   et 142 , type = 5 , nbre = 1 , norme = 0.100
                          nom = 3
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre US   et curr_mvt , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre US   et  curr_mvt , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 25   et curr_mvt , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 25   et  curr_mvt , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre curr_mvt   et 171 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre curr_mvt   et  171 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre grad_to_desired_pos   et 173 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre grad_to_desired_pos   et  173 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 173   et 174 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 173   et  174 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 171   et 174 , type = 3 , nbre = 1 , norme = -10.000000
+liaison entre 171   et  174 , type = 3 , nbre = 1 , norme = -10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 183   et 142 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 183   et  142 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4692,70 +4700,70 @@ liaison entre 183   et 142 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 168   et 168 , type = 3 , nbre = 1 , norme = 2.000000
+liaison entre 168   et  168 , type = 3 , nbre = 1 , norme = 2.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 214   et 168 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 214   et  168 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 168 , type = 3 , nbre = 1 , norme = 10.000000
+liaison entre 184   et  168 , type = 3 , nbre = 1 , norme = 10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 114   et 217 , type = 3 , nbre = 1 , norme = 10.000000
+liaison entre 114   et  217 , type = 3 , nbre = 1 , norme = 10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 217   et 184 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 217   et  184 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 114 , type = 3 , nbre = 1 , norme = -100.000000
+liaison entre 184   et  114 , type = 3 , nbre = 1 , norme = -100.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 168   et 141 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 168   et  141 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 18   et 20 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 18   et  20 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 20   et 19 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 20   et  19 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 19   et 1 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 19   et  1 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4763,7 +4771,7 @@ liaison entre 19   et 1 , type = 3 , nbre = 1 , norme = 1.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 %necessaire pour RT token
-liaison entre 164   et 18 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 164   et  18 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4771,14 +4779,14 @@ liaison entre 164   et 18 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = sync
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 54   et 141 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 54   et  141 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 1   et 192 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 1   et  192 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4786,7 +4794,7 @@ liaison entre 1   et 192 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 1   et 191 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 1   et  191 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4794,14 +4802,14 @@ liaison entre 1   et 191 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y6
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 191   et 17 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 191   et  17 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 192   et 17 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 192   et  17 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4809,14 +4817,14 @@ liaison entre 192   et 17 , type = 3 , nbre = 1 , norme = 1.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 % avant lien algo
-liaison entre 17   et 193 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 17   et  193 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 17   et 193 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 17   et  193 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4824,7 +4832,7 @@ liaison entre 17   et 193 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 168   et 141 , type = 7 , nbre = 1 , norme = -1.000000
+liaison entre 168   et  141 , type = 7 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4833,28 +4841,28 @@ liaison entre 168   et 141 , type = 7 , nbre = 1 , norme = -1.000000
                          dv_y = -1.000000 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 183 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 184   et  183 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 54   et 183 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 54   et  183 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre randomExplo   et 183 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre randomExplo   et  183 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 174   et 176 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 174   et  176 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4862,7 +4870,7 @@ liaison entre 174   et 176 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-d0-fdata/cmp_dirs
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 193   et 177 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 193   et  177 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4870,7 +4878,7 @@ liaison entre 193   et 177 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-tabs-d0-fdata/feedback_norma
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 217   et 179 , type = 5 , nbre = 1 , norme = 1.000000
+liaison entre 217   et  179 , type = 5 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4878,7 +4886,7 @@ liaison entre 217   et 179 , type = 5 , nbre = 1 , norme = 1.000000
                          nom = -r-d0-fdata/keep_learning
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 1   et 181 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 1   et  181 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4886,21 +4894,21 @@ liaison entre 1   et 181 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-tabs-d0-fdata/muscle_activations
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 172   et 185 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 172   et  185 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 180   et 185 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 180   et  185 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 170   et 186 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 170   et  186 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4908,7 +4916,7 @@ liaison entre 170   et 186 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-d0-fdata/PR_ART
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et 26 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  26 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4916,21 +4924,21 @@ liaison entre 87   et 26 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 23   et 28 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 23   et  28 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 26   et 28 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 26   et  28 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 26   et 25 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 26   et  25 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4938,7 +4946,7 @@ liaison entre 26   et 25 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 28   et 25 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 28   et  25 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4946,7 +4954,7 @@ liaison entre 28   et 25 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 121   et 21 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 121   et  21 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4954,7 +4962,7 @@ liaison entre 121   et 21 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 32   et 21 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 32   et  21 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4962,14 +4970,14 @@ liaison entre 32   et 21 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 47   et 30 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 47   et  30 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 65   et 31 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 65   et  31 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4977,7 +4985,7 @@ liaison entre 65   et 31 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 30   et 31 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 30   et  31 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4985,7 +4993,7 @@ liaison entre 30   et 31 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 21   et 204 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 21   et  204 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -4993,7 +5001,7 @@ liaison entre 21   et 204 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = from-r-c-f./data/weights/M2VM-nohead
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 127   et 204 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 127   et  204 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5001,7 +5009,7 @@ liaison entre 127   et 204 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = to
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 29   et 204 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 29   et  204 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5009,14 +5017,14 @@ liaison entre 29   et 204 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = condition
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 126   et 29 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 126   et  29 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 31   et 206 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 31   et  206 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5024,7 +5032,7 @@ liaison entre 31   et 206 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = from-r-c-f./data/weights/V2VM-nohead-T100-maxid
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 127   et 206 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 127   et  206 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5032,7 +5040,7 @@ liaison entre 127   et 206 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = to
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 99   et 207 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 99   et  207 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5040,7 +5048,7 @@ liaison entre 99   et 207 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -d0-r-f./data/PRrecog
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 31   et 208 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 31   et  208 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5048,7 +5056,7 @@ liaison entre 31   et 208 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = from
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 127   et 208 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 127   et  208 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5056,14 +5064,14 @@ liaison entre 127   et 208 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = to-r-c-f./data/weights/V2VM-nohead-T500
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 58   et 32 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 58   et  32 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 69   et 127 , type = 5 , nbre = 1 , norme = 0.050000
+liaison entre 69   et  127 , type = 5 , nbre = 1 , norme = 0.050000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5071,7 +5079,7 @@ liaison entre 69   et 127 , type = 5 , nbre = 1 , norme = 0.050000
                          nom = local_neuromod
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 2   et 37 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 2   et  37 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5079,7 +5087,7 @@ liaison entre 2   et 37 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 33   et 37 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 33   et  37 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5087,7 +5095,7 @@ liaison entre 33   et 37 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 59   et 33 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 59   et  33 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5095,7 +5103,7 @@ liaison entre 59   et 33 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = masks/sigma_vis.mask
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre US   et 38 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre US   et  38 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5103,7 +5111,7 @@ liaison entre US   et 38 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre epsi   et 40 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre epsi   et  40 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5111,7 +5119,7 @@ liaison entre epsi   et 40 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = masks/sigma_prop.mask
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 40   et 38 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 40   et  38 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5119,21 +5127,21 @@ liaison entre 40   et 38 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 216   et 193 , type = 3 , nbre = 1 , norme = -0.100000
+liaison entre 216   et  193 , type = 3 , nbre = 1 , norme = -0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 193   et 187 , type = 3 , nbre = 1 , norme = 0.001100
+liaison entre 193   et  187 , type = 3 , nbre = 1 , norme = 0.001100
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 58   et 188 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 58   et  188 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5141,7 +5149,7 @@ liaison entre 58   et 188 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -d0-r-fdata/PRrecog_s2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 128   et 27 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 128   et  27 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5149,7 +5157,7 @@ liaison entre 128   et 27 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = from
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 12   et 27 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 12   et  27 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5157,7 +5165,7 @@ liaison entre 12   et 27 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = to-r-c-f./data/weights/V_ART-nohead
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 202   et 27 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 202   et  27 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5165,7 +5173,7 @@ liaison entre 202   et 27 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = condition
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 174   et 164 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 174   et  164 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5173,28 +5181,28 @@ liaison entre 174   et 164 , type = 3 , nbre = 1 , norme = 1.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 %can only learn if attractor_learning is on
-liaison entre 184   et 164 , type = 3 , nbre = 1 , norme = 10.000000
+liaison entre 184   et  164 , type = 3 , nbre = 1 , norme = 10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 174   et correction , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 174   et  correction , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 168   et 198 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 168   et  198 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre correction   et 198 , type = 3 , nbre = 1 , norme = 10.000000
+liaison entre correction   et  198 , type = 3 , nbre = 1 , norme = 10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5202,35 +5210,35 @@ liaison entre correction   et 198 , type = 3 , nbre = 1 , norme = 10.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 %epsilon
-liaison entre 198   et 42 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 198   et  42 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 216   et 42 , type = 4 , nbre = 1 , norme = 0.000000
+liaison entre 216   et  42 , type = 4 , nbre = 1 , norme = 0.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 202 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 184   et  202 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 201 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 184   et  201 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 201   et 202 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 201   et  202 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5238,7 +5246,7 @@ liaison entre 201   et 202 , type = 3 , nbre = 1 , norme = 1.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 %evaluation de l'apprentissage a la fin de la periode de temps allouee
-liaison entre 184   et 42 , type = 8 , nbre = 1 , norme = 0.010000
+liaison entre 184   et  42 , type = 8 , nbre = 1 , norme = 0.010000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5246,14 +5254,14 @@ liaison entre 184   et 42 , type = 8 , nbre = 1 , norme = 0.010000
                          nom = learn_factor
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 202   et 197 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 202   et  197 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 42   et 199 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 42   et  199 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5261,7 +5269,7 @@ liaison entre 42   et 199 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = to
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 216   et 199 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 216   et  199 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5269,7 +5277,7 @@ liaison entre 216   et 199 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = from-r-c-f./data/weights/attConfidence-nohead
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 197   et 199 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 197   et  199 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5277,35 +5285,35 @@ liaison entre 197   et 199 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = condition
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 42   et 45 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 42   et  45 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 45   et 44 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 45   et  44 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 127   et 44 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 127   et  44 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 45 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 184   et  45 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 69   et 205 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 69   et  205 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5313,7 +5321,7 @@ liaison entre 69   et 205 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -d0-r-fdata/WinnerSorin
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 99   et 209 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 99   et  209 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5321,7 +5329,7 @@ liaison entre 99   et 209 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre VRrecognition   et 47 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre VRrecognition   et  47 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5329,7 +5337,7 @@ liaison entre VRrecognition   et 47 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s2
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre VRrecognition   et 50 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre VRrecognition   et  50 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5337,7 +5345,7 @@ liaison entre VRrecognition   et 50 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 99   et 58 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 99   et  58 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5345,7 +5353,7 @@ liaison entre 99   et 58 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = s
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 168   et 214 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 168   et  214 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5353,28 +5361,28 @@ liaison entre 168   et 214 , type = 3 , nbre = 1 , norme = 1.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 %trigger learning of proprioceptive state
-liaison entre 236   et 114 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 236   et  114 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 8 , type = 3 , nbre = 1 , norme = -100.000000
+liaison entre 184   et  8 , type = 3 , nbre = 1 , norme = -100.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre grad_to_desired_pos   et 200 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre grad_to_desired_pos   et  200 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 98   et 210 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 98   et  210 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5382,42 +5390,42 @@ liaison entre 98   et 210 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = ???
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 210   et 73 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 210   et  73 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 2   et 73 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 2   et  73 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 170   et 64 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 170   et  64 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 36   et 63 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 36   et  63 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 64   et 95 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 64   et  95 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 59   et 68 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 59   et  68 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5425,28 +5433,28 @@ liaison entre 59   et 68 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = ./masks/awake.mask
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 68   et 63 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 68   et  63 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 68   et 66 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 68   et  66 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 66   et 64 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 66   et  64 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 73   et 72 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 73   et  72 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5454,7 +5462,7 @@ liaison entre 73   et 72 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 2   et 72 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 2   et  72 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5462,7 +5470,7 @@ liaison entre 2   et 72 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 12   et 16 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 12   et  16 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5470,7 +5478,7 @@ liaison entre 12   et 16 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -A0-B1-V
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 16   et 212 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 16   et  212 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5478,63 +5486,63 @@ liaison entre 16   et 212 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 66   et 60 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 66   et  60 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 68   et 85 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 68   et  85 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 85   et 6 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 85   et  6 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 60   et 6 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 60   et  6 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 212   et 60 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 212   et  60 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 69   et 3 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 69   et  3 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 3   et 14 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 3   et  14 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 14 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 184   et  14 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 103   et 62 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 103   et  62 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5542,7 +5550,7 @@ liaison entre 103   et 62 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -A0-B1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et randomExplo , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  randomExplo , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5550,56 +5558,56 @@ liaison entre 87   et randomExplo , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y23
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 32   et 69 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 32   et  69 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre enLearning   et 69 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre enLearning   et  69 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 174   et 211 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 174   et  211 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 213   et 211 , type = 4 , nbre = 1 , norme = 0.000000
+liaison entre 213   et  211 , type = 4 , nbre = 1 , norme = 0.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 128   et 213 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 128   et  213 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 218   et 217 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 218   et  217 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 211   et 218 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 211   et  218 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 174   et 218 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 174   et  218 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5607,14 +5615,14 @@ liaison entre 174   et 218 , type = 3 , nbre = 1 , norme = 1.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 %0.95 < 1
-liaison entre 217   et 217 , type = 3 , nbre = 1 , norme = 0.950000
+liaison entre 217   et  217 , type = 3 , nbre = 1 , norme = 0.950000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 211   et 219 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 211   et  219 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5622,7 +5630,7 @@ liaison entre 211   et 219 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -r-d0-fdata/corr_pred
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 221   et 220 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 221   et  220 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5630,7 +5638,7 @@ liaison entre 221   et 220 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -d1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 217   et 221 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 217   et  221 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5638,7 +5646,7 @@ liaison entre 217   et 221 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 221 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 184   et  221 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5646,91 +5654,91 @@ liaison entre 184   et 221 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = 1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 218 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 184   et  218 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 222   et 222 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 222   et  222 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 215   et 222 , type = 3 , nbre = 1 , norme = 0.000001
+liaison entre 215   et  222 , type = 3 , nbre = 1 , norme = 0.000001
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 222   et 223 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 222   et  223 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 127   et 223 , type = 3 , nbre = 1 , norme = 0.001000
+liaison entre 127   et  223 , type = 3 , nbre = 1 , norme = 0.001000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 223   et 224 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 223   et  224 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 224   et 225 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 224   et  225 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 225   et 224 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 225   et  224 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 127   et 215 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 127   et  215 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 225   et 44 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 225   et  44 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 225   et 226 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 225   et  226 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 226   et 222 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 226   et  222 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 231   et 225 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 231   et  225 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5738,14 +5746,14 @@ liaison entre 231   et 225 , type = 3 , nbre = 1 , norme = -1.000000
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
 %compense le seuil sur le reset_mem
-liaison entre 234   et 226 , type = 3 , nbre = 1 , norme = 2.000000
+liaison entre 234   et  226 , type = 3 , nbre = 1 , norme = 2.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 87   et 228 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 87   et  228 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5753,14 +5761,14 @@ liaison entre 87   et 228 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y24
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 228   et 227 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 228   et  227 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 225   et 229 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 225   et  229 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5768,49 +5776,49 @@ liaison entre 225   et 229 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -d0-r-fdata/att_select
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 234   et 232 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 234   et  232 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 232   et 231 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 232   et  231 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 231   et 227 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 231   et  227 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 232   et 232 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 232   et  232 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 227   et 234 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 227   et  234 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 184   et 231 , type = 3 , nbre = 1 , norme = -10.000000
+liaison entre 184   et  231 , type = 3 , nbre = 1 , norme = -10.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 83   et 74 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 83   et  74 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5818,7 +5826,7 @@ liaison entre 83   et 74 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y0
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 83   et 70 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 83   et  70 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5826,42 +5834,42 @@ liaison entre 83   et 70 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -x0-y1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 79   et 230 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 79   et  230 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 230   et 79 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 230   et  79 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 74   et 79 , type = 3 , nbre = 1 , norme = -1.000000
+liaison entre 74   et  79 , type = 3 , nbre = 1 , norme = -1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 1 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 75   et 79 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 75   et  79 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 79   et 9 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 79   et  9 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 120   et 86 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 120   et  86 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5869,14 +5877,14 @@ liaison entre 120   et 86 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = .
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 54   et 235 , type = 3 , nbre = 1 , norme = 0.100000
+liaison entre 54   et  235 , type = 3 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 235   et 86 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 235   et  86 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5884,7 +5892,7 @@ liaison entre 235   et 86 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = first
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre enLearning   et 86 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre enLearning   et  86 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5892,7 +5900,7 @@ liaison entre enLearning   et 86 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = switch
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 84   et 67 , type = 5 , nbre = 1 , norme = 0.500000
+liaison entre 84   et  67 , type = 5 , nbre = 1 , norme = 0.500000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5900,7 +5908,7 @@ liaison entre 84   et 67 , type = 5 , nbre = 1 , norme = 0.500000
                          nom = first
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 62   et 67 , type = 5 , nbre = 1 , norme = 1.000000
+liaison entre 62   et  67 , type = 5 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5908,7 +5916,7 @@ liaison entre 62   et 67 , type = 5 , nbre = 1 , norme = 1.000000
                          nom = .
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 100   et 67 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 100   et  67 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5916,56 +5924,56 @@ liaison entre 100   et 67 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = switch
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 70   et 100 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 70   et  100 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 67   et 5 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 67   et  5 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 114   et 8 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 114   et  8 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 236   et 8 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 236   et  8 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 63   et 104 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 63   et  104 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 112   et 111 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 112   et  111 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 114   et 239 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 114   et  239 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 239   et 111 , type = 8 , nbre = 1 , norme = 0.100000
+liaison entre 239   et  111 , type = 8 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -5973,35 +5981,35 @@ liaison entre 239   et 111 , type = 8 , nbre = 1 , norme = 0.100000
                          nom = learn_factor
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 128   et 111 , type = 4 , nbre = 1 , norme = 0.000000
+liaison entre 128   et  111 , type = 4 , nbre = 1 , norme = 0.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 241   et 112 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 241   et  112 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 104   et 112 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 104   et  112 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 131   et 241 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 131   et  241 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 1   et 243 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 1   et  243 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -6009,7 +6017,7 @@ liaison entre 1   et 243 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = first
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 111   et 243 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 111   et  243 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -6017,7 +6025,7 @@ liaison entre 111   et 243 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = .
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 128   et 116 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 128   et  116 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -6025,7 +6033,7 @@ liaison entre 128   et 116 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = from-r-c-f./data/weights/MAautolearned-nohead
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 111   et 116 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 111   et  116 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -6033,7 +6041,7 @@ liaison entre 111   et 116 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = to
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 164   et 116 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 164   et  116 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -6041,7 +6049,7 @@ liaison entre 164   et 116 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = condition
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 13   et 130 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 13   et  130 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -6049,7 +6057,7 @@ liaison entre 13   et 130 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -i1-nUse_AutoLearned_OR_MAlearned
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 130   et 243 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 130   et  243 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -6057,7 +6065,7 @@ liaison entre 130   et 243 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = switch
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 13   et 131 , type = 5 , nbre = 1 , norme = 0.100000
+liaison entre 13   et  131 , type = 5 , nbre = 1 , norme = 0.100000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 0 
@@ -6065,35 +6073,35 @@ liaison entre 13   et 131 , type = 5 , nbre = 1 , norme = 0.100000
                          nom = -i0.8-nTension_Musculaire-m0-M1
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 174   et 1 , type = 3 , nbre = 1 , norme = 0.001000
+liaison entre 174   et  1 , type = 3 , nbre = 1 , norme = 0.001000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 1001 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 119   et VRrecognition , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 119   et  VRrecognition , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 1010 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 86   et 99 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 86   et  99 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 1010 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 187   et 1 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 187   et  1 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 1003 
                          secondaire            = 0 
                          proba = 1.000000 
 %Les commentaires doivent etre mis ici.
-liaison entre 168   et 42 , type = 3 , nbre = 1 , norme = 1.000000
+liaison entre 168   et  42 , type = 3 , nbre = 1 , norme = 1.000000
                          temps de memorisation entree= 0.000000 
                          temps de memorisation sortie= 0.000000 
                          mode de calcul        = 1001 

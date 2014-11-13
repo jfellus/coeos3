@@ -1,0 +1,159 @@
+<html>
+<head>
+<script type="text/javascript" src="lib/jquery-1.11.1.min.js"></script>  
+<script type="text/javascript" src="lib/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="utils/utils.js"></script>
+<script type="text/javascript" src="utils/string.js"></script>
+<script type="text/javascript" src="utils/dropdown.js"></script>
+<script type="text/javascript" src="utils/fields.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="style/main.css">
+
+<style>
+	div { padding-top: 15px;}
+	.undefined { background:#eee0e0; color:#555555;}
+	
+	.error { color:red; font-weight:bold; }
+	
+	div.list {
+		position:fixed;
+		top:70px;
+		display:none;
+		border:none;
+		border-top:1px solid #aaaaaa;
+		box-shadow:0 0 8px #aaaaaa;
+		overflow-y:scroll;
+		bottom:0;
+	}
+	div.module {
+		text-align:left;
+		padding:10px;
+		background:white;
+		border-bottom:1px dotted black;
+		clear:both;
+		vertical-align:middle;
+		display:block;
+	}
+	div.module img {
+		display:inline;
+		width:auto;
+		max-height: 40px;
+		max-width: 40px;
+		height:40px;
+		margin:5px;
+		margin-left:0;
+		margin-right:9px;
+	}
+	div.module h2 {
+		display:inline;
+		position:relative;
+		font-weight:bold;
+		font-size:14px;
+		top:5px;
+	}
+	
+	div.module:hover {
+		background:#eeeeee;
+	}
+	div.module span {
+		display:inline-block;
+		width:50%; margin:0; padding:0; text-align:center;
+		text-overflow:ellipsis;
+		overflow:hidden;
+	}
+	
+	div.search {
+		padding:0;
+		margin:0;
+		height:auto;
+	}
+	
+	#search {
+		display:block;
+		font-family: Sans;
+		font-size: 17px;
+		color:black;
+		border:1px solid #887788;
+		border-radius: 10px;
+		line-height: 20px;
+		padding: 8px;
+		box-shadow:0 0 8px rgba(0,0,0,0.2);
+		width:90%;
+		margin-left:auto;
+		margin-right:auto;
+		margin-top: 0px;
+		margin-bottom: 30px;
+	}
+	
+	.module .author {
+		color: #55aa00;
+		font-size:10px;
+		text-align:left;
+		overflow-text:ellipsis;
+		white-space:nowrap;
+	}
+	
+	.module .stars { text-align:right; }
+	.module .stars img { width: 10px; height: 10px; margin:0; margin-left:1px; }
+	
+	.module .type {
+		text-align:left;
+		font-size:11px;
+		color:#4444aa;
+	}
+	
+</style>
+
+
+<script type="text/javascript">
+
+$(function() {
+	update();
+});
+
+function update() {
+	if(typeof(__request)!="function") return;
+
+	var ans = __request("create");
+	if(ans=="") {
+		$(".library").empty();
+		$(".library").hide();
+		$(".empty").show();
+		return;
+	}
+	
+	var json = $.parseJSON(ans);
+	$(".list").empty();
+	$(".list").show();
+	$(".empty").hide();
+	
+	for(var i=0; i<json.length; i++) {
+		var stars = "";
+		for(var j=0; j<json[i]["stars"]; j++) stars+="<img src='style/star.png'>";
+		var e = $("<div class='module'><table><tr><td rowspan=2>" +
+				"<img src='"+json[i]["svg"]+"'></td>" +
+				"<td colspan=2><h2>"+json[i]["name"]+"</h2></td></tr>" + 
+				"<tr><td width='70%' class='type'>"+json[i]["type"]+"</td>"+
+				"<td width='30%' class='stars'>"+ stars +"</td></tr>"+
+				"</table></div>");
+		$(".list").append(e);
+	}
+	
+}
+
+</script>
+</head>
+<body>
+<div class="container">
+<div class="search">
+<input id="search" type="text" />
+</div>
+<div class="full list">
+</div>
+</div>
+<div class="full empty"><table><tr><td id="empty_content">
+Please wait while loading modules libraries...
+</td></tr></table></div>
+</body>
+</html>

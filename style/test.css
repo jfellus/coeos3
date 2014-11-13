@@ -34,7 +34,7 @@ module.custom_cpp {
 }
 
 link {
-	font-size:130;
+	font-size:500;
 	font-style:italic;
 }
 

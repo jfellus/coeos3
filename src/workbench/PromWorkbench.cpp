@@ -10,6 +10,7 @@
 #include "../creators/PromGroupCreator.h"
 #include "../creators/PromLinkCreator.h"
 #include "../creators/PromScriptCreator.h"
+#include "../promethe/library/ModulesLibrary.h"
 
 
 
@@ -21,8 +22,11 @@ PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbe
 
 
 PromWorkbench::PromWorkbench() {
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_s, 0, on_create_script));
+
 	win->add_tab(docBrowser = new DocBrowser(), "Doc");
 	win->add_tab(scriptsForm = new ScriptsForm(), "Scripts");
+	win->add_tab(createForm = new CreateForm(), "Create");
 
 	win->add_menu("_File>__", on_import_script, win->get_menu_pos("_File>_Save as")+1);
 	win->add_menu("_File>_Import script", on_import_script, win->get_menu_pos("_File>_Save as")+2);
@@ -31,6 +35,16 @@ PromWorkbench::PromWorkbench() {
 	win->enable_menu("_File>_Export script", false);
 
 	win->add_menu("_Create>_Script", on_create_script, win->get_menu_pos("_Create>_Module"));
+
+
+	// Load config
+
+	CSSDefinitions::add("style/basic.defs");
+	CSSDefinitions::add("style/test.css");
+	SVGDefinitions::add("style/svg");
+	SVGDefinitions::add("style/svg2");
+
+	ModulesLibrary::add_promethe_default_libraries();
 }
 
 void PromWorkbench::open(const std::string& filename) {

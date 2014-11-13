@@ -20,7 +20,7 @@ APT_GET_DEPENDENCIES:= libmicrohttpd-dev libmicrohttpd10 libgtk-3-dev libwebkitg
 
 
 REQUIRED_PACKAGES:= cairo gtk+-3.0 webkitgtk-3.0 libmicrohttpd libxml++-2.6
-REQUIRED_LIBS:= -lpthread -lboiboites -lgraphounet
+REQUIRED_LIBS:= -lpthread -lboiboites -lgraphounet -ldl
 
 PATH_TO_LIBBOIBOITES:=../libboiboites
 PATH_TO_LIBGRAPHOUNET:=../libgraphounet
