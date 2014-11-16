@@ -18,20 +18,20 @@ public:
 public:
 	ModulePromGroup(PromGroup* group) {
 		this->group = group;
-		properties.add_ref("comments", group->comments, "multiline");
-		properties.add_ref("no_name", group->no_name);
-		properties.add_ref("alpha", group->alpha);
-		properties.add_ref("debug", group->debug);
-		properties.add_ref("nb neurons", group->nb_neurons);
-		properties.add_ref("width", group->width);
-		properties.add_ref("height", group->height);
-		properties.add_ref("group", group->group, "group");
-		properties.add_ref("learning rate", group->learning_rate);
-		properties.add_ref("p_posx", group->p_posx);
-		properties.add_ref("p_posy", group->p_posy);
-		properties.add_ref("threshold", group->threshold);
-		properties.add_ref("type2", group->type2);
-		properties.add_ref("simulation speed", group->simulation_speed);
+		properties.add("comments", group->comments, "multiline");
+		properties.set("no_name", &group->no_name);
+		properties.set("alpha", &group->alpha);
+		properties.set("debug", &group->debug);
+		properties.set("nb neurons", &group->nb_neurons);
+		properties.set("width", &group->width);
+		properties.set("height", &group->height);
+		properties.add("group", &group->group, "group");
+		properties.set("learning rate", &group->learning_rate);
+		properties.set("p_posx", &group->p_posx);
+		properties.set("p_posy", &group->p_posy);
+		properties.set("threshold", &group->threshold);
+		properties.set("type2", &group->type2);
+		properties.set("simulation speed", &group->simulation_speed);
 
 		text = group->get_text();
 
@@ -43,7 +43,7 @@ public:
 	virtual ~ModulePromGroup();
 
 	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
-		if(name=="group") { text = val; }
+		if(name=="group") {text = val;}
 	}
 
 	virtual void dump(std::ostream& os) {

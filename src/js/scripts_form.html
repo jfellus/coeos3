@@ -29,8 +29,9 @@
 		background:#eeeeee;
 	}
 	div.script span {
+		font-size:11px;
 		display:inline-block;
-		width:50%; margin:0; padding:0; text-align:center;
+		width:100%; margin:0; padding:0; text-align:left;
 		text-overflow:ellipsis;
 		overflow:hidden;
 	}
@@ -62,8 +63,13 @@ function update() {
 	for(var i=0; i<json.length; i++) {
 		var e = $("<div class='script'></div>");
 		e.append("<h2>"+json[i]["name"]+"</h2>");
-		e.append("<span>"+json[i]["path_script"] + "</span>");
-		e.append("<span>"+json[i]["path_symb"] + "</span>");
+		e.append("<span>Script file : "+json[i]["path_script"] + "</span>");
+		e.append("<span>Symb file : "+json[i]["path_symb"] + "</span>");
+		e.append("<span>Dev file : "+json[i]["path_dev"] + "</span>");
+		e.append("<span>Draw file : "+json[i]["path_draw"] + "</span>");
+		e.append("<span>Gcd file : "+json[i]["path_gcd"] + "</span>");
+		e.append("<span>Res file : "+json[i]["path_res"] + "</span>");
+		e.append("<span>Config file : "+json[i]["path_config"] + "</span>");
 		$(".scripts").append(e);
 	}
 	

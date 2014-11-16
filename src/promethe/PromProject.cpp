@@ -8,19 +8,17 @@
 #include "PromProject.h"
 
 
-void PromProject::create_timescales_groups(PromScript* script) {
+void PromProject::create_timescales_groups(GroupPromScript* gps) {
+	PromScript* script = gps->script;
 	int max_timescale = script->get_highest_timescale();
 	int cur_timescale = max_timescale;
 	uint done_groups = 0;
-	GroupPromScript* gps = new GroupPromScript(script);
-	gps->realize();
-	add(gps);
-	gps->set_property("name", script->name);
+
 	Group* curgroup = new Group(), *last_group = 0;
 	curgroup->realize();
 	gps->add(curgroup);
 	curgroup->open(); gps->open(); gps->unselect();
-	curgroup->set_property("timescale", "yes");
+	curgroup->properties.set("timescale", "yes");
 
 	while(done_groups < script->groups.size()) {
 		for(uint i=0; i<groups.size(); i++) {
@@ -32,7 +30,7 @@ void PromProject::create_timescales_groups(PromScript* script) {
 				done_groups++;
 			}
 		}
-		if(curgroup) curgroup->set_property("name", TOSTRING("time_scale " << cur_timescale));
+		if(curgroup) curgroup->properties.set("name", TOSTRING("time_scale " << cur_timescale));
 		if(last_group && curgroup) {
 			last_group->add(curgroup); curgroup->open(); last_group->open();
 			last_group->unselect(); curgroup->unselect();
@@ -98,7 +96,8 @@ void PromProject::save_to_single_script(const std::string& filename) {
 	// Reverse time scales indices
 	for(uint i=0; i<groups.size(); i++) groups[i]->group->time_scale = max_timescale - groups[i]->group->time_scale;
 
-	single_script->save(filename);
+	single_script->save_as(filename);
+	if(net->nodes.empty()) delete single_script;
 }
 
 int PromProject::infer_timescale(Group* g) {
@@ -128,7 +127,7 @@ void PromProject::save_script(PromScript* script) {
 		groups[i]->group->time_scale = max_timescale - groups[i]->group->time_scale;
 	}
 
-	script->save(script->filename.empty() ? script->name + ".symb" : script->filename);
+	script->save();
 }
 
 void PromProject::save_net(const std::string& filename) {
@@ -169,7 +168,7 @@ ModulePromGroup* PromProject::get_group_by_no_name(const std::string& s) {
 }
 
 void PromProject::add(PromScript* script) {
-	STATUS("Loading " << script->filename << " (" << script->groups.size() << " groups, " << script->links.size() << " links)");
+	STATUS("Loading " << script->name << " (" << script->groups.size() << " groups, " << script->links.size() << " links)");
 	if(!net) {	net = new PromNet(); net->project = this; }
 	script->project = this;
 	for(uint i=0; i<script->groups.size(); i++) {
@@ -180,10 +179,15 @@ void PromProject::add(PromScript* script) {
 		script->links[i]->project = this;
 		add(new LinkPromLink(script->links[i]));
 	}
-	create_timescales_groups(script);
+
+	GroupPromScript* gps = new GroupPromScript(script);
+	gps->realize();
+	add(gps);
+
+	create_timescales_groups(gps);
 }
 
-void PromProject::load_net(PromNet* net) {
+void PromProject::set_net(PromNet* net) {
 	if(this->net) delete this->net;
 	this->net = net;
 	net->project = this;

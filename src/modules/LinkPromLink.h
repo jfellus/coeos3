@@ -19,17 +19,17 @@ public:
 public:
 	LinkPromLink(PromLink* link) {
 		this->link = link;
-		properties.add_ref("comments", link->comments, "multiline");
-		properties.add_ref("computation_mode", link->computation_mode);
-		properties.add_ref("dst", link->dst->no_name);
-		properties.add_ref("mem_time_in", link->mem_time_in);
-		properties.add_ref("mem_time_out", link->mem_time_out);
-		properties.add_ref("name", link->name);
-		properties.add_ref("nb", link->nb);
-		properties.add_ref("norm", link->norm);
-		properties.add_ref("secondary", link->secondary);
-		properties.add_ref("src", link->src->no_name);
-		properties.add_ref("type", link->type);
+		properties.add("comments", &link->comments, "multiline");
+		properties.set("computation_mode", &link->computation_mode);
+		properties.set("dst", &link->dst->no_name);
+		properties.set("mem_time_in", &link->mem_time_in);
+		properties.set("mem_time_out", &link->mem_time_out);
+		properties.set("name", &link->name);
+		properties.set("nb", &link->nb);
+		properties.set("norm", &link->norm);
+		properties.set("secondary", &link->secondary);
+		properties.set("src", &link->src->no_name);
+		properties.set("type", &link->type);
 
 		add_properties_listener(this);
 

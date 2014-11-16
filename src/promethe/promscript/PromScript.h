@@ -33,7 +33,15 @@ public:
 
 	std::string name;
 	std::string comments_groups, comments_links;
-	std::string filename;
+
+	std::string path_script;
+	std::string path_symb;
+	std::string path_draw;
+	std::string path_res;
+	std::string path_config;
+	std::string path_gcd;
+	std::string path_dev;
+	std::string path_deploy;
 
 	PromProject* project = 0;
 	PromNode* node = 0;
@@ -47,6 +55,8 @@ public:
 		for(uint i=0; i<groups.size(); i++) if(groups[i]->no_name == no_name) return groups[i];
 		return NULL;
 	}
+
+	void init();
 
 	void add_group(PromGroup* group) { groups.push_back(group); group->script = this; }
 	void add_link(PromLink* link) {
@@ -77,7 +87,9 @@ public:
 
 	void load(const std::string& filename);
 
-	void save(const std::string& filename) {
+	void save();
+
+	void save_as(const std::string& filename) {
 		std::ofstream f(filename);
 		if(!f) DBG("Failed creating file " << filename);
 		if(!write(f)) DBG("Failed writing " << filename);
@@ -124,7 +136,7 @@ public:
 	}
 
 	virtual void dump(std::ostream& os) {
-		os << "PromScript(" << filename << " : " << groups.size() << " groups, " << links.size() << " links)";
+		os << "PromScript(" << name << " : " << groups.size() << " groups, " << links.size() << " links)";
 	}
 	friend std::ostream& operator<<(std::ostream& os, PromScript* a);
 };

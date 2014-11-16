@@ -21,6 +21,8 @@ public:
 	GroupPromScript(PromScript* script) : script(script) {
 		project = script->project;
 		node = script->node;
+
+		properties.set("name", &script->name);
 	}
 
 	virtual ~GroupPromScript();

@@ -77,12 +77,12 @@ function update() {
 		var p = $.parseJSON(props);
 		$(".empty").show();
 		$("#empty_content").html(p["__NBSELECTED_MODULES__"] + " groups selected<br><br>" + p["__NBSELECTED_LINKS__"] + " links selected");
-		var a = $("<a class='btn' href='#'>Unselect modules</a>");
+		var a = $("<button class='btn'>Unselect modules</button>");
 		a.click(function() {__request("properties/unselect_modules"); update();});
 		$("#empty_content").append("<br><br>");''
 		$("#empty_content").append(a);
 		$("#empty_content").append("&nbsp;");
-		var a = $("<a class='btn' href='#'>Unselect links</a>");
+		var a = $("<button class='btn'>Unselect links</button>");
 		a.click(function() {__request("properties/unselect_links"); update();});
 		$("#empty_content").append(a);
 		$("#empty_content").append("<br>");

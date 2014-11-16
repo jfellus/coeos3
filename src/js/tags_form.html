@@ -1,0 +1,280 @@
+<html>
+<head>
+<script type="text/javascript" src="lib/jquery-1.11.1.min.js"></script>  
+<script type="text/javascript" src="lib/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="utils/utils.js"></script>
+<script type="text/javascript" src="utils/string.js"></script>
+<script type="text/javascript" src="utils/dropdown.js"></script>
+<script type="text/javascript" src="utils/fields.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="style/main.css">
+
+<style>
+	.undefined { background:#eee0e0; color:#555555;}
+	.error { color:red; font-weight:bold; }
+	
+	div.container {
+		position:fixed;
+		bottom:37px;
+		top:0px;
+	}
+	div.list {
+		position:relative;
+		top:0px;
+		display:block;
+		border:none;
+		margin-bottom:68px;
+		width:100%;
+		overflow-y:auto;
+	}
+	div.full.empty {
+		position:fixed;
+		top:0px;
+		display:none;
+		border:none;
+		bottom:30px;
+	}
+	div.bottom {
+	position:fixed;
+	height:30px;
+	bottom:0;
+	text-align:center;
+	width:100%;
+		border-top:1px dashed #aaaaaa;
+		padding:3px; 
+	}
+	div.bottom button {
+	display:inline;
+	line-height:20px;
+	margin:0;
+	margin-left:auto;
+	margin-right:auto;
+	}
+	div.bottom img {
+	width:15px; height:15px;
+	margin:3px;
+	float:left;
+	}
+	
+	
+	
+	div.module {
+		text-align:left;
+		padding:10px;
+		background:white;
+		border-bottom:1px dotted black;
+		clear:both;
+		vertical-align:middle;
+		display:block;
+		cursor:hand;
+	}
+	
+	div.module.isolated {
+		border:5px solid #aaaacc;
+		background:#ddddee;
+		border-radius:15px;
+	}
+	
+	div.module img {
+		display:inline;
+		width:auto;
+		height:30px;
+		margin:5px;
+		margin-left:0;
+		margin-right:9px;
+	}
+	div.module h2 {
+		display:inline;
+		position:relative;
+		font-weight:bold;
+		font-size:14px;
+		top:5px;
+	}
+	
+	div.module:hover {
+		background:#eeeeee;
+	}
+	div.module span {
+		display:inline-block;
+		width:50%; margin:0; padding:0; text-align:center;
+		text-overflow:ellipsis;
+		overflow:hidden;
+	}
+	
+	.module .author {
+		color: #55aa00;
+		font-size:10px;
+		text-align:left;
+		overflow-text:ellipsis;
+		white-space:nowrap;
+	}
+	
+	.module .stars { 
+	text-align:right;
+	font-weight:bold;
+	font-size:12px; 
+	color:#8888aa;
+	}
+	
+	.module p {
+		text-align:left;
+		font-size:11px;
+		color:#4444aa;
+	}
+	.module .infos button {
+		padding:0; margin:0; font-size:10px; padding-left:2px; padding-right:2px;
+	}
+	
+	.addrem button {
+		padding:0; margin:0;
+		width:20px; height:20px;
+	}
+	
+	button.checked {
+		border:2px inset;
+	}
+	
+	button.unchecked {
+		opacity: 0.3;
+	}
+</style>
+
+
+<script type="text/javascript">
+
+$(function() {
+	update();
+	
+	$("#create_tag_for_selection").click(function() {__request("tags/create_for_selection"); update();});
+	$("#create_tag").click(function() {__request("tags/create"); update();});
+});
+
+
+function get_tagname(e) {
+	if(e.hasClass("module")) return e.find("h2").text();
+	return e.parents(".module").find("h2").text();
+}
+
+function make_eye(e) {
+	if(e.hasClass("yes")) {
+		e.attr("src", "style/eye_opened.png");
+		$(this).css("opacity", "1");
+		e.mouseenter(function() {$(this).attr("src", "style/eye_close.png"); });
+		e.mouseleave(function() {$(this).attr("src", "style/eye_opened.png");});
+		e.click(function() {__request("tags/hide/" + get_tagname($(this))); update();});
+	} else {
+		e.attr("src", "style/eye_closed.png");
+		$(this).css("opacity", "0.5");
+		e.mouseenter(function() {$(this).attr("src", "style/eye_closed.png");});
+		e.mouseleave(function() {$(this).attr("src", "style/eye_closed.png");});		
+		e.click(function() {__request("tags/show/" + get_tagname($(this))); update();});
+	}
+}
+
+function make_lock(e) {
+	if(e.hasClass("yes")) {
+		e.attr("src", "style/lock.png");
+		$(this).css("opacity", "0.5");
+		e.click(function() {__request("tags/unlock/" + get_tagname($(this))); update();});
+	} else {
+		e.attr("src", "style/unlock.png");
+		$(this).css("opacity", "1");
+		e.click(function() {__request("tags/lock/" + get_tagname($(this))); update();});
+	}
+}
+
+var COLOR = [
+             "red","blue","yellow","green", "purple","pink","magenta","cyan","grey" 
+             ];
+
+function make_color_buttons(e,cur_css) {
+	var onechecked = false;
+	for(var i = 0; i<3; i++) {
+		for(var j=0; j<3; j++) {
+			var a =$("<button style='background-color:"+COLOR[i*3+j]+"'>&nbsp;</button>");
+			if(cur_css.indexOf("tag_" + (i*3+j))!=-1) { onechecked = true; a.addClass("checked");}
+			else {a.removeClass("checked"); a.addClass("unchecked"); }
+			a.attr('tagnum', (i*3+j));
+			a.click(function() { __request("tags/"+
+					($(this).hasClass("checked") ? "unset" : "set")
+					+"_css/"+ $(this).attr('tagnum') +"/"+get_tagname($(this))); update(); });
+			e.append(a);
+		}
+		e.append("<br>");
+	}
+	if(!onechecked) e.find("button").removeClass("unchecked");
+}
+
+function update() {
+	if(typeof(__request)!="function") return;
+
+	var ans = __request("tags");
+	if(ans=="") {
+		$(".library").empty();
+		$(".library").hide();
+		$(".empty").show();
+		return;
+	}
+	
+	var json = $.parseJSON(ans);
+	$(".list").empty();
+	$(".list").show();
+	$(".empty").hide();
+	
+	if(json.length<=1) {
+		$(".list").empty();
+		$(".list").hide();
+		$(".empty").show();
+	}
+	for(var i=0; i<json.length; i++) {
+		if(i==0) {
+			$("#create_tag_for_selection").prop('disabled', json[i]["nb_selected"]==0);
+			continue;
+		}
+		var stars = "";
+		for(var j=0; j<json[i]["stars"]; j++) stars+="<img src='style/star.png'>";
+		var e = $("<div class='module "+ (json[i]["isolated"]=="1" ? "isolated" : "nonisolated") +"'><table><tr><td rowspan=2>" +
+				"<img class='visible "+ (json[i]["visible"]=="1" ? "yes" : "no") +"'><br>"+
+				"<img class='lock "+ (json[i]["lock"]=="1" ? "yes" : "no") +"'>"+
+				"</td>" +
+				"<td><h2>"+json[i]["name"]+"</h2>"+
+				"<p>"+json[i]["nb_modules"] + " modules, "+ json[i]["nb_links"] + " links</p>" +
+				"</td>"+
+				"<td class='addrem'></td>" +
+				"</tr>" + 
+				"<tr><td width='70%' class='infos'>" + 
+					
+					"<p><button class='add_selected'>add selected</button><button class='remove_selected'>remove selected</button></p>" +
+				"</td>"+
+				"<td width='30%' class='stars'>"+ (json[i]["isolated"]=="1" ? "ISOLATED" : "") +"</td></tr>"+
+				"</table></div>");
+		e.attr("what", json[i]["name"]);
+		e.dblclick(function() { __request("tags/toggle_isolate/"+get_tagname($(this))); update();});
+		e.find(".add_selected").click(function() {__request("tags/add_selected/" + get_tagname($(this))); update();});
+		e.find(".remove_selected").click(function() {__request("tags/remove_selected/" + get_tagname($(this))); update();});
+		make_eye(e.find("img.visible"));
+		make_lock(e.find("img.lock"));
+		make_color_buttons(e.find(".addrem"), json[i]["class"]);
+		
+		$(".list").append(e);
+	}
+	
+}
+
+</script>
+</head>
+<body>
+<div class="container">
+<div class="full list">
+</div>
+<div class="full empty"><table><tr><td id="empty_content">
+No tag
+</td></tr></table></div>
+</div>
+<div class="bottom">
+<button id="create_tag"><img src="style/plus.png" />New Tag</button>
+<button id="create_tag_for_selection" disabled>New Tag for selection</button>
+</div>
+</body>
+</html>

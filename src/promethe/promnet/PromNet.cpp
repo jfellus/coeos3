@@ -57,6 +57,8 @@ void PromNet::read_network(Element* node) {
 		  if(node->get_name()=="ivy_bus") { /* TODO */ }
 		  else if(node->get_name()=="node") add(new PromNode(this, node));
 	 }
+
+	 for(uint i=nodes.size()-1; i>=0; i--) path_config = file_basename(nodes[i]->script->path_config);
 }
 
 void PromNet::read_link_list(Element* node) {

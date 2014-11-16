@@ -43,11 +43,11 @@ std::ostream& operator<<(std::ostream& os, LinkPromLink* a) {
 void LinkPromLink::detach(bool bSlave) {
 	if(!bAttached) return;
 	Link::detach(bSlave);
-	link->script->remove_link(this->link);
+	if(link->script) link->script->remove_link(this->link);
 }
 
 void LinkPromLink::attach() {
 	if(bAttached) return;
 	Link::attach();
-	link->script->add_link(this->link);
+	if(link->script) link->script->add_link(this->link);
 }

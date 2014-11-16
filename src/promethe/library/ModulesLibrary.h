@@ -9,6 +9,7 @@
 #define MODULESLIBRARY_H_
 
 #include <module/Property.h>
+#include "../promtools.h"
 
 
 
@@ -26,6 +27,18 @@ public:
 	std::string get(const std::string property) {
 		return properties.get(property) ? properties.get(property)->get_value_as_string() : "";
 	}
+
+	inline bool is_type_algo() {
+		return true; // TODO
+	}
+
+	std::string get_group_name() {
+		return is_type_algo() ? get("name") : PROM_GROUP_TYPES[get_type_no()];
+	}
+
+	inline int get_type_no() { return TOINT(get("type")); }
+
+
 };
 
 
@@ -42,6 +55,8 @@ public:
 public:
 
 	static void add_promethe_default_libraries() {
+		new ModuleDef("f_prout");
+		new ModuleDef("f_affiche_image_from_extension");
 		add(NN_Core_function_pointers);
 //		add("libSigProc_blind_release.so");
 //		add("libIHM_blind_release.so");

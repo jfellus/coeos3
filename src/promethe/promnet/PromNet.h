@@ -21,6 +21,8 @@ public:
 	PromProject* project = NULL;
 
 	std::string filename;
+	std::string path_config;
+
 public:
 	PromNet() {}
 	PromNet(const std::string& filename) {
@@ -36,6 +38,16 @@ public:
 	void read(const std::string& filename);
 	void write(const std::string& filename);
 	inline void save(const std::string& filename) {write(filename);}
+
+	PromScript* get_script_by_name(const std::string& name) {
+		for(uint i=0; i<nodes.size(); i++) {
+			if(!nodes[i]->script) continue;
+			if(nodes[i]->script->name == name) return nodes[i]->script;
+		}
+		return NULL;
+	}
+
+	inline std::string get_dir() {return file_dirname(filename); }
 
 	void realize();
 protected:

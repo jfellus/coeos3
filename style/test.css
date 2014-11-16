@@ -1,20 +1,13 @@
-.tag_1 {
-	glow:10 #00ddff 0.3;
-	recursive:1;
-	pretty:1;
-}
 
-.tag_2 {
-	glow:10 red 0.3;
-	recursive:1;
-	pretty:0;
-}
-
-.tag_3 {
-	glow:10 green 0.3;
-	recursive:1;
-	pretty:0;
-}
+.tag_0 {	glow:10 red 0.3;	recursive:1;	pretty:0;}
+.tag_1 {	glow:10 blue 0.3;	recursive:1;	pretty:0;}
+.tag_2 {	glow:10	yellow 0.3;	recursive:1;	pretty:0;}
+.tag_3 {	glow:10 green 0.3;	recursive:1;	pretty:0;}
+.tag_4 {	glow:10 purple 0.3;	recursive:1;	pretty:0;}
+.tag_5 {	glow:10 pink 0.3;	recursive:1;	pretty:0;}
+.tag_6 {	glow:10 magenta 0.3;	recursive:1;	pretty:0;}
+.tag_7 {	glow:10 cyan 0.3;	recursive:1;	pretty:0;}
+.tag_8 {	glow:10 grey 0.3;	recursive:1;	pretty:0;}
 
 module.algo {
 	font:Sans Serif;
@@ -34,7 +27,7 @@ module.custom_cpp {
 }
 
 link {
-	font-size:500;
+	font-size:120;
 	font-style:italic;
 }
 
@@ -104,4 +97,20 @@ group:closed.script {
 	text-color:blue;
 	font:Ubuntu;
 	font-size:700;
+}
+
+module.isolated {
+	opacity:1;
+}
+
+module.nonisolated {
+	opacity:0.1;
+}
+
+link.isolated {
+	opacity:1;
+}
+
+link.nonisolated {
+	opacity:0.1;
 }

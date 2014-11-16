@@ -34,6 +34,7 @@
 		clear:both;
 		vertical-align:middle;
 		display:block;
+		cursor:hand;
 	}
 	div.module img {
 		display:inline;
@@ -110,7 +111,18 @@
 
 $(function() {
 	update();
+	
+	$("#search").keydown(function() {
+		filter($("#search").val());
+	});
 });
+
+function filter(str) {
+	$(".list").find(".name").each(function(){
+		if($(this).text().startsWith(str)) $(this).parents(".module").show();
+		else $(this).parents(".module").hide();
+	});
+}
 
 function update() {
 	if(typeof(__request)!="function") return;
@@ -133,10 +145,12 @@ function update() {
 		for(var j=0; j<json[i]["stars"]; j++) stars+="<img src='style/star.png'>";
 		var e = $("<div class='module'><table><tr><td rowspan=2>" +
 				"<img src='"+json[i]["svg"]+"'></td>" +
-				"<td colspan=2><h2>"+json[i]["name"]+"</h2></td></tr>" + 
+				"<td colspan=2><h2 class='name'>"+json[i]["name"]+"</h2></td></tr>" + 
 				"<tr><td width='70%' class='type'>"+json[i]["type"]+"</td>"+
 				"<td width='30%' class='stars'>"+ stars +"</td></tr>"+
 				"</table></div>");
+		e.attr("what", json[i]["name"]);
+		e.click(function() { __request("create/"+$(this).attr("what"));	});
 		$(".list").append(e);
 	}
 	

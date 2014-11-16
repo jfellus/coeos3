@@ -22,9 +22,7 @@ public:
 public:
 	PromNode() {}
 	PromNode(PromNet* net, xmlpp::Element* node) : net(net) { read(node);}
-	PromNode(PromNet* net, PromScript* script) : net(net), script(script) {
-		init(script);
-	}
+	PromNode(PromNet* net, PromScript* script) : net(net), script(script) {	init(script); }
 	virtual ~PromNode();
 
 	void read(xmlpp::Element* node);

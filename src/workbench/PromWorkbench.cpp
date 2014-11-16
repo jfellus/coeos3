@@ -11,7 +11,17 @@
 #include "../creators/PromLinkCreator.h"
 #include "../creators/PromScriptCreator.h"
 #include "../promethe/library/ModulesLibrary.h"
-
+#include "../commands/CommandIsolateTag.h"
+#include "../commands/CommandTagSelection.h"
+#include "../commands/CommandTagSetCSS.h"
+#include "../commands/CommandUnisolateTag.h"
+#include "../commands/CommandUntagSelection.h"
+#include "../commands/CommandCreateTag.h"
+#include "../commands/CommandDeleteTag.h"
+#include "../commands/CommandHideTag.h"
+#include "../commands/CommandShowTag.h"
+#include "../commands/CommandLockTag.h"
+#include "../commands/CommandUnlockTag.h"
 
 
 static void on_create_script() { PromWorkbench::cur()->create_script(); }
@@ -27,6 +37,7 @@ PromWorkbench::PromWorkbench() {
 	win->add_tab(docBrowser = new DocBrowser(), "Doc");
 	win->add_tab(scriptsForm = new ScriptsForm(), "Scripts");
 	win->add_tab(createForm = new CreateForm(), "Create");
+	win->add_tab(tagsForm = new TagsForm(), "Tags");
 
 	win->add_menu("_File>__", on_import_script, win->get_menu_pos("_File>_Save as")+1);
 	win->add_menu("_File>_Import script", on_import_script, win->get_menu_pos("_File>_Save as")+2);
@@ -54,14 +65,12 @@ void PromWorkbench::open(const std::string& filename) {
 		try {
 			PromScript* s = new PromScript(filename);
 			s->name = file_change_ext(file_basename(filename), "");
-			PromNet* net = new PromNet();
-			project->load_net(net);
+			project->set_net(new PromNet());
 			project->net->add(new PromNode(project->net, s));
 			project->add(s);
 		} catch(...) {}
 	} else if(file_has_ext(filename, ".net")) {
-		PromNet* net = new PromNet(filename);
-		project->load_net(net);
+		project->set_net(new PromNet(filename));
 		project->layout_scripts();
 	} else {
 		ERROR("Unknown file format " << filename);
@@ -96,7 +105,7 @@ void PromWorkbench::export_script() {
 void PromWorkbench::export_script(const std::string& filename) {
 	GroupPromScript* gps = dynamic_cast<GroupPromScript*>(get_single_selected_module());
 	if(!gps) return;
-	gps->script->save(filename);
+	gps->script->save_as(filename);
 }
 
 
@@ -105,7 +114,7 @@ void PromWorkbench::import(const std::string& filename) {
 		try {
 			PromScript* s = new PromScript(filename);
 			s->name = file_change_ext(file_basename(filename), "");
-			if(!project->net) { PromNet* net = new PromNet(); project->load_net(net);}
+			if(!project->net) project->set_net(new PromNet());
 			project->net->add(new PromNode(project->net, s));
 			project->add(s);
 		} catch(...) {}
@@ -141,6 +150,10 @@ void PromWorkbench::create_module() {
 	canvas->start_creator(new PromGroupCreator(project));
 }
 
+void PromWorkbench::create_module(const std::string& nametype) {
+	canvas->start_creator(new PromGroupCreator(project, nametype));
+}
+
 void PromWorkbench::create_link() {
 	canvas->start_creator(new PromLinkCreator(project));
 }
@@ -151,6 +164,7 @@ void PromWorkbench::update(bool force) {
 	if(bPreventUpdating && !force) return;
 	scriptsForm->update();
 	docBrowser->update(get_selected_modules());
+	tagsForm->update();
 }
 
 
@@ -160,3 +174,68 @@ void PromWorkbench::on_selection_change() {
 	win->enable_menu("_File>_Export script", dynamic_cast<GroupPromScript*>(get_single_selected_module())!=0 );
 }
 
+
+
+void PromWorkbench::tag_selection(const std::string& tagname) {
+	(new CommandTagSelection(Document::cur(),tagname))->execute();
+}
+
+void PromWorkbench::untag_selection(const std::string& tagname) {
+	(new CommandUntagSelection(Document::cur(),tagname))->execute();
+}
+
+
+
+void PromWorkbench::isolate_tag(const std::string& tagname, bool toggle) {
+	Tag* t = Tags::get(tagname);
+	if(!t) {ERROR("Tag " << tagname << " doesn't exist"); return;}
+	if(t==Tags::isolated && toggle) (new CommandUnisolateTag())->execute();
+	else (new CommandIsolateTag(Document::cur(), tagname))->execute();
+}
+
+void PromWorkbench::unisolate_tag() {
+	if(Tags::isolated == NULL) return;
+	(new CommandUnisolateTag())->execute();
+}
+
+void PromWorkbench::tag_set_css(const std::string& tagname, const std::string& css) {
+	(new CommandTagSetCSS(tagname, css))->execute();
+}
+
+void PromWorkbench::add_tag(const std::string& tagname) {
+	if(Tags::get(tagname)) {ERROR("Tag " << tagname << " already exists"); return;}
+	(new CommandCreateTag(tagname))->execute();
+}
+
+void PromWorkbench::remove_tag(const std::string& tagname) {
+	if(!Tags::get(tagname)) {ERROR("Tag " << tagname << " doesn't exist"); return;}
+	(new CommandDeleteTag(tagname))->execute();
+}
+
+void PromWorkbench::show_tag(const std::string& tagname) {
+	Tag* t = Tags::get(tagname);
+	if(!t) {ERROR("Tag " << tagname << " doesn't exist"); return;}
+	if(t->bVisible) return;
+	(new CommandShowTag(tagname))->execute();
+}
+
+void PromWorkbench::hide_tag(const std::string& tagname) {
+	Tag* t = Tags::get(tagname);
+	if(!t) {ERROR("Tag " << tagname << " doesn't exist"); return;}
+	if(!t->bVisible) return;
+	(new CommandHideTag(tagname))->execute();
+}
+
+void PromWorkbench::lock_tag(const std::string& tagname) {
+	Tag* t = Tags::get(tagname);
+	if(!t) {ERROR("Tag " << tagname << " doesn't exist"); return;}
+	if(t->bLock) return;
+	(new CommandLockTag(tagname))->execute();
+}
+
+void PromWorkbench::unlock_tag(const std::string& tagname) {
+	Tag* t = Tags::get(tagname);
+	if(!t) {ERROR("Tag " << tagname << " doesn't exist"); return;}
+	if(!t->bLock) return;
+	(new CommandUnlockTag(tagname))->execute();
+}

@@ -59,38 +59,31 @@ void PromNode::write(Element* node) {
 }
 
 void PromNode::init(PromScript* script) {
+	script->node = this;
 	this->script = script;
 	script->node = this;
-	properties.set("name", script->name);
-	properties.set_from_string("computer", "127.0.0.1");
-	properties.set_from_string("login", "");
-	properties.set_from_string("cmd", "promethe");
-	properties.set("deploy", script->name);
-	properties.set_from_string("distant_directory", "");
-	properties.set_from_string("keyboard", "");
-	properties.set_from_string("synchronize_files", "");
-	properties.set_from_string("options", "-S1 -D0 -W10");
-	properties.set_from_string("path_script", file_change_ext(script->name, ".script"));
-	properties.set_from_string("path_symb", file_change_ext(script->name, ".symb"));
-	properties.set_from_string("path_draw", file_change_ext(script->name, ".draw"));
-	properties.set_from_string("path_res", file_change_ext(script->name, ".res"));
-	properties.set_from_string("path_config", file_change_ext(script->name, ".config"));
-	properties.set_from_string("path_bus", "");
-	properties.set_from_string("path_dev", file_change_ext(script->name, ".dev"));
-	properties.set_from_string("path_gcd", file_change_ext(script->name, ".gcd"));
-	properties.set_from_string("path_prt", "");
+	properties.set("name", &script->name);
+	properties.set("computer", "127.0.0.1");
+	properties.set("login", "");
+	properties.set("cmd", "promethe");
+	properties.set("deploy", &script->path_deploy);
+	properties.set("distant_directory", "");
+	properties.set("keyboard", "");
+	properties.set("synchronize_files", "");
+	properties.set("options", "-S1 -D0 -W10");
+	properties.set("path_script", &script->path_script);
+	properties.set("path_symb", &script->path_symb);
+	properties.set("path_draw", &script->path_draw);
+	properties.set("path_res", &script->path_res);
+	properties.set("path_config", &script->path_config);
+	properties.set("path_bus", "");
+	properties.set("path_dev", &script->path_dev);
+	properties.set("path_gcd", &script->path_gcd);
+	properties.set("path_prt", "");
 }
 
 void PromNode::realize() {
 	try {
-		script_filename =
-				file_dirname(net->filename) + "/" + properties["deploy"]->get_value_as_string() + "/" +
-				(properties["path_symb"]->get_value_as_string().empty() ? properties["path_script"]->get_value_as_string() :
-						properties["path_symb"]->get_value_as_string());
-		script = new PromScript();
-		script->node = this;
 		script->load(script_filename);
-
-		script->name = properties["name"]->get_value_as_string();
-	} catch(...) {script = NULL; }
+	} catch(...) {ERROR("Can't load script " << script_filename); }
 }

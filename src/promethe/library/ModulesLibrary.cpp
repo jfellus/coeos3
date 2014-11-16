@@ -54,7 +54,7 @@ ModuleDef::ModuleDef(const std::string& name) {
 	if(svg.empty()) svg = SVGDefinitions::get("module_algo"); // TODO
 	properties.set_from_string("svg", svg);
 
-	properties.set_from_string("type", "Algorithmic module"); // TODO
+	properties.set_from_string("type", "14"); // TODO
 	properties.set_from_string("author", "Jerome le bo gosse"); // TODO
 	properties.set_from_string("stars", TOSTRING((rand()%5)));
 
