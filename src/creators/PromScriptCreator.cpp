@@ -23,16 +23,15 @@ static std::string new_name(PromNet* net) {
 
 void PromScriptCreator::start(ZoomableDrawingArea* canvas) {
 	Creator::start(canvas);
+	if(!project->net) project->set_net(new PromNet());
+
 	PromScript* s = new PromScript();
 	s->name = new_name(project->net);
-	PromGroup* f_debut = new PromGroup(s);
-	f_debut->group = "f_debut";
+	PromGroup* f_debut = new PromGroup(s, "f_debut");
 	s->add_group(f_debut);
 
-	if(!project->net) project->set_net(new PromNet());
 	project->net->add(new PromNode(project->net, s));
 	project->add(s);
-	s->init();
 
 	script = project->get(s);
 	dummy_group = project->get(f_debut);
@@ -40,6 +39,8 @@ void PromScriptCreator::start(ZoomableDrawingArea* canvas) {
 
 void PromScriptCreator::create(double x, double y) {
 	bKeep = true;
+	dummy_group->set_property("posx", TOSTRING((int)(x/10)));
+	dummy_group->set_property("posy", TOSTRING((int)(y/10)));
 	end();
 }
 

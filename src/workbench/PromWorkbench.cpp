@@ -22,11 +22,18 @@
 #include "../commands/CommandShowTag.h"
 #include "../commands/CommandLockTag.h"
 #include "../commands/CommandUnlockTag.h"
+#include "../commands/CommandSetTagName.h"
+#include "../commands/CommandScriptSetProperty.h"
+#include "../promethe/launcher/Launcher.h"
+
 
 
 static void on_create_script() { PromWorkbench::cur()->create_script(); }
 static void on_import_script() { PromWorkbench::cur()->import(); }
 static void on_export_script() { PromWorkbench::cur()->export_script(); }
+static void on_run() {PromWorkbench::cur()->run_project(); }
+static void on_stop() {PromWorkbench::cur()->stop_project(); }
+static void on_scale_selection(double x, double y, double dx, double dy) {PromWorkbench::cur()->scale_selection(dy);}
 
 PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbench::cur()); }
 
@@ -47,6 +54,11 @@ PromWorkbench::PromWorkbench() {
 
 	win->add_menu("_Create>_Script", on_create_script, win->get_menu_pos("_Create>_Module"));
 
+
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_F5, 0, on_run));
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_F6, 0, on_stop));
+
+	canvas->add_scroll_listener(new IScrollListener(GDK_CONTROL_MASK|GDK_SHIFT_MASK, ::on_scale_selection));
 
 	// Load config
 
@@ -71,7 +83,7 @@ void PromWorkbench::open(const std::string& filename) {
 		} catch(...) {}
 	} else if(file_has_ext(filename, ".net")) {
 		project->set_net(new PromNet(filename));
-		project->layout_scripts();
+		//project->layout_scripts();
 	} else {
 		ERROR("Unknown file format " << filename);
 	}
@@ -79,6 +91,10 @@ void PromWorkbench::open(const std::string& filename) {
 	canvas->update_layers();
 	canvas->zoom_all();
 	update();
+}
+
+void PromWorkbench::save() {
+	project->save_net();
 }
 
 void PromWorkbench::save(const std::string& filename) {
@@ -160,6 +176,7 @@ void PromWorkbench::create_link() {
 
 
 void PromWorkbench::update(bool force) {
+	set_title(TOSTRING("Coeos++ - " << project->net->filename));
 	Workbench::update(force);
 	if(bPreventUpdating && !force) return;
 	scriptsForm->update();
@@ -174,6 +191,19 @@ void PromWorkbench::on_selection_change() {
 	win->enable_menu("_File>_Export script", dynamic_cast<GroupPromScript*>(get_single_selected_module())!=0 );
 }
 
+void PromWorkbench::scale_selection(double amount) {
+	amount=1-amount*0.04;
+	for(uint i=0; i<get_selected_modules()->size(); i++) {
+		ModulePromGroup* m = dynamic_cast<ModulePromGroup*>((*get_selected_modules())[i]);
+		if(!m) continue;
+		m->scale(amount);
+	}
+	for(uint i=0; i<get_selected_links()->size(); i++) {
+		LinkPromLink* l = dynamic_cast<LinkPromLink*>((*get_selected_links())[i]);
+		if(!l) continue;
+		l->scale(amount);
+	}
+}
 
 
 void PromWorkbench::tag_selection(const std::string& tagname) {
@@ -239,3 +269,32 @@ void PromWorkbench::unlock_tag(const std::string& tagname) {
 	if(!t->bLock) return;
 	(new CommandUnlockTag(tagname))->execute();
 }
+
+void PromWorkbench::change_tag_name(const std::string& oldname, const std::string& newname) {
+	Tag* t = Tags::get(oldname);
+	if(!t) {ERROR("Tag " << oldname << " doesn't exist"); return;}
+	(new CommandSetTagName(t,newname))->execute();
+}
+
+
+
+void PromWorkbench::set_script_property(const std::string& scriptname, const std::string& key, const std::string& value) {
+	if(!project) return;
+	if(!project->net) return;
+	PromNode* n = project->net->get_node_by_name(scriptname);
+	if(!n) {ERROR("Script " << scriptname << "doesn't exist"); return;}
+	(new CommandScriptSetProperty(n,key,value))->execute();
+}
+
+
+
+void PromWorkbench::run_project() {
+	if(!project) return;
+	Launcher::start(project);
+}
+
+void PromWorkbench::stop_project() {
+	if(!project) return;
+	Launcher::stop(project);
+}
+

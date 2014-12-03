@@ -28,17 +28,18 @@ public:
 		return properties.get(property) ? properties.get(property)->get_value_as_string() : "";
 	}
 
-	inline bool is_type_algo() {
-		return true; // TODO
-	}
+	inline bool is_type_algo() { return get_type_no() == 14; }
 
-	std::string get_group_name() {
-		return is_type_algo() ? get("name") : PROM_GROUP_TYPES[get_type_no()];
-	}
+	inline bool is_type_custom() { return TOINT(get("custom")) == 1; }
+
+	std::string get_group_name() {	return is_type_algo() ? get("name") : PROM_GROUP_TYPES[get_type_no()];	}
 
 	inline int get_type_no() { return TOINT(get("type")); }
+	inline void set_type_no(int typeno) {properties.set("type", TOSTRING(typeno));	}
+	inline void set_author(const std::string s) {properties.set("author", s); }
+	inline void set_stars(int nbstars) {properties.set("stars", TOSTRING(nbstars));}
 
-
+	inline void set_type_custom() {set_type_no(14); properties.set("custom", "1");}
 };
 
 
@@ -55,25 +56,46 @@ public:
 public:
 
 	static void add_promethe_default_libraries() {
-		new ModuleDef("f_prout");
-		new ModuleDef("f_affiche_image_from_extension");
+		add_neural_groups(PROM_GROUP_TYPES);
 		add(NN_Core_function_pointers);
-//		add("libSigProc_blind_release.so");
-//		add("libIHM_blind_release.so");
-//		add("libIO_Robot_blind_release.so");			TODO !!!!
-//		add("libParallel_Comm_blind_release.so");
-//		add("libNN_IO_blind_release.so");
-//		add("libSensors_blind_release.so");
+		add_promethe_shared_info("libParallel_Comm.info");
+		add_promethe_shared_info("libIHM.info");
+		add_promethe_shared_info("libSigProc.info");
+		add_promethe_shared_info("libIO_Robot.info");
+		add_promethe_shared_info("libNN_IO.info");
+		add_promethe_shared_info("libSensors.info");
+		add_custom_cpp(TOSTRING(getenv("HOME") << "/" << "bin_leto_prom/.custom_cpp_modules_libs.txt"));
 	}
 
+	static void add_neural_groups(const char** names) {
+		for(uint i=0; names[i]!=NULL; i++) {
+			if(i==14) continue;
+			ModuleDef* m = new ModuleDef(names[i]);
+			m->set_type_no(i);
+		}
+	}
+
+	static void add_custom_cpp(const std::string& filename) {
+		if(file_has_ext(filename, ".txt")) {
+			std::ifstream f(filename);
+			std::string line;
+			while (std::getline(f, line)) {add_custom_cpp(str_trim(line));}
+			f.close();
+			return;
+		}
+		else if(file_has_ext(filename, ".so")) {
+			load_custom_cpp_lib(filename);
+		} else ERROR("Unknown custom cpp file type : " << filename);
+	}
 
 	static void add(const char* filename) {
-		if(file_has_ext(filename, ".so")) read_promethe_shared_lib(filename);
+		if(file_has_ext(filename, ".so")) add_promethe_shared_lib(filename);
 	}
 
 	static void add(group_function_pointers* p);
 
-	static void read_promethe_shared_lib(const char* filename) ;
+	static void add_promethe_shared_lib(const char* filename) ;
+	static void add_promethe_shared_info(const char* filename) ;
 
 
 	static ModuleDef* get(const std::string& name) {
@@ -92,6 +114,9 @@ public:
 		s += "]";
 		return s;
 	}
+
+protected:
+	static void load_custom_cpp_lib(const std::string& filename);
 };
 
 #endif /* MODULESLIBRARY_H_ */

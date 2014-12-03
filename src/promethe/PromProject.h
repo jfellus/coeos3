@@ -33,6 +33,7 @@ public:
 	}
 
 	void set_net(PromNet* net);
+	void save_net();
 	void save_net(const std::string& filename);
 	void save_script(PromScript* script);
 

@@ -11,6 +11,7 @@
 #include <util/utils.h>
 #include "../promtools.h"
 #include <module/Property.h>
+#include "../library/ModulesLibrary.h"
 
 
 class PromScript;
@@ -19,55 +20,77 @@ class PromProject;
 class PromGroup {
 public:
 	PromProject* project = NULL;
-	std::string no_name;
-	std::string name;
-	uint type;
-	std::string nb_neurons;
-	std::string threshold;
-	std::string width, height;
 
-	std::string learning_rate;
-	std::string simulation_speed;
-	uint type2;
-
-	std::string group;
-	std::string custom_function = "";
+	std::string name; // TODO Use this !
 	Properties annotations;
 
-	int reverse, debug;
-	int time_scale;
+	std::string nb_neurons = "1";
+	std::string width = "1", height = "1";
 
-	int posx, posy, p_posx, p_posy;
+	uint type;
+	std::string group;
+	std::string custom_function = "";
+	uint type2 = 0;
 
-	std::string alpha;
+	int reverse = 0, debug = 0;
 
-	std::string tolerance;
-	std::string dvp, dvn;
-	std::string nbre_de_1;
-	std::string sigma_f;
-	std::string noise_level;
-	std::string time_spectrum_min,time_spectrum_max;
+	int posx = 0, posy = 0, p_posx = 0, p_posy = 0;
+
+	std::string learning_rate = "0.1";
+	std::string simulation_speed = "1.0";
+	std::string threshold = "0.0";
+	std::string alpha = "0.0";
+	std::string tolerance = "0.0";
+	std::string dvp = "0", dvn = "0";
+	std::string nbre_de_1 = "0";
+	std::string sigma_f = "0.0";
+	std::string noise_level = "0.0";
+	std::string time_spectrum_min = "0.0",time_spectrum_max = "0.0";
+
+
+	std::string no_name; // TODO : Should disappear !
+	int time_scale = 0; // (inferred)
+
+
 
 	PromScript* script;
 
 	std::string comments;
 public:
-	PromGroup(PromProject* project);
-	PromGroup(PromScript* script);
+	PromGroup(PromProject* project, const std::string& nametype);
+	PromGroup(PromScript* script, const std::string& nametype);
 	PromGroup(PromScript* script, std::istream& f);
 
 	virtual ~PromGroup();
 
 
-	std::string get_text() {
-		return custom_function.empty() ?  (is_type_algo() ? group : get_type_as_string()) : custom_function;
+	std::string get_type() {
+		return custom_function.empty() ?  (is_type_algo() ? group : PROM_GROUP_TYPES[type]) : custom_function;
+	}
+
+	std::string get_name() {
+		return custom_function.empty() ?  (is_type_algo() ? "" : group) : "(custom c++)";
+	}
+
+	void set_type(const std::string& s) {
+		custom_function = "";
+		ModuleDef* d = ModulesLibrary::get(s);
+		if(d) {
+			type = d->get_type_no();
+			if(d->is_type_custom()) {custom_function = s; group = "f_custom_c++";}
+			else if(d->is_type_algo()) {group = s;}
+		} else {
+			type = 14; group = s;
+		}
+	}
+
+	void set_name(const std::string& s) {
+		if(is_type_algo()) { no_name = s; }
+		else group = s;
 	}
 
 	bool is_type_algo() { return type==14; }
 
-	std::string get_type_as_string() {
-		return PROM_GROUP_TYPES[type];
-	}
 
 
 	void read(std::istream& f);

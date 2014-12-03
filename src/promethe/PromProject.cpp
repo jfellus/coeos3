@@ -62,7 +62,7 @@ void PromProject::layout_scripts() {
 		GroupPromScript* gps = dynamic_cast<GroupPromScript*>(Document::cur()->modules[i]);
 		if(!gps) continue;
 		Rectangle r2 = gps->get_bounds();
-		gps->translate(r.x - r2.x, r.y - r2.y);
+		gps->translate(r.x - r2.x, r.y - r2.y, true);
 		r.w = r2.w + 700;
 		r.h = MAX(r.h, r2.h);
 		r.x += r.w;
@@ -71,7 +71,7 @@ void PromProject::layout_scripts() {
 	for(uint i = 0; i<Document::cur()->modules.size(); i++) {
 			GroupPromScript* gps = dynamic_cast<GroupPromScript*>(Document::cur()->modules[i]);
 			if(!gps) continue;
-			gps->close();
+		//	gps->close();
 	}
 }
 
@@ -132,12 +132,18 @@ void PromProject::save_script(PromScript* script) {
 
 void PromProject::save_net(const std::string& filename) {
 	if(!net) return;
-
-	for(uint i=0; i<net->nodes.size(); i++) {
-		save_script(net->nodes[i]->script);
-	}
+	net->filename = filename;
+	for(uint i=0; i<net->nodes.size(); i++) save_script(net->nodes[i]->script);
+	DBG("Save net to " << filename);
 	net->save(filename);
 }
+
+void PromProject::save_net() {
+	if(!net) return;
+	if(net->filename.empty()) PromWorkbench::cur()->save_as();
+	if(!net->filename.empty()) save_net(net->filename);
+}
+
 
 GroupPromScript* PromProject::get(PromScript* s) {
 	for(uint i=0; i<scripts.size(); i++) {

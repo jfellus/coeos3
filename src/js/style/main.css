@@ -110,6 +110,7 @@ a.btn:hover {
 	border: 1px solid black;
 	border-top: none;
 	box-shadow: 3px 3px 4px #888888;
+	overflow-y:auto;
 }
 
 .dropdown>ul {

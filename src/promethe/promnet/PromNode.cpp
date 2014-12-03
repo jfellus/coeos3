@@ -27,7 +27,7 @@ void PromNode::read(Element* node) {
 				Element* node = dynamic_cast<Element*>(*iter);
 				if(!node) continue;
 				TextNode* t = node->get_child_text();
-				properties.set_from_string(std::string("path_")+node->get_name(),t ? (std::string)t->get_content() : "");
+				properties.set(std::string("path_")+node->get_name(),t ? (std::string)t->get_content() : "");
 			}
 		} else {
 			TextNode* t = node->get_child_text();
@@ -62,28 +62,76 @@ void PromNode::init(PromScript* script) {
 	script->node = this;
 	this->script = script;
 	script->node = this;
+
+	if(file_has_ext(script->filename, ".symb")) path_symb = script->filename;
+	if(file_has_ext(script->filename, ".script")) path_script = script->filename;
+
 	properties.set("name", &script->name);
 	properties.set("computer", "127.0.0.1");
 	properties.set("login", "");
 	properties.set("cmd", "promethe");
-	properties.set("deploy", &script->path_deploy);
+	properties.set("deploy", &path_deploy);
 	properties.set("distant_directory", "");
 	properties.set("keyboard", "");
 	properties.set("synchronize_files", "");
 	properties.set("options", "-S1 -D0 -W10");
-	properties.set("path_script", &script->path_script);
-	properties.set("path_symb", &script->path_symb);
-	properties.set("path_draw", &script->path_draw);
-	properties.set("path_res", &script->path_res);
-	properties.set("path_config", &script->path_config);
+	properties.set("path_script", &path_script);
+	properties.set("path_symb", &path_symb);
+	properties.set("path_draw", &path_draw);
+	properties.set("path_res", &path_res);
+	properties.set("path_config", &path_config);
 	properties.set("path_bus", "");
-	properties.set("path_dev", &script->path_dev);
-	properties.set("path_gcd", &script->path_gcd);
-	properties.set("path_prt", "");
+	properties.set("path_dev", &path_dev);
+	properties.set("path_gcd", &path_gcd);
+	properties.set("path_prt", &path_prt);
+
+	properties.set("embedded",  file_is_absolute(get_filename()) ? "no" : "yes");
+
+	add_properties_listener(this);
 }
 
 void PromNode::realize() {
 	try {
-		script->load(script_filename);
-	} catch(...) {ERROR("Can't load script " << script_filename); }
+		if(path_symb.empty() && path_script.empty()) { ERROR("Script " << script->name << " doesn't define a .symb or .script file"); return; }
+		script->load(get_filename());
+
+		properties.set("embedded",  file_is_absolute(get_filename()) ? "no" : "yes");
+	} catch(...) {ERROR("Can't load script " << get_filename()); }
+}
+
+
+void PromNode::on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
+	if(val.empty()) return;
+	if(name=="path_script") properties.set("path_script", file_change_ext(properties.get_as_string("path_script"), ".script"));
+	if(name=="path_symb") properties.set("path_symb", file_change_ext(properties.get_as_string("path_symb"), ".symb"));
+	if(name=="path_draw") properties.set("path_draw", file_change_ext(properties.get_as_string("path_draw"), ".draw"));
+	if(name=="path_res") properties.set("path_res", file_change_ext(properties.get_as_string("path_res"), ".res"));
+	if(name=="path_config") properties.set("path_config", file_change_ext(properties.get_as_string("path_config"), ".config"));
+	if(name=="path_dev") properties.set("path_dev", file_change_ext(properties.get_as_string("path_dev"), ".dev"));
+	if(name=="path_gcd") properties.set("path_gcd", file_change_ext(properties.get_as_string("path_gcd"), ".gcd"));
+	if(name=="path_prt") properties.set("path_prt", file_change_ext(properties.get_as_string("path_prt"), ".prt"));
+
+	if(name=="path_symb") properties.set("embedded",  file_is_absolute(path_symb) ? "no" : "yes");
+	if(name=="path_script") properties.set("embedded",  file_is_absolute(path_script) ? "no" : "yes");
+	if(name=="embedded") {
+		if(val=="yes") {
+			if(!path_symb.empty() && file_is_absolute(path_symb)) path_symb = file_basename(path_symb);
+			if(!path_script.empty() && file_is_absolute(path_script)) path_script = file_basename(path_script);
+		}
+	}
+}
+
+
+std::string PromNode::get_filename() {
+	std::string fn = path_symb;
+	if(fn.empty()) fn = path_script;
+	if(fn.empty()) fn = path_symb = file_change_ext(script->name, ".symb");
+	if(!net || file_is_absolute(fn)) return fn;
+	return net->get_dir() + "/" + path_deploy + "/" + fn;
+}
+
+std::string PromNode::get_absolute_path(const std::string& filename) {
+	if(filename.empty()) return "";
+	if(!net || file_is_absolute(filename)) return filename;
+	return net->get_dir() + "/" + path_deploy + "/" + filename;
 }

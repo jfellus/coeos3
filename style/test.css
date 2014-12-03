@@ -26,6 +26,17 @@ module.custom_cpp {
 	font-weight:bold;
 }
 
+
+module.f_sum_no_seuil {	text:none; }
+module.f_bias {	text:none; }
+module.f_multiply {	text:none; }
+module.f_affiche_image_from_extension {	text:none; }
+module.f_grabimages {	text:none; }
+module.f_display_image_activity {	text:none; }
+module.f_vue_metres {	text:none; }
+module.f_checkbox {	text:none; }
+
+
 link {
 	font-size:120;
 	font-style:italic;

@@ -112,14 +112,14 @@
 $(function() {
 	update();
 	
-	$("#search").keydown(function() {
+	$("#search").keyup(function() {
 		filter($("#search").val());
 	});
 });
 
 function filter(str) {
 	$(".list").find(".name").each(function(){
-		if($(this).text().startsWith(str)) $(this).parents(".module").show();
+		if($(this).text().contains(str)) $(this).parents(".module").show();
 		else $(this).parents(".module").hide();
 	});
 }

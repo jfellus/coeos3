@@ -12,28 +12,37 @@
 #include <module/Module.h>
 #include "../promethe/promscript/PromGroup.h"
 
-class ModulePromGroup : public Module, IPropertiesListener {
+class ModulePromGroup : public Module, IPropertiesListener, Component::ITranslateListener {
 public:
 	PromGroup* group;
+	std::string type;
+	std::string name;
 public:
 	ModulePromGroup(PromGroup* group) {
 		this->group = group;
-		properties.add("comments", group->comments, "multiline");
+		text = type = group->get_type();
+		text2 = name = group->get_name();
+
 		properties.set("no_name", &group->no_name);
-		properties.set("alpha", &group->alpha);
-		properties.set("debug", &group->debug);
+		properties.add("type", &type, "group");
+		properties.add("name", &name);
+
 		properties.set("nb neurons", &group->nb_neurons);
 		properties.set("width", &group->width);
 		properties.set("height", &group->height);
-		properties.add("group", &group->group, "group");
-		properties.set("learning rate", &group->learning_rate);
+
+		properties.add("comments", group->comments, "multiline");
+
+		properties.set("threshold", &group->threshold);
+		properties.set("simulation speed", &group->simulation_speed);
+		properties.set("posx", &group->posx);
+		properties.set("posy", &group->posy);
 		properties.set("p_posx", &group->p_posx);
 		properties.set("p_posy", &group->p_posy);
-		properties.set("threshold", &group->threshold);
+		properties.set("alpha", &group->alpha);
+		properties.set("debug", &group->debug);
+		properties.set("learning rate", &group->learning_rate);
 		properties.set("type2", &group->type2);
-		properties.set("simulation speed", &group->simulation_speed);
-
-		text = group->get_text();
 
 		add_properties_listener(this);
 
@@ -43,7 +52,18 @@ public:
 	virtual ~ModulePromGroup();
 
 	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
-		if(name=="group") {text = val;}
+		DBG("set " << name << " = " << val);
+		if(name=="type") {
+			group->set_type(val);
+			text = type = group->get_type();
+			group->set_name(this->name);
+			text2 = this->name = group->get_name();
+			update_component();
+		}
+		else if(name=="name") {
+			group->set_name(val);
+			text2 = this->name = group->get_name();
+		}
 	}
 
 	virtual void dump(std::ostream& os) {
@@ -54,8 +74,13 @@ public:
 	virtual void attach();
 
 
+	virtual void on_translate(double x, double y);
+
+	void scale(double amount);
+
 private:
 	void realize();
+	void update_component();
 	friend std::ostream& operator<<(std::ostream& os, ModulePromGroup* a);
 };
 

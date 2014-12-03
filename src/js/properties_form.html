@@ -25,9 +25,14 @@ function init() {
 	$("#properties_table").dataTable( {
         "scrollY":        "" + (window.innerHeight - 25)+ "px",
         "scrollCollapse": false,
-        "paging":         false
+        "paging":         false,
+        "bSort" : false
     } );
 	inited = true;
+	
+	var ans = __request("create");
+	var json = $.parseJSON(ans);
+	for(var i=0; i<json.length; i++) GROUPS_LIST.push(json[i]["name"]);
 }
 
 function editable_div(field, value) {

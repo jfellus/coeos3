@@ -9,6 +9,15 @@
 #include "GroupPromScript.h"
 #include <components/GroupComponent.h>
 #include "../promethe/PromProject.h"
+#include "../workbench/PromWorkbench.h"
+
+
+GroupPromScript::GroupPromScript(PromScript* script) : script(script) {
+	project = script->project;
+	node = script->node;
+	node->add_properties_listener(this);
+	set_property("name", node->get_property("name"));
+}
 
 
 void GroupPromScript::realize() {
@@ -39,3 +48,6 @@ void GroupPromScript::attach() {
 	Group::attach();
 	if(project->net) project->net->add(node);
 }
+
+
+

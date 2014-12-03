@@ -21,15 +21,15 @@ public:
 	std::string name;
 
 	int type;
-	std::string norm;
+	std::string norm = "0.1";
 
 	std::string dv_x, dv_y;
 
-	std::string nb;
+	std::string nb = "1";
 
-	std::string mem_time_in, mem_time_out;
-	int computation_mode;
-	int secondary;
+	std::string mem_time_in = "0.0", mem_time_out = "0.0";
+	int computation_mode = 0;
+	int secondary = 0;
 
 	std::string proba;
 
@@ -37,7 +37,7 @@ public:
 
 	std::string comments;
 public:
-	PromLink(PromProject* project);
+	PromLink(PromProject* project, int type);
 	PromLink(PromScript* script, std::istream& f);
 
 	virtual ~PromLink();

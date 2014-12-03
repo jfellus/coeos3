@@ -12,19 +12,14 @@
 #include <module/Group.h>
 #include "../promethe/promscript/PromScript.h"
 
+
 class GroupPromScript : public Group {
 public:
 	PromScript* script = NULL;
 	PromProject* project = NULL;
 	PromNode* node = NULL;
 public:
-	GroupPromScript(PromScript* script) : script(script) {
-		project = script->project;
-		node = script->node;
-
-		properties.set("name", &script->name);
-	}
-
+	GroupPromScript(PromScript* script);
 	virtual ~GroupPromScript();
 
 	virtual void realize();

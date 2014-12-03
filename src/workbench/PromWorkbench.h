@@ -31,15 +31,26 @@ public:
 	PromWorkbench();
 	virtual ~PromWorkbench() {}
 
+
+	////////
+	// IO //
+	////////
+
 	virtual void new_document();
 	virtual void close();
 	virtual void open(const std::string& filename);
 	virtual void save(const std::string& filename);
+	virtual void save();
 	virtual void import();
 	virtual void export_script();
 
 	virtual void import(const std::string& filename);
 	virtual void export_script(const std::string& filename);
+
+
+	/////////////
+	// METHODS //
+	/////////////
 
 	virtual void create_script();
 	virtual void create_module();
@@ -48,7 +59,19 @@ public:
 
 	virtual void update(bool force = false);
 
+
+	////////////
+	// EVENTS //
+	////////////
+
 	virtual void on_selection_change();
+	virtual void scale_selection(double amount);
+
+	/////////////
+	// SCRIPTS //
+	/////////////
+
+	virtual void set_script_property(const std::string& scriptname, const std::string& key, const std::string& value);
 
 
 	//////////
@@ -66,6 +89,15 @@ public:
 	virtual void hide_tag(const std::string& tagname);
 	virtual void lock_tag(const std::string& tagname);
 	virtual void unlock_tag(const std::string& tagname);
+	virtual void change_tag_name(const std::string& oldname, const std::string& newname);
+
+
+	/////////////
+	// RUNTIME //
+	/////////////
+
+	virtual void run_project();
+	virtual void stop_project();
 };
 
 #endif /* PROMWORKBENCH_H_ */

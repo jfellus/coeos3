@@ -7,19 +7,31 @@
 
 #include "PromGroup.h"
 #include "PromScript.h"
+#include "../library/ModulesLibrary.h"
+#include <util/utils.h>
 
-PromGroup::PromGroup(PromProject* project) {
+
+static int _next_free_no_name = 1;
+
+PromGroup::PromGroup(PromProject* project, const std::string& nametype) {
 	this->project = project;
-	script = NULL; time_scale = 0; posx = posy = p_posx = p_posy = 0;
-	type = type2 = 0;
-	reverse = debug = 0;
+	ModuleDef* md = ModulesLibrary::get(nametype);
+
+	type = md->get_type_no();
+	group = md->get_group_name();
+	nb_neurons = "1";
+	width = height = "1";
+	script = NULL;
 }
 
-PromGroup::PromGroup(PromScript* script) {
-	type = 14; type2 = 0; time_scale = 0; posx = posy = p_posx = p_posy = 0;
-	reverse = debug = 0;
+PromGroup::PromGroup(PromScript* script, const std::string& nametype) {
 	this->script = script;
 	this->project = script->project;
+
+	ModuleDef* md = ModulesLibrary::get(nametype);
+
+	type = md->get_type_no();
+	group = md->get_group_name();
 }
 
 PromGroup::PromGroup(PromScript* script, std::istream& f) {
@@ -51,7 +63,10 @@ void PromGroup::parse_comments_annotations() {
 void PromGroup::read(std::istream& f) {
 	comments = f_read_comments(f);
 	parse_comments_annotations();
+
 	f_try_read(f, "groupe = %s , ", no_name);
+	_next_free_no_name = MAX(_next_free_no_name, TOINT(no_name)+1);
+
 	f_try_read(f, "type = %u , ", type);
 	f_try_read(f, "nbre neurones = %s , ", nb_neurons);
 	f_try_read(f, "seuil = %s\n", threshold);
@@ -99,6 +114,10 @@ void PromGroup::read(std::istream& f) {
 }
 
 void PromGroup::write(std::ostream& f) {
+	// Preparation
+	if(no_name.empty()) {no_name = TOSTRING(_next_free_no_name); _next_free_no_name++; }
+
+	// Writing
 	f_write_comments(f, comments);
 		f << "groupe = " << no_name << " , type = "<< type << " , nbre neurones = "
 						<< nb_neurons << " , seuil = "<< threshold << "\n";

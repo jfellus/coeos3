@@ -28,12 +28,37 @@
 	div.script:hover {
 		background:#eeeeee;
 	}
-	div.script span {
+	div.script table {border-collapse: separate;  	border-spacing: 0 2px;   }
+	div.script td {
 		font-size:11px;
-		display:inline-block;
-		width:100%; margin:0; padding:0; text-align:left;
+		padding:0; text-align:left;
 		text-overflow:ellipsis;
 		overflow:hidden;
+		padding:2px;
+		padding-right:5px;
+		padding-left:5px;
+		margin-top:5px;
+	}
+	div.script tr {margin-bottom:5px;}
+	div.script td:first-child {
+		color:white;
+		font-weight:bold;
+		text-align:right;
+		white-space:nowrap;
+		background:#9999DD;
+		border-top-left-radius:5px;
+		border-bottom-left-radius:5px;
+	}
+	
+	div.script td:last-child {
+		display:inline-block;
+		width:80%;
+		text-overflow:ellipsis;
+		overflow-x:auto;
+		background:white;
+		border-top-right-radius:5px;
+		border-bottom-right-radius:5px;
+		border:1px dotted #d5d5d5;
 	}
 </style>
 
@@ -43,6 +68,22 @@
 $(function() {
 	update();
 });
+
+function get_script_name(e) {
+	return $(e).parents(".script").attr("what");
+}
+
+
+var FILES = ["symb", "script", "dev", "draw", "gcd", "res", "config", "prt"];
+
+function add_file_field(e, k, json) {
+	var tr = $("<tr />"); e.append(tr);
+	tr.append("<td>" + k + " file</td>");
+	tr.append($("<td class='field'>"+json["path_"+k] + "</td>")
+			.set_editable().change(function() {
+				__request("scripts/set/" + get_script_name(this) + "/path_" + k + "/" + $(this).text()); update();
+	}));
+}
 
 function update() {
 	if(typeof(__request)!="function") return;
@@ -62,14 +103,14 @@ function update() {
 	
 	for(var i=0; i<json.length; i++) {
 		var e = $("<div class='script'></div>");
-		e.append("<h2>"+json[i]["name"]+"</h2>");
-		e.append("<span>Script file : "+json[i]["path_script"] + "</span>");
-		e.append("<span>Symb file : "+json[i]["path_symb"] + "</span>");
-		e.append("<span>Dev file : "+json[i]["path_dev"] + "</span>");
-		e.append("<span>Draw file : "+json[i]["path_draw"] + "</span>");
-		e.append("<span>Gcd file : "+json[i]["path_gcd"] + "</span>");
-		e.append("<span>Res file : "+json[i]["path_res"] + "</span>");
-		e.append("<span>Config file : "+json[i]["path_config"] + "</span>");
+		e.attr("what", json[i]["name"]);
+		e.append($("<h2>"+json[i]["name"]+"</h2>")
+				.set_editable().change(function() {
+					__request("scripts/set/" + get_script_name(this) + "/name/" + $(this).text()); update();
+			}));
+		if(json[i]["embedded"]=="no") e.append($("<button>Embbed</button>").click(function(){__request("scripts/set/" +  get_script_name(this) + "/embedded/yes"); update();}));
+		table = $("<table cellspacing=0 cellpadding=0 />"); e.append(table);
+		for(var _k in FILES) add_file_field(table, FILES[_k], json[i]);
 		$(".scripts").append(e);
 	}
 	

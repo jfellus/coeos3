@@ -39,6 +39,7 @@ void PromNet::read(const std::string& filename) {
 }
 
 void PromNet::write(const std::string& filename) {
+	this->filename = filename;
 	Document* doc = new Document();
 	Element* e = doc->create_root_node("application");
 	e->add_child_text("\n\t");
@@ -55,10 +56,14 @@ void PromNet::read_network(Element* node) {
 		  Element* node = dynamic_cast<Element*>(*iter);
 		  if(!node) continue;
 		  if(node->get_name()=="ivy_bus") { /* TODO */ }
-		  else if(node->get_name()=="node") add(new PromNode(this, node));
+		  else if(node->get_name()=="node") {
+			  PromNode* n = new PromNode(this, new PromScript());
+			  n->read(node);
+			  add(n);
+		  }
 	 }
 
-	 for(uint i=nodes.size()-1; i>=0; i--) path_config = file_basename(nodes[i]->script->path_config);
+	 for(int i=nodes.size()-1; path_config.empty() && i>=0; i--) path_config = file_basename(nodes[i]->path_config);
 }
 
 void PromNet::read_link_list(Element* node) {

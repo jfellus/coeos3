@@ -34,14 +34,7 @@ public:
 	std::string name;
 	std::string comments_groups, comments_links;
 
-	std::string path_script;
-	std::string path_symb;
-	std::string path_draw;
-	std::string path_res;
-	std::string path_config;
-	std::string path_gcd;
-	std::string path_dev;
-	std::string path_deploy;
+	std::string filename;
 
 	PromProject* project = 0;
 	PromNode* node = 0;
@@ -56,7 +49,6 @@ public:
 		return NULL;
 	}
 
-	void init();
 
 	void add_group(PromGroup* group) { groups.push_back(group); group->script = this; }
 	void add_link(PromLink* link) {
@@ -90,6 +82,8 @@ public:
 	void save();
 
 	void save_as(const std::string& filename) {
+		this->filename = filename;
+		create_dir_for(filename);
 		std::ofstream f(filename);
 		if(!f) DBG("Failed creating file " << filename);
 		if(!write(f)) DBG("Failed writing " << filename);

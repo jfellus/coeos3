@@ -36,14 +36,14 @@ public:
 	virtual std::string answer(const std::string& request, const std::string& data) {
 		if(selectedGroup==NULL) return TOSTRING("MULTIPLE_SELECTION:" << nbSelected);
 		return TOSTRING("{ " <<
-				JSON_P("type", selectedGroup->get_type_as_string()) << ", " <<
-				JSON_P("name", selectedGroup->get_text()) << ", " <<
+				JSON_P("type", selectedGroup->get_type()) << ", " <<
+				JSON_P("name", selectedGroup->get_name()) << ", " <<
 				JSON_P("author", "un ami") <<
 		 " }");
 	}
 
 	std::string get_doc_page(PromGroup* g) {
-		std::string page = str_to_lower(g->get_text());
+		std::string page = str_to_lower(g->get_type());
 		std::string s = TOSTRING("src/js/doc/" << page << ".html");
 		if(file_exists(s)) return s;
 		else return "src/js/doc/_default.html";

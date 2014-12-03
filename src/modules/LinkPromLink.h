@@ -51,6 +51,7 @@ public:
 	virtual void detach(bool bSlave = false);
 	virtual void attach();
 
+	void scale(float amount);
 
 private:
 	void realize();

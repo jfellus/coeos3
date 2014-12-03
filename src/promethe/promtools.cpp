@@ -67,7 +67,8 @@ const char* PROM_GROUP_TYPES[] = {
 "PCR",
 "selective_winner_modulated",
 "Selverston",
-"RCO"
+"RCO",
+NULL
 };
 
 bool LINK_TYPE_HAS_NAME(int link_type) {

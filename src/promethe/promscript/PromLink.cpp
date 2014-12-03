@@ -8,17 +8,11 @@
 #include "PromLink.h"
 #include "PromScript.h"
 
-PromLink::PromLink(PromProject* project) {
+PromLink::PromLink(PromProject* project, int type) {
 	this->project = project;
 	src = dst =  NULL;
-	mem_time_in = mem_time_out = norm = "";
-	nb = "";
-	computation_mode = 0;
-	secondary = 0;
-	type = 0;
+	this->type = type;
 	script = NULL;
-	dv_x = dv_y = "";
-	proba = "1";
 }
 
 PromLink::PromLink(PromScript* script, std::istream& f) {
@@ -77,7 +71,7 @@ void PromLink::write(std::ostream& f) {
 
 
 	if (type == No_l_algorithmique || type == No_l_neuro_mod || type == No_l_1_1_non_modif_bloqueur)
-		f << "                         nom = " << name << "\n";
+		f << "                         nom = " << (name.empty() ? "." : name) << "\n";
 
 	if (type == No_l_1_v || type == No_l_1_v_non_modif) {
 		f << "                         dv_x = " << dv_x << " \n";

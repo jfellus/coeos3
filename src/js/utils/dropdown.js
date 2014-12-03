@@ -3,7 +3,7 @@
 // GROUPS DROPDOWN //
 /////////////////////
 
-var GROUPS_LIST = [ "f_affiche", "f_calcul", "f_perception", "f_action"];
+var GROUPS_LIST = [];
 var cur_group_list_field = null;
 var cur_group_list_index = -1;
 var cur_group_list_field_is_hidden = true;
@@ -39,12 +39,14 @@ function fillGroupsDropdown() {
 			$("#groups_dropdown").find("li.available").eq(cur_group_list_index).addClass("selected");
 			e.preventDefault();
 		} else if(e.which==13) {
-			$(cur_group_list_field).text($("#groups_dropdown li.selected").text());
+			if($("#groups_dropdown li.selected").is(":visible"))
+				$(cur_group_list_field).text($("#groups_dropdown li.selected").text());
 			$(cur_group_list_field).triggerHandler("change");
 			$(cur_group_list_field).blur();
 			e.preventDefault();
 		} else if(e.which==9) {
-			$(cur_group_list_field).text($("#groups_dropdown li.selected").text());
+			if($("#groups_dropdown li.selected").is(":visible"))
+				$(cur_group_list_field).text($("#groups_dropdown li.selected").text());
 			$(cur_group_list_field).triggerHandler("change");
 			$(cur_group_list_field).blur();
 		}

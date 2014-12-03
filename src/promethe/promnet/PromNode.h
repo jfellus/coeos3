@@ -14,23 +14,42 @@
 namespace xmlpp { class Element; }
 class PromNet;
 
-class PromNode : public IPropertiesElement {
+class PromNode : public IPropertiesElement, IPropertiesListener {
 public:
 	PromNet* net = NULL;
 	PromScript* script = NULL;
-	std::string script_filename;
+
+	std::string path_symb;
+	std::string path_script;
+	std::string path_draw;
+	std::string path_res;
+	std::string path_config;
+	std::string path_gcd;
+	std::string path_dev;
+	std::string path_prt;
+	std::string path_deploy;
+
+	bool started = false;
+
 public:
 	PromNode() {}
-	PromNode(PromNet* net, xmlpp::Element* node) : net(net) { read(node);}
 	PromNode(PromNet* net, PromScript* script) : net(net), script(script) {	init(script); }
 	virtual ~PromNode();
 
 	void read(xmlpp::Element* node);
 	void write(xmlpp::Element* node);
 
+
+	std::string get_filename();
+	std::string get_absolute_path(const std::string& filename);
+
+
+
 	void realize();
 
 	void init(PromScript* script);
+
+	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val);
 };
 
 #endif /* PROMNODE_H_ */

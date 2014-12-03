@@ -5,6 +5,7 @@
 #include <style/CSSDefinitions.h>
 
 
+
 static void create_random_graph(int N = 100, int NL = 2) {
 	for(int i=0; i<N; i++) {
 		Module* m = new Module();
@@ -75,7 +76,7 @@ int main(int argc, char** argv) {
 	PromWorkbench* w = new PromWorkbench();
 
 
-	w->open("examples/mlearning.script");
+	w->open("/home/jfellus/Bureau/dsm/3/dsm.net");
 	//create_engine(); // TEST NEWTON DYNAMICS
 
 	w->canvas->add_key_listener(new IKeyListener(GDK_KEY_l, GDK_CONTROL_MASK, on_key_layout));

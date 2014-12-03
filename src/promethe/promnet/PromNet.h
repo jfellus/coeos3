@@ -32,12 +32,16 @@ public:
 		while(!nodes.empty()) delete(nodes[0]);
 	}
 
-	void add(PromNode* n) {nodes.push_back(n);}
+	void add(PromNode* n) {
+		std::string name = n->script->name;
+		for(uint i=1; get_script_by_name(n->script->name); i++) n->script->name = TOSTRING(name << " (" << i << ")");
+		nodes.push_back(n);
+	}
 	void remove(PromNode* n) {vector_remove(nodes, n);}
 
 	void read(const std::string& filename);
 	void write(const std::string& filename);
-	inline void save(const std::string& filename) {write(filename);}
+	inline void save(const std::string& filename) {	write(filename);}
 
 	PromScript* get_script_by_name(const std::string& name) {
 		for(uint i=0; i<nodes.size(); i++) {
@@ -46,6 +50,17 @@ public:
 		}
 		return NULL;
 	}
+
+	PromNode* get_node_by_name(const std::string& name) {
+		for(uint i=0; i<nodes.size(); i++) {
+			if(!nodes[i]->script) continue;
+			if(nodes[i]->script->name == name) return nodes[i];
+		}
+		return NULL;
+	}
+
+
+
 
 	inline std::string get_dir() {return file_dirname(filename); }
 

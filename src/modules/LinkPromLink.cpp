@@ -51,3 +51,6 @@ void LinkPromLink::attach() {
 	Link::attach();
 	if(link->script) link->script->add_link(this->link);
 }
+
+void LinkPromLink::scale(float amount) { ((LinkLinkComponent*)component)->scale(amount);}
+

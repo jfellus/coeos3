@@ -17,8 +17,9 @@
 class PromLinkCreator : public LinkCreator {
 public:
 	PromProject* project;
+	int type;
 public:
-	PromLinkCreator(PromProject* project) : LinkCreator(), project(project) {}
+	PromLinkCreator(PromProject* project, int type = No_l_algorithmique) : LinkCreator(), project(project),type(type) {}
 	virtual ~PromLinkCreator() {}
 
 	virtual void create(double x, double y) {
@@ -40,10 +41,9 @@ public:
 			if(!dst) return;
 			this->dst = dst;
 
-			PromLink* promLink = new PromLink(project);
+			PromLink* promLink = new PromLink(project, type);
 			promLink->src = dynamic_cast<ModulePromGroup*>(src)->group;
 			promLink->dst = dst->group;
-			promLink->type = 5;
 
 			if(promLink->src->script != promLink->dst->script) {
 				ERROR("Cross-script links not really handled yet... sorry");

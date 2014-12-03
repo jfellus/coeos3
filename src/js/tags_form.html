@@ -250,12 +250,15 @@ function update() {
 				"<td width='30%' class='stars'>"+ (json[i]["isolated"]=="1" ? "ISOLATED" : "") +"</td></tr>"+
 				"</table></div>");
 		e.attr("what", json[i]["name"]);
+		
 		e.dblclick(function() { __request("tags/toggle_isolate/"+get_tagname($(this))); update();});
 		e.find(".add_selected").click(function() {__request("tags/add_selected/" + get_tagname($(this))); update();});
 		e.find(".remove_selected").click(function() {__request("tags/remove_selected/" + get_tagname($(this))); update();});
 		make_eye(e.find("img.visible"));
 		make_lock(e.find("img.lock"));
 		make_color_buttons(e.find(".addrem"), json[i]["class"]);
+		e.find("h2").set_editable();
+		e.find("h2").change(function() { __request("tags/set_name/" + $(this).parents(".module").attr("what") + "/" + $(this).text()); update();});
 		
 		$(".list").append(e);
 	}

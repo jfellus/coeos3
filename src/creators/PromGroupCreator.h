@@ -11,7 +11,7 @@
 #include <creator/Creator.h>
 #include "../promethe/PromProject.h"
 #include "../commands/CommandPromGroupCreate.h"
-#include "../promethe/library/ModulesLibrary.h"
+
 
 
 class PromGroupCreator : public ModuleCreator {
@@ -25,15 +25,9 @@ public:
 
 
 	virtual void create(double x, double y) {
-		ModuleDef* md = ModulesLibrary::get(nametype);
-
-		PromGroup* promGroup = new PromGroup(project);
-		promGroup->type = md->get_type_no();
-		promGroup->group = md->get_group_name();
-		promGroup->nb_neurons = "1";
-		promGroup->width = promGroup->height = "1";
-		promGroup->posx = (uint)x;
-		promGroup->posy = (uint)y;
+		PromGroup* promGroup = new PromGroup(project, nametype);
+		promGroup->posx = (int)(x/10);
+		promGroup->posy = (int)(y/10);
 
 		ModulePromGroup* m = new ModulePromGroup(promGroup);
 		(new CommandPromGroupCreate(project,m))->execute();
