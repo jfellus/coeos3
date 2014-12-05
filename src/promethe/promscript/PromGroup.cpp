@@ -25,11 +25,16 @@ PromGroup::PromGroup(PromScript* script, const std::string& nametype) {
 	nb_neurons = "1";
 	width = height = "1";
 	no_name = script->new_noname();
+
+	annotations.set("custom_function", &custom_function);
 }
 
 PromGroup::PromGroup(PromScript* script, std::istream& f) {
 	this->script = script;
 	this->project = script->project;
+
+	annotations.set("custom_function", &custom_function);
+
 	read(f);
 }
 
@@ -72,6 +77,8 @@ PromGroup::PromGroup(const PromGroup& g) {
 	time_scale = g.time_scale;
 	comments = g.comments;
 
+	annotations.set("custom_function", &custom_function);
+
 	script->add_group(this);
 }
 
@@ -89,8 +96,7 @@ void PromGroup::parse_comments_annotations() {
 			v_j=i;
 			key = str_trim(comments.substr(key_i, v_i-key_i-1));
 			value = str_trim(comments.substr(v_i,v_j));
-			if(key=="function") { this->custom_function=value; }
-			annotations.add(key,value);
+			annotations.set(key,value);
 		}
 	}
 }
@@ -146,6 +152,8 @@ void PromGroup::read(std::istream& f) {
 	f_try_read(f, "p_posy = %s\n", p_posy);
 	f_try_read(f, 			"debug = %u\n", debug);
 	f_try_read(f, 			"ech_temps = %u\n", time_scale);
+
+	if(is_type_algo() && annotations.get("name")) set_name(annotations.get_as_string("name"));
 }
 
 void PromGroup::write(std::ostream& f) {
@@ -154,52 +162,51 @@ void PromGroup::write(std::ostream& f) {
 
 	// Writing
 	f_write_comments(f, comments);
-	f << "%";
-	std::string s = str_replace(comments, "\n", "\n%");
-	while(s[s.size()-1]=='%') s = s.substr(0, s.size()-1);
-	f << s;
-	if(s[s.size()-1]!='\n') f << '\n';
+	for(uint i=0; i<annotations.size(); i++) {
+		if(annotations[i]->get_value_as_string().empty()) continue;
+		f << "%@" << annotations[i]->name << "=" << annotations[i]->get_value_as_string() << "\n";
+	}
 
 
-		f << "groupe = " << no_name << " , type = "<< type << " , nbre neurones = "
-						<< nb_neurons << " , seuil = "<< threshold << "\n";
-		f << "taillex = "<< width << " , tailley = " << height << "\n";
-		f << "learning rate = " << learning_rate << " \n";
+	f << "groupe = " << no_name << " , type = "<< type << " , nbre neurones = "
+			<< nb_neurons << " , seuil = "<< threshold << "\n";
+	f << "taillex = "<< width << " , tailley = " << height << "\n";
+	f << "learning rate = " << learning_rate << " \n";
 
-		if(type==0 || type==23 || type==42) f << "alpha = "<< alpha << " \n";
-		if (type == No_Winner || type == No_Winner_Macro || type == No_Sutton_Barto || type == No_PCR)
-			f << "noise_level = " << noise_level << " \n";
+	if(type==0 || type==23 || type==42) f << "alpha = "<< alpha << " \n";
+	if (type == No_Winner || type == No_Winner_Macro || type == No_Sutton_Barto || type == No_PCR)
+		f << "noise_level = " << noise_level << " \n";
 
-		f << "simulation speed = " << simulation_speed << " \n";
+	f << "simulation speed = " << simulation_speed << " \n";
 
-		if (type == No_Winner_Colonne || type == No_PTM || type == No_PLG || type == No_Winner_Selectif)
-			f << "tolerance = " << tolerance << "\n";
-		  if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro) {
-			 f << "dvp       = "<< dvp <<" , dvn = "<< dvn << "\n";
-		  }
-		  if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro)
-			 f << "alpha     = "<< alpha << " \n";
-		  if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro || type == No_SAW)
-			  f << "nbre_de_1 = "<< nbre_de_1 << " \n";
-		  if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro)
-			  f << "sigma_f   = " << sigma_f << " \n";
-		  if (type == No_Kohonen) {
-			  f << "dvp       = "<< dvp <<" , dvn = "<< dvn << "\n";
-		  }
-		  if (type == No_Granular) {
-			  f << "time_spectrum min = " << time_spectrum_min << " \n";
-			  f << "time_spectrum max = " << time_spectrum_max << " \n";
-		  }
+	if (type == No_Winner_Colonne || type == No_PTM || type == No_PLG || type == No_Winner_Selectif)
+		f << "tolerance = " << tolerance << "\n";
+	if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro) {
+		f << "dvp       = "<< dvp <<" , dvn = "<< dvn << "\n";
+	}
+	if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro)
+		f << "alpha     = "<< alpha << " \n";
+	if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro || type == No_SAW)
+		f << "nbre_de_1 = "<< nbre_de_1 << " \n";
+	if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro)
+		f << "sigma_f   = " << sigma_f << " \n";
+	if (type == No_Kohonen) {
+		f << "dvp       = "<< dvp <<" , dvn = "<< dvn << "\n";
+	}
+	if (type == No_Granular) {
+		f << "time_spectrum min = " << time_spectrum_min << " \n";
+		f << "time_spectrum max = " << time_spectrum_max << " \n";
+	}
 
-		f << "type2  = "<< type2 << " \n";
-		f << "groupe = " << group << "\n";
-		f << "posx = " << posx << " , posy = " << posy << "\n";
-		f << "reverse = " << reverse << "\n";
-		f << "p_posx = " << p_posx << " , p_posy = " << p_posy << "\n";
-		f << "debug = " << debug << "\n";
-		f << "ech_temps = " << time_scale << "\n";
+	f << "type2  = "<< type2 << " \n";
+	f << "groupe = " << group << "\n";
+	f << "posx = " << posx << " , posy = " << posy << "\n";
+	f << "reverse = " << reverse << "\n";
+	f << "p_posx = " << p_posx << " , p_posy = " << p_posy << "\n";
+	f << "debug = " << debug << "\n";
+	f << "ech_temps = " << time_scale << "\n";
 
-		f << "\n";
+	f << "\n";
 }
 
 
