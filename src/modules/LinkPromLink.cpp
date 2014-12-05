@@ -32,13 +32,29 @@ void LinkPromLink::realize() {
 	if(link->secondary > 0) { dynamic_cast<LinkLinkComponent*>(component)->dashed = true;}
 }
 
+void LinkPromLink::connect(ModulePromGroup* src, ModulePromGroup* dst) {
+	if(!src || !dst) { ERROR("Connection error"); return; }
+	Link::connect(src,dst);
+	link->src = src->group;
+	link->dst = dst->group;
+}
 
+void LinkPromLink::connect(Module* src, Module* dst) {
+	if(dynamic_cast<ModulePromGroup*>(src) && dynamic_cast<ModulePromGroup*>(dst))
+		connect(dynamic_cast<ModulePromGroup*>(src),dynamic_cast<ModulePromGroup*>(dst));
+	else Link::connect(src,dst);
+}
 
 std::ostream& operator<<(std::ostream& os, LinkPromLink* a) {
 	a->dump(os);
 	return os;
 }
 
+
+Link* LinkPromLink::copy() {
+	LinkPromLink* l = new LinkPromLink(link->copy());
+	return l;
+}
 
 void LinkPromLink::detach(bool bSlave) {
 	if(!bAttached) return;

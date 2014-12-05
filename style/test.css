@@ -1,5 +1,5 @@
 
-.tag_0 {	glow:10 red 0.3;	recursive:1;	pretty:0;}
+.tag_0 {	glow:10 red 0.3;	recursive:1;	pretty:1;}
 .tag_1 {	glow:10 blue 0.3;	recursive:1;	pretty:0;}
 .tag_2 {	glow:10	yellow 0.3;	recursive:1;	pretty:0;}
 .tag_3 {	glow:10 green 0.3;	recursive:1;	pretty:0;}
@@ -18,7 +18,7 @@ module.algo {
 module.neural {
 	font:Ubuntu;
 	font-size:150;
-	text-align:middle;
+	text-align:bottom;
 }
 
 module.custom_cpp {

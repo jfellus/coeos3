@@ -13,16 +13,6 @@
 
 static int _next_free_no_name = 1;
 
-PromGroup::PromGroup(PromProject* project, const std::string& nametype) {
-	this->project = project;
-	ModuleDef* md = ModulesLibrary::get(nametype);
-
-	type = md->get_type_no();
-	group = md->get_group_name();
-	nb_neurons = "1";
-	width = height = "1";
-	script = NULL;
-}
 
 PromGroup::PromGroup(PromScript* script, const std::string& nametype) {
 	this->script = script;
@@ -32,12 +22,57 @@ PromGroup::PromGroup(PromScript* script, const std::string& nametype) {
 
 	type = md->get_type_no();
 	group = md->get_group_name();
+	nb_neurons = "1";
+	width = height = "1";
+	no_name = script->new_noname();
 }
 
 PromGroup::PromGroup(PromScript* script, std::istream& f) {
 	this->script = script;
 	this->project = script->project;
 	read(f);
+}
+
+PromGroup::PromGroup(const PromGroup& g) {
+	project = g.script->project;
+	script = g.script;
+
+	type = g.type;
+	group = g.group;
+	nb_neurons = g.nb_neurons;
+	width = g.width;
+	height = g.height;
+	no_name = script->new_noname();
+
+	posx = g.posx;
+	posy = g.posy;
+
+	nb_neurons = g.nb_neurons;
+	width = g.width; height = g.height;
+
+	custom_function = g.custom_function;
+	type2 = g.type2;
+	debug = g.debug;
+	reverse = g.reverse;
+
+	p_posx = g.p_posx; p_posy = g.p_posy;
+
+	learning_rate = g.learning_rate;
+	simulation_speed = g.simulation_speed;
+	threshold = g.threshold;
+	alpha = g.alpha;
+	tolerance = g.tolerance;
+	dvp = g.dvp, dvn = g.dvn;
+	nbre_de_1 = g.nbre_de_1;
+	sigma_f = g.sigma_f;
+	noise_level = g.noise_level;
+	time_spectrum_min = g.time_spectrum_min;
+	time_spectrum_max = g.time_spectrum_max;
+
+	time_scale = g.time_scale;
+	comments = g.comments;
+
+	script->add_group(this);
 }
 
 PromGroup::~PromGroup() {
@@ -115,10 +150,17 @@ void PromGroup::read(std::istream& f) {
 
 void PromGroup::write(std::ostream& f) {
 	// Preparation
-	if(no_name.empty()) {no_name = TOSTRING(_next_free_no_name); _next_free_no_name++; }
+	if(no_name.empty()) ERROR("EMPTY NO_NAME !");
 
 	// Writing
 	f_write_comments(f, comments);
+	f << "%";
+	std::string s = str_replace(comments, "\n", "\n%");
+	while(s[s.size()-1]=='%') s = s.substr(0, s.size()-1);
+	f << s;
+	if(s[s.size()-1]!='\n') f << '\n';
+
+
 		f << "groupe = " << no_name << " , type = "<< type << " , nbre neurones = "
 						<< nb_neurons << " , seuil = "<< threshold << "\n";
 		f << "taillex = "<< width << " , tailley = " << height << "\n";
@@ -161,8 +203,15 @@ void PromGroup::write(std::ostream& f) {
 }
 
 
+PromGroup* PromGroup::copy() {
+	return new PromGroup(*this);
+}
+
+
 std::ostream& operator<<(std::ostream& os, PromGroup* a) {
 	a->dump(os);
 	return os;
 }
+
+
 

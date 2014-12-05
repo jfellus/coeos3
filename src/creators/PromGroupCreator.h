@@ -25,7 +25,9 @@ public:
 
 
 	virtual void create(double x, double y) {
-		PromGroup* promGroup = new PromGroup(project, nametype);
+		GroupPromScript* gps = PromWorkbench::cur()->get_script_at(x,y);
+		if(!gps) return;
+		PromGroup* promGroup = new PromGroup(gps->script, nametype);
 		promGroup->posx = (int)(x/10);
 		promGroup->posy = (int)(y/10);
 

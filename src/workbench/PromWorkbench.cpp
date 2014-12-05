@@ -25,6 +25,7 @@
 #include "../commands/CommandSetTagName.h"
 #include "../commands/CommandScriptSetProperty.h"
 #include "../promethe/launcher/Launcher.h"
+#include "widgets/BugTracker.h"
 
 
 
@@ -34,6 +35,9 @@ static void on_export_script() { PromWorkbench::cur()->export_script(); }
 static void on_run() {PromWorkbench::cur()->run_project(); }
 static void on_stop() {PromWorkbench::cur()->stop_project(); }
 static void on_scale_selection(double x, double y, double dx, double dy) {PromWorkbench::cur()->scale_selection(dy);}
+static void on_copy() {PromWorkbench::cur()->copy(); }
+static void on_paste() {PromWorkbench::cur()->paste(); }
+static void on_cut() {PromWorkbench::cur()->cut(); }
 
 PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbench::cur()); }
 
@@ -41,10 +45,14 @@ PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbe
 PromWorkbench::PromWorkbench() {
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_s, 0, on_create_script));
 
+	win->set_title("Coeos++");
+
 	win->add_tab(docBrowser = new DocBrowser(), "Doc");
 	win->add_tab(scriptsForm = new ScriptsForm(), "Scripts");
 	win->add_tab(createForm = new CreateForm(), "Create");
 	win->add_tab(tagsForm = new TagsForm(), "Tags");
+	win->add_tab(bugTracker = new BugTracker(), "Bugs");
+
 
 	win->add_menu("_File>__", on_import_script, win->get_menu_pos("_File>_Save as")+1);
 	win->add_menu("_File>_Import script", on_import_script, win->get_menu_pos("_File>_Save as")+2);
@@ -57,8 +65,12 @@ PromWorkbench::PromWorkbench() {
 
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_F5, 0, on_run));
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_F6, 0, on_stop));
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_v, GDK_CONTROL_MASK, on_paste));
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_c, GDK_CONTROL_MASK, on_copy));
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_x, GDK_CONTROL_MASK, on_cut));
 
-	canvas->add_scroll_listener(new IScrollListener(GDK_CONTROL_MASK|GDK_SHIFT_MASK, ::on_scale_selection));
+
+	canvas->add_scroll_listener(new IScrollListener(GDK_CONTROL_MASK|GDK_SUPER_MASK, ::on_scale_selection));
 
 	// Load config
 
@@ -176,7 +188,7 @@ void PromWorkbench::create_link() {
 
 
 void PromWorkbench::update(bool force) {
-	set_title(TOSTRING("Coeos++ - " << project->net->filename));
+	set_title(TOSTRING("Coeos++ - " << ((project && project->net) ? project->net->filename : "")));
 	Workbench::update(force);
 	if(bPreventUpdating && !force) return;
 	scriptsForm->update();
@@ -186,10 +198,14 @@ void PromWorkbench::update(bool force) {
 
 
 
+
+
+
 void PromWorkbench::on_selection_change() {
 	Workbench::on_selection_change();
 	win->enable_menu("_File>_Export script", dynamic_cast<GroupPromScript*>(get_single_selected_module())!=0 );
 }
+
 
 void PromWorkbench::scale_selection(double amount) {
 	amount=1-amount*0.04;
@@ -286,7 +302,12 @@ void PromWorkbench::set_script_property(const std::string& scriptname, const std
 	(new CommandScriptSetProperty(n,key,value))->execute();
 }
 
-
+GroupPromScript* PromWorkbench::get_script_at(double x, double y) {
+	if(!project) return NULL;
+	Module* g = Document::cur()->get_group_at(x,y);
+	while(g!=NULL && !dynamic_cast<GroupPromScript*>(g)) { g = g->parent; }
+	return dynamic_cast<GroupPromScript*>(g);
+}
 
 void PromWorkbench::run_project() {
 	if(!project) return;

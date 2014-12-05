@@ -110,6 +110,17 @@ int PromProject::infer_timescale(Group* g) {
 	return ts;
 }
 
+void PromProject::process_cross_script_link(LinkPromLink* link) {
+	if(Workbench::cur()->question("Generate f_send / f_receive pairs for cross-script links ?")) {
+		ERROR("Not implemented yet ... sorry");
+		remove(link);
+		link->detach();
+	} else {
+		remove(link);
+		link->detach();
+	}
+}
+
 void PromProject::save_script(PromScript* script) {
 	int max_timescale = 0;
 

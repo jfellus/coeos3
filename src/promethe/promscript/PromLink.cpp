@@ -15,6 +15,25 @@ PromLink::PromLink(PromProject* project, int type) {
 	script = NULL;
 }
 
+PromLink::PromLink(const PromLink& l) {
+	project = l.project;
+	src = l.src;
+	dst = l.dst;
+	type = l.type;
+	script = l.script;
+	name = l.name;
+	norm = l.norm;
+	dv_x = l.dv_x;
+	dv_y = l.dv_y;
+	nb = l.nb;
+	mem_time_in = l.mem_time_in;
+	mem_time_out = l.mem_time_out;
+	computation_mode = l.computation_mode;
+	secondary = l.secondary;
+	proba = l.proba;
+	comments = l.comments;
+}
+
 PromLink::PromLink(PromScript* script, std::istream& f) {
 	this->script = script;
 	this->project = script->project;
@@ -80,6 +99,11 @@ void PromLink::write(std::ostream& f) {
 
 	if(!proba.empty()) f << "                         proba = " << proba << " \n";
 
+}
+
+
+PromLink* PromLink::copy() {
+	return new PromLink(*this);
 }
 
 

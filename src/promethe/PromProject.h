@@ -62,6 +62,8 @@ public:
 	void layout_scripts();
 	void save_to_single_script(const std::string& filename);
 	int infer_timescale(Group* g);
+
+	void process_cross_script_link(LinkPromLink* link);
 };
 
 

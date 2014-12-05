@@ -13,8 +13,10 @@
 #include "widgets/DocBrowser.h"
 #include "widgets/CreateForm.h"
 #include "widgets/TagsForm.h"
+#include "widgets/BugTracker.h"
 
 class PromProject;
+class GroupPromScript;
 
 class PromWorkbench : public Workbench {
 public:
@@ -24,6 +26,8 @@ public:
 	DocBrowser* docBrowser = 0;
 	CreateForm* createForm = 0;
 	TagsForm* tagsForm = 0;
+	BugTracker* bugTracker = 0;
+
 
 
 public:
@@ -67,12 +71,14 @@ public:
 	virtual void on_selection_change();
 	virtual void scale_selection(double amount);
 
+
 	/////////////
 	// SCRIPTS //
 	/////////////
 
 	virtual void set_script_property(const std::string& scriptname, const std::string& key, const std::string& value);
 
+	GroupPromScript* get_script_at(double x, double y);
 
 	//////////
 	// TAGS //     // TODO Perhaps move to libboiboites

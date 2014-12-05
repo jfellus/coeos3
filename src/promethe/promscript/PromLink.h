@@ -39,10 +39,13 @@ public:
 public:
 	PromLink(PromProject* project, int type);
 	PromLink(PromScript* script, std::istream& f);
+	PromLink(const PromLink& l);
 
 	virtual ~PromLink();
 
 	bool is_type_algo() {return type==5; }
+
+	PromLink* copy();
 
 	void read(std::istream& f);
 	void write(std::ostream& f);

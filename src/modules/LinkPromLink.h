@@ -12,6 +12,8 @@
 #include <module/Link.h>
 #include "../promethe/promscript/PromLink.h"
 
+class ModulePromGroup;
+
 
 class LinkPromLink : public Link, IPropertiesListener {
 public:
@@ -39,6 +41,9 @@ public:
 
 	virtual ~LinkPromLink();
 
+	virtual void connect(ModulePromGroup* src, ModulePromGroup* dst);
+	virtual void connect(Module* src, Module* dst);
+
 	virtual void dump(std::ostream& os) {
 		os << "LPL(" << link << ")";
 	}
@@ -47,7 +52,7 @@ public:
 		if(name=="name") { text = val; }
 	}
 
-
+	virtual Link* copy();
 	virtual void detach(bool bSlave = false);
 	virtual void attach();
 

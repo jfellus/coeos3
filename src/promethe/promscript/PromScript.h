@@ -49,6 +49,13 @@ public:
 		return NULL;
 	}
 
+	std::string new_noname() {
+		std::string no_name = "0";
+		for(uint i=0; i<groups.size(); i++) {
+			if(TOINT(groups[i]->no_name) >= TOINT(no_name)) no_name = TOSTRING(TOINT(groups[i]->no_name)+1);
+		}
+		return no_name;
+	}
 
 	void add_group(PromGroup* group) { groups.push_back(group); group->script = this; }
 	void add_link(PromLink* link) {

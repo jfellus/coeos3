@@ -21,7 +21,6 @@ class PromGroup {
 public:
 	PromProject* project = NULL;
 
-	std::string name; // TODO Use this !
 	Properties annotations;
 
 	std::string nb_neurons = "1";
@@ -57,9 +56,9 @@ public:
 
 	std::string comments;
 public:
-	PromGroup(PromProject* project, const std::string& nametype);
 	PromGroup(PromScript* script, const std::string& nametype);
 	PromGroup(PromScript* script, std::istream& f);
+	PromGroup(const PromGroup& g);
 
 	virtual ~PromGroup();
 
@@ -69,7 +68,7 @@ public:
 	}
 
 	std::string get_name() {
-		return custom_function.empty() ?  (is_type_algo() ? "" : group) : "(custom c++)";
+		return custom_function.empty() ?  (is_type_algo() ? annotations.get_as_string("name") : group) : "(custom c++)";
 	}
 
 	void set_type(const std::string& s) {
@@ -85,13 +84,14 @@ public:
 	}
 
 	void set_name(const std::string& s) {
-		if(is_type_algo()) { no_name = s; }
-		else group = s;
+		if(!is_type_algo()) group = s;
+		else annotations.set("name", s);
 	}
 
 	bool is_type_algo() { return type==14; }
 
 
+	PromGroup* copy();
 
 	void read(std::istream& f);
 
