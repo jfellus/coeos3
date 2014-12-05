@@ -76,7 +76,8 @@ int main(int argc, char** argv) {
 	PromWorkbench* w = new PromWorkbench();
 
 
-	w->open("/home/jfellus/Bureau/dsm/3/dsm.net");
+//	w->open("/home/jfellus/Bureau/dsm/3/dsm.net");
+	w->new_document();
 	//create_engine(); // TEST NEWTON DYNAMICS
 
 	w->canvas->add_key_listener(new IKeyListener(GDK_KEY_l, GDK_CONTROL_MASK, on_key_layout));
