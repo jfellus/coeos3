@@ -4,6 +4,8 @@
 #include <dynamics/ModuleBody.h>
 #include <style/CSSDefinitions.h>
 
+using namespace libboiboites;
+using namespace coeos;
 
 
 static void create_random_graph(int N = 100, int NL = 2) {

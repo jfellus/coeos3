@@ -10,6 +10,10 @@
 #include "../promethe/PromProject.h"
 #include <components/LinkLinkComponent.h>
 
+using namespace libboiboites;
+namespace coeos {
+
+
 
 
 LinkPromLink::~LinkPromLink() { link->project->remove(this); delete link; }
@@ -30,6 +34,11 @@ void LinkPromLink::realize() {
 	}
 
 	if(link->secondary > 0) { dynamic_cast<LinkLinkComponent*>(component)->dashed = true;}
+
+	if(link->annotations.get("bezier_x2")) component->b->x2 = TOFLOAT(link->annotations.get_as_string("bezier_x2"));
+	if(link->annotations.get("bezier_y2")) component->b->y2 = TOFLOAT(link->annotations.get_as_string("bezier_y2"));
+	if(link->annotations.get("bezier_x3")) component->b->x3 = TOFLOAT(link->annotations.get_as_string("bezier_x3"));
+	if(link->annotations.get("bezier_y3")) component->b->y3 = TOFLOAT(link->annotations.get_as_string("bezier_y3"));
 }
 
 void LinkPromLink::connect(ModulePromGroup* src, ModulePromGroup* dst) {
@@ -70,3 +79,13 @@ void LinkPromLink::attach() {
 
 void LinkPromLink::scale(float amount) { ((LinkLinkComponent*)component)->scale(amount);}
 
+
+void LinkPromLink::on_change() {
+	link->annotations.set("bezier_x2", TOSTRING(component->b->x2));
+	link->annotations.set("bezier_y2", TOSTRING(component->b->y2));
+	link->annotations.set("bezier_x3", TOSTRING(component->b->x3));
+	link->annotations.set("bezier_y3", TOSTRING(component->b->y3));
+}
+
+
+}

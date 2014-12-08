@@ -11,6 +11,10 @@
 #include <util/utils.h>
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
 static int _next_free_no_name = 1;
 
 
@@ -21,7 +25,13 @@ PromGroup::PromGroup(PromScript* script, const std::string& nametype) {
 	ModuleDef* md = ModulesLibrary::get(nametype);
 
 	type = md->get_type_no();
-	group = md->get_group_name();
+	if(md->is_type_custom()) {
+		custom_function = md->get_group_name();
+		group = "f_custom_c++";
+	}
+	else if(md->is_type_algo()) group = md->get_group_name();
+	else group = "";
+
 	nb_neurons = "1";
 	width = height = "1";
 	no_name = script->new_noname();
@@ -99,6 +109,16 @@ void PromGroup::parse_comments_annotations() {
 			annotations.set(key,value);
 		}
 	}
+
+	int curline = 0;
+	for(uint i=0; i<comments.size(); i++) {
+		if(comments[i]=='\n') curline = i+1;
+		else if(comments[i]=='@') {
+			while(comments[i]!='\n' && i<comments.size()) i++;
+			comments.erase(curline, i-curline+1);
+			i = curline;
+		}
+	}
 }
 
 void PromGroup::read(std::istream& f) {
@@ -144,7 +164,7 @@ void PromGroup::read(std::istream& f) {
 	  }
 
 	f_try_read(f, 			"type2  = %u \n", type2);
-	f_try_read(f, 			"groupe = %s\n", group);
+	try {f_try_read(f, 			"groupe = %s\n", group);} catch(...) {}
 	f_try_read(f, "posx = %s , ", posx);
 	f_try_read(f, "posy = %s\n", posy);
 	f_try_read(f, 			"reverse = %u\n", reverse);
@@ -221,4 +241,4 @@ std::ostream& operator<<(std::ostream& os, PromGroup* a) {
 }
 
 
-
+}

@@ -13,6 +13,10 @@
 #include "../style/Tags.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
 class CommandDeleteTag : public Command {
 public:
 	std::string tagname;
@@ -40,5 +44,8 @@ public:
 		return TOSTRING("Delete Tag " << tagname);
 	}
 };
+
+
+}
 
 #endif /* CommandDeleteTag_H_ */

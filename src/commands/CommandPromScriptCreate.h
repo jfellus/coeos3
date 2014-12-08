@@ -13,6 +13,11 @@
 #include "../promethe/PromProject.h"
 
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
 class CommandPromScriptCreate : public Command {
 public:
 	PromProject* project;
@@ -41,4 +46,8 @@ public:
 		return "Create script";
 	}
 };
+
+
+}
+
 #endif /* COMMANDPROMSCRIPTCREATE_H_ */

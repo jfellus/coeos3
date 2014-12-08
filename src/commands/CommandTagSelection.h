@@ -14,6 +14,14 @@
 #include <module/Link.h>
 #include "../style/Tags.h"
 
+
+
+using namespace libboiboites;
+namespace coeos {
+
+
+
+
 class CommandTagSelection : public Command {
 public:
 	std::string tagname;
@@ -50,5 +58,9 @@ public:
 		return "Tag selection";
 	}
 };
+
+
+}
+
 
 #endif /* COMMANDTAGSELECTION_H_ */

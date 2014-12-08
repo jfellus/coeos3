@@ -15,6 +15,12 @@
 #include "../style/Tags.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
+
+
 class CommandUntagSelection : public Command {
 public:
 	std::string tagname;
@@ -51,5 +57,10 @@ public:
 		return "Untag selection";
 	}
 };
+
+
+
+}
+
 
 #endif /* CommandUntagSelection_H_ */

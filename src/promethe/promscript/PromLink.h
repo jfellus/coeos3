@@ -10,6 +10,10 @@
 
 #include "PromGroup.h"
 
+using namespace libboiboites;
+namespace coeos {
+
+
 class PromScript;
 class PromProject;
 
@@ -19,6 +23,8 @@ public:
 	PromGroup *src = NULL, *dst = NULL;
 
 	std::string name;
+
+	Properties annotations;
 
 	int type;
 	std::string norm = "0.1";
@@ -54,9 +60,15 @@ public:
 		os << "PromLink(" << src << ", " << dst << "," << type << ")";
 	}
 	friend std::ostream& operator<<(std::ostream& os, PromLink* a);
+
+protected:
+	void parse_comments_annotations();
 };
 
 std::ostream& operator<<(std::ostream& os, PromLink* a);
 
+
+
+}
 
 #endif /* PROMLINK_H_ */

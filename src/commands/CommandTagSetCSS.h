@@ -13,6 +13,12 @@
 #include "../style/Tags.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
+
+
 class CommandTagSetCSS : public Command {
 public:
 	std::string tagname;
@@ -53,5 +59,9 @@ public:
 		return TOSTRING("Style Tag " << css);
 	}
 };
+
+
+}
+
 
 #endif /* CommandTagSetCSS_H_ */

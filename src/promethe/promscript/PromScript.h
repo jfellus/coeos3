@@ -16,6 +16,8 @@
 #include "PromLink.h"
 #include "../promtools.h"
 
+using namespace libboiboites;
+namespace coeos {
 
 
 class Exception_GroupNotFound : public BasicException {
@@ -144,6 +146,7 @@ public:
 
 std::ostream& operator<<(std::ostream& os, PromScript* a);
 
+}
 
 
 #endif /* PROMSCRIPT_H_ */

@@ -10,6 +10,11 @@
 #include <dlfcn.h>
 #include <style/SVGDefinitions.h>
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
 std::vector<ModuleDef*> ModulesLibrary::defs;
 
 
@@ -93,4 +98,7 @@ void ModulesLibrary::load_custom_cpp_lib(const std::string& filename) {
 	f.close();
 	unlink("/tmp/.coeos_load_custom_cpp_lib");
 	return;
+}
+
+
 }

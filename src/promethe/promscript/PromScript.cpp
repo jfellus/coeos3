@@ -9,6 +9,9 @@
 #include "../promnet/PromNode.h"
 #include "../promnet/PromNet.h"
 
+using namespace libboiboites;
+namespace coeos {
+
 
 PromScript::~PromScript() {
 	if(node) {delete node; node = 0;}
@@ -32,4 +35,6 @@ std::ostream& operator<<(std::ostream& os, PromScript* a) {
 void PromScript::save() {
 	DBG("Save script " << name << " to " << node->get_filename());
 	save_as(node->get_filename());
+}
+
 }

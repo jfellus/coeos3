@@ -12,6 +12,10 @@
 #include <module/Document.h>
 #include "../style/Tags.h"
 
+using namespace libboiboites;
+namespace coeos {
+
+
 
 class CommandCreateTag : public Command {
 public:
@@ -40,5 +44,8 @@ public:
 		return TOSTRING("Create Tag " << tagname);
 	}
 };
+
+
+}
 
 #endif /* CommandCreateTag_H_ */

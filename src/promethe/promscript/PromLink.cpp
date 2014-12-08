@@ -8,6 +8,12 @@
 #include "PromLink.h"
 #include "PromScript.h"
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
+
 PromLink::PromLink(PromProject* project, int type) {
 	this->project = project;
 	src = dst =  NULL;
@@ -49,6 +55,9 @@ void PromLink::read(std::istream& f) {
 	std::string _dst;
 
 	comments = f_read_comments(f);
+	parse_comments_annotations();
+
+
 	f_try_read(f, "liaison entre %s   et ", _src);
 	f_try_read(f, "%s , ", _dst);
 	f_try_read(f, "type = %u , ", type);
@@ -80,13 +89,17 @@ void PromLink::read(std::istream& f) {
 
 void PromLink::write(std::ostream& f) {
 	f_write_comments(f, comments);
+	for(uint i=0; i<annotations.size(); i++) {
+		if(annotations[i]->get_value_as_string().empty()) continue;
+		f << "%@" << annotations[i]->name << "=" << annotations[i]->get_value_as_string() << "\n";
+	}
+
 	f << "liaison entre "<< src->no_name << "   et  "<< dst->no_name << " , type = "<< type << " , nbre = "<< nb
 			<< " , norme = " << norm << "\n";
 	f << "                         temps de memorisation entree= " << mem_time_in << " \n";
 	f << "                         temps de memorisation sortie= " << mem_time_out <<" \n";
 	f << "                         mode de calcul        = " << computation_mode << " \n";
 	f << "                         secondaire            = " << secondary << " \n";
-
 
 
 	if (type == No_l_algorithmique || type == No_l_neuro_mod || type == No_l_1_1_non_modif_bloqueur)
@@ -102,6 +115,33 @@ void PromLink::write(std::ostream& f) {
 }
 
 
+
+void PromLink::parse_comments_annotations() {
+	int key_i=-1, v_i=-1, v_j=-1;
+	std::string key,value;
+	for(uint i=0; i<comments.size(); i++) {
+		if(key_i==-1 && v_i==-1 && comments[i]=='@') {key_i = i+1;}
+		else if(key_i != -1 && comments[i]=='=') {v_i=i+1;}
+		else if(v_i!=-1 && (isspace(comments[i]) || i==comments.size()-1 || comments[i]=='\n')) {
+			v_j=i;
+			key = str_trim(comments.substr(key_i, v_i-key_i-1));
+			value = str_trim(comments.substr(v_i,v_j));
+			annotations.set(key,value);
+		}
+	}
+
+	int curline = 0;
+	for(uint i=0; i<comments.size(); i++) {
+		if(comments[i]=='\n') curline = i+1;
+		else if(comments[i]=='@') {
+			while(comments[i]!='\n' && i<comments.size()) i++;
+			comments.erase(curline, i-curline+1);
+			i = curline;
+		}
+	}
+}
+
+
 PromLink* PromLink::copy() {
 	return new PromLink(*this);
 }
@@ -110,4 +150,6 @@ PromLink* PromLink::copy() {
 std::ostream& operator<<(std::ostream& os, PromLink* a) {
 	a->dump(os);
 	return os;
+}
+
 }

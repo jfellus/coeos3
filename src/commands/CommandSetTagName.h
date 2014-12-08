@@ -13,6 +13,13 @@
 #include "../style/Tags.h"
 
 
+
+
+using namespace libboiboites;
+namespace coeos {
+
+
+
 class CommandSetTagName : public Command {
 public:
 	Tag* tag = NULL;
@@ -42,5 +49,10 @@ public:
 		return TOSTRING("Rename Tag");
 	}
 };
+
+
+
+}
+
 
 #endif /* CommandSetTagName_H_ */

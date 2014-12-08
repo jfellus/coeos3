@@ -11,6 +11,8 @@
 #include <module/Property.h>
 #include "../promtools.h"
 
+using namespace libboiboites;
+namespace coeos {
 
 
 class ModuleDef {
@@ -118,5 +120,8 @@ public:
 protected:
 	static void load_custom_cpp_lib(const std::string& filename);
 };
+
+
+}
 
 #endif /* MODULESLIBRARY_H_ */

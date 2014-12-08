@@ -8,6 +8,11 @@
 #include "Tags.h"
 #include <module/Document.h>
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
 Tag* Tags::isolated = NULL;
 std::vector<Tag*> Tags::tags;
 
@@ -113,3 +118,4 @@ void Tag::remove(Link* l) {
 	Tags::update_isolated();
 }
 
+}

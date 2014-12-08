@@ -14,6 +14,11 @@
 #include <util/utils.h>
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
+
 class ScriptsForm : public Browser {
 public:
 
@@ -27,14 +32,11 @@ public:
 
 	virtual std::string answer(const std::string& request, const std::string& data);
 
-
-	void update() {
-		if(is_loaded())	{
-			script("update();");
-		}
-	}
-
 	virtual void on_load() {update();}
 };
 
+
+}
+
 #endif /* SCRIPTSFORM_H_ */
+

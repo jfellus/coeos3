@@ -13,6 +13,14 @@
 #include "../style/Tags.h"
 
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
+
+
+
 class CommandUnisolateTag : public Command {
 public:
 	std::string tagname;
@@ -45,5 +53,9 @@ public:
 		return TOSTRING("Unisolate");
 	}
 };
+
+
+}
+
 
 #endif /* CommandUnisolateTag_H_ */

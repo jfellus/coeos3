@@ -26,6 +26,10 @@
 #include "../commands/CommandScriptSetProperty.h"
 #include "../promethe/launcher/Launcher.h"
 #include "widgets/BugTracker.h"
+#include <workbench/Job.h>
+
+using namespace libboiboites;
+namespace coeos {
 
 
 
@@ -38,11 +42,14 @@ static void on_scale_selection(double x, double y, double dx, double dy) {PromWo
 static void on_copy() {PromWorkbench::cur()->copy(); }
 static void on_paste() {PromWorkbench::cur()->paste(); }
 static void on_cut() {PromWorkbench::cur()->cut(); }
+static void on_open_recent_document(GtkMenuItem* i, void* param) {std::string s = *((std::string*)param); PromWorkbench::cur()->open(s); }
 
 PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbench::cur()); }
 
 
 PromWorkbench::PromWorkbench() {
+	f_read_lines(TOSTRING(home() << "/.coeos++/recent.txt"),recent_documents);
+
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_s, 0, on_create_script));
 
 	win->set_title("Coeos++");
@@ -58,6 +65,9 @@ PromWorkbench::PromWorkbench() {
 	win->add_menu("_File>_Import script", on_import_script, win->get_menu_pos("_File>_Save as")+2);
 	win->add_menu("_File>_Export script", on_export_script, win->get_menu_pos("_File>_Save as")+3);
 
+	win->add_menu("_File>__", on_export_script, win->get_menu_pos("_File>_Export script")+1);
+	update_recent_menu();
+
 	win->enable_menu("_File>_Export script", false);
 
 	win->add_menu("_Create>_Script", on_create_script, win->get_menu_pos("_Create>_Module"));
@@ -70,7 +80,7 @@ PromWorkbench::PromWorkbench() {
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_x, GDK_CONTROL_MASK, on_cut));
 
 
-	canvas->add_scroll_listener(new IScrollListener(GDK_CONTROL_MASK|GDK_SUPER_MASK, ::on_scale_selection));
+	canvas->add_scroll_listener(new IScrollListener(GDK_CONTROL_MASK|GDK_SUPER_MASK, coeos::on_scale_selection));
 
 	// Load config
 
@@ -81,10 +91,27 @@ PromWorkbench::PromWorkbench() {
 
 	ModulesLibrary::add_promethe_default_libraries();
 }
+void PromWorkbench::update_recent_menu() {
+	while(win->get_menu("_File>_Export script",1)!="__")
+		win->remove_menu("_File>_Export script",1);
+	for(uint i=0; i<MIN(9,recent_documents.size()); i++)
+		win->add_menu(TOSTRING("_File>_" << i+1 << " - " << recent_documents[i]).c_str(),
+				on_open_recent_document, &recent_documents[i], win->get_menu_pos("_File>_Export script")+i+2);
+}
 
-void PromWorkbench::open(const std::string& filename) {
-	if(project) close();
+void PromWorkbench::do_open(const std::string& _filename) {
+	canvas->OFF();
+	if(project) do_close();
+	std::string filename = _filename;
 	project = new PromProject();
+
+	vector_remove(recent_documents, filename);
+	recent_documents.insert(recent_documents.begin(), filename);
+	f_write_lines(TOSTRING(home() << "/.coeos++/recent.txt"),recent_documents);
+	update_recent_menu();
+
+	STATUS("Open " << filename);
+
 	if(file_has_ext(filename, ".script") || file_has_ext(filename, ".symb")) {
 		try {
 			PromScript* s = new PromScript(filename);
@@ -92,33 +119,44 @@ void PromWorkbench::open(const std::string& filename) {
 			project->set_net(new PromNet());
 			project->net->add(new PromNode(project->net, s));
 			project->add(s);
+			set_title(TOSTRING("Coeos++ - " << filename));
 		} catch(...) {}
 	} else if(file_has_ext(filename, ".net")) {
 		project->set_net(new PromNet(filename));
 		//project->layout_scripts();
+		set_title(TOSTRING("Coeos++ - " << filename));
 	} else {
 		ERROR("Unknown file format " << filename);
 	}
 	document->update_links_layers();
 	canvas->update_layers();
 	canvas->zoom_all();
+	canvas->ON();
 	update();
 }
 
 void PromWorkbench::save() {
-	project->save_net();
+	JOB_SUBMIT("Save", PromWorkbench::cur()->project->save_net());
 }
 
-void PromWorkbench::save(const std::string& filename) {
+void PromWorkbench::do_save(const std::string& filename) {
 	if(!project) return;
+	canvas->OFF();
+
+	recent_documents.insert(recent_documents.begin(), filename);
+	f_write_lines(TOSTRING(home() << "/.coeos++/recent.txt"),recent_documents);
+
 	if(file_has_ext(filename, ".script") || file_has_ext(filename, ".symb"))
 		project->save_to_single_script(filename);
 	else if(file_has_ext(filename, ".net"))
 		project->save_net(filename);
 	else
 		ERROR("Can't save - unknown extension : " << filename);
+	canvas->ON();
 	update();
 }
+
+
 
 void PromWorkbench::import() {
 	std::string filename = open_file_dialog(win->widget);
@@ -138,6 +176,7 @@ void PromWorkbench::export_script(const std::string& filename) {
 
 
 void PromWorkbench::import(const std::string& filename) {
+	canvas->OFF();
 	if(file_has_ext(filename, ".script") || file_has_ext(filename, ".symb")) {
 		try {
 			PromScript* s = new PromScript(filename);
@@ -152,21 +191,30 @@ void PromWorkbench::import(const std::string& filename) {
 	document->update_links_layers();
 	canvas->update_layers();
 	canvas->zoom_all();
+	canvas->ON();
 	update();
 }
 
-void PromWorkbench::new_document() {
+void PromWorkbench::do_new_document() {
+	canvas->OFF();
 	if(project) close();
+	STATUS("New network");
 	project = new PromProject();
 	canvas->zoom_reset();
+	canvas->ON();
 	update();
 }
 
-void PromWorkbench::close() {
+void PromWorkbench::do_close() {
+	canvas->OFF();
+	unselect_all();
+	properties->reset();
 	if(!project) return;
 	delete project;
+	canvas->clear();
 	project = 0;
-	new_document();
+	do_new_document();
+	canvas->ON();
 	update();
 }
 
@@ -188,7 +236,6 @@ void PromWorkbench::create_link() {
 
 
 void PromWorkbench::update(bool force) {
-	set_title(TOSTRING("Coeos++ - " << ((project && project->net) ? project->net->filename : "")));
 	Workbench::update(force);
 	if(bPreventUpdating && !force) return;
 	scriptsForm->update();
@@ -319,3 +366,4 @@ void PromWorkbench::stop_project() {
 	Launcher::stop(project);
 }
 
+}

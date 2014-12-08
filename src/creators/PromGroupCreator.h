@@ -13,6 +13,9 @@
 #include "../commands/CommandPromGroupCreate.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
 
 class PromGroupCreator : public ModuleCreator {
 public:
@@ -54,6 +57,9 @@ public:
 		ModuleCreator::end();
 	}
 };
+
+
+}
 
 
 #endif /* PROMGROUPCREATOR_H_ */

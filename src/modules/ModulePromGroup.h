@@ -12,6 +12,11 @@
 #include <module/Module.h>
 #include "../promethe/promscript/PromGroup.h"
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
 class GroupPromScript;
 
 
@@ -34,7 +39,7 @@ public:
 		properties.set("width", &group->width);
 		properties.set("height", &group->height);
 
-		properties.add("comments", group->comments, "multiline");
+		properties.add("comments", &group->comments, "multiline");
 
 		properties.set("threshold", &group->threshold);
 		properties.set("simulation speed", &group->simulation_speed);
@@ -55,7 +60,6 @@ public:
 	virtual ~ModulePromGroup();
 
 	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
-		DBG("set " << name << " = " << val);
 		if(name=="type") {
 			group->set_type(val);
 			text = type = group->get_type();
@@ -96,6 +100,7 @@ private:
 
 std::ostream& operator<<(std::ostream& os, ModulePromGroup* a);
 
+}
 
 
 #endif /* MODULEPROMGROUP_H_ */

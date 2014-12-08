@@ -13,6 +13,13 @@
 #include "../style/Tags.h"
 
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
+
+
 class CommandUnlockTag : public Command {
 public:
 	std::string tagname;
@@ -42,5 +49,10 @@ public:
 		return TOSTRING("Unlock tag " << tagname);
 	}
 };
+
+
+
+}
+
 
 #endif /* CommandUnlockTag_H_ */

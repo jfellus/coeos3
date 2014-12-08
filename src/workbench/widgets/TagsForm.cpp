@@ -10,6 +10,9 @@
 #include "../../workbench/PromWorkbench.h"
 #include "../../style/Tags.h"
 
+using namespace libboiboites;
+namespace coeos {
+
 
 std::string TagsForm::answer(const std::string& request, const std::string& data) {
 	if(str_starts_with(request, "isolate/")) {
@@ -81,4 +84,6 @@ std::string TagsForm::answer(const std::string& request, const std::string& data
 		return ans;
 	}
 	return "ok";
+}
+
 }

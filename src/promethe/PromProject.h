@@ -17,6 +17,10 @@
 #include "../modules/GroupPromScript.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
 class PromProject {
 public:
 	std::vector<ModulePromGroup*> groups;
@@ -76,7 +80,7 @@ public:
 
 
 
-
+}
 
 
 #endif /* PROMPROJECT_H_ */

@@ -10,6 +10,10 @@
 #include "PromScriptCreator.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
 static std::string new_name(PromNet* net) {
 	static uint z = 1;
 	if(!net) return TOSTRING("New Script " << z++);
@@ -49,4 +53,7 @@ void PromScriptCreator::end() {
 	else (new CommandPromScriptCreate(project,script))->execute();
 	Creator::end();
 	Workbench::cur()->update();
+}
+
+
 }

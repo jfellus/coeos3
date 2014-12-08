@@ -11,7 +11,12 @@
 #include <module/Property.h>
 #include "../promscript/PromScript.h"
 
+using namespace libboiboites;
 namespace xmlpp { class Element; }
+
+namespace coeos {
+
+
 class PromNet;
 
 class PromNode : public IPropertiesElement, IPropertiesListener {
@@ -51,5 +56,8 @@ public:
 
 	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val);
 };
+
+
+}
 
 #endif /* PROMNODE_H_ */

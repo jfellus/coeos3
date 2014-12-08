@@ -40,6 +40,9 @@ module.f_checkbox {	text:none; }
 link {
 	font-size:120;
 	font-style:italic;
+	arrow-size:1;
+	arrow-size-selected:2.5;
+	thickness:0.5;
 }
 
 link.algo {
@@ -80,6 +83,7 @@ group {
 	fill-color: 1.0,1.0,1.0;
 	text-color: 0.5,0.5,0.5;
 	alpha:0.2;
+	font-size:200;
 }
 
 group.highlighted {
@@ -90,12 +94,12 @@ group.highlighted {
 }
 
 group:closed {
-	font-size:700;
+	font-size:400;
 	text-color: black;
 }
 
 group.script {
-	font-size:600;
+	font-size:300;
 	text-color:white;
 	font:Ubuntu;
 	dashed:0;

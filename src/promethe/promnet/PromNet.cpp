@@ -9,7 +9,11 @@
 #include <glibmm.h>
 #include <libxml++/libxml++.h>
 
+using namespace libboiboites;
 using namespace xmlpp;
+namespace coeos {
+
+
 
 void PromNet::realize() {
 	for(uint i=0; i<nodes.size(); i++) {
@@ -84,3 +88,4 @@ void PromNet::write_link_list(Element* node) {
 	node->add_child("link_list");
 }
 
+}

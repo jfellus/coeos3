@@ -7,6 +7,10 @@
 
 #include "Launcher.h"
 
+
+using namespace libboiboites;
+namespace coeos {
+
 class TestListener : public PromNodeThread::IRuntimeListener {
 public:
 	TestListener() {}
@@ -165,4 +169,7 @@ void PromNodeThread::run() {
 	shell(Launcher::get_start_file(node));
 	bStarted = false;
 	for(uint i=0; i<runtime_listeners.size(); i++) runtime_listeners[i]->on_stop(this);
+}
+
+
 }

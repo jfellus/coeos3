@@ -14,6 +14,12 @@
 #include "../library/ModulesLibrary.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
+
+
 class PromScript;
 class PromProject;
 
@@ -68,7 +74,7 @@ public:
 	}
 
 	std::string get_name() {
-		return custom_function.empty() ?  (is_type_algo() ? annotations.get_as_string("name") : group) : "(custom c++)";
+		return is_type_algo() ? annotations.get_as_string("name") : group;
 	}
 
 	void set_type(const std::string& s) {
@@ -109,5 +115,7 @@ protected:
 std::ostream& operator<<(std::ostream& os, PromGroup* a);
 
 
+
+}
 
 #endif /* PROMGROUP_H_ */

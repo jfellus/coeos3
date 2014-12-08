@@ -10,6 +10,11 @@
 #include "../../promethe/PromProject.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
+
 std::string ScriptsForm::answer(const std::string& request, const std::string& data) {
 	if(str_starts_with(request, "set/")) {
 		std::string s = request.substr(strlen("set/"));
@@ -34,4 +39,7 @@ std::string ScriptsForm::answer(const std::string& request, const std::string& d
 		else return "";
 	}
 	return "ok";
+}
+
+
 }

@@ -13,6 +13,10 @@
 #include <sys/stat.h>
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
 class PromNodeThread {
 public:
 	class IRuntimeListener {
@@ -60,5 +64,8 @@ protected:
 
 	static void create_thread(PromNode* node);
 };
+
+
+}
 
 #endif /* LAUNCHER_H_ */

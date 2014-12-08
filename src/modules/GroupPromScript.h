@@ -13,6 +13,13 @@
 #include "../promethe/promscript/PromScript.h"
 
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
+
+
 class GroupPromScript : public Group {
 public:
 	PromScript* script = NULL;
@@ -31,5 +38,6 @@ public:
 };
 
 
+}
 
 #endif /* GROUPPROMSCRIPT_H_ */

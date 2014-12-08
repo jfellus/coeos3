@@ -13,6 +13,11 @@
 #include "../promethe/PromProject.h"
 
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
 class CommandPromLinkCreate : public Command {
 public:
 	PromProject* project;
@@ -39,5 +44,8 @@ public:
 		return "Create link";
 	}
 };
+
+
+}
 
 #endif /* COMMANDPROMLINKCREATE_H_ */

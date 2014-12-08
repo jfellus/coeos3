@@ -8,7 +8,7 @@ function __request(what, data) {
 	return $.ajax({
 	    url: "http://localhost:"+PORT+"/"+what,
 	    beforeSend: function( xhr ) { xhr.overrideMimeType( "text/plain;" ); }, 
-	    data: data ? data : "-",
+	    data: data ? data : "",
 	    type: "POST", async: false,
 	    dataType: "text"}).responseText;
 }

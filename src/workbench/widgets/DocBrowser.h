@@ -12,6 +12,12 @@
 #include "../../modules/ModulePromGroup.h"
 #include "../../promethe/promscript/PromGroup.h"
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
+
 class DocBrowser : public Browser {
 public:
 	PromGroup* selectedGroup = 0;
@@ -49,10 +55,16 @@ public:
 		else return "src/js/doc/_default.html";
 	}
 
-	void update() {
+	virtual void do_update() {
 		if(selectedGroup==NULL) open("src/js/doc/_multiple.html");
 		else open(get_doc_page(selectedGroup));
 	}
+
+	virtual void update() { Browser::update(); }
 };
 
+
+}
+
 #endif /* DOCBROWSER_H_ */
+

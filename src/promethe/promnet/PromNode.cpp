@@ -10,6 +10,9 @@
 #include <util/utils.h>
 #include "PromNet.h"
 
+using namespace libboiboites;
+namespace coeos {
+
 using namespace xmlpp;
 
 PromNode::~PromNode() {
@@ -134,4 +137,7 @@ std::string PromNode::get_absolute_path(const std::string& filename) {
 	if(filename.empty()) return "";
 	if(!net || file_is_absolute(filename)) return filename;
 	return net->get_dir() + "/" + path_deploy + "/" + filename;
+}
+
+
 }

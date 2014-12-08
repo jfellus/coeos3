@@ -7,6 +7,9 @@
 
 #include "PromProject.h"
 
+using namespace libboiboites;
+namespace coeos {
+
 
 void PromProject::create_timescales_groups(GroupPromScript* gps) {
 	PromScript* script = gps->script;
@@ -210,7 +213,12 @@ void PromProject::set_net(PromNet* net) {
 	net->project = this;
 	try {
 		net->realize();
-		for(uint i=0; i<net->nodes.size(); i++) add(net->nodes[i]->script);
+		for(uint i=0; i<net->nodes.size(); i++) {
+			add(net->nodes[i]->script);
+			PromWorkbench::cur()->canvas->ON();
+			PromWorkbench::cur()->canvas->OFF();
+		}
 	} catch(...) {ERROR("Can't open network " << net); throw "";}
 }
 
+}

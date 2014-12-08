@@ -11,6 +11,10 @@
 #include "../modules/ModulePromGroup.h"
 #include "../modules/LinkPromLink.h"
 
+using namespace libboiboites;
+namespace coeos {
+
+
 
 class Tag {
 public:
@@ -132,5 +136,7 @@ public:
 		}
 	}
 };
+
+}
 
 #endif /* TAGS_H_ */

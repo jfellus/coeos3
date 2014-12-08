@@ -13,6 +13,10 @@
 #include "../style/Tags.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
 class CommandIsolateTag : public Command {
 public:
 	std::string tagname;
@@ -46,5 +50,9 @@ public:
 		return TOSTRING("Isolate " << tagname);
 	}
 };
+
+
+
+}
 
 #endif /* CommandIsolateTag_H_ */

@@ -12,6 +12,7 @@ $.fn.extend({
 				if(event.which==27) {this.blur();	event.preventDefault();		return;	}
 				if(!$(this).hasClass("multiline")) {
 					if(event.which==13) {this.blur();	event.preventDefault(); return;	}
+					if(event.which==10) {this.blur();	event.preventDefault(); return;	}
 				}
 			});
 			this.on('input', function(event){

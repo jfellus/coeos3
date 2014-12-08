@@ -8,6 +8,8 @@
 #include "ModulePromGroup.h"
 #include "../promethe/PromProject.h"
 
+using namespace libboiboites;
+namespace coeos {
 
 
 class ComponentPromGroup : public ModuleComponent {
@@ -26,7 +28,7 @@ public:
 		g.set_font(f, style->font, style->font_style);
 
 		render_noname(g, 0,0, hover);
-		render_nbneurons(g, x, 0, hover);
+		render_nbneurons(g, x, -50, hover);
 	}
 
 	void render_noname(Graphics& g, double x, double y, bool hover) {
@@ -52,7 +54,7 @@ public:
 		double stroke = hover ? MAX(10, 2/canvas->_zoom) : 10;
 		double f = hover ? MAX(90,13/canvas->_zoom) : 90;
 
-		g.set_font(f, style->font, 0x010);
+		g.set_font(f, style->font, 0x001);
 
 
 		if(mpg->group->width!="1" && mpg->group->height!="1") {
@@ -222,3 +224,4 @@ GroupPromScript* ModulePromGroup::get_script() {
 }
 
 
+}

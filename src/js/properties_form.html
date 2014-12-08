@@ -45,7 +45,7 @@ function on_change(e) {
 	if(typeof(__request)!="function") return;
 	var field = $(e).attr("class").between("field_"," ");
 	if($(e).text()=="???") $(e).addClass("undefined"); else $(e).removeClass("undefined");
-	request_set_property(field, post_encode($(e).html()));
+	request_set_property(field, post_encode($(e).html()).trim());
 }
 
 function load_properties(props) {

@@ -11,6 +11,11 @@
 #include <commands/Command.h>
 #include "../promethe/PromProject.h"
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
 class CommandPromGroupCreate : public Command {
 public:
 	PromProject* project;
@@ -38,5 +43,8 @@ public:
 		return "Create module";
 	}
 };
+
+
+}
 
 #endif /* COMMANDPROMGROUPCREATE_H_ */

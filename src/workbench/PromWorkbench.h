@@ -15,6 +15,9 @@
 #include "widgets/TagsForm.h"
 #include "widgets/BugTracker.h"
 
+using namespace libboiboites;
+namespace coeos {
+
 class PromProject;
 class GroupPromScript;
 
@@ -28,7 +31,7 @@ public:
 	TagsForm* tagsForm = 0;
 	BugTracker* bugTracker = 0;
 
-
+	std::vector<std::string> recent_documents;
 
 public:
 	static PromWorkbench* cur();
@@ -40,13 +43,14 @@ public:
 	// IO //
 	////////
 
-	virtual void new_document();
-	virtual void close();
-	virtual void open(const std::string& filename);
-	virtual void save(const std::string& filename);
 	virtual void save();
 	virtual void import();
 	virtual void export_script();
+
+	virtual void do_new_document();
+	virtual void do_close();
+	virtual void do_open(const std::string& filename);
+	virtual void do_save(const std::string& filename);
 
 	virtual void import(const std::string& filename);
 	virtual void export_script(const std::string& filename);
@@ -104,6 +108,12 @@ public:
 
 	virtual void run_project();
 	virtual void stop_project();
+
+protected:
+	void update_recent_menu();
 };
+
+
+}
 
 #endif /* PROMWORKBENCH_H_ */

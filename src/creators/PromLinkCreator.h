@@ -14,6 +14,11 @@
 #include "../commands/CommandPromLinkCreate.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
+
 class PromLinkCreator : public LinkCreator {
 public:
 	PromProject* project;
@@ -57,6 +62,9 @@ public:
 		}
 	}
 };
+
+
+}
 
 
 

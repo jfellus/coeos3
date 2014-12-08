@@ -10,6 +10,11 @@
 
 #include <widget/Browser.h>
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
 class TagsForm : public Browser {
 public:
 	TagsForm() : Browser("tags") {
@@ -21,7 +26,7 @@ public:
 	virtual std::string answer(const std::string& request, const std::string& data);
 
 
-	void update() {
+	virtual void do_update() {
 		if(bAnswering) return;
 		if(is_loaded())	{
 			script("update();");
@@ -30,5 +35,8 @@ public:
 
 	virtual void on_load() {update();}
 };
+
+
+}
 
 #endif /* TagsForm_H_ */

@@ -11,6 +11,10 @@
 
 #include <util/utils.h>
 
+
+namespace coeos {
+
+
 typedef struct type_help
 {
   char *description;
@@ -72,6 +76,6 @@ type_group_function_pointers NN_Core_function_pointers[] =
 { NULL, NULL, NULL, NULL, NULL, NULL, -1, -1 } };
 
 
-
+}
 
 #endif /* MODULES_LIBRARY_DEFS_H_ */

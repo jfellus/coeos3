@@ -10,6 +10,9 @@
 #include "promtools.h"
 
 
+namespace coeos {
+
+
 #define LINE_MAX 10000
 
 
@@ -77,3 +80,4 @@ bool LINK_TYPE_HAS_NAME(int link_type) {
 
 
 
+}

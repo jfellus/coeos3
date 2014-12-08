@@ -10,6 +10,10 @@
 
 #include <widget/Browser.h>
 
+using namespace libboiboites;
+namespace coeos {
+
+
 class CreateForm : public Browser {
 public:
 	CreateForm() : Browser("create") {
@@ -21,13 +25,10 @@ public:
 	virtual std::string answer(const std::string& request, const std::string& data);
 
 
-	void update() {
-		if(is_loaded())	{
-			script("update();");
-		}
-	}
-
 	virtual void on_load() {update();}
 };
+
+}
+
 
 #endif /* CREATEFORM_H_ */

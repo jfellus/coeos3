@@ -13,6 +13,13 @@
 #include "../promethe/promnet/PromNode.h"
 
 
+
+
+using namespace libboiboites;
+namespace coeos {
+
+
+
 class CommandScriptSetProperty : public Command {
 public:
 	PromNode* node;
@@ -42,5 +49,10 @@ public:
 		return TOSTRING("Script set " << key);
 	}
 };
+
+
+
+}
+
 
 #endif /* CommandScriptSetProperty_H_ */

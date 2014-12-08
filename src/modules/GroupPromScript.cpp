@@ -12,6 +12,12 @@
 #include "../workbench/PromWorkbench.h"
 
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
+
 GroupPromScript::GroupPromScript(PromScript* script) : script(script) {
 	project = script->project;
 	node = script->node;
@@ -51,3 +57,4 @@ void GroupPromScript::attach() {
 
 
 
+}

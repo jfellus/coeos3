@@ -12,6 +12,12 @@
 #include "../promethe/PromProject.h"
 #include "../commands/CommandPromScriptCreate.h"
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
+
 class PromScriptCreator : public Creator {
 public:
 	PromProject* project;
@@ -32,6 +38,10 @@ public:
 		dummy_group->component->center(Vector2D(x,y));
 	}
 };
+
+
+}
+
 
 
 #endif /* PROMSCRIPTCREATOR_H_ */

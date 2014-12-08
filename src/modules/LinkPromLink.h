@@ -12,6 +12,11 @@
 #include <module/Link.h>
 #include "../promethe/promscript/PromLink.h"
 
+
+using namespace libboiboites;
+namespace coeos {
+
+
 class ModulePromGroup;
 
 
@@ -52,6 +57,9 @@ public:
 		if(name=="name") { text = val; }
 	}
 
+
+	virtual void on_change();
+
 	virtual Link* copy();
 	virtual void detach(bool bSlave = false);
 	virtual void attach();
@@ -66,6 +74,9 @@ private:
 std::ostream& operator<<(std::ostream& os, LinkPromLink* a);
 
 
+}
+
 
 
 #endif /* LINKPROMLINK_H_ */
+

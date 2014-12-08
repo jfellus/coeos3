@@ -13,6 +13,10 @@
 #include "../style/Tags.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
 class CommandLockTag : public Command {
 public:
 	std::string tagname;
@@ -42,5 +46,9 @@ public:
 		return TOSTRING("Lock tag " << tagname);
 	}
 };
+
+
+}
+
 
 #endif /* CommandLockTag_H_ */

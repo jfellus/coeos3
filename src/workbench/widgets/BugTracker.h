@@ -10,6 +10,10 @@
 
 #include <widget/Browser.h>
 
+using namespace libboiboites;
+namespace coeos {
+
+
 class BugTracker : public Browser {
 public:
 	BugTracker() : Browser("bugs") {
@@ -17,5 +21,9 @@ public:
 	}
 	virtual ~BugTracker() {}
 };
+
+
+}
+
 
 #endif /* BUGTRACKER_H_ */

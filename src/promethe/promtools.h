@@ -11,6 +11,9 @@
 #include <util/utils.h>
 
 
+namespace coeos {
+
+
 #define No_Hebb              0
 #define No_Winner            1
 #define No_Kohonen           2
@@ -89,6 +92,7 @@ extern const char* PROM_GROUP_TYPES[];
 bool LINK_TYPE_HAS_NAME(int link_type);
 
 
+}
 
 
 #endif /* TOOLS_H_ */

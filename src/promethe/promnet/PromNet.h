@@ -11,8 +11,11 @@
 #include <util/utils.h>
 #include "PromNode.h"
 
-
+using namespace libboiboites;
 namespace xmlpp {class Element;}
+
+namespace coeos {
+
 class PromProject;
 
 class PromNet {
@@ -72,4 +75,7 @@ protected:
 	void write_link_list(xmlpp::Element* node);
 };
 
+}
+
 #endif /* PROMNET_H_ */
+

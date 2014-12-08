@@ -13,6 +13,10 @@
 #include "../style/Tags.h"
 
 
+using namespace libboiboites;
+namespace coeos {
+
+
 class CommandHideTag : public Command {
 public:
 	std::string tagname;
@@ -42,5 +46,8 @@ public:
 		return TOSTRING("Hide tag " << tagname);
 	}
 };
+
+
+}
 
 #endif /* CommandHideTag_H_ */
