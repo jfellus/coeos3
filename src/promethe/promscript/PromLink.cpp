@@ -57,7 +57,6 @@ void PromLink::read(std::istream& f) {
 	comments = f_read_comments(f);
 	parse_comments_annotations();
 
-
 	f_try_read(f, "liaison entre %s   et ", _src);
 	f_try_read(f, "%s , ", _dst);
 	f_try_read(f, "type = %u , ", type);
@@ -83,6 +82,9 @@ void PromLink::read(std::istream& f) {
 
 
 	if(_src=="-1" || _dst=="-1") return;
+
+	if(name==".") name="";
+
 	src = script->get_group_by_no_name(_src); if(!src) throw Exception_GroupNotFound(_src);
 	dst = script->get_group_by_no_name(_dst); if(!dst) throw Exception_GroupNotFound(_dst);
 }
@@ -122,11 +124,12 @@ void PromLink::parse_comments_annotations() {
 	for(uint i=0; i<comments.size(); i++) {
 		if(key_i==-1 && v_i==-1 && comments[i]=='@') {key_i = i+1;}
 		else if(key_i != -1 && comments[i]=='=') {v_i=i+1;}
-		else if(v_i!=-1 && (isspace(comments[i]) || i==comments.size()-1 || comments[i]=='\n')) {
+		else if(v_i!=-1 && ((isspace(comments[i]) || i==comments.size()-1 || comments[i]=='\n'))) {
 			v_j=i;
 			key = str_trim(comments.substr(key_i, v_i-key_i-1));
-			value = str_trim(comments.substr(v_i,v_j));
+			value = str_trim(comments.substr(v_i,v_j-v_i));
 			annotations.set(key,value);
+			key_i = -1; v_i = v_j = -1;
 		}
 	}
 
@@ -136,7 +139,7 @@ void PromLink::parse_comments_annotations() {
 		else if(comments[i]=='@') {
 			while(comments[i]!='\n' && i<comments.size()) i++;
 			comments.erase(curline, i-curline+1);
-			i = curline;
+			i = curline-1;
 		}
 	}
 }

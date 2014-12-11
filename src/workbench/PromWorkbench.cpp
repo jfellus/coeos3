@@ -87,7 +87,6 @@ PromWorkbench::PromWorkbench() {
 	CSSDefinitions::add("style/basic.defs");
 	CSSDefinitions::add("style/test.css");
 	SVGDefinitions::add("style/svg");
-	SVGDefinitions::add("style/svg2");
 
 	ModulesLibrary::add_promethe_default_libraries();
 }
@@ -153,6 +152,7 @@ void PromWorkbench::do_save(const std::string& filename) {
 	else
 		ERROR("Can't save - unknown extension : " << filename);
 	canvas->ON();
+	DBG("Saved !");
 	update();
 }
 

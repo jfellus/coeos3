@@ -215,8 +215,6 @@ void PromProject::set_net(PromNet* net) {
 		net->realize();
 		for(uint i=0; i<net->nodes.size(); i++) {
 			add(net->nodes[i]->script);
-			PromWorkbench::cur()->canvas->ON();
-			PromWorkbench::cur()->canvas->OFF();
 		}
 	} catch(...) {ERROR("Can't open network " << net); throw "";}
 }

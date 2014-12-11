@@ -51,6 +51,7 @@ public:
 		properties.set("debug", &group->debug);
 		properties.set("learning rate", &group->learning_rate);
 		properties.set("type2", &group->type2);
+		properties.set("number of 1", &group->nbre_de_1);
 
 		add_properties_listener(this);
 
