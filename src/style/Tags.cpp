@@ -90,6 +90,34 @@ void Tag::unlock() {
 	bLock = false;
 }
 
+void Tag::blur() {
+	for(uint i=0; i<modules.size(); i++) {
+		Module* m = modules[i];
+		m->add_class("blur");
+		m->unlock();
+	}
+	for(uint i=0; i<links.size(); i++) {
+		Link* l = links[i];
+		l->add_class("blur");
+		l->unlock();
+	}
+	bBlur = true;
+}
+
+void Tag::unblur() {
+	for(uint i=0; i<modules.size(); i++) {
+		Module* m = modules[i];
+		m->remove_class("blur");
+		m->unlock();
+	}
+	for(uint i=0; i<links.size(); i++) {
+		Link* l = links[i];
+		l->remove_class("blur");
+		l->unlock();
+	}
+	bBlur = false;
+}
+
 
 void Tag::add(Module* m) {
 	if(has(m)) return;

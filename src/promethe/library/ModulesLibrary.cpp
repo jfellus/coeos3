@@ -26,6 +26,7 @@ void ModulesLibrary::add_promethe_shared_info(const char* _filename) {
 	while(getline(f, s).good()) {
 		ModuleDef* m = new ModuleDef(s);
 		m->set_type_no(14);
+		m->update_svg();
 	}
 	f.close();
 }
@@ -57,6 +58,7 @@ void ModulesLibrary::add(type_group_function_pointers* p) {
 	for(uint i=0; p[i].name != NULL; i++) {
 		ModuleDef* m = new ModuleDef(p[i].name);
 		m->set_type_no(14);
+		m->update_svg();
 	}
 }
 
@@ -71,13 +73,10 @@ ModuleDef::ModuleDef(const std::string& name) {
 	}
 
 	properties.set("name", name);
-	std::string svg = SVGDefinitions::get(name);
-	if(svg.empty()) svg = SVGDefinitions::get("module_algo"); // TODO
-	properties.set("svg", svg);
-
 	set_type_no(14);
 	set_author("anonymous");
 	set_stars(rand()%5);
+	update_svg();
 }
 
 ModuleDef::~ModuleDef() {
@@ -94,11 +93,20 @@ void ModulesLibrary::load_custom_cpp_lib(const std::string& filename) {
 		std::string fname = line.substr(line.find("__custom_create_")+strlen("__custom_create_"));
 		ModuleDef* m = new ModuleDef(fname);
 		m->set_type_custom();
+		m->update_svg();
 	}
 	f.close();
 	unlink("/tmp/.coeos_load_custom_cpp_lib");
 	return;
 }
 
+void ModuleDef::update_svg() {
+	std::string svg = SVGDefinitions::get(get("name"));
+	if(svg.empty()) {
+		if(get_type_no()==14) svg = SVGDefinitions::get("module_algo");
+		else svg = SVGDefinitions::get("module_neural");
+	}
+	properties.set("svg", svg);
+}
 
 }

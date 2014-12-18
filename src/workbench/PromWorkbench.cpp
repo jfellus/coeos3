@@ -24,7 +24,11 @@
 #include "../commands/CommandUnlockTag.h"
 #include "../commands/CommandSetTagName.h"
 #include "../commands/CommandScriptSetProperty.h"
+#include "../commands/CommandBlurTag.h"
+#include "../commands/CommandUnblurTag.h"
 #include "../promethe/launcher/Launcher.h"
+#include <commands/CommandPaste.h>
+#include "../commands/CommandPasteExt.h"
 #include "widgets/BugTracker.h"
 #include <workbench/Job.h>
 
@@ -168,6 +172,30 @@ void PromWorkbench::export_script() {
 	if(!filename.empty()) export_script(filename);
 }
 
+void PromWorkbench::export_selection_as_script(const std::string& filename) {
+	create_dir_for(filename);
+	PromScript* s = new PromScript();
+	std::map<PromGroup*,PromGroup*> copies;
+	for(uint i=0; i<get_selected_modules_count(); i++) {
+		ModulePromGroup* m = dynamic_cast<ModulePromGroup*>((*get_selected_modules())[i]);
+		if(!m) continue;
+		PromGroup* c = m->group->copy();
+		copies[m->group] = c;
+		s->add_group(c);
+	}
+	for(uint i=0; i<get_selected_links_count(); i++) {
+		LinkPromLink* l = dynamic_cast<LinkPromLink*>((*get_selected_links())[i]);
+		if(!l) continue;
+		if(!l->dst->is_selected() || !l->src->is_selected()) continue;
+		PromLink* c = l->link->copy();
+		c->src = copies[c->src];
+		c->dst = copies[c->dst];
+		s->add_link(c);
+	}
+	s->save_as(filename);
+}
+
+
 void PromWorkbench::export_script(const std::string& filename) {
 	GroupPromScript* gps = dynamic_cast<GroupPromScript*>(get_single_selected_module());
 	if(!gps) return;
@@ -197,11 +225,17 @@ void PromWorkbench::import(const std::string& filename) {
 
 void PromWorkbench::do_new_document() {
 	canvas->OFF();
-	if(project) close();
+	if(project) do_close();
 	STATUS("New network");
-	project = new PromProject();
+
+	project= new PromProject();
+	project->set_net(new PromNet());
+
 	canvas->zoom_reset();
+	document->update_links_layers();
+	canvas->update_layers();
 	canvas->ON();
+	canvas->repaint();
 	update();
 }
 
@@ -209,13 +243,15 @@ void PromWorkbench::do_close() {
 	canvas->OFF();
 	unselect_all();
 	properties->reset();
-	if(!project) return;
+	update();
+	if(!project) {canvas->ON(); return;}
 	delete project;
-	canvas->clear();
 	project = 0;
+	canvas->clear();
+	canvas->repaint();
 	do_new_document();
 	canvas->ON();
-	update();
+	canvas->repaint();
 }
 
 void PromWorkbench::create_script() {
@@ -319,6 +355,22 @@ void PromWorkbench::hide_tag(const std::string& tagname) {
 	(new CommandHideTag(tagname))->execute();
 }
 
+void PromWorkbench::blur_tag(const std::string& tagname) {
+	Tag* t = Tags::get(tagname);
+	if(!t) {ERROR("Tag " << tagname << " doesn't exist"); return;}
+	if(t->bBlur) return;
+	DBG("BLUR " << tagname);
+	(new CommandBlurTag(Document::cur(),tagname))->execute();
+}
+
+void PromWorkbench::unblur_tag(const std::string& tagname) {
+	Tag* t = Tags::get(tagname);
+	if(!t) {ERROR("Tag " << tagname << " doesn't exist"); return;}
+	if(!t->bBlur) return;
+	DBG("UNBLUR " << tagname);
+	(new CommandUnblurTag(Document::cur(),tagname))->execute();
+}
+
 void PromWorkbench::lock_tag(const std::string& tagname) {
 	Tag* t = Tags::get(tagname);
 	if(!t) {ERROR("Tag " << tagname << " doesn't exist"); return;}
@@ -364,6 +416,24 @@ void PromWorkbench::run_project() {
 void PromWorkbench::stop_project() {
 	if(!project) return;
 	Launcher::stop(project);
+}
+
+void PromWorkbench::cut() {
+	shell("rm -f ~/.leto/copy_buffer.script; mkdir -p ~/.leto/");
+	Workbench::cut();
+	export_selection_as_script(TOSTRING(home() << "/.leto/copy_buffer.script"));
+}
+
+void PromWorkbench::copy() {
+	shell("rm -f ~/.leto/copy_buffer.script; mkdir -p ~/.leto/");
+	Workbench::copy();
+	export_selection_as_script(TOSTRING(home() << "/.leto/copy_buffer.script"));
+}
+
+void PromWorkbench::paste() {
+	if(file_exists(TOSTRING(home() << "/.leto/copy_buffer.script"))) {
+		(new CommandPasteExt(canvas->mousePosDoc.x, canvas->mousePosDoc.y, TOSTRING(home() << "/.leto/copy_buffer.script")))->execute();
+	} else	Workbench::paste();
 }
 
 }

@@ -61,7 +61,7 @@
 	
 	div.module {
 		text-align:left;
-		padding:10px;
+		padding:5px;
 		background:white;
 		border-bottom:1px dotted black;
 		clear:both;
@@ -79,8 +79,8 @@
 	div.module img {
 		display:inline;
 		width:auto;
-		height:30px;
-		margin:5px;
+		height:20px;
+		margin:2px;
 		margin-left:0;
 		margin-right:9px;
 	}
@@ -123,7 +123,7 @@
 		color:#4444aa;
 	}
 	.module .infos button {
-		padding:0; margin:0; font-size:10px; padding-left:2px; padding-right:2px;
+		padding:3px; margin:0; font-size:10px; padding-left:4px; padding-right:4px;
 	}
 	
 	.addrem button {
@@ -184,6 +184,18 @@ function make_lock(e) {
 	}
 }
 
+function make_blur(e) {
+	if(e.hasClass("yes")) {
+		e.attr("src", "style/blur.png");
+		$(this).css("opacity", "0.5");
+		e.click(function() {__request("tags/unblur/" + get_tagname($(this))); update();});
+	} else {
+		e.attr("src", "style/unblur.png");
+		$(this).css("opacity", "1");
+		e.click(function() {__request("tags/blur/" + get_tagname($(this))); update();});
+	}
+}
+
 var COLOR = [
              "red","blue","yellow","green", "purple","pink","magenta","cyan","grey" 
              ];
@@ -236,6 +248,7 @@ function update() {
 		for(var j=0; j<json[i]["stars"]; j++) stars+="<img src='style/star.png'>";
 		var e = $("<div class='module "+ (json[i]["isolated"]=="1" ? "isolated" : "nonisolated") +"'><table><tr><td rowspan=2>" +
 				"<img class='visible "+ (json[i]["visible"]=="1" ? "yes" : "no") +"'><br>"+
+				"<img class='blur "+ (json[i]["blur"]=="1" ? "yes" : "no") +"'><br>"+
 				"<img class='lock "+ (json[i]["lock"]=="1" ? "yes" : "no") +"'>"+
 				"</td>" +
 				"<td><h2>"+json[i]["name"]+"</h2>"+
@@ -255,6 +268,7 @@ function update() {
 		e.find(".add_selected").click(function() {__request("tags/add_selected/" + get_tagname($(this))); update();});
 		e.find(".remove_selected").click(function() {__request("tags/remove_selected/" + get_tagname($(this))); update();});
 		make_eye(e.find("img.visible"));
+		make_blur(e.find("img.blur"));
 		make_lock(e.find("img.lock"));
 		make_color_buttons(e.find(".addrem"), json[i]["class"]);
 		e.find("h2").set_editable();

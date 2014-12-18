@@ -42,6 +42,8 @@ public:
 	inline void set_stars(int nbstars) {properties.set("stars", TOSTRING(nbstars));}
 
 	inline void set_type_custom() {set_type_no(14); properties.set("custom", "1");}
+
+	void update_svg();
 };
 
 
@@ -74,6 +76,7 @@ public:
 			if(i==14) continue;
 			ModuleDef* m = new ModuleDef(names[i]);
 			m->set_type_no(i);
+			m->update_svg();
 		}
 	}
 

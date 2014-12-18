@@ -24,6 +24,7 @@ public:
 	std::vector<Link*> links;
 	bool bVisible = true;
 	bool bLock = false;
+	bool bBlur = false;
 
 	std::string css_class = "";
 public:
@@ -77,6 +78,9 @@ public:
 
 	void lock();
 	void unlock();
+
+	void blur();
+	void unblur();
 };
 
 

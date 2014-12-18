@@ -130,3 +130,6 @@ link.isolated {
 link.nonisolated {
 	opacity:0.1;
 }
+
+module.blur { opacity:0.1; }
+link.blur {opacity:0.1;}

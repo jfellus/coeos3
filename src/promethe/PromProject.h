@@ -68,6 +68,13 @@ public:
 	int infer_timescale(Group* g);
 
 	void process_cross_script_link(LinkPromLink* link);
+
+	GroupPromScript* get_owner_script(Module* m) {
+		Group* g = dynamic_cast<Group*>(m);
+		if(!g) g = m->parent;
+		while(g && !dynamic_cast<GroupPromScript*>(g)) g = g->parent;
+		return dynamic_cast<GroupPromScript*>(g);
+	}
 };
 
 

@@ -46,6 +46,7 @@ public:
 	virtual void save();
 	virtual void import();
 	virtual void export_script();
+	virtual void export_selection_as_script(const std::string& filename);
 
 	virtual void do_new_document();
 	virtual void do_close();
@@ -55,6 +56,10 @@ public:
 	virtual void import(const std::string& filename);
 	virtual void export_script(const std::string& filename);
 
+
+	virtual void cut();
+	virtual void copy();
+	virtual void paste();
 
 	/////////////
 	// METHODS //
@@ -100,6 +105,8 @@ public:
 	virtual void lock_tag(const std::string& tagname);
 	virtual void unlock_tag(const std::string& tagname);
 	virtual void change_tag_name(const std::string& oldname, const std::string& newname);
+	virtual void blur_tag(const std::string& tagname);
+	virtual void unblur_tag(const std::string& tagname);
 
 
 	/////////////

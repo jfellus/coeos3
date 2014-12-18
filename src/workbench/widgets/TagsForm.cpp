@@ -41,6 +41,12 @@ std::string TagsForm::answer(const std::string& request, const std::string& data
 	} else if(str_starts_with(request, "unlock/")) {
 		std::string tn = request.substr(strlen("unlock/"));
 		PromWorkbench::cur()->unlock_tag(tn);
+	} else if(str_starts_with(request, "blur/")) {
+		std::string tn = request.substr(strlen("blur/"));
+		PromWorkbench::cur()->blur_tag(tn);
+	} else if(str_starts_with(request, "unblur/")) {
+		std::string tn = request.substr(strlen("unblur/"));
+		PromWorkbench::cur()->unblur_tag(tn);
 	} else if(str_starts_with(request, "add_selected/")) {
 		std::string tn = request.substr(strlen("add_selected/"));
 		PromWorkbench::cur()->tag_selection(tn);
@@ -78,6 +84,7 @@ std::string TagsForm::answer(const std::string& request, const std::string& data
 			p.set("isolated", t == Tags::isolated);
 			p.set("visible", &t->bVisible);
 			p.set("lock", &t->bLock);
+			p.set("blur", &t->bBlur);
 			ans += p.to_JSON();
 		}
 		ans += " ]";

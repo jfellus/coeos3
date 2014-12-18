@@ -37,7 +37,6 @@ public:
 	bool started = false;
 
 public:
-	PromNode() {}
 	PromNode(PromNet* net, PromScript* script) : net(net), script(script) {	init(script); }
 	virtual ~PromNode();
 

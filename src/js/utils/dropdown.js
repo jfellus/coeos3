@@ -56,7 +56,7 @@ function fillGroupsDropdown() {
 function filterGroupsDropdown(val) {
 	$("#groups_dropdown .nothing").remove(); 
 	$("#groups_dropdown > ul").children().each(function(i) {
-		if(!$(this).text().startsWith(val)) {$(this).hide(); $(this).removeClass("available");}
+		if(!$(this).text().toLowerCase().startsWith(val.toLowerCase())) {$(this).hide(); $(this).removeClass("available");}
 		else {$(this).show(); $(this).addClass("available");}
 	});
 	if($("#groups_dropdown").find("li.available").length==0) {

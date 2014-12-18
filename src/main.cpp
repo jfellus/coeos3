@@ -76,7 +76,7 @@ void on_key_layout() {
 int main(int argc, char** argv) {
 	gtk_init(&argc, &argv);
 	PromWorkbench* w = new PromWorkbench();
-
+	setlocale(LC_NUMERIC, "C");
 
 //	w->open("/home/jfellus/Bureau/dsm/3/dsm.net");
 	w->new_document();

@@ -26,6 +26,7 @@ static std::string new_name(PromNet* net) {
 
 
 void PromScriptCreator::start(ZoomableDrawingArea* canvas) {
+	canvas->OFF();
 	Creator::start(canvas);
 	if(!project->net) project->set_net(new PromNet());
 
@@ -39,6 +40,12 @@ void PromScriptCreator::start(ZoomableDrawingArea* canvas) {
 
 	script = project->get(s);
 	dummy_group = project->get(f_debut);
+	dummy_group->component->center(Vector2D(x,y));
+
+	Document::cur()->update_links_layers();
+	canvas->update_layers();
+	canvas->ON();
+	Workbench::cur()->update();
 }
 
 void PromScriptCreator::create(double x, double y) {
