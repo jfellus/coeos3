@@ -50,6 +50,7 @@ public:
 	std::string get_absolute_filename();
 	std::string get_absolute_path(const std::string& filename);
 
+	void set_script_name(const std::string& name);
 
 
 	void realize();

@@ -37,7 +37,9 @@ public:
 
 	void add(PromNode* n) {
 		std::string name = n->script->name;
-		for(uint i=1; get_script_by_name(n->script->name); i++) n->script->name = TOSTRING(name << " (" << i << ")");
+		for(uint i=1; get_script_by_name(n->script->name)!=0; i++) {
+			n->set_script_name(TOSTRING(name << " (" << i << ")"));
+		}
 		nodes.push_back(n);
 	}
 	void remove(PromNode* n) {vector_remove(nodes, n);}

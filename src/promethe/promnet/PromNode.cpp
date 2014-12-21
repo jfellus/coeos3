@@ -138,6 +138,7 @@ std::string PromNode::get_filename() {
 	if(fn.empty()) fn = path_script;
 	if(fn.empty()) fn = path_symb = file_change_ext(script->name, ".symb");
 	if(!net || file_is_absolute(fn)) return fn;
+	if(path_deploy.empty()) return fn;
 	return path_deploy + "/" + fn;
 }
 
@@ -145,6 +146,11 @@ std::string PromNode::get_absolute_path(const std::string& filename) {
 	if(filename.empty()) return "";
 	if(!net || file_is_absolute(filename)) return filename;
 	return net->get_dir() + "/" + path_deploy + "/" + filename;
+}
+
+void PromNode::set_script_name(const std::string& name) {
+	script->name = name;
+
 }
 
 
