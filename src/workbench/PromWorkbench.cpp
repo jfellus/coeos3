@@ -43,15 +43,15 @@ static void on_export_script() { PromWorkbench::cur()->export_script(); }
 static void on_run() {PromWorkbench::cur()->run_project(); }
 static void on_stop() {PromWorkbench::cur()->stop_project(); }
 static void on_scale_selection(double x, double y, double dx, double dy) {PromWorkbench::cur()->scale_selection(dy);}
-static void on_copy() {PromWorkbench::cur()->copy(); }
-static void on_paste() {PromWorkbench::cur()->paste(); }
-static void on_cut() {PromWorkbench::cur()->cut(); }
 static void on_open_recent_document(GtkMenuItem* i, void* param) {std::string s = *((std::string*)param); PromWorkbench::cur()->open(s); }
+static void on_compile() {PromWorkbench::cur()->compile();}
+static void on_edit() {PromWorkbench::cur()->edit();}
 
 PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbench::cur()); }
 
 
 PromWorkbench::PromWorkbench() {
+
 	f_read_lines(TOSTRING(home() << "/.coeos++/recent.txt"),recent_documents);
 
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_s, 0, on_create_script));
@@ -76,12 +76,17 @@ PromWorkbench::PromWorkbench() {
 
 	win->add_menu("_Create>_Script", on_create_script, win->get_menu_pos("_Create>_Module"));
 
+	win->add_toolbar("new script", TOSTRING(main_dir() << "/style/icons/new_script.gif"), on_create_script, win->get_toolbar_pos("new module"));
+	win->add_toolbar("import script", TOSTRING(main_dir() << "/style/icons/import_script.gif"), on_import_script, win->get_toolbar_pos("undo")-1);
+	win->add_toolbar("export script", TOSTRING(main_dir() << "/style/icons/export_script.gif"), on_export_script, win->get_toolbar_pos("undo")-1);
+	win->add_toolbar("__");
+	win->add_toolbar("edit", TOSTRING(main_dir() << "/style/icons/edit.gif"), on_edit);
+	win->add_toolbar("compile", TOSTRING(main_dir() << "/style/icons/compile.gif"), on_compile);
+
+
 
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_F5, 0, on_run));
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_F6, 0, on_stop));
-	canvas->add_key_listener(new IKeyListener(GDK_KEY_v, GDK_CONTROL_MASK, on_paste));
-	canvas->add_key_listener(new IKeyListener(GDK_KEY_c, GDK_CONTROL_MASK, on_copy));
-	canvas->add_key_listener(new IKeyListener(GDK_KEY_x, GDK_CONTROL_MASK, on_cut));
 
 
 	canvas->add_scroll_listener(new IScrollListener(GDK_CONTROL_MASK|GDK_SUPER_MASK, coeos::on_scale_selection));
@@ -280,6 +285,10 @@ void PromWorkbench::update(bool force) {
 }
 
 
+void PromWorkbench::compile() {
+
+}
+
 
 
 
@@ -418,20 +427,23 @@ void PromWorkbench::stop_project() {
 	Launcher::stop(project);
 }
 
+static long copy_time = 0;
 void PromWorkbench::cut() {
 	shell("rm -f ~/.leto/copy_buffer.script; mkdir -p ~/.leto/");
 	Workbench::cut();
 	export_selection_as_script(TOSTRING(home() << "/.leto/copy_buffer.script"));
+	copy_time = file_get_modification_time(TOSTRING(home() << "/.leto/copy_buffer.script"));
 }
 
 void PromWorkbench::copy() {
 	shell("rm -f ~/.leto/copy_buffer.script; mkdir -p ~/.leto/");
 	Workbench::copy();
 	export_selection_as_script(TOSTRING(home() << "/.leto/copy_buffer.script"));
+	copy_time = file_get_modification_time(TOSTRING(home() << "/.leto/copy_buffer.script"));
 }
 
 void PromWorkbench::paste() {
-	if(file_exists(TOSTRING(home() << "/.leto/copy_buffer.script"))) {
+	if(file_exists(TOSTRING(home() << "/.leto/copy_buffer.script")) && abs(copy_time - file_get_modification_time(TOSTRING(home() << "/.leto/copy_buffer.script")))>2) {
 		(new CommandPasteExt(canvas->mousePosDoc.x, canvas->mousePosDoc.y, TOSTRING(home() << "/.leto/copy_buffer.script")))->execute();
 	} else	Workbench::paste();
 }

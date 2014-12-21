@@ -12,6 +12,7 @@
 #include <creator/Creator.h>
 #include "../promethe/PromProject.h"
 #include "../commands/CommandPromLinkCreate.h"
+#include "../commands/CommandPromLinkCrossScriptCreate.h"
 
 
 using namespace libboiboites;
@@ -51,12 +52,19 @@ public:
 			promLink->dst = dst->group;
 
 			if(promLink->src->script != promLink->dst->script) {
-				ERROR("Cross-script links not really handled yet... sorry");
-			} else promLink->src->script->add_link(promLink);
-
-			LinkPromLink* link = new LinkPromLink(promLink);
-			(new CommandPromLinkCreate(project,link))->execute();
-			this->link = link;
+				if(Workbench::cur()->question("Do you want to create a f_send/f_recv pair for this cross-script link ?")) {
+					LinkPromLink* link = new LinkPromLink(promLink);
+					(new CommandPromLinkCrossScriptCreate(project, link))->execute();
+					this->link = link;
+				} else {
+					delete promLink;
+				}
+			} else {
+				promLink->src->script->add_link(promLink);
+				LinkPromLink* link = new LinkPromLink(promLink);
+				(new CommandPromLinkCreate(project,link))->execute();
+				this->link = link;
+			}
 
 			end();
 		}

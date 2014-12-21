@@ -41,10 +41,15 @@ public:
 	PromProject* project = 0;
 	PromNode* node = 0;
 
+
+	Properties annotations;
+
 public:
-	PromScript() {}
-	PromScript(const std::string& filename) {load(filename);}
+	PromScript() {init();}
+	PromScript(const std::string& filename) {init(); load(filename);}
 	virtual ~PromScript();
+
+	void init() {	}
 
 	PromGroup* get_group_by_no_name(const std::string& no_name) {
 		for(uint i=0; i<groups.size(); i++) if(groups[i]->no_name == no_name) return groups[i];
@@ -102,6 +107,7 @@ public:
 	bool read(std::istream& f) {
 		try {
 			comments_groups = f_read_comments(f);
+			parse_comments_annotations();
 			uint nb_groups; f_try_read(f, "nombre de groupes = %u\n", nb_groups);
 			for(uint i=0; i<nb_groups; i++) add_group(new PromGroup(this, f));
 
@@ -126,6 +132,11 @@ public:
 	bool write(std::ostream& f) {
 		try {
 			f_write_comments(f,comments_groups);
+			for(uint i=0; i<annotations.size(); i++) {
+				if(annotations[i]->get_value_as_string().empty()) continue;
+				f << "%@" << annotations[i]->name << "=" << annotations[i]->get_value_as_string() << "\n";
+			}
+
 			f << "nombre de groupes = "<< groups.size() << "\n";
 			for(uint i=0; i<groups.size(); i++) groups[i]->write(f);
 
@@ -142,6 +153,10 @@ public:
 		os << "PromScript(" << name << " : " << groups.size() << " groups, " << links.size() << " links)";
 	}
 	friend std::ostream& operator<<(std::ostream& os, PromScript* a);
+
+
+protected:
+	void parse_comments_annotations();
 };
 
 std::ostream& operator<<(std::ostream& os, PromScript* a);

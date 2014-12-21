@@ -23,6 +23,7 @@ PromGroup::PromGroup(PromScript* script, const std::string& nametype) {
 	this->project = script->project;
 
 	ModuleDef* md = ModulesLibrary::get(nametype);
+	if(!md) throw TOSTRING("No such module definition : " << nametype);
 
 	type = md->get_type_no();
 	if(md->is_type_custom()) {

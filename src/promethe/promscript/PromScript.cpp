@@ -37,4 +37,31 @@ void PromScript::save() {
 	save_as(node->get_filename());
 }
 
+
+void PromScript::parse_comments_annotations() {
+	int key_i=-1, v_i=-1, v_j=-1;
+	std::string key,value;
+	for(uint i=0; i<comments_groups.size(); i++) {
+		if(key_i==-1 && v_i==-1 && comments_groups[i]=='@') {key_i = i+1;}
+		else if(key_i != -1 && comments_groups[i]=='=') {v_i=i+1;}
+		else if(v_i!=-1 && ((isspace(comments_groups[i]) || i==comments_groups.size()-1 || comments_groups[i]=='\n'))) {
+			v_j=i;
+			key = str_trim(comments_groups.substr(key_i, v_i-key_i-1));
+			value = str_trim(comments_groups.substr(v_i,v_j-v_i));
+			annotations.set(key,value);
+			key_i = -1; v_i = v_j = -1;
+		}
+	}
+
+	int curline = 0;
+	for(uint i=0; i<comments_groups.size(); i++) {
+		if(comments_groups[i]=='\n') curline = i+1;
+		else if(comments_groups[i]=='@') {
+			while(comments_groups[i]!='\n' && i<comments_groups.size()) i++;
+			comments_groups.erase(curline, i-curline+1);
+			i = curline-1;
+		}
+	}
+}
+
 }

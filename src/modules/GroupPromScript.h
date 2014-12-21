@@ -35,6 +35,10 @@ public:
 	virtual void detach(bool bSlave = false);
 	virtual void attach();
 
+	virtual void on_change() {
+		if(!script) return;
+		script->annotations.set("closed", is_opened() ? "no" : "yes");
+	}
 };
 
 

@@ -74,8 +74,34 @@ const char* PROM_GROUP_TYPES[] = {
 NULL
 };
 
+const char* PROM_LINK_TYPES[] = {
+		"one to one modifiable",
+		"one to random (modifiable)",
+		"one to neighborhood (modifable)",
+		"one to one (NON modifiable)",
+		"one to all (modifiable)",
+		"algorithmic link (virtual)",
+		"one to one blocking (vig. control)",
+		"one to neighborhood (NON modifiable)",
+		"global neuro modulation link (virtual)",
+		NULL
+};
+
 bool LINK_TYPE_HAS_NAME(int link_type) {
 	return link_type==5 || link_type==8;
+}
+
+
+std::string LINK_NO_TO_TYPE(int no) {
+	if(no<0) return "?";
+	return PROM_LINK_TYPES[no];
+}
+
+int LINK_TYPE_TO_NO(const std::string& type) {
+	for(uint i=0; PROM_LINK_TYPES[i]!=0; i++) {
+		if(type == PROM_LINK_TYPES[i]) return i;
+	}
+	return -1;
 }
 
 

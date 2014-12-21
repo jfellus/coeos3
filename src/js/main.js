@@ -8,3 +8,17 @@ function __init(url) {
 	var s = "server_port=";
 	PORT = parseInt(url.substr(url.indexOf(s)+s.length));
 }
+
+
+
+
+function __request(what, data) {
+	if(!PORT) alert("WRONG PORT : ");
+	var a = $.ajax({
+	    url: "http://localhost:"+PORT+"/"+what,
+	    beforeSend: function( xhr ) { xhr.overrideMimeType( "text/plain;" ); }, 
+	    data: (data ? data : ""),
+	    type: "POST", async: false,
+	    dataType: "text"});
+	return a.responseText;
+}

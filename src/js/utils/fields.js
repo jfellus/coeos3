@@ -33,8 +33,15 @@ $.fn.extend({
 
 function make_fields(elts) {
 	elts.set_editable();
-	elts.filter(".group").on('focus', function(event) {		showGroupsDropdown(this);	});
-	elts.filter(".group").on('input', function(event) {		showGroupsDropdown(this);	});
-	elts.filter(".group").on('blur', function(event) {		hideGroupsDropdown(this);	});
+		
+	if(elts.filter(".group").length!=0) {
+		elts.filter(".group").on('focus', function(event) {		showGroupsDropdown(this);	});
+		elts.filter(".group").on('input', function(event) {		showGroupsDropdown(this);	});
+		elts.filter(".group").on('blur', function(event) {		hideGroupsDropdown(this);	});
+	} else if(elts.filter(".link_type").length!=0) {
+		elts.filter(".link_type").on('focus', function(event) {		showLinksDropdown(this);	});
+		elts.filter(".link_type").on('input', function(event) {		showLinksDropdown(this);	});
+		elts.filter(".link_type").on('blur', function(event) {		hideLinksDropdown(this);	});	
+	}
 }
 

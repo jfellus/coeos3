@@ -64,6 +64,8 @@ link.neuromod {
 	dashed:2;
 }
 
+link.secondary { dashed:1; }
+
 group.pretty {
 	color: 0.5,0.5,1;
 	fill-color: 0.5,0.5,1;
@@ -115,21 +117,10 @@ group:closed.script {
 	font-size:700;
 }
 
-module.isolated {
-	opacity:1;
-}
+module.isolated {	opacity:1;}
+module.nonisolated {	opacity:0.1;}
 
-module.nonisolated {
-	opacity:0.1;
-}
-
-link.isolated {
-	opacity:1;
-}
-
-link.nonisolated {
-	opacity:0.1;
-}
-
+link.isolated {	opacity:1;}
+link.nonisolated {	opacity:0.1;}
 module.blur { opacity:0.1; }
 link.blur {opacity:0.1;}

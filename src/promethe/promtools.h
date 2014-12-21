@@ -83,6 +83,8 @@ namespace coeos {
 #define No_l_neuro_mod     8
 
 
+std::string LINK_NO_TO_TYPE(int no);
+int LINK_TYPE_TO_NO(const std::string& type);
 
 
 extern const char* PROM_GROUP_TYPES[];

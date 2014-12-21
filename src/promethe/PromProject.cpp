@@ -200,11 +200,15 @@ void PromProject::add(PromScript* script) {
 		add(new LinkPromLink(script->links[i]));
 	}
 
+	bool bClosed = script->annotations.get("closed") && script->annotations.get_as_string("closed")=="yes";
+
 	GroupPromScript* gps = new GroupPromScript(script);
 	gps->realize();
 	add(gps);
 
 	create_timescales_groups(gps);
+
+	if(bClosed) gps->close();
 }
 
 void PromProject::set_net(PromNet* net) {

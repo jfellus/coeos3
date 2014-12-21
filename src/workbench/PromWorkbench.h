@@ -70,6 +70,8 @@ public:
 	virtual void create_module(const std::string& nametype);
 	virtual void create_link();
 
+	virtual void compile();
+
 	virtual void update(bool force = false);
 
 

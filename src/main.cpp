@@ -3,6 +3,7 @@
 #include <layout/LayoutFlow.h>
 #include <dynamics/ModuleBody.h>
 #include <style/CSSDefinitions.h>
+#include <util/file.h>
 
 using namespace libboiboites;
 using namespace coeos;
@@ -74,6 +75,7 @@ void on_key_layout() {
 }
 
 int main(int argc, char** argv) {
+	set_argv_0(argv[0]);
 	gtk_init(&argc, &argv);
 	PromWorkbench* w = new PromWorkbench();
 	setlocale(LC_NUMERIC, "C");
