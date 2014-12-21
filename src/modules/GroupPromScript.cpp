@@ -23,6 +23,7 @@ GroupPromScript::GroupPromScript(PromScript* script) : script(script) {
 	node = script->node;
 	node->add_properties_listener(this);
 	set_property("name", node->get_property("name"));
+	properties.set("embedded", node->bEmbedded);
 }
 
 

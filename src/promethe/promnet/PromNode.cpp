@@ -37,6 +37,8 @@ void PromNode::read(Element* node) {
 			this->set_property(node->get_name(),t ? t->get_content() : "");
 		}
 	}
+
+	properties.set("embedded",  file_is_absolute(get_filename()) ? "no" : "yes");
 }
 
 void PromNode::write(Element* node) {
@@ -96,10 +98,10 @@ void PromNode::init(PromScript* script) {
 void PromNode::realize() {
 	try {
 		if(path_symb.empty() && path_script.empty()) { ERROR("Script " << script->name << " doesn't define a .symb or .script file"); return; }
-		script->load(get_filename());
+		script->load(get_absolute_filename());
 
 		properties.set("embedded",  file_is_absolute(get_filename()) ? "no" : "yes");
-	} catch(...) {ERROR("Can't load script " << get_filename()); }
+	} catch(...) {ERROR("Can't load script " << get_absolute_filename()); }
 }
 
 
@@ -125,12 +127,18 @@ void PromNode::on_property_change(IPropertiesElement* m, const std::string& name
 }
 
 
+std::string PromNode::get_absolute_filename() {
+	std::string fn = get_filename();
+	if(!net || file_is_absolute(fn)) return fn;
+	return net->get_dir() + "/" + fn;
+}
+
 std::string PromNode::get_filename() {
 	std::string fn = path_symb;
 	if(fn.empty()) fn = path_script;
 	if(fn.empty()) fn = path_symb = file_change_ext(script->name, ".symb");
 	if(!net || file_is_absolute(fn)) return fn;
-	return net->get_dir() + "/" + path_deploy + "/" + fn;
+	return path_deploy + "/" + fn;
 }
 
 std::string PromNode::get_absolute_path(const std::string& filename) {

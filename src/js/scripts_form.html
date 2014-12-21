@@ -108,7 +108,7 @@ function update() {
 				.set_editable().change(function() {
 					__request("scripts/set/" + get_script_name(this) + "/name/" + $(this).text()); update();
 			}));
-		if(json[i]["embedded"]=="no") e.append($("<button>Embbed</button>").click(function(){__request("scripts/set/" +  get_script_name(this) + "/embedded/yes"); update();}));
+		if(json[i]["embedded"]!="yes") e.append($("<button>Embbed</button>").click(function(){__request("scripts/set/" +  get_script_name(this) + "/embedded/yes"); update();}));
 		table = $("<table cellspacing=0 cellpadding=0 />"); e.append(table);
 		for(var _k in FILES) add_file_field(table, FILES[_k], json[i]);
 		$(".scripts").append(e);

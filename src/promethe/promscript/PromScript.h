@@ -41,7 +41,6 @@ public:
 	PromProject* project = 0;
 	PromNode* node = 0;
 
-
 	Properties annotations;
 
 public:

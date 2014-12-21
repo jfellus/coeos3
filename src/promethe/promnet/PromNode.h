@@ -34,6 +34,8 @@ public:
 	std::string path_prt;
 	std::string path_deploy;
 
+	bool bEmbedded = false;
+
 	bool started = false;
 
 public:
@@ -45,6 +47,7 @@ public:
 
 
 	std::string get_filename();
+	std::string get_absolute_filename();
 	std::string get_absolute_path(const std::string& filename);
 
 

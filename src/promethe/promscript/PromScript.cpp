@@ -33,8 +33,8 @@ std::ostream& operator<<(std::ostream& os, PromScript* a) {
 
 
 void PromScript::save() {
-	DBG("Save script " << name << " to " << node->get_filename());
-	save_as(node->get_filename());
+	DBG("Save script " << name << " to " << node->get_absolute_filename());
+	save_as(node->get_absolute_filename());
 }
 
 
