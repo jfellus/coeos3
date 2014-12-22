@@ -11,6 +11,7 @@
 #include "../PromProject.h"
 #include "../promnet/PromNode.h"
 #include <sys/stat.h>
+#include "Compiler.h"
 
 
 using namespace libboiboites;
@@ -47,19 +48,16 @@ public:
 	static std::vector<PromNodeThread*> threads;
 public:
 
-
 	static void start(PromProject* project);
 	static void stop(PromProject* project);
 
 	static void start(PromNode* node);
 	static void stop(PromNode* node);
 
-	static std::string get_makefile(PromNode* node);
 	static std::string get_stop_file(PromNode* node);
 	static std::string get_start_file(PromNode* node);
 
 protected:
-	static void create_themis_makefile(PromNode* node);
 	static void create_launcher_program(PromNode* node);
 
 	static void create_thread(PromNode* node);

@@ -11,13 +11,13 @@
 
 module.algo {
 	font:Sans Serif;
-	font-size:150;
+	font-size:15;
 	text-align:bottom;
 }
 
 module.neural {
 	font:Ubuntu;
-	font-size:150;
+	font-size:15;
 	text-align:bottom;
 }
 
@@ -38,7 +38,7 @@ module.f_checkbox {	text:none; }
 
 
 link {
-	font-size:150;
+	font-size:12;
 	font-style:italic;
 	arrow-size:1;
 	arrow-size-selected:2.5;
@@ -72,7 +72,7 @@ group.pretty {
 	handle-fill-color: 0.5,0.5,1;
 	text-color: white;
 	font: "Serif";
-	font-size: 300;
+	font-size: 30;
 	dashed:0;
 //	border-radius:10;
 	alpha:0.18;
@@ -85,24 +85,24 @@ group {
 	fill-color: 1.0,1.0,1.0;
 	text-color: 0.5,0.5,0.5;
 	alpha:0.2;
-	font-size:200;
-	padding:100;
+	font-size:20;
+	padding:10;
 }
 
 group.highlighted {
 	fill-color: #5500ff;
 	alpha:0.1;
 	text-color: #5500ff;
-	font-size:460;
+	font-size:46;
 }
 
 group:closed {
-	font-size:400;
+	font-size:40;
 	text-color: black;
 }
 
 group.script {
-	font-size:300;
+	font-size:30;
 	text-color:white;
 	font:Ubuntu;
 	dashed:0;
@@ -114,7 +114,7 @@ group.script {
 group:closed.script {
 	text-color:blue;
 	font:Ubuntu;
-	font-size:700;
+	font-size:30;
 }
 
 module.isolated {	opacity:1;}

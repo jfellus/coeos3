@@ -41,25 +41,7 @@ void Launcher::stop(PromProject* project) {
 }
 
 void Launcher::start(PromNode* node) {
-	if(node->path_script.empty()) {
-		if(node->path_symb.empty()) {
-			ERROR("Script doesn't define any .script or .symb file !");
-			return;
-		}
-
-		// TODO SHOULD BUILD SYMB->SCRIPT
-		DBG("WARNING : symb->script not implemented yet (see Nils)");
-		if(node->path_script.empty()) node->path_script = file_change_ext(node->path_symb, ".script");
-		shell("cp \"" + node->get_absolute_path(node->path_symb) + "\" \"" + node->get_absolute_path(node->path_script) + "\"");
-	}
-	if(node->path_res.empty()) node->path_res = file_change_ext(node->path_script, ".res");
-
-
-	// TODO WRITE CONFIG !
-	if(node->path_config.empty()) node->path_config = file_change_ext(file_absolute_path(node->net->filename), ".config");
-	shell("cp ~/bin_leto_prom/default.config \"" + node->get_absolute_path(node->path_config) + "\"");
-
-	create_themis_makefile(node);
+	Compiler::compile(node);
 	create_launcher_program(node);
 	create_thread(node);
 }
@@ -80,41 +62,9 @@ void Launcher::stop(PromNode* node) {
 }
 
 
-void Launcher::create_themis_makefile(PromNode* node) {
-	std::string path_script = node->get_absolute_path(node->path_script);
-	std::string path_makefile = get_makefile(node);
-	std::ofstream f(path_makefile);
-	f << "path_script=" << path_script << "\n";
-	f << "path_config=" << node->get_absolute_path(node->path_config) << "\n";
-	f << "path_res=" << node->get_absolute_path(node->path_res) << "\n";
-	f << "path_dev=" << node->get_absolute_path(node->path_dev) << "\n";
-	f << "path_gcd=" << node->get_absolute_path(node->path_gcd) << "\n";
-	f << "path_prt=" << node->get_absolute_path(node->path_prt) << "\n\n";
-
-	f << "logical_name=" << node->script->name << "\n";
-	f << "themis_ip=" << "127.0.0.1" << "\n";
-	f << "themis_id=" << "1" << "\n\n";
-
-	f << "login=" << "" << "\n";
-	f << "computer=" << "" << "\n";
-	f << "synchronize_files=" << "" << "\n";
-	f << "synchronize_directories=" << "" << "\n\n";
-
-	f << "promethe_binary=" << "~/bin_leto_prom/bpromethe" << "\n";
-	f << "promethe_args=" << "-S0" << "\n\n";
-
-	f << "all: run" << "\n\n";
-	f << "include ~/bin_leto_prom/themis.mk" << "\n\n";
-
-	f << "stop:" << "\n";
-	f << "\t" << "-killall -q promethe" << "\n";
-	f << "\t" << "-killall -q bpromethe" << "\n";
-	f.close();
-}
-
 
 void Launcher::create_launcher_program(PromNode* node) {
-	std::string makefile = get_makefile(node);
+	std::string makefile = Compiler::get_makefile(node);
 	std::string launch_file = get_start_file(node);
 	std::string stop_file = get_stop_file(node);
 
@@ -131,9 +81,7 @@ void Launcher::create_launcher_program(PromNode* node) {
 	chmod(stop_file.c_str(), S_IRUSR|S_IXUSR);
 }
 
-std::string Launcher::get_makefile(PromNode* node) {
-	return file_change_ext(node->get_absolute_path(node->path_script), ".mk");
-}
+
 
 
 std::vector<PromNodeThread*> Launcher::threads;

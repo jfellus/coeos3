@@ -23,18 +23,18 @@ public:
 	virtual void render_infos(Graphics& g, bool hover) {
 		ModuleComponentStyle* style = (ModuleComponentStyle*)this->style;
 
-		double x = hover ? MAX(220,28/canvas->_zoom) : 220;
-		double f = hover ? MAX(90,13/canvas->_zoom) : 90;
+		double x = hover ? MAX(22,28/canvas->_zoom) : 22;
+		double f = hover ? MAX(9,13/canvas->_zoom) : 9;
 		g.set_font(f, style->font, style->font_style);
 
 		render_noname(g, 0,0, hover);
-		render_nbneurons(g, x, -50, hover);
+		render_nbneurons(g, x, -5, hover);
 	}
 
 	void render_noname(Graphics& g, double x, double y, bool hover) {
 		ModulePromGroup* mpg = (ModulePromGroup*)module;
 
-		double r = hover ? MAX(100,15/canvas->_zoom) : 100;
+		double r = hover ? MAX(10,15/canvas->_zoom) : 10;
 		g.set_opacity(0.8);
 		g.circle(x,y,r); g.fill(RGB(0,0,0.3));
 		g.set_color(RGB_WHITE);
@@ -46,13 +46,13 @@ public:
 		ModuleComponentStyle* style = (ModuleComponentStyle*)this->style;
 		g.set_opacity(1);
 
-		double w = hover ? MAX(200,30/canvas->_zoom) : 200;
-		double h = hover ? MAX(200,30/canvas->_zoom) : 200;
+		double w = hover ? MAX(20,30/canvas->_zoom) : 20;
+		double h = hover ? MAX(20,30/canvas->_zoom) : 20;
 		double a = hover ? MAX(0.5, 0.09375/canvas->_zoom) : 0.5;
-		double r = hover ? MAX(10, 2/canvas->_zoom) : 2;
-		double d = hover ? MAX(100, 10/canvas->_zoom) : 100;
-		double stroke = hover ? MAX(10, 2/canvas->_zoom) : 10;
-		double f = hover ? MAX(90,13/canvas->_zoom) : 90;
+		double r = hover ? MAX(1, 2/canvas->_zoom) : 2;
+		double d = hover ? MAX(10, 10/canvas->_zoom) : 100;
+		double stroke = hover ? MAX(1, 2/canvas->_zoom) : 1;
+		double f = hover ? MAX(9,13/canvas->_zoom) : 9;
 
 		g.set_font(f, style->font, 0x001);
 
@@ -103,8 +103,7 @@ void ModulePromGroup::realize() {
 		catch(...) { create_component("module_neural"); }
 	}
 
-	component->set_pos(group->posx*10, group->posy*10);
-	component->add_translate_listener(this);
+	component->set_pos(group->posx, group->posy);
 
 	component->add_class(group->is_type_algo() ? "algo" : "neural");
 	if(!group->custom_function.empty()) component->add_class("custom_cpp");
@@ -117,6 +116,7 @@ void ModulePromGroup::create_component(const char* component_spec) {
 	component->set_selectable();
 	component->set_user_data("Module", this);
 	component->add_selection_listener(this);
+	component->add_translate_listener(this);
 	visible = true;
 }
 
@@ -180,8 +180,9 @@ Module* ModulePromGroup::copy() {
 
 
 void ModulePromGroup::on_translate(double x, double y) {
-	set_property("posx", TOSTRING((int)(x/10)));
-	set_property("posy", TOSTRING((int)(y/10)));
+	set_property("posx", TOSTRING((int)(x)));
+	set_property("posy", TOSTRING((int)(y)));
+	fire_change_event();
 }
 
 void ModulePromGroup::scale(double amount) {
@@ -223,5 +224,21 @@ GroupPromScript* ModulePromGroup::get_script() {
 	return dynamic_cast<GroupPromScript*>(g);
 }
 
+
+void ModulePromGroup::on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
+	if(name=="type") {
+		group->set_type(val);
+		text = type = group->get_type();
+		group->set_name(this->name);
+		text2 = this->name = group->get_name();
+		update_component();
+	}
+	else if(name=="name") {
+		group->set_name(val);
+		text2 = this->name = group->get_name();
+	} else if(name=="posx" || name=="posy") {
+		if(component) component->set_pos(group->posx, group->posy);
+	}
+}
 
 }

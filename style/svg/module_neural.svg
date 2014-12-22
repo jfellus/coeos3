@@ -7,10 +7,38 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="650.58209"
-   height="461.19226"
-   id="svg2">
+   width="57.634407"
+   height="40.840488"
+   id="svg2"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="module_neural.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="824"
+     id="namedview3373"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="2.8947095"
+     inkscape:cx="0.31575735"
+     inkscape:cy="-1.5765216"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
   <defs
      id="defs4" />
   <metadata
@@ -21,42 +49,30 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(751.5625,-220.78125)"
+     transform="translate(455.09375,-430.96875)"
      id="layer1">
     <rect
-       width="631.42859"
-       height="440"
-       rx="50.507626"
-       ry="50.507626"
-       x="-732.409"
-       y="241.9735"
+       width="55.935616"
+       height="38.977757"
+       rx="4.4742589"
+       ry="4.4742589"
+       x="-453.39496"
+       y="432.83148"
        id="rect2993"
        style="fill:#cccccc;stroke:none" />
     <rect
-       width="631.42859"
-       height="440"
-       rx="50.507626"
-       ry="50.507626"
-       x="-748.57141"
-       y="223.79076"
+       width="55.935616"
+       height="38.977757"
+       rx="4.4742589"
+       ry="4.4742589"
+       x="-454.82669"
+       y="431.22076"
        id="rect2985"
-       style="fill:#ffffff;stroke:#000000;stroke-width:6;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-    <text
-       x="-438.22742"
-       y="408.61536"
-       id="text2987"
-       xml:space="preserve"
-       style="font-size:82.57191467px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
-         x="-438.22742"
-         y="408.61536"
-         id="tspan2989">NEURAL</tspan><tspan
-         x="-438.22742"
-         y="511.83026"
-         id="tspan2991">GROUP</tspan></text>
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.53151488;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
   </g>
 </svg>

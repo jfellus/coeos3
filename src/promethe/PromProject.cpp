@@ -6,6 +6,7 @@
  */
 
 #include "PromProject.h"
+#include "launcher/Compiler.h"
 
 using namespace libboiboites;
 namespace coeos {
@@ -148,8 +149,14 @@ void PromProject::save_net(const std::string& filename) {
 	if(!net) return;
 	net->filename = filename;
 	for(uint i=0; i<net->nodes.size(); i++) save_script(net->nodes[i]->script);
+
 	DBG("Save net to " << filename);
 	net->save(filename);
+
+	POPUP("Saved network to " << filename);
+	Workbench::cur()->document->save(filename);
+	Workbench::cur()->update_title();
+	DBG("OK");
 }
 
 void PromProject::save_net() {
@@ -221,6 +228,16 @@ void PromProject::set_net(PromNet* net) {
 			add(net->nodes[i]->script);
 		}
 	} catch(...) {ERROR("Can't open network " << net); throw "";}
+}
+
+
+void PromProject::compile() {
+	save_net();
+	for(uint i=0; i<net->nodes.size(); i++) {
+		PromNode* n = net->nodes[i];
+		Compiler::compile(n);
+	}
+	POPUP("Compiled successfully");
 }
 
 }

@@ -60,19 +60,7 @@ public:
 
 	virtual ~ModulePromGroup();
 
-	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
-		if(name=="type") {
-			group->set_type(val);
-			text = type = group->get_type();
-			group->set_name(this->name);
-			text2 = this->name = group->get_name();
-			update_component();
-		}
-		else if(name=="name") {
-			group->set_name(val);
-			text2 = this->name = group->get_name();
-		}
-	}
+	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val);
 
 	virtual void dump(std::ostream& os) {
 		os << "MPG(" << group << ")";

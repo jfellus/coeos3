@@ -10,11 +10,11 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="349.43753"
-   height="349.46875"
+   width="31.468752"
+   height="31.46875"
    id="svg2"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="f_sum_no_seuil.svg">
+   sodipodi:docname="f_multiply.svg">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -28,9 +28,9 @@
      inkscape:window-height="824"
      id="namedview9"
      showgrid="false"
-     inkscape:zoom="1.3393334"
-     inkscape:cx="190.07184"
-     inkscape:cy="189.91089"
+     inkscape:zoom="15.152828"
+     inkscape:cx="15.783992"
+     inkscape:cy="20.354835"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -49,26 +49,26 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(614.84376,-210.0625)"
+     transform="translate(455.875,-369.0625)"
      id="layer1">
     <path
-       d="m -275.87059,384.85467 a 164.26336,164.26336 0 0 1 -328.5267,0 164.26336,164.26336 0 1 1 328.5267,0 z"
+       d="m -426.39471,384.80263 a 13.73923,13.73923 0 0 1 -27.47846,0 13.73923,13.73923 0 1 1 27.47846,0 z"
        id="path3045"
-       style="fill:#ffffff;stroke:#000000;stroke-width:20.91524314999999845;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.74938154;stroke-miterlimit:4;stroke-dasharray:none"
        inkscape:connector-curvature="0" />
     <g
-       transform="scale(1.0823704,0.92389814)"
+       transform="matrix(0.09053104,0,0,0.07727619,-403.32049,352.61283)"
        style="font-size:258.56964111px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
        id="text2983">
       <path
          d="m -344.46388,340.02911 -51.13316,68.80882 53.7845,72.59646 -27.39727,0 -41.15903,-55.55207 -41.15904,55.55207 -27.39727,0 54.9208,-73.98526 -50.24937,-67.42002 27.39727,0 37.49765,50.37563 37.49764,-50.37563 27.39728,0"
-         style=""
-         id="path3026" />
+         id="path3026"
+         inkscape:connector-curvature="0" />
     </g>
   </g>
 </svg>

@@ -8,6 +8,7 @@
 #include "PromScript.h"
 #include "../promnet/PromNode.h"
 #include "../promnet/PromNet.h"
+#include "../../workbench/PromWorkbench.h"
 
 using namespace libboiboites;
 namespace coeos {
@@ -35,6 +36,7 @@ std::ostream& operator<<(std::ostream& os, PromScript* a) {
 void PromScript::save() {
 	DBG("Save script " << name << " to " << node->get_absolute_filename());
 	save_as(node->get_absolute_filename());
+	POPUP("Saved script " << name << " to " << node->get_absolute_filename());
 }
 
 

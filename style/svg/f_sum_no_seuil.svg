@@ -10,11 +10,11 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="349.43753"
-   height="349.46875"
+   width="31.281258"
+   height="31.28125"
    id="svg2"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="f_multiply.svg">
+   sodipodi:docname="f_sum_no_seuil.svg">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -28,9 +28,9 @@
      inkscape:window-height="824"
      id="namedview9"
      showgrid="false"
-     inkscape:zoom="1.3393334"
-     inkscape:cx="190.07184"
-     inkscape:cy="189.91089"
+     inkscape:zoom="7.5764138"
+     inkscape:cx="27.015796"
+     inkscape:cy="31.876775"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -49,25 +49,26 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(614.84376,-210.0625)"
+     transform="translate(455.78125,-369.15625)"
      id="layer1">
     <path
-       d="m -275.87059,384.85467 a 164.26336,164.26336 0 0 1 -328.5267,0 164.26336,164.26336 0 1 1 328.5267,0 z"
+       d="m -426.92149,384.80102 a 13.212451,13.212451 0 0 1 -26.4249,0 13.212451,13.212451 0 1 1 26.4249,0 z"
        id="path3045"
-       style="fill:#ffffff;stroke:#000000;stroke-width:20.91524314999999845;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1.68230832;stroke-miterlimit:4;stroke-dasharray:none"
        inkscape:connector-curvature="0" />
     <g
        style="font-size:322.84817505px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       id="text2983">
+       id="text2983"
+       transform="matrix(0.08043455,0,0,0.08043455,-404.73197,353.84541)">
       <path
          d="m -426.55641,283.76593 0,87.80588 87.80588,0 0,26.79892 -87.80588,0 0,87.80588 -26.48364,0 0,-87.80588 -87.80587,0 0,-26.79892 87.80587,0 0,-87.80588 26.48364,0"
-         style=""
-         id="path3048" />
+         id="path3048"
+         inkscape:connector-curvature="0" />
     </g>
   </g>
 </svg>

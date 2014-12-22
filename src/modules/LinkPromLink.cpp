@@ -38,7 +38,7 @@ void LinkPromLink::realize() {
 	if(link->annotations.get("bezier_y2")) component->b->y2 = TOFLOAT(link->annotations.get_as_string("bezier_y2"));
 	if(link->annotations.get("bezier_x3")) component->b->x3 = TOFLOAT(link->annotations.get_as_string("bezier_x3"));
 	if(link->annotations.get("bezier_y3")) component->b->y3 = TOFLOAT(link->annotations.get_as_string("bezier_y3"));
-	if(!link->annotations.get("bezier_x2") && src==dst) component->b->set(1200,0,0,-1200);
+	if(!link->annotations.get("bezier_x2") && src==dst) component->b->set(120,0,0,-120);
 }
 
 void LinkPromLink::connect(ModulePromGroup* src, ModulePromGroup* dst) {

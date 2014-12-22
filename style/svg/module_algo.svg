@@ -10,11 +10,11 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="349.43753"
-   height="349.46875"
+   width="33.562531"
+   height="33.5625"
    id="svg2"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="group_algo.svg">
+   sodipodi:docname="module_algo.svg">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -24,16 +24,16 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
+     inkscape:window-width="1600"
+     inkscape:window-height="824"
      id="namedview9"
      showgrid="false"
-     inkscape:zoom="0.66966669"
-     inkscape:cx="174.70982"
-     inkscape:cy="174.69116"
+     inkscape:zoom="3.7882069"
+     inkscape:cx="-6.0141335"
+     inkscape:cy="-2.7426817"
      inkscape:window-x="0"
      inkscape:window-y="24"
-     inkscape:window-maximized="0"
+     inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -54,12 +54,12 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(614.84376,-210.0625)"
+     transform="translate(456.90627,-368)"
      id="layer1">
     <path
-       d="m -275.87059,384.85467 a 164.26336,164.26336 0 0 1 -328.5267,0 164.26336,164.26336 0 1 1 328.5267,0 z"
+       d="m -424.35092,384.80369 a 15.783035,15.783035 0 0 1 -31.56604,0 15.783035,15.783035 0 1 1 31.56604,0 z"
        id="path3045"
-       style="fill:#999999;stroke:#000000;stroke-width:20.91524315;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#999999;stroke:#000000;stroke-width:2.00961423;stroke-miterlimit:4;stroke-dasharray:none"
        inkscape:connector-curvature="0" />
   </g>
 </svg>

@@ -62,6 +62,12 @@ public:
 	uint get_modules_count() { return groups.size(); }
 	uint get_links_count() { return links.size(); }
 
+
+
+	void compile();
+
+
+
 	void create_timescales_groups(GroupPromScript* script);
 	void layout_scripts();
 	void save_to_single_script(const std::string& filename);

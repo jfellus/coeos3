@@ -10,8 +10,8 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="3490.5408"
-   height="2463.6257"
+   width="148.61569"
+   height="104.88873"
    id="svg2"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="group_closed.svg">
@@ -32,9 +32,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="1.8941034"
-     inkscape:cx="240.90077"
-     inkscape:cy="2320.9391"
+     inkscape:zoom="0.66966668"
+     inkscape:cx="157.41999"
+     inkscape:cy="7.8888462"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -54,27 +54,27 @@
     </rdf:RDF>
   </metadata>
   <rect
-     ry="107.51617"
-     rx="107.51617"
-     y="64.41584"
-     x="72.863113"
-     height="2399.21"
-     width="3417.6777"
+     ry="4.5780582"
+     rx="4.5780582"
+     y="2.7299309"
+     x="3.0903244"
+     height="102.1588"
+     width="145.52536"
      id="rect4033"
      style="fill:#cccccc;stroke:none" />
   <rect
-     style="fill:#ffffff;stroke:#000000;stroke-width:27.46445847;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     style="fill:#ffffff;stroke:#000000;stroke-width:1.1694417;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
      id="rect2986"
-     width="3417.6777"
-     height="2399.21"
-     x="13.732229"
-     y="13.732229"
-     rx="77.650574"
-     ry="77.650574" />
+     width="145.52536"
+     height="102.1588"
+     x="0.57248306"
+     y="0.57180023"
+     rx="3.3063757"
+     ry="3.3063757" />
   <path
      inkscape:connector-curvature="0"
      id="path4045"
-     d="M 27.091292,720.13581 744.31603,27.317115 l -711.463896,0 z"
+     d="m 1.141286,30.650633 30.539571,-29.500421 -30.294265,0 z"
      style="fill:#cccccc;stroke:none" />
   <path
      sodipodi:type="arc"
@@ -85,16 +85,16 @@
      sodipodi:rx="251.30623"
      sodipodi:ry="251.30623"
      d="m 576.52608,370.81497 a 251.30623,251.30623 0 1 1 -502.61246,0 251.30623,251.30623 0 1 1 502.61246,0 z"
-     transform="matrix(1.2268907,0,0,1.2268907,-80.124827,-143.26538)" />
+     transform="matrix(0.05224124,0,0,0.05224124,-3.423998,-6.113202)" />
   <path
      style="fill:#000000;stroke:none"
-     d="M 5.9731208,725.44758 749.62666,14.646212 57.01598,9.5588377 32.008505,27.317115 14.097097,67.255078 z"
+     d="M 0.242108,30.876749 31.907033,0.610705 2.415523,0.394094 1.350649,1.150212 0.587996,2.850838 z"
      id="path4035"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="cccccc" />
   <g
      id="g4039"
-     transform="matrix(1.1095106,0,0,1.1095106,-44.856597,-31.162398)">
+     transform="matrix(0.04724316,0,0,0.04724316,-1.922218,-1.339862)">
     <rect
        y="257.59695"
        x="228.87643"

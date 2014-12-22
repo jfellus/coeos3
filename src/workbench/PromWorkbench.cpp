@@ -51,12 +51,12 @@ PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbe
 
 
 PromWorkbench::PromWorkbench() {
+	application_name = "Coeos++";
+	update_title();
 
 	f_read_lines(TOSTRING(home() << "/.coeos++/recent.txt"),recent_documents);
 
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_s, 0, on_create_script));
-
-	win->set_title("Coeos++");
 
 	win->add_tab(docBrowser = new DocBrowser(), "Doc");
 	win->add_tab(scriptsForm = new ScriptsForm(), "Scripts");
@@ -87,6 +87,7 @@ PromWorkbench::PromWorkbench() {
 
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_F5, 0, on_run));
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_F6, 0, on_stop));
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_c, 0, on_compile));
 
 
 	canvas->add_scroll_listener(new IScrollListener(GDK_CONTROL_MASK|GDK_SUPER_MASK, coeos::on_scale_selection));
@@ -109,8 +110,9 @@ void PromWorkbench::update_recent_menu() {
 
 void PromWorkbench::do_open(const std::string& _filename) {
 	canvas->OFF();
-	if(project) do_close();
+
 	std::string filename = _filename;
+	if(project) do_close();
 	project = new PromProject();
 
 	vector_remove(recent_documents, filename);
@@ -118,7 +120,7 @@ void PromWorkbench::do_open(const std::string& _filename) {
 	f_write_lines(TOSTRING(home() << "/.coeos++/recent.txt"),recent_documents);
 	update_recent_menu();
 
-	STATUS("Open " << filename);
+	DBG("Open " << filename);
 
 	if(file_has_ext(filename, ".script") || file_has_ext(filename, ".symb")) {
 		try {
@@ -127,12 +129,14 @@ void PromWorkbench::do_open(const std::string& _filename) {
 			project->set_net(new PromNet());
 			project->net->add(new PromNode(project->net, s));
 			project->add(s);
-			set_title(TOSTRING("Coeos++ - " << filename));
+			document->open(filename);
+			update_title();
 		} catch(...) {}
 	} else if(file_has_ext(filename, ".net")) {
 		project->set_net(new PromNet(filename));
 		//project->layout_scripts();
-		set_title(TOSTRING("Coeos++ - " << filename));
+		document->open(filename);
+		update_title();
 	} else {
 		ERROR("Unknown file format " << filename);
 	}
@@ -144,7 +148,10 @@ void PromWorkbench::do_open(const std::string& _filename) {
 }
 
 void PromWorkbench::save() {
-	JOB_SUBMIT("Save", PromWorkbench::cur()->project->save_net());
+	if(!project) return;
+	if(!project->net) return;
+	if(project->net->filename.empty()) PromWorkbench::cur()->save_as();
+	else JOB_SUBMIT("Save", PromWorkbench::cur()->project->save_net());
 }
 
 void PromWorkbench::do_save(const std::string& filename) {
@@ -235,6 +242,7 @@ void PromWorkbench::do_new_document() {
 
 	project= new PromProject();
 	project->set_net(new PromNet());
+	document->new_document();
 
 	canvas->zoom_reset();
 	document->update_links_layers();
@@ -286,7 +294,14 @@ void PromWorkbench::update(bool force) {
 
 
 void PromWorkbench::compile() {
-
+	if(!project) return;
+	if(!project->net) return;
+	if(project->net->filename.empty()) {
+		if(question("You must save your project first. Do you wish to do it now ?")) save_as();
+		else return;
+	} else save();
+	if(project->net->filename.empty()) return;
+	JOB_SUBMIT("Compile", {PromWorkbench::cur()->project->compile();});
 }
 
 
