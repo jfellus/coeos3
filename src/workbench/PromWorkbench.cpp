@@ -40,12 +40,14 @@ namespace coeos {
 static void on_create_script() { PromWorkbench::cur()->create_script(); }
 static void on_import_script() { PromWorkbench::cur()->import(); }
 static void on_export_script() { PromWorkbench::cur()->export_script(); }
-static void on_run() {PromWorkbench::cur()->run_project(); }
-static void on_stop() {PromWorkbench::cur()->stop_project(); }
 static void on_scale_selection(double x, double y, double dx, double dy) {PromWorkbench::cur()->scale_selection(dy);}
 static void on_open_recent_document(GtkMenuItem* i, void* param) {std::string s = *((std::string*)param); PromWorkbench::cur()->open(s); }
 static void on_compile() {PromWorkbench::cur()->compile();}
+static void _on_launch() {PromWorkbench::cur()->launch_project();}
+static void _on_launch_gui() {PromWorkbench::cur()->launch_project(true);}
+static void _on_stop() {PromWorkbench::cur()->stop_project(); }
 static void on_edit() {PromWorkbench::cur()->edit();}
+static void _on_create_one_to_one_link() {PromWorkbench::cur()->create_link(No_l_1_1_modif);}
 
 PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbench::cur()); }
 
@@ -82,13 +84,16 @@ PromWorkbench::PromWorkbench() {
 	win->add_toolbar("__");
 	win->add_toolbar("edit", TOSTRING(main_dir() << "/style/icons/edit.gif"), on_edit);
 	win->add_toolbar("compile", TOSTRING(main_dir() << "/style/icons/compile.gif"), on_compile);
+	win->add_toolbar("launch", TOSTRING(main_dir() << "/style/icons/play.gif"), _on_launch);
+	win->add_toolbar("launch_gui", TOSTRING(main_dir() << "/style/icons/play_gui.gif"), _on_launch_gui);
+	win->add_toolbar("stop", TOSTRING(main_dir() << "/style/icons/stop.gif"), _on_stop);
+	win->enable_toolbar("stop", false);
 
 
-
-	canvas->add_key_listener(new IKeyListener(GDK_KEY_F5, 0, on_run));
-	canvas->add_key_listener(new IKeyListener(GDK_KEY_F6, 0, on_stop));
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_F5, 0, _on_launch));
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_F6, 0, _on_stop));
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_c, 0, on_compile));
-
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_o, 0, _on_create_one_to_one_link));
 
 	canvas->add_scroll_listener(new IScrollListener(GDK_CONTROL_MASK|GDK_SUPER_MASK, coeos::on_scale_selection));
 
@@ -237,7 +242,11 @@ void PromWorkbench::import(const std::string& filename) {
 
 void PromWorkbench::do_new_document() {
 	canvas->OFF();
-	if(project) do_close();
+	unselect_all();
+	properties->reset();
+	if(project) {delete project;	project = 0;}
+	canvas->clear();
+
 	STATUS("New network");
 
 	project= new PromProject();
@@ -249,22 +258,12 @@ void PromWorkbench::do_new_document() {
 	canvas->update_layers();
 	canvas->ON();
 	canvas->repaint();
+	update_title();
 	update();
 }
 
 void PromWorkbench::do_close() {
-	canvas->OFF();
-	unselect_all();
-	properties->reset();
-	update();
-	if(!project) {canvas->ON(); return;}
-	delete project;
-	project = 0;
-	canvas->clear();
-	canvas->repaint();
 	do_new_document();
-	canvas->ON();
-	canvas->repaint();
 }
 
 void PromWorkbench::create_script() {
@@ -279,14 +278,13 @@ void PromWorkbench::create_module(const std::string& nametype) {
 	canvas->start_creator(new PromGroupCreator(project, nametype));
 }
 
-void PromWorkbench::create_link() {
-	canvas->start_creator(new PromLinkCreator(project));
+void PromWorkbench::create_link(int type) {
+	canvas->start_creator(new PromLinkCreator(project, type));
 }
 
 
-void PromWorkbench::update(bool force) {
-	Workbench::update(force);
-	if(bPreventUpdating && !force) return;
+void PromWorkbench::do_update() {
+	Workbench::do_update();
 	scriptsForm->update();
 	docBrowser->update(get_selected_modules());
 	tagsForm->update();
@@ -305,6 +303,19 @@ void PromWorkbench::compile() {
 }
 
 
+void PromWorkbench::on_start(PromNodeThread* t) {
+	win->enable_toolbar("launch", false);
+	win->enable_toolbar("stop", true);
+	scriptsForm->update();
+	POPUP("Started " << t->node->script->name);
+}
+
+void PromWorkbench::on_stop(PromNodeThread* t) {
+	win->enable_toolbar("launch", true);
+	win->enable_toolbar("stop", false);
+	scriptsForm->update();
+	POPUP("Stopped " << t->node->script->name);
+}
 
 
 
@@ -432,15 +443,31 @@ GroupPromScript* PromWorkbench::get_script_at(double x, double y) {
 	return dynamic_cast<GroupPromScript*>(g);
 }
 
-void PromWorkbench::run_project() {
+void PromWorkbench::launch_project(bool bGui) {
 	if(!project) return;
-	Launcher::start(project);
+	Launcher::start(project, bGui);
 }
 
 void PromWorkbench::stop_project() {
 	if(!project) return;
 	Launcher::stop(project);
 }
+
+void PromWorkbench::launch_script(const std::string& script_name, bool bGui) {
+	if(!project) return;
+	PromNode* n = project->net->get_node_by_name(script_name);
+	if(!n) return;
+	Launcher::start(n, bGui);
+}
+
+void PromWorkbench::stop_script(const std::string& script_name) {
+	if(!project) return;
+	PromNode* n = project->net->get_node_by_name(script_name);
+	if(!n) return;
+	Launcher::stop(n);
+}
+
+
 
 static long copy_time = 0;
 void PromWorkbench::cut() {

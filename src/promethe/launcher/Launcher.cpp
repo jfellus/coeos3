@@ -11,26 +11,25 @@
 using namespace libboiboites;
 namespace coeos {
 
-class TestListener : public PromNodeThread::IRuntimeListener {
+class RuntimeListener : public PromNodeThread::IRuntimeListener {
 public:
-	TestListener() {}
-	virtual ~TestListener() {}
+	RuntimeListener() {}
+	virtual ~RuntimeListener() {}
 	virtual void on_start(PromNodeThread* t) {
-		STATUS("STARTED : " << t->node->script->name);
+		PromWorkbench::cur()->on_start(t);
 	}
 	virtual void on_stop(PromNodeThread* t) {
-		STATUS("STOPPED : " << t->node->script->name);
-		ERROR("STOPPED : " << t->node->script->name);
+		PromWorkbench::cur()->on_stop(t);
 	}
 };
 
 
 
-void Launcher::start(PromProject* project) {
+void Launcher::start(PromProject* project, bool bGui) {
 	project->save_net();
 	if(project->net->filename.empty()) return;
 	for(uint i=0; i<project->net->nodes.size(); i++) {
-		start(project->net->nodes[i]);
+		start(project->net->nodes[i], bGui);
 	}
 }
 
@@ -40,10 +39,9 @@ void Launcher::stop(PromProject* project) {
 	}
 }
 
-void Launcher::start(PromNode* node) {
+void Launcher::start(PromNode* node, bool bGui) {
 	Compiler::compile(node);
-	create_launcher_program(node);
-	create_thread(node);
+	create_thread(node, bGui);
 }
 
 std::string Launcher::get_stop_file(PromNode* node) {
@@ -63,46 +61,27 @@ void Launcher::stop(PromNode* node) {
 
 
 
-void Launcher::create_launcher_program(PromNode* node) {
-	std::string makefile = Compiler::get_makefile(node);
-	std::string launch_file = get_start_file(node);
-	std::string stop_file = get_stop_file(node);
-
-	std::ofstream fl(launch_file);
-	fl << "#!/bin/bash" << "\n\n";
-	fl << "make -f \"" << makefile << "\"\n";
-	fl.close();
-	chmod(launch_file.c_str(), S_IRUSR|S_IXUSR);
-
-	std::ofstream fs(stop_file);
-	fl << "#!/bin/bash" << "\n\n";
-	fl << "make -f \"" << makefile << "\" stop > /dev/null 2>/dev/null" << "\n";
-	fl.close();
-	chmod(stop_file.c_str(), S_IRUSR|S_IXUSR);
-}
-
-
-
-
 std::vector<PromNodeThread*> Launcher::threads;
 
 static void* _start_thread(void* p) {
 	PromNodeThread* node = (PromNodeThread*)p;
+	node->node->properties.set("started", "yes");
 	node->run();
-	//delete node;
+	node->node->properties.set("started", "no");
+	delete node;
 	return 0;
 }
 
 
 
-void Launcher::create_thread(PromNode* node) {
-	PromNodeThread* t = new PromNodeThread(node);
+void Launcher::create_thread(PromNode* node, bool bGui) {
+	PromNodeThread* t = new PromNodeThread(node, bGui);
 	threads.push_back(t);
-	t->add_runtime_listener(new TestListener());
+	t->add_runtime_listener(new RuntimeListener());
 }
 
 
-PromNodeThread::PromNodeThread(PromNode* node) : node(node) {
+PromNodeThread::PromNodeThread(PromNode* node, bool bGui) : node(node), bGui(bGui) {
 	Launcher::threads.push_back(this);
 	pthread_create(&thread, NULL, _start_thread, this);
 }
@@ -114,7 +93,8 @@ PromNodeThread::~PromNodeThread() {
 void PromNodeThread::run() {
 	bStarted = true;
 	for(uint i=0; i<runtime_listeners.size(); i++) runtime_listeners[i]->on_start(this);
-	shell(Launcher::get_start_file(node));
+	//shell(Launcher::get_start_file(node));
+	Compiler::call_make(node, bGui ? "run_gui" : "run_blind");
 	bStarted = false;
 	for(uint i=0; i<runtime_listeners.size(); i++) runtime_listeners[i]->on_stop(this);
 }

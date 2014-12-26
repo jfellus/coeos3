@@ -18,7 +18,16 @@ namespace coeos {
 std::string ScriptsForm::answer(const std::string& request, const std::string& data) {
 	PromWorkbench::cur()->LOCK();
 	std::string ret = "ok";
-	if(str_starts_with(request, "set/")) {
+	if(str_starts_with(request, "launch/")) {
+		std::string script = request.substr(strlen("launch/"));
+		PromWorkbench::cur()->launch_script(script);
+	} else if(str_starts_with(request, "launch_gui/")) {
+		std::string script = request.substr(strlen("launch_gui/"));
+		PromWorkbench::cur()->launch_script(script, true);
+	} else if(str_starts_with(request, "stop/")) {
+		std::string script = request.substr(strlen("stop/"));
+		PromWorkbench::cur()->stop_script(script);
+	} else if(str_starts_with(request, "set/")) {
 		std::string s = request.substr(strlen("set/"));
 		std::string script = s.substr(0, s.find("/"));
 		std::string kv = s.substr(s.find("/")+1);

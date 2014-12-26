@@ -20,5 +20,6 @@ function __request(what, data) {
 	    data: (data ? data : ""),
 	    type: "POST", async: false,
 	    dataType: "text"});
+//	if(!a.responseText) alert("ERROR : null response for " + what + "(http://localhost:"+PORT+"/"+what+")" );
 	return a.responseText;
 }

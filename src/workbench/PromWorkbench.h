@@ -14,12 +14,14 @@
 #include "widgets/CreateForm.h"
 #include "widgets/TagsForm.h"
 #include "widgets/BugTracker.h"
+#include "../promethe/launcher/Launcher.h"
 
 using namespace libboiboites;
 namespace coeos {
 
 class PromProject;
 class GroupPromScript;
+class PromNodeThread;
 
 class PromWorkbench : public Workbench {
 public:
@@ -68,11 +70,12 @@ public:
 	virtual void create_script();
 	virtual void create_module();
 	virtual void create_module(const std::string& nametype);
-	virtual void create_link();
+	virtual void create_link() { create_link(No_l_algorithmique); }
+	virtual void create_link(int type);
 
 	virtual void compile();
 
-	virtual void update(bool force = false);
+	virtual void do_update();
 
 
 	////////////
@@ -81,6 +84,9 @@ public:
 
 	virtual void on_selection_change();
 	virtual void scale_selection(double amount);
+
+	virtual void on_start(PromNodeThread* t);
+	virtual void on_stop(PromNodeThread* t);
 
 
 	/////////////
@@ -115,8 +121,10 @@ public:
 	// RUNTIME //
 	/////////////
 
-	virtual void run_project();
+	virtual void launch_project(bool bGui = false);
 	virtual void stop_project();
+	virtual void launch_script(const std::string& script_name, bool bGui = false);
+	virtual void stop_script(const std::string& script_name);
 
 protected:
 	void update_recent_menu();

@@ -48,9 +48,9 @@ public:
 
 		double w = hover ? MAX(20,30/canvas->_zoom) : 20;
 		double h = hover ? MAX(20,30/canvas->_zoom) : 20;
-		double a = hover ? MAX(0.5, 0.09375/canvas->_zoom) : 0.5;
+		double arrowSize = hover ? MAX(0.5, 0.09375/canvas->_zoom) : 0.5;
 		double r = hover ? MAX(1, 2/canvas->_zoom) : 2;
-		double d = hover ? MAX(10, 10/canvas->_zoom) : 100;
+		double d = hover ? MAX(10, 10/canvas->_zoom) : 10;
 		double stroke = hover ? MAX(1, 2/canvas->_zoom) : 1;
 		double f = hover ? MAX(9,13/canvas->_zoom) : 9;
 
@@ -59,16 +59,16 @@ public:
 
 		if(mpg->group->width!="1" && mpg->group->height!="1") {
 			g.set_color(RGB(0,0.5,0));
-			g.drawArrow(x-w*0.28,y+h*0.25,x+w*0.37,y+h*0.25, stroke * canvas->_zoom, a );
-			g.drawArrow(x-w*0.25,y+h*0.28,x-w*0.25,y-h*0.37, stroke * canvas->_zoom, a );
+			g.drawArrow(x-w*0.28,y+h*0.25,x+w*0.37,y+h*0.25, stroke * canvas->_zoom, arrowSize );
+			g.drawArrow(x-w*0.25,y+h*0.28,x-w*0.25,y-h*0.37, stroke * canvas->_zoom, arrowSize );
 			g.text_bottom_left(TOSTRING(mpg->group->width << " x " << mpg->group->height), Vector2D(x+d,y));
 		} else if(mpg->group->width!="1") {
 			g.set_color(RGB(0,0.5,0));
-			g.drawArrow(x-w*0.3,y,x+w*0.2,y, stroke * canvas->_zoom, a );
+			g.drawArrow(x+w*0.2,y,x+w*0.3,y, stroke * canvas->_zoom, arrowSize );
 			g.text_bottom_left(TOSTRING(mpg->group->width), Vector2D(x+d,y));
 		} else if(mpg->group->height!="1") {
 			g.set_color(RGB(0,0.5,0));
-			g.drawArrow(x-w*0.25,y+h*0.2,x-w*0.25,y-h*0.37, stroke * canvas->_zoom, a );
+			g.drawArrow(x-w*0.25,y+h*0.2,x-w*0.25,y-h*0.37, stroke * canvas->_zoom, arrowSize );
 			g.text_bottom_left(TOSTRING(mpg->group->height), Vector2D(x,y));
 		} else {
 			if(!hover) return;

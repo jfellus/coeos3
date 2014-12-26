@@ -39,7 +39,6 @@ void Compiler::create_themis_makefile(PromNode* node) {
 	f << "synchronize_files=" << "" << "\n";
 	f << "synchronize_directories=" << "" << "\n\n";
 
-	f << "promethe_binary=" << "~/bin_leto_prom/bpromethe" << "\n";
 	f << "promethe_args=" << "-S0" << "\n\n";
 
 	f << "all: run" << "\n\n";

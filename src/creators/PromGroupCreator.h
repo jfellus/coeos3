@@ -31,8 +31,8 @@ public:
 		GroupPromScript* gps = PromWorkbench::cur()->get_script_at(x,y);
 		if(!gps) return;
 		PromGroup* promGroup = new PromGroup(gps->script, nametype);
-		promGroup->posx = (int)(x/10);
-		promGroup->posy = (int)(y/10);
+		promGroup->posx = (int)(x);
+		promGroup->posy = (int)(y);
 
 		ModulePromGroup* m = new ModulePromGroup(promGroup);
 		(new CommandPromGroupCreate(project,m))->execute();

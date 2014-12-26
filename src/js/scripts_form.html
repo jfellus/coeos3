@@ -28,7 +28,7 @@
 	div.script:hover {
 		background:#eeeeee;
 	}
-	div.script table {border-collapse: separate;  	border-spacing: 0 2px;   }
+	div.script table {border-collapse: separate;  	border-spacing: 0 2px;  width:100%; }
 	div.script td {
 		font-size:11px;
 		padding:0; text-align:left;
@@ -60,6 +60,19 @@
 		border-bottom-right-radius:5px;
 		border:1px dotted #d5d5d5;
 	}
+	button img {
+		width:auto;
+		height:20px;
+	}
+	div.controls { text-align:center; margin:0; padding:0;}
+	.script > a {
+		position:relative; top:20px;
+		float:right; padding-left:5px;
+	}
+	h2 { float:left;}
+	button.disabled { opacity: 0.5;}
+	div.barrier { clear:both; margin:0;padding:0;font-size:0;height:0; }
+	table.details { position:relative; top:-10px; margin-bottom:-10px;}
 </style>
 
 
@@ -85,6 +98,18 @@ function add_file_field(e, k, json) {
 	}));
 }
 
+function toggle_details(e) {
+	var id = "#script_"+get_script_name(e).replaceAll(" ", "_");
+	var o = $(id);
+	if(o.find(".details").is(":visible")) {
+		o.find(".details").hide();
+		$(e).html("show details");
+	} else {
+		o.find(".details").show();
+		$(e).html("hide details");
+	}
+}
+
 function update() {
 	if(typeof(__request)!="function") return;
 
@@ -102,15 +127,30 @@ function update() {
 	$(".empty").hide();
 	
 	for(var i=0; i<json.length; i++) {
-		var e = $("<div class='script'></div>");
+		var e = $("<div id='script_"+(json[i]["name"].replaceAll(" ", "_"))+"' class='script'></div>");
 		e.attr("what", json[i]["name"]);
 		e.append($("<h2>"+json[i]["name"]+"</h2>")
 				.set_editable().change(function() {
 					__request("scripts/set/" + get_script_name(this) + "/name/" + $(this).text()); update();
 			}));
-		if(json[i]["embedded"]!="yes") e.append($("<button>Embbed</button>").click(function(){__request("scripts/set/" +  get_script_name(this) + "/embedded/yes"); update();}));
-		table = $("<table cellspacing=0 cellpadding=0 />"); e.append(table);
+		e.append($("<a class='show_details' href='javascript:void();'>show details</a>")
+				.click(function() {toggle_details(this);}));
+		if(json[i]["embedded"]!="yes") e.append($("<a href='javascript:void();'>Embbed</a>").click(function(){__request("scripts/set/" +  get_script_name(this) + "/embedded/yes"); update();}));
+		
+		e.append("<div class='barrier'>&nbsp;</div>");
+		
+		table = $("<table class='details' cellspacing=0 cellpadding=0 />"); e.append(table);
 		for(var _k in FILES) add_file_field(table, FILES[_k], json[i]);
+		table.hide();
+
+		controls = $("<div class='controls'></div>"); e.append(controls);
+		controls.append($("<button class='launch'><img src='style/play.gif'></button>").click(function() {__request("scripts/launch/"+get_script_name(this));}));
+		controls.append($("<button class='launch_gui'><img src='style/play_gui.gif'></button>").click(function() {__request("scripts/launch_gui/"+get_script_name(this));}));
+		controls.append($("<button class='stop'><img src='style/stop.gif'></button>").click(function() {__request("scripts/stop/"+get_script_name(this));}));
+		
+		if(json[i]["started"]=="yes") { e.find(".stop").attr("disabled", null).removeClass("disabled"); e.find(".launch").attr("disabled", 1).addClass("disabled"); e.find(".launch_gui").attr("disabled", 1).addClass("disabled");}
+		else {e.find(".stop").attr("disabled", 1).addClass("disabled"); e.find(".launch").attr("disabled", null).removeClass("disabled"); e.find(".launch_gui").attr("disabled", null).removeClass("disabled");}
+		
 		$(".scripts").append(e);
 	}
 	

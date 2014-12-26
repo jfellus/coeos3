@@ -50,8 +50,8 @@ void PromScriptCreator::start(ZoomableDrawingArea* canvas) {
 
 void PromScriptCreator::create(double x, double y) {
 	bKeep = true;
-	dummy_group->set_property("posx", TOSTRING((int)(x/10)));
-	dummy_group->set_property("posy", TOSTRING((int)(y/10)));
+	dummy_group->set_property("posx", TOSTRING((int)(x)));
+	dummy_group->set_property("posy", TOSTRING((int)(y)));
 	end();
 }
 
