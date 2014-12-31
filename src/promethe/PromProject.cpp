@@ -194,6 +194,13 @@ ModulePromGroup* PromProject::get_group_by_no_name(const std::string& s) {
 	return NULL;
 }
 
+GroupPromScript* PromProject::get_script_by_name(const std::string& s) {
+	for(uint i=0; i<scripts.size(); i++) {
+		if(scripts[i]->script->name==s) return scripts[i];
+	}
+	return NULL;
+}
+
 void PromProject::add(PromScript* script) {
 	STATUS("Loading " << script->name << " (" << script->groups.size() << " groups, " << script->links.size() << " links)");
 	if(!net) {	net = new PromNet(); net->project = this; }

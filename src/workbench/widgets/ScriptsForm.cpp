@@ -27,6 +27,12 @@ std::string ScriptsForm::answer(const std::string& request, const std::string& d
 	} else if(str_starts_with(request, "stop/")) {
 		std::string script = request.substr(strlen("stop/"));
 		PromWorkbench::cur()->stop_script(script);
+	} else if(str_starts_with(request, "compile/")) {
+		std::string script = request.substr(strlen("compile/"));
+		PromWorkbench::cur()->compile_script(script);
+	} else if(str_starts_with(request, "save/")) {
+		std::string script = request.substr(strlen("save/"));
+		PromWorkbench::cur()->save_script(script);
 	} else if(str_starts_with(request, "set/")) {
 		std::string s = request.substr(strlen("set/"));
 		std::string script = s.substr(0, s.find("/"));

@@ -55,6 +55,7 @@ public:
 	GroupPromScript* get(PromScript* s);
 
 	ModulePromGroup* get_group_by_no_name(const std::string& s);
+	GroupPromScript* get_script_by_name(const std::string& s);
 
 
 

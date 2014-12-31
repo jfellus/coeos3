@@ -60,6 +60,12 @@ void GroupPromScript::attach() {
 	}
 }
 
+void GroupPromScript::on_change() {
+	if(!script) return;
+	script->annotations.set("closed", is_opened() ? "no" : "yes");
+	if(component_open) component_open->compute_handle_bounds();
+}
+
 
 
 }

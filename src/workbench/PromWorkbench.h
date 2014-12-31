@@ -58,6 +58,8 @@ public:
 	virtual void import(const std::string& filename);
 	virtual void export_script(const std::string& filename);
 
+	virtual void save_script(const std::string& script_name);
+
 
 	virtual void cut();
 	virtual void copy();
@@ -125,6 +127,7 @@ public:
 	virtual void stop_project();
 	virtual void launch_script(const std::string& script_name, bool bGui = false);
 	virtual void stop_script(const std::string& script_name);
+	virtual void compile_script(const std::string& script_name);
 
 protected:
 	void update_recent_menu();

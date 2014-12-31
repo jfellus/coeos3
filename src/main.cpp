@@ -75,13 +75,13 @@ void on_key_layout() {
 }
 
 int main(int argc, char** argv) {
-	set_argv_0(argv[0]);
 	gtk_init(&argc, &argv);
 	PromWorkbench* w = new PromWorkbench();
 	setlocale(LC_NUMERIC, "C");
 
-//	w->open("/home/jfellus/Bureau/dsm/3/dsm.net");
-	w->new_document();
+	DBGV(main_dir());
+	if(argc==2) w->open(argv[1]);
+	else w->new_document();
 	//create_engine(); // TEST NEWTON DYNAMICS
 
 	w->canvas->add_key_listener(new IKeyListener(GDK_KEY_l, GDK_CONTROL_MASK, on_key_layout));

@@ -40,7 +40,7 @@ namespace coeos {
 static void on_create_script() { PromWorkbench::cur()->create_script(); }
 static void on_import_script() { PromWorkbench::cur()->import(); }
 static void on_export_script() { PromWorkbench::cur()->export_script(); }
-static void on_scale_selection(double x, double y, double dx, double dy) {PromWorkbench::cur()->scale_selection(dy);}
+static void on_scale_selection(double x, double y, double dx, double dy, void* data) {PromWorkbench::cur()->scale_selection(dy);}
 static void on_open_recent_document(GtkMenuItem* i, void* param) {std::string s = *((std::string*)param); PromWorkbench::cur()->open(s); }
 static void on_compile() {PromWorkbench::cur()->compile();}
 static void _on_launch() {PromWorkbench::cur()->launch_project();}
@@ -55,6 +55,7 @@ PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbe
 PromWorkbench::PromWorkbench() {
 	application_name = "Coeos++";
 	update_title();
+	win->set_icon(TOSTRING(main_dir() << "/coeos++.png").c_str());
 
 	f_read_lines(TOSTRING(home() << "/.coeos++/recent.txt"),recent_documents);
 
@@ -95,13 +96,13 @@ PromWorkbench::PromWorkbench() {
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_c, 0, on_compile));
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_o, 0, _on_create_one_to_one_link));
 
-	canvas->add_scroll_listener(new IScrollListener(GDK_CONTROL_MASK|GDK_SUPER_MASK, coeos::on_scale_selection));
+	canvas->add_scroll_listener(new IScrollListener(GDK_CONTROL_MASK|GDK_SUPER_MASK, coeos::on_scale_selection, NULL));
 
 	// Load config
 
-	CSSDefinitions::add("style/basic.defs");
-	CSSDefinitions::add("style/test.css");
-	SVGDefinitions::add("style/svg");
+	CSSDefinitions::add(TOSTRING(main_dir() << "/style/basic.defs"));
+	CSSDefinitions::add(TOSTRING(main_dir() << "/style/test.css"));
+	SVGDefinitions::add(TOSTRING(main_dir() << "/style/svg"));
 
 	ModulesLibrary::add_promethe_default_libraries();
 }
@@ -113,6 +114,12 @@ void PromWorkbench::update_recent_menu() {
 				on_open_recent_document, &recent_documents[i], win->get_menu_pos("_File>_Export script")+i+2);
 }
 
+
+int _zoom_all(void* p) {
+	PromWorkbench* w = (PromWorkbench*)p;
+	w->canvas->zoom_all();
+	return FALSE;
+}
 void PromWorkbench::do_open(const std::string& _filename) {
 	canvas->OFF();
 
@@ -147,9 +154,9 @@ void PromWorkbench::do_open(const std::string& _filename) {
 	}
 	document->update_links_layers();
 	canvas->update_layers();
-	canvas->zoom_all();
 	canvas->ON();
 	update();
+	g_timeout_add(10, _zoom_all, this);
 }
 
 void PromWorkbench::save() {
@@ -219,6 +226,11 @@ void PromWorkbench::export_script(const std::string& filename) {
 	gps->script->save_as(filename);
 }
 
+void PromWorkbench::save_script(const std::string& script_name) {
+	GroupPromScript* gps = project->get_script_by_name(script_name);
+	if(!gps) return;
+	gps->script->save();
+}
 
 void PromWorkbench::import(const std::string& filename) {
 	canvas->OFF();
@@ -451,6 +463,13 @@ void PromWorkbench::launch_project(bool bGui) {
 void PromWorkbench::stop_project() {
 	if(!project) return;
 	Launcher::stop(project);
+}
+
+void PromWorkbench::compile_script(const std::string& script_name) {
+	if(!project) return;
+	PromNode* n = project->net->get_node_by_name(script_name);
+	if(!n) return;
+	Compiler::compile(n);
 }
 
 void PromWorkbench::launch_script(const std::string& script_name, bool bGui) {

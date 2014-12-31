@@ -57,8 +57,6 @@ std::string Compiler::get_makefile(PromNode* node) {
 
 
 void Compiler::compile(PromNode* node) {
-	POPUP("Compile " << node->script->name);
-
 	if(node->path_symb.empty() && node->path_script.empty()) {
 		ERROR("Script doesn't define any .script or .symb file !");	return;
 	}
@@ -71,6 +69,8 @@ void Compiler::compile(PromNode* node) {
 
 	Compiler::create_themis_makefile(node);
 	call_make(node, node->get_absolute_path(node->path_res));
+
+	POPUP("Compiled " << node->script->name);
 }
 
 

@@ -106,7 +106,10 @@ void ModulePromGroup::realize() {
 	component->set_pos(group->posx, group->posy);
 
 	component->add_class(group->is_type_algo() ? "algo" : "neural");
-	if(!group->custom_function.empty()) component->add_class("custom_cpp");
+	if(!group->custom_function.empty()) {
+		component->add_class("custom_cpp");
+		component->add_class(group->custom_function);
+	}
 
 	component->add_class(group->group);
 }

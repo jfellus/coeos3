@@ -35,7 +35,8 @@ module.f_grabimages {	text:none; }
 module.f_display_image_activity {	text:none; }
 module.f_vue_metres {	text:none; }
 module.f_checkbox {	text:none; }
-
+module.stack_image {text:none; }
+module.stack_image_nb {text:none; }
 
 link {
 	font-size:12;
@@ -80,7 +81,7 @@ group.pretty {
 
 group {
 	color: 0.5,0.5,0.5;
-	border-radius: 10;	
+	border-radius: 1;	
 	dashed: 1;
 	fill-color: 1.0,1.0,1.0;
 	text-color: 0.5,0.5,0.5;

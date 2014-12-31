@@ -51,6 +51,11 @@ DEPENDS = $(OBJS:.o=.d)
 $(EXECUTABLE) : $(OBJS)          
 	@echo "Build executable $@"
 	@$(CXX) $(OBJS) -o $@ $(LDFLAGS) 
+	@cp -f $@ ~/bin_leto_prom/
+	@mkdir -p ~/bin_leto_prom/src/
+	@cp -rf src/js ~/bin_leto_prom/src/js
+	@cp -rf style ~/bin_leto_prom/
+	@cp coeos++.png ~/bin_leto_prom/
 	@echo "DONE" 
 
 bin/%.o: %.cpp
@@ -62,11 +67,19 @@ bin/%.o: %.cpp
 bin: 
 	@mkdir -p bin
 
-clean::
+clean:
 	@rm -f $(EXECUTABLE)
 	@rm -rf bin
 	
 all: $(EXECUTABLE)
+
+install:
+	@cp coeos3.desktop /usr/share/applications/
+	@chmod a+wrx /usr/share/applications/coeos3.desktop
+	@cp mime*.xml /usr/share/mime/packages/
+	@cp coeos++-48x48.png /usr/share/icons/hicolor/48x48/apps/
+#	@update-mime-database /usr/share/mime
+	@echo "Installation successful"
 
 external_libs:
 	@echo "We need your password for this : "

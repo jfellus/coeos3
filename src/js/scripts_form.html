@@ -144,6 +144,8 @@ function update() {
 		table.hide();
 
 		controls = $("<div class='controls'></div>"); e.append(controls);
+		controls.append($("<button class='launch'><img src='style/save.gif'></button>").click(function() {__request("scripts/save/"+get_script_name(this));}));
+		controls.append($("<button class='launch'><img src='style/compile.gif'></button>").click(function() {__request("scripts/compile/"+get_script_name(this));}));
 		controls.append($("<button class='launch'><img src='style/play.gif'></button>").click(function() {__request("scripts/launch/"+get_script_name(this));}));
 		controls.append($("<button class='launch_gui'><img src='style/play_gui.gif'></button>").click(function() {__request("scripts/launch_gui/"+get_script_name(this));}));
 		controls.append($("<button class='stop'><img src='style/stop.gif'></button>").click(function() {__request("scripts/stop/"+get_script_name(this));}));
