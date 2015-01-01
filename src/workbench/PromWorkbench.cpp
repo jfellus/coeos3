@@ -43,8 +43,9 @@ static void on_export_script() { PromWorkbench::cur()->export_script(); }
 static void on_scale_selection(double x, double y, double dx, double dy, void* data) {PromWorkbench::cur()->scale_selection(dy);}
 static void on_open_recent_document(GtkMenuItem* i, void* param) {std::string s = *((std::string*)param); PromWorkbench::cur()->open(s); }
 static void on_compile() {PromWorkbench::cur()->compile();}
-static void _on_launch() {PromWorkbench::cur()->launch_project();}
-static void _on_launch_gui() {PromWorkbench::cur()->launch_project(true);}
+static void _on_launch(GtkToggleButton *togglebutton, gpointer user_data) {if(gtk_toggle_tool_button_get_active(GTK_TOGGLE_TOOL_BUTTON(togglebutton))) PromWorkbench::cur()->launch_project();}
+static void _on_launch2() { PromWorkbench::cur()->launch_project();}
+static void _on_launch_gui(GtkToggleButton *togglebutton, gpointer user_data) {if(gtk_toggle_tool_button_get_active(GTK_TOGGLE_TOOL_BUTTON(togglebutton)))  PromWorkbench::cur()->launch_project(true);}
 static void _on_stop() {PromWorkbench::cur()->stop_project(); }
 static void on_edit() {PromWorkbench::cur()->edit();}
 static void _on_create_one_to_one_link() {PromWorkbench::cur()->create_link(No_l_1_1_modif);}
@@ -85,13 +86,12 @@ PromWorkbench::PromWorkbench() {
 	win->add_toolbar("__");
 	win->add_toolbar("edit", TOSTRING(main_dir() << "/style/icons/edit.gif"), on_edit);
 	win->add_toolbar("compile", TOSTRING(main_dir() << "/style/icons/compile.gif"), on_compile);
-	win->add_toolbar("launch", TOSTRING(main_dir() << "/style/icons/play.gif"), _on_launch);
-	win->add_toolbar("launch_gui", TOSTRING(main_dir() << "/style/icons/play_gui.gif"), _on_launch_gui);
+	win->add_toolbar_toggle("launch", TOSTRING(main_dir() << "/style/icons/play.gif"), _on_launch);
+	win->add_toolbar_toggle("launch_gui", TOSTRING(main_dir() << "/style/icons/play_gui.gif"), _on_launch_gui);
 	win->add_toolbar("stop", TOSTRING(main_dir() << "/style/icons/stop.gif"), _on_stop);
-	win->enable_toolbar("stop", false);
 
 
-	canvas->add_key_listener(new IKeyListener(GDK_KEY_F5, 0, _on_launch));
+	canvas->add_key_listener(new IKeyListener(GDK_KEY_F5, 0, _on_launch2));
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_F6, 0, _on_stop));
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_c, 0, on_compile));
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_o, 0, _on_create_one_to_one_link));
@@ -217,6 +217,10 @@ void PromWorkbench::export_selection_as_script(const std::string& filename) {
 		s->add_link(c);
 	}
 	s->save_as(filename);
+	for(auto i = copies.begin(); i != copies.end(); i++) {
+		(*i).first->script->remove_group((*i).second, true);
+	}
+	delete s;
 }
 
 
@@ -315,16 +319,29 @@ void PromWorkbench::compile() {
 }
 
 
+static bool _something_launched = false;
+static int _update_launch_toolbar(void* p) {
+	PromWorkbench* w = (PromWorkbench*)p;
+	if(!_something_launched) {
+		w->win->enable_toolbar("launch", true);
+		w->win->enable_toolbar("launch_gui", true);
+	} else {
+		w->win->enable_toolbar("launch", false);
+		w->win->enable_toolbar("launch_gui", false);
+	}
+	return FALSE;
+}
+
 void PromWorkbench::on_start(PromNodeThread* t) {
-	win->enable_toolbar("launch", false);
-	win->enable_toolbar("stop", true);
+	_something_launched = true;
+	g_timeout_add(1, _update_launch_toolbar, this);
 	scriptsForm->update();
 	POPUP("Started " << t->node->script->name);
 }
 
 void PromWorkbench::on_stop(PromNodeThread* t) {
-	win->enable_toolbar("launch", true);
-	win->enable_toolbar("stop", false);
+	_something_launched = false;
+	g_timeout_add(1, _update_launch_toolbar, this);
 	scriptsForm->update();
 	POPUP("Stopped " << t->node->script->name);
 }

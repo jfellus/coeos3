@@ -16,6 +16,8 @@ namespace coeos {
 
 PromScript::~PromScript() {
 	if(node) {delete node; node = 0;}
+	while(!links.empty()) { PromLink* g = links[0]; vector_remove(links, g); delete g; }
+	while(!groups.empty()) { PromGroup* g = groups[0]; vector_remove(groups, g); delete g; }
 }
 
 void PromScript::load(const std::string& filename) {

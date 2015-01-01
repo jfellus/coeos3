@@ -150,7 +150,11 @@ void ModulePromGroup::update_component() {
 }
 
 
-ModulePromGroup::~ModulePromGroup() { group->project->remove(this); delete group; }
+ModulePromGroup::~ModulePromGroup() {
+	group->project->remove(this);
+	if(group->script) group->script->remove_group(group);
+	delete group;
+}
 
 
 
@@ -164,12 +168,14 @@ void ModulePromGroup::detach(bool bSlave) {
 	if(!bAttached) return;
 	Module::detach(bSlave);
 	if(group->script) group->script->remove_group(this->group);
+	if(group->project) group->project->remove(this);
 }
 
 void ModulePromGroup::attach() {
 	if(bAttached) return;
 	Module::attach();
 	if(group->script) group->script->add_group(this->group);
+	if(group->project) group->project->add(this);
 }
 
 Module* ModulePromGroup::copy() {

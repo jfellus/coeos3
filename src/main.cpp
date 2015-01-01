@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
 	setlocale(LC_NUMERIC, "C");
 
 	DBGV(main_dir());
-	if(argc==2) w->open(argv[1]);
+	if(argc==2) w->open(file_absolute_path(argv[1]));
 	else w->new_document();
 	//create_engine(); // TEST NEWTON DYNAMICS
 

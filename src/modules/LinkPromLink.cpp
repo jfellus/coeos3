@@ -16,7 +16,11 @@ namespace coeos {
 
 
 
-LinkPromLink::~LinkPromLink() { link->project->remove(this); delete link; }
+LinkPromLink::~LinkPromLink() {
+	link->project->remove(this);
+	if(link->script) link->script->remove_link(link);
+	delete link;
+}
 
 
 void LinkPromLink::realize() {
@@ -73,12 +77,14 @@ void LinkPromLink::detach(bool bSlave) {
 	if(!bAttached) return;
 	Link::detach(bSlave);
 	if(link->script) link->script->remove_link(this->link);
+	if(link->project) link->project->remove(this);
 }
 
 void LinkPromLink::attach() {
 	if(bAttached) return;
 	Link::attach();
 	if(link->script) link->script->add_link(this->link);
+	if(link->project) link->project->add(this);
 }
 
 void LinkPromLink::scale(float amount) { ((LinkLinkComponent*)component)->scale(amount);}

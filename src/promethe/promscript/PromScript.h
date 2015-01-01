@@ -63,7 +63,9 @@ public:
 		return no_name;
 	}
 
-	void add_group(PromGroup* group) { groups.push_back(group); group->script = this; }
+	void add_group(PromGroup* group) {
+		groups.push_back(group); group->script = this;
+	}
 	void add_link(PromLink* link) {
 		if(link->src==NULL || link->dst==NULL) return;
 		links.push_back(link);
@@ -153,6 +155,12 @@ public:
 	}
 	friend std::ostream& operator<<(std::ostream& os, PromScript* a);
 
+
+	void dump_groups() {
+		for(uint i=0; i<groups.size(); i++) {
+			DBG("\t" << groups[i]);
+		}
+	}
 
 protected:
 	void parse_comments_annotations();

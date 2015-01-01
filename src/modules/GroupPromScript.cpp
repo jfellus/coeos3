@@ -49,6 +49,7 @@ void GroupPromScript::detach(bool bSlave) {
 	Group::detach(bSlave);
 	if(project->net) {
 		project->net->remove(node);
+		project->remove(this);
 	}
 }
 
@@ -57,6 +58,7 @@ void GroupPromScript::attach() {
 	Group::attach();
 	if(project->net) {
 		project->net->add(node);
+		project->add(this);
 	}
 }
 

@@ -104,7 +104,7 @@ public:
 	void write(std::ostream& f);
 
 	virtual void dump(std::ostream& os) {
-		os << "PromGroup(" << no_name << ", " << group << "," << type << ")";
+		os << "PromGroup(" << no_name << ", " << get_type() << "," << get_name() << ")";
 	}
 	friend std::ostream& operator<<(std::ostream& os, PromGroup* a);
 
