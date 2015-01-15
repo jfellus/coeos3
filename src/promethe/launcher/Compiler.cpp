@@ -28,7 +28,8 @@ void Compiler::create_themis_makefile(PromNode* node) {
 	f << "path_res=" << node->get_absolute_path(node->path_res) << "\n";
 	f << "path_dev=" << node->get_absolute_path(node->path_dev) << "\n";
 	f << "path_gcd=" << node->get_absolute_path(node->path_gcd) << "\n";
-	f << "path_prt=" << node->get_absolute_path(node->path_prt) << "\n\n";
+	f << "path_prt=" << node->get_absolute_path(node->path_prt) << "\n";
+	f << "path_var=" << node->get_absolute_path(node->path_var) << "\n\n";
 
 	f << "logical_name=" << node->script->name << "\n";
 	f << "themis_ip=" << "127.0.0.1" << "\n";

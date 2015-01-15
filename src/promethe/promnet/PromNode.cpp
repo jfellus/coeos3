@@ -89,6 +89,7 @@ void PromNode::init(PromScript* script) {
 	properties.set("path_dev", &path_dev);
 	properties.set("path_gcd", &path_gcd);
 	properties.set("path_prt", &path_prt);
+	properties.set("path_var", &path_var);
 
 	properties.set("embedded",  file_is_absolute(get_filename()) ? "no" : "yes");
 
@@ -115,6 +116,7 @@ void PromNode::on_property_change(IPropertiesElement* m, const std::string& name
 	if(name=="path_dev") properties.set("path_dev", file_change_ext(properties.get_as_string("path_dev"), ".dev"));
 	if(name=="path_gcd") properties.set("path_gcd", file_change_ext(properties.get_as_string("path_gcd"), ".gcd"));
 	if(name=="path_prt") properties.set("path_prt", file_change_ext(properties.get_as_string("path_prt"), ".prt"));
+	if(name=="path_var") properties.set("path_var", file_change_ext(properties.get_as_string("path_var"), ".var"));
 
 	if(name=="path_symb") properties.set("embedded",  file_is_absolute(path_symb) ? "no" : "yes");
 	if(name=="path_script") properties.set("embedded",  file_is_absolute(path_script) ? "no" : "yes");

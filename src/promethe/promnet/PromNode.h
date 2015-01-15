@@ -32,6 +32,7 @@ public:
 	std::string path_gcd;
 	std::string path_dev;
 	std::string path_prt;
+	std::string path_var;
 	std::string path_deploy;
 
 	bool bEmbedded = false;
