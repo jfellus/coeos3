@@ -54,9 +54,10 @@ PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbe
 
 
 PromWorkbench::PromWorkbench() {
+	app_dir = TOSTRING(main_dir() << "/.coeos++/");
 	application_name = "Coeos++";
 	update_title();
-	win->set_icon(TOSTRING(main_dir() << "/coeos++.png").c_str());
+	win->set_icon("coeos++.png");
 
 	f_read_lines(TOSTRING(home() << "/.coeos++/recent.txt"),recent_documents);
 
@@ -80,15 +81,15 @@ PromWorkbench::PromWorkbench() {
 
 	win->add_menu("_Create>_Script", on_create_script, win->get_menu_pos("_Create>_Module"));
 
-	win->add_toolbar("new script", TOSTRING(main_dir() << "/style/icons/new_script.gif"), on_create_script, win->get_toolbar_pos("new module"));
-	win->add_toolbar("import script", TOSTRING(main_dir() << "/style/icons/import_script.gif"), on_import_script, win->get_toolbar_pos("undo")-1);
-	win->add_toolbar("export script", TOSTRING(main_dir() << "/style/icons/export_script.gif"), on_export_script, win->get_toolbar_pos("undo")-1);
+	win->add_toolbar("new script", "style/icons/new_script.gif", on_create_script, win->get_toolbar_pos("new module"));
+	win->add_toolbar("import script",  "style/icons/import_script.gif", on_import_script, win->get_toolbar_pos("undo")-1);
+	win->add_toolbar("export script", "style/icons/export_script.gif", on_export_script, win->get_toolbar_pos("undo")-1);
 	win->add_toolbar("__");
-	win->add_toolbar("edit", TOSTRING(main_dir() << "/style/icons/edit.gif"), on_edit);
-	win->add_toolbar("compile", TOSTRING(main_dir() << "/style/icons/compile.gif"), on_compile);
-	win->add_toolbar_toggle("launch", TOSTRING(main_dir() << "/style/icons/play.gif"), _on_launch);
-	win->add_toolbar_toggle("launch_gui", TOSTRING(main_dir() << "/style/icons/play_gui.gif"), _on_launch_gui);
-	win->add_toolbar("stop", TOSTRING(main_dir() << "/style/icons/stop.gif"), _on_stop);
+	win->add_toolbar("edit", "style/icons/edit.gif", on_edit);
+	win->add_toolbar("compile", "style/icons/compile.gif", on_compile);
+	win->add_toolbar_toggle("launch", "style/icons/play.gif", _on_launch);
+	win->add_toolbar_toggle("launch_gui", "style/icons/play_gui.gif", _on_launch_gui);
+	win->add_toolbar("stop", "style/icons/stop.gif", _on_stop);
 
 
 	canvas->add_key_listener(new IKeyListener(GDK_KEY_F5, 0, _on_launch2));
@@ -100,9 +101,9 @@ PromWorkbench::PromWorkbench() {
 
 	// Load config
 
-	CSSDefinitions::add(TOSTRING(main_dir() << "/style/basic.defs"));
-	CSSDefinitions::add(TOSTRING(main_dir() << "/style/test.css"));
-	SVGDefinitions::add(TOSTRING(main_dir() << "/style/svg"));
+	CSSDefinitions::add(TOSTRING(app_dir << "style/basic.defs"));
+	CSSDefinitions::add(TOSTRING(app_dir << "style/test.css"));
+	SVGDefinitions::add(TOSTRING(app_dir << "style/svg"));
 
 	ModulesLibrary::add_promethe_default_libraries();
 }

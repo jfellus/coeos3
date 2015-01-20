@@ -42,20 +42,30 @@ EXECUTABLE:=coeos++
 SRC := $(shell find $(SRC_DIR) -name '*.cpp') 
 OBJS := $(addprefix bin/,$(SRC:.cpp=.o))
 
+all: $(EXECUTABLE) | copy
 $(EXECUTABLE): $(OBJS)
 
 CXXFLAGS := -fPIC -g -rdynamic -Wall -MMD `pkg-config --cflags $(REQUIRED_PACKAGES)` $(addprefix -I,$(INCLUDE_PATHS))
 LDFLAGS := -fPIC -rdynamic `pkg-config --libs $(REQUIRED_PACKAGES)` -L/home/$(USER)/bin_leto_prom/ $(REQUIRED_LIBS) -Wl,-rpath=/home/$(USER)/bin_leto_prom/ 
 DEPENDS = $(OBJS:.o=.d)    
 
+
+
 $(EXECUTABLE) : $(OBJS)          
 	@echo "Build executable $@"
 	@$(CXX) $(OBJS) -o $@ $(LDFLAGS) 
-	@cp -f $@ ~/bin_leto_prom/
-	@mkdir -p ~/bin_leto_prom/src/
-	@cp -rf src/js ~/bin_leto_prom/src/js
-	@cp -rf style ~/bin_leto_prom/
-	@cp coeos++.png ~/bin_leto_prom/
+	
+	
+.PHONY: copy
+copy: $(EXECUTABLE)
+	@echo "Copy coeos++ to ~/bin_leto_prom"
+	@cp -f $(EXECUTABLE) ~/bin_leto_prom/
+	@mkdir -p ~/bin_leto_prom/.coeos++/src/
+	@cp -rf src/js ~/bin_leto_prom/.coeos++/src/
+	@cp -rf resources/style ~/bin_leto_prom/.coeos++/
+	@cp resources/coeos++.png ~/bin_leto_prom/.coeos++/
+	@cp resources/*.mk ~/bin_leto_prom/
+	@./resources/scripts/patch_promuser.sh
 	@echo "DONE" 
 
 bin/%.o: %.cpp
@@ -71,13 +81,13 @@ clean:
 	@rm -f $(EXECUTABLE)
 	@rm -rf bin
 	
-all: $(EXECUTABLE)
+
 
 install:
-	@cp coeos3.desktop /usr/share/applications/
+	@cp resources/coeos3.desktop /usr/share/applications/
 	@chmod a+wrx /usr/share/applications/coeos3.desktop
-	@cp mime*.xml /usr/share/mime/packages/
-	@cp coeos++-48x48.png /usr/share/icons/hicolor/48x48/apps/
+	@cp resources/mime*.xml /usr/share/mime/packages/
+	@cp resources/coeos++-48x48.png /usr/share/icons/hicolor/48x48/apps/
 #	@update-mime-database /usr/share/mime
 	@echo "Installation successful"
 

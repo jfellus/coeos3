@@ -76,6 +76,9 @@ void on_key_layout() {
 
 int main(int argc, char** argv) {
 	gtk_init(&argc, &argv);
+
+	add_resources_path(TOSTRING(main_dir() << "/.coeos++/"));
+
 	PromWorkbench* w = new PromWorkbench();
 	setlocale(LC_NUMERIC, "C");
 

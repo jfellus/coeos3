@@ -17,7 +17,7 @@ namespace coeos {
 class CreateForm : public Browser {
 public:
 	CreateForm() : Browser("create") {
-		open("src/js/create_form.html");
+		open(".coeos++/src/js/create_form.html");
 	}
 	virtual ~CreateForm() {}
 

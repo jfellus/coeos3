@@ -24,7 +24,7 @@ public:
 
 public:
 	ScriptsForm() : Browser("scripts") {
-		open("src/js/scripts_form.html");
+		open(".coeos++/src/js/scripts_form.html");
 	}
 	virtual ~ScriptsForm() {
 

@@ -18,7 +18,7 @@ namespace coeos {
 class TagsForm : public Browser {
 public:
 	TagsForm() : Browser("tags") {
-		open("src/js/tags_form.html");
+		open(".coeos++/src/js/tags_form.html");
 	}
 	virtual ~TagsForm() {}
 
