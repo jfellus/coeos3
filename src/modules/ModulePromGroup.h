@@ -81,7 +81,11 @@ public:
 	virtual void create_component(const char* component_spec);
 private:
 	void realize();
+
 	void update_component();
+	void set_svg(const std::string& svg);
+	void set_svg(const std::list<std::string>& svg_list);
+
 	friend std::ostream& operator<<(std::ostream& os, ModulePromGroup* a);
 
 	void process_cross_script_links();

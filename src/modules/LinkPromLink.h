@@ -41,6 +41,7 @@ public:
 		add_properties_listener(this);
 
 		text = link->name;
+		text2 = link->norm;
 		realize();
 	}
 
@@ -56,6 +57,7 @@ public:
 	virtual void on_property_change(IPropertiesElement* m, const std::string& name, const std::string& val) {
 		if(name=="name") { text = val; }
 		else if(name=="type") {link->type = LINK_TYPE_TO_NO(val);}
+		else if(name=="norm") { text2 = val; }
 
 		if(link->is_type_algo())
 			add_class("algo"); else remove_class("algo");

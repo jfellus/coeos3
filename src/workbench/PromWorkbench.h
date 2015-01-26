@@ -99,6 +99,15 @@ public:
 
 	GroupPromScript* get_script_at(double x, double y);
 
+
+	/////////////
+	// DISPLAY //
+	/////////////
+
+	void toggle_display_links_norm();
+	void toggle_display_links_name();
+
+
 	//////////
 	// TAGS //     // TODO Perhaps move to libboiboites
 	//////////

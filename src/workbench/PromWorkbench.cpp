@@ -31,6 +31,8 @@
 #include "../commands/CommandPasteExt.h"
 #include "widgets/BugTracker.h"
 #include <workbench/Job.h>
+#include "components/LinkLinkComponent.h"
+
 
 using namespace libboiboites;
 namespace coeos {
@@ -49,6 +51,10 @@ static void _on_launch_gui(GtkToggleButton *togglebutton, gpointer user_data) {i
 static void _on_stop() {PromWorkbench::cur()->stop_project(); }
 static void on_edit() {PromWorkbench::cur()->edit();}
 static void _on_create_one_to_one_link() {PromWorkbench::cur()->create_link(No_l_1_1_modif);}
+static void on_display_links_norm()  {PromWorkbench::cur()->toggle_display_links_norm();}
+static void on_display_links_name()  {PromWorkbench::cur()->toggle_display_links_name();}
+
+
 
 PromWorkbench* PromWorkbench::cur() { return dynamic_cast<PromWorkbench*>(Workbench::cur()); }
 
@@ -80,6 +86,10 @@ PromWorkbench::PromWorkbench() {
 	win->enable_menu("_File>_Export script", false);
 
 	win->add_menu("_Create>_Script", on_create_script, win->get_menu_pos("_Create>_Module"));
+
+	win->add_menu("_View>Display links norm", on_display_links_norm);
+	win->add_menu("_View>Display links name", on_display_links_name);
+
 
 	win->add_toolbar("new script", "style/icons/new_script.gif", on_create_script, win->get_toolbar_pos("new module"));
 	win->add_toolbar("import script",  "style/icons/import_script.gif", on_import_script, win->get_toolbar_pos("undo")-1);
@@ -526,5 +536,23 @@ void PromWorkbench::paste() {
 		(new CommandPasteExt(canvas->mousePosDoc.x, canvas->mousePosDoc.y, TOSTRING(home() << "/.leto/copy_buffer.script")))->execute();
 	} else	Workbench::paste();
 }
+
+
+
+
+/////////////
+// DISPLAY //
+/////////////
+
+void PromWorkbench::toggle_display_links_norm() {
+	libboiboites::LinkComponentStyle::bText2_force = !libboiboites::LinkComponentStyle::bText2_force;
+	canvas->repaint();
+}
+
+void PromWorkbench::toggle_display_links_name() {
+	libboiboites::LinkComponentStyle::bText_force = !libboiboites::LinkComponentStyle::bText_force;
+	canvas->repaint();
+}
+
 
 }

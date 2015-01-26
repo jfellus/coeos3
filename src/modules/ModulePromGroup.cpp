@@ -87,31 +87,8 @@ public:
 
 
 void ModulePromGroup::realize() {
-	if(group->type==14) {
-		if(!group->custom_function.empty()) {
-			try { create_component(group->custom_function.c_str()); }
-			catch(...) {
-				try { create_component(group->group.c_str()); }
-				catch(...) { create_component("module_algo"); }
-			}
-		} else {
-			try { create_component(group->group.c_str()); }
-			catch(...) { create_component("module_algo"); }
-		}
-	} else {
-		try { create_component(group->get_type().c_str()); }
-		catch(...) { create_component("module_neural"); }
-	}
-
+	update_component();
 	component->set_pos(group->posx, group->posy);
-
-	component->add_class(group->is_type_algo() ? "algo" : "neural");
-	if(!group->custom_function.empty()) {
-		component->add_class("custom_cpp");
-		component->add_class(group->custom_function);
-	}
-
-	component->add_class(group->group);
 }
 
 void ModulePromGroup::create_component(const char* component_spec) {
@@ -124,22 +101,40 @@ void ModulePromGroup::create_component(const char* component_spec) {
 }
 
 
-void ModulePromGroup::update_component() {
-	if(group->type==14) {
-		if(!group->custom_function.empty()) {
-			try { ((SVGComponent*)component)->set(group->custom_function.c_str()); }
-			catch(...) {
-				try { ((SVGComponent*)component)->set(group->group.c_str()); }
-				catch(...) { ((SVGComponent*)component)->set("module_algo"); }
-			}
-		} else {
-			try { ((SVGComponent*)component)->set(group->group.c_str()); }
-			catch(...) { ((SVGComponent*)component)->set("module_algo"); }
-		}
-	} else {
-		try { ((SVGComponent*)component)->set(group->get_type().c_str()); }
-		catch(...) { ((SVGComponent*)component)->set("module_neural"); }
+void ModulePromGroup::set_svg(const std::string& svg) {
+	try {
+		char ss[] = "1x1";
+		if(group->width != "0" && group->width != "1") ss[2] = 'N';
+		if(group->height != "0" && group->height != "1") ss[0] = 'N';
+		if(!component) create_component(TOSTRING(svg << "_" << ss).c_str());
+		else ((SVGComponent*)component)->set(TOSTRING(svg << "_" << ss).c_str());
 	}
+	catch(...) {
+		if(!component) create_component(svg.c_str());
+		else ((SVGComponent*)component)->set(svg.c_str());
+	}
+}
+
+void ModulePromGroup::set_svg(const std::list<std::string>& svg_list) {
+	for(auto i = svg_list.begin(); i!= svg_list.end(); i++) {
+		try {
+			set_svg(*i);
+			return;
+		} catch(...) {}
+	}
+}
+
+void ModulePromGroup::update_component() {
+	std::list<std::string> svgs;
+	if(group->type==14) {
+		if(!group->custom_function.empty()) svgs.push_back(group->custom_function);
+		svgs.push_back(group->group);
+		svgs.push_back("module_algo");
+	} else {
+		svgs.push_back(group->get_type());
+		svgs.push_back("module_neural");
+	}
+	set_svg(svgs);
 
 	component->remove_all_classes();
 
@@ -147,6 +142,13 @@ void ModulePromGroup::update_component() {
 	if(!group->custom_function.empty()) component->add_class("custom_cpp");
 
 	component->add_class(group->group);
+	if(!group->custom_function.empty()) {
+		component->add_class("custom_cpp");
+		component->add_class(group->custom_function);
+	}
+
+	PromWorkbench::cur()->update();
+	PromWorkbench::cur()->canvas->repaint();
 }
 
 
@@ -247,6 +249,8 @@ void ModulePromGroup::on_property_change(IPropertiesElement* m, const std::strin
 		text2 = this->name = group->get_name();
 	} else if(name=="posx" || name=="posy") {
 		if(component) component->set_pos(group->posx, group->posy);
+	} else if(name=="width" || name=="height") {
+		update_component();
 	}
 }
 

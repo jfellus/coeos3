@@ -44,6 +44,7 @@ link {
 	arrow-size:1;
 	arrow-size-selected:2.5;
 	thickness:0.5;
+	font-size-text2:8;
 }
 
 link.algo {
