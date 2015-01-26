@@ -214,7 +214,7 @@ void PromProject::add(PromScript* script) {
 		add(new LinkPromLink(script->links[i]));
 	}
 
-	bool bClosed = script->annotations.get("closed") && script->annotations.get_as_string("closed")=="yes";
+	bool bClosed = !script->annotations.get("closed") || script->annotations.get_as_string("closed")=="yes";
 
 	GroupPromScript* gps = new GroupPromScript(script);
 	gps->realize();

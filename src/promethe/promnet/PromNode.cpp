@@ -39,6 +39,11 @@ void PromNode::read(Element* node) {
 	}
 
 	properties.set("embedded",  file_is_absolute(get_filename()) ? "no" : "yes");
+
+	if(path_symb.empty() && file_has_ext(path_script.c_str(), ".symb")) {
+		path_symb = path_script;
+		path_script = file_change_ext(path_symb, ".script");
+	}
 }
 
 void PromNode::write(Element* node) {
@@ -68,8 +73,12 @@ void PromNode::init(PromScript* script) {
 	this->script = script;
 	script->node = this;
 
-	if(file_has_ext(script->filename, ".symb")) path_symb = script->filename;
-	if(file_has_ext(script->filename, ".script")) path_script = script->filename;
+	if(script->filename.empty()) {
+		if(!path_symb.empty()) script->filename = file_absolute_path(path_symb);
+		else if(!path_script.empty()) script->filename = file_absolute_path(path_script);
+	}
+	else if(file_has_ext(script->filename, ".symb")) path_symb = script->filename;
+	else if(file_has_ext(script->filename, ".script")) path_script = script->filename;
 
 	properties.set("name", &script->name);
 	properties.set("computer", "127.0.0.1");
@@ -94,15 +103,19 @@ void PromNode::init(PromScript* script) {
 	properties.set("embedded",  file_is_absolute(get_filename()) ? "no" : "yes");
 
 	add_properties_listener(this);
+
 }
 
 void PromNode::realize() {
 	try {
-		if(path_symb.empty() && path_script.empty()) { ERROR("Script " << script->name << " doesn't define a .symb or .script file"); return; }
-		script->load(get_absolute_filename());
+		if(script->filename.empty()) {
+			if(!get_filename().empty()) script->filename = get_absolute_filename();
+			else {ERROR("Script " << script->name << " doesn't define a .symb or .script file"); return;}
+		}
+		script->load(script->filename);
 
 		properties.set("embedded",  file_is_absolute(get_filename()) ? "no" : "yes");
-	} catch(...) {ERROR("Can't load script " << get_absolute_filename()); }
+	} catch(...) {ERROR("Can't load script " << script->filename); }
 }
 
 
@@ -138,7 +151,10 @@ std::string PromNode::get_absolute_filename() {
 std::string PromNode::get_filename() {
 	std::string fn = path_symb;
 	if(fn.empty()) fn = path_script;
-	if(fn.empty()) fn = path_symb = file_change_ext(script->name, ".symb");
+	if(fn.empty()) {
+		if(script->name.empty()) return "";
+		fn = path_symb = file_change_ext(script->name, ".symb");
+	}
 	if(!net || file_is_absolute(fn)) return fn;
 	if(path_deploy.empty()) return fn;
 	return path_deploy + "/" + fn;

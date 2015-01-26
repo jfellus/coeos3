@@ -109,11 +109,11 @@ public:
 		try {
 			comments_groups = f_read_comments(f);
 			parse_comments_annotations();
-			uint nb_groups; f_try_read(f, "nombre de groupes = %u\n", nb_groups);
+			uint nb_groups; f_try_read(f, "nombre de groupes = %u", nb_groups);
 			for(uint i=0; i<nb_groups; i++) add_group(new PromGroup(this, f));
 
 			comments_links = f_read_comments(f);
-			uint nb_links; f_try_read(f, "nombre de liaisons = %u\n", nb_links);
+			uint nb_links; f_try_read(f, "nombre de liaisons = %u", nb_links);
 			for(uint i=0; i<nb_links; i++) {
 				PromLink* l = new PromLink(this, f);
 				if(!l->src || !l->dst) delete l;
@@ -126,6 +126,8 @@ public:
 			std::string ss = fgetlines(f, 10);
 			ERROR("Can't read " << s);
 			DBG(ss);
+			DBG("---");
+			DBG(s);
 		return false;}
 		catch(std::exception& s) { ERROR(s.what()); return false;}
 	}

@@ -127,53 +127,53 @@ void PromGroup::read(std::istream& f) {
 	comments = f_read_comments(f);
 	parse_comments_annotations();
 
-	f_try_read(f, "groupe = %s , ", no_name);
+	f_try_read(f, "groupe = %s ,", no_name);
 	_next_free_no_name = MAX(_next_free_no_name, TOINT(no_name)+1);
 
-	f_try_read(f, "type = %u , ", type);
-	f_try_read(f, "nbre neurones = %s , ", nb_neurons);
-	f_try_read(f, "seuil = %s\n", threshold);
-	f_try_read(f, "taillex = %s , ", width);
-	f_try_read(f, "tailley = %s\n", height);
-	f_try_read(f, "learning rate = %s \n", learning_rate);
+	f_try_read(f, "type = %u ,", type);
+	f_try_read(f, "nbre neurones = %s ,", nb_neurons);
+	f_try_read(f, "seuil = %s", threshold);
+	f_try_read(f, "taillex = %s ,", width);
+	f_try_read(f, "tailley = %s", height);
+	f_try_read(f, "learning rate = %s", learning_rate);
 
 
-	if(type==0 || type==23 || type==42) f_try_read(f, "alpha = %s \n", alpha);
+	if(type==0 || type==23 || type==42) f_try_read(f, "alpha = %s", alpha);
 	if (type == No_Winner || type == No_Winner_Macro || type == No_Sutton_Barto || type == No_PCR)
-		f_try_read(f, "noise_level = %s \n", noise_level);
+		try {f_try_read(f, "noise_level = %s", noise_level);} catch(...) {}
 
-	f_try_read(f, "simulation speed = %s \n", simulation_speed);
+	f_try_read(f, "simulation speed = %s", simulation_speed);
 
 	if (type == No_Winner_Colonne || type == No_PTM || type == No_PLG || type == No_Winner_Selectif)
-		f_try_read(f, "tolerance = %s\n", tolerance);
+		f_try_read(f, "tolerance = %s", tolerance);
 	  if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro) {
-		  f_try_read(f, "dvp       = %s , ", dvp);
-		  f_try_read(f, "dvn = %s\n", dvn);
+		  f_try_read(f, "dvp = %s ,", dvp);
+		  f_try_read(f, "dvn = %s", dvn);
 	  }
 	  if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro)
-		  f_try_read(f, "alpha     = %s \n", alpha);
+		  f_try_read(f, "alpha = %s", alpha);
 	  if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro || type == No_SAW)
-		  f_try_read(f, "nbre_de_1 = %s \n", nbre_de_1);
+		  f_try_read(f, "nbre_de_1 = %s", nbre_de_1);
 	  if (type == No_PTM || type == No_PLG || type == No_Winner_Selectif || type == No_Macro_Colonne || type == No_Winner || type == No_Winner_Macro)
-		  f_try_read(f, "sigma_f   = %s \n", sigma_f);
+		  f_try_read(f, "sigma_f = %s", sigma_f);
 	  if (type == No_Kohonen) {
-		  f_try_read(f, "dvp       = %s , ", dvp);
-		  f_try_read(f, "dvn = %s \n", dvn);
+		  f_try_read(f, "dvp = %s ,", dvp);
+		  f_try_read(f, "dvn = %s", dvn);
 	  }
 	  if (type == No_Granular) {
-		  f_try_read(f, "time_spectrum min = %f \n", time_spectrum_min);
-		  f_try_read(f, "time_spectrum max = %f \n", time_spectrum_max);
+		  f_try_read(f, "time_spectrum min = %f", time_spectrum_min);
+		  f_try_read(f, "time_spectrum max = %f", time_spectrum_max);
 	  }
 
-	f_try_read(f, 			"type2  = %u \n", type2);
-	try {f_try_read(f, 			"groupe = %s\n", group);} catch(...) {}
-	f_try_read(f, "posx = %s , ", posx);
-	f_try_read(f, "posy = %s\n", posy);
-	f_try_read(f, 			"reverse = %u\n", reverse);
-	f_try_read(f, "p_posx = %s , ", p_posx);
-	f_try_read(f, "p_posy = %s\n", p_posy);
-	f_try_read(f, 			"debug = %u\n", debug);
-	f_try_read(f, 			"ech_temps = %u\n", time_scale);
+	f_try_read(f, "type2  = %u", type2);
+	try {f_try_read(f, "groupe = %s", group);} catch(...) {}
+	f_try_read(f, "posx = %s ,", posx);
+	f_try_read(f, "posy = %s", posy);
+	f_try_read(f, "reverse = %u", reverse);
+	f_try_read(f, "p_posx = %s ,", p_posx);
+	f_try_read(f, "p_posy = %s", p_posy);
+	f_try_read(f, "debug = %u", debug);
+	f_try_read(f, "ech_temps = %u", time_scale);
 
 	if(is_type_algo() && annotations.get("name")) set_name(annotations.get_as_string("name"));
 }
